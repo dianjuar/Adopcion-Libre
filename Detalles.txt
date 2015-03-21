@@ -1,1 +1,15 @@
-Version Wordpress 4.1.1 Es
+Version Wordpress 4.1.1 Español
+
+Base de datos
+     usuario: admin
+     contraseña: admin1231
+     nombre base de datos: SC
+
+Datos usados para iniciar la aplicación
+     usuario: admin
+     contraseña: Admin.1231::66
+     correo: adopcion.libre@gmail.com
+     
+Correo para el sitio
+	 adopcion.libre@gmail.com 
+	 clave: Rocko_Spunky
