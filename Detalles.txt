@@ -13,6 +13,3 @@ Datos usados para iniciar la aplicación
 Correo para el sitio
 	 adopcion.libre@gmail.com 
 	 clave: Rocko_Spunky
-
-
-	 
