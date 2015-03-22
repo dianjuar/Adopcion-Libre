@@ -14,4 +14,13 @@ Correo para el sitio
 	 adopcion.libre@gmail.com 
 	 clave: Rocko_Spunky
 
+
+SOCIAL LOGIN ONEALL
+
+	 contraseña: Rocko_Spunky
+
+FACEBOOK
+	 correo: adopcion.libre@gmail.com
+	 contraseña: Rocko_Spunky
+
 //funcionalidades//funcionalidades//funcionalidades
