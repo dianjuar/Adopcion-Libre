@@ -304,7 +304,7 @@ class WP_Users_List_Table extends WP_List_Table {
 		// Query the post counts for this page
 
 		if ( ! $this->is_site_users )
-			$post_counts = count_many_users_posts( array_keys( $var ) );
+			$post_counts = count_many_users_posts( array_keys( $this->items ) );
 
 		$editable_roles = array_keys( get_editable_roles() );
 
