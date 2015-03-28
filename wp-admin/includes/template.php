@@ -26,9 +26,9 @@
 //*****************************************************
 //*****************************************************
 add_filter( 'remove_default_wp_roles' , 'func_remove_default_wp_roles' );
-add_filter( 'remove_higher_roles_SC' , 'func_remove_higher_roles_SC', 10, 2 );
+add_filter( 'remove_higher_roles_SC' , 'func_remove_higher_roles_SC' );
 
-function func_remove_higher_roles_SC($allRoles, $rolActual ){
+function func_remove_higher_roles_SC($allRoles){
 
 	$allRoles = apply_filters(remove_default_wp_roles, $allRoles);
 
@@ -46,7 +46,8 @@ function func_remove_higher_roles_SC($allRoles, $rolActual ){
 			}
 	    }
 	}
-	
+	//var_dump($allRoles);
+
 	return $allRoles;
 	}
 
@@ -906,7 +907,7 @@ function wp_dropdown_roles( $selected = false ) {
 
 	$editable_roles = array_reverse( get_editable_roles() );
 	//---------------------------
-	$editable_roles = apply_filters( 'remove_higher_roles_SC', $editable_roles, $selected  );
+	$editable_roles = apply_filters( 'remove_higher_roles_SC', $editable_roles  );
 	//---------------------------
 
 
