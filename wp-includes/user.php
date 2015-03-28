@@ -23,6 +23,7 @@
  * @param string|bool $secure_cookie Optional. Whether to use secure cookie.
  * @return WP_User|WP_Error WP_User on success, WP_Error on failure.
  */
+
 function wp_signon( $credentials = array(), $secure_cookie = '' ) {
 	if ( empty($credentials) ) {
 		if ( ! empty($_POST['log']) )
@@ -1257,8 +1258,10 @@ function count_users($strategy = 'time') {
 		// Get the meta_value index from the end of the result set.
 		$total_users = (int) $row[$col];
 
+
 		$result['total_users'] = $total_users;
 		$result['avail_roles'] =& $role_counts;
+
 	} else {
 		$avail_roles = array();
 
@@ -1280,6 +1283,16 @@ function count_users($strategy = 'time') {
 		$result['total_users'] = count( $users_of_blog );
 		$result['avail_roles'] =& $avail_roles;
 	}
+
+	//*************************************
+	//*************************************
+	//*************************************
+	//var_dump($result['total_users']);
+	$result['avail_roles'] = apply_filters( 'remove_higher_roles_SC' , $result['avail_roles']);
+	$result['total_users'] = count( $result['avail_roles'] );
+	//*************************************
+	//*************************************
+	//*************************************
 
 	return $result;
 }

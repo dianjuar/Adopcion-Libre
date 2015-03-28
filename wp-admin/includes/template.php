@@ -21,6 +21,63 @@
  * @see wp_category_checklist()
  * @see wp_terms_checklist()
  */
+
+//*****************************************************
+//*****************************************************
+//*****************************************************
+add_filter( 'remove_default_wp_roles' , 'func_remove_default_wp_roles' );
+add_filter( 'remove_higher_roles_SC' , 'func_remove_higher_roles_SC' );
+
+function func_remove_higher_roles_SC($allRoles){
+
+	$allRoles = apply_filters(remove_default_wp_roles, $allRoles);
+
+	$user = new WP_User( get_current_user_id() );
+
+
+	if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+	    foreach ( $user->roles as $role ){
+	    	if ( $role ==  'al_administrador') {
+	    		if(isset($allRoles['al_administrador']))
+					unset($allRoles['al_administrador']);
+
+				if(isset($allRoles['al_superadministrador']))
+					unset($allRoles['al_superadministrador']);
+			}
+	    }
+	}
+	//var_dump($allRoles);
+
+	return $allRoles;
+	}
+
+function func_remove_default_wp_roles($allRoles){
+
+	//array ( [administrator] => Administrator [editor] => Editor [author] => Author [contributor] =>
+	//Contributor [subscriber] => Subscriber [basic_contributor] => Basic Contributor  ) 
+	if( isset( $allRoles['editor'] ) )	
+		unset($allRoles['editor']);
+
+	if( isset( $allRoles['author'] ) )	
+		unset($allRoles['author']);
+
+	if( isset( $allRoles['contributor'] ) )	
+		unset($allRoles['contributor']);
+
+	if( isset( $allRoles['subscriber'] ) )	
+		unset($allRoles['subscriber']);
+
+	if( isset( $allRoles['rpr_unverified'] ) )	
+		unset($allRoles['rpr_unverified']);
+
+	return $allRoles;
+	}
+//*****************************************************
+//*****************************************************
+//*****************************************************
+
+
+
 class Walker_Category_Checklist extends Walker {
 	public $tree_type = 'category';
 	public $db_fields = array ('parent' => 'parent', 'id' => 'term_id'); //TODO: decouple this
@@ -849,6 +906,10 @@ function wp_dropdown_roles( $selected = false ) {
 	$r = '';
 
 	$editable_roles = array_reverse( get_editable_roles() );
+	//---------------------------
+	$editable_roles = apply_filters( 'remove_higher_roles_SC', $editable_roles  );
+	//---------------------------
+
 
 	foreach ( $editable_roles as $role => $details ) {
 		$name = translate_user_role($details['name'] );
@@ -859,6 +920,7 @@ function wp_dropdown_roles( $selected = false ) {
 	}
 	echo $p . $r;
 }
+
 
 /**
  * Outputs the form used by the importers to accept the data to be imported
