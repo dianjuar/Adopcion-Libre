@@ -299,12 +299,16 @@ class WP_Users_List_Table extends WP_List_Table {
 	 * @since 3.1.0
 	 * @access public
 	 */
+
 	public function display_rows() {
 		// Query the post counts for this page
+
 		if ( ! $this->is_site_users )
 			$post_counts = count_many_users_posts( array_keys( $this->items ) );
 
 		$editable_roles = array_keys( get_editable_roles() );
+
+		
 
 		$style = '';
 		foreach ( $this->items as $userid => $user_object ) {
@@ -319,10 +323,41 @@ class WP_Users_List_Table extends WP_List_Table {
 			if ( is_multisite() && empty( $user_object->allcaps ) )
 				continue;
 
+		//*********************************************
+		  if( $this->func_can_view_all_roles( $role ) )
+				continue;
+		//*********************************************
+
+
+
 			$style = ( ' class="alternate"' == $style ) ? '' : ' class="alternate"';
 			echo "\n\t" . $this->single_row( $user_object, $style, $role, isset( $post_counts ) ? $post_counts[ $userid ] : 0 );
 		}
 	}
+
+//*********************************************
+//*********************************************
+//*********************************************
+	private function func_can_view_all_roles($role)
+	{
+		$bandera = false;
+
+		$user = new WP_User( get_current_user_id() );
+
+		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+
+		    foreach ( $user->roles as $current_role ){
+		    	if( ($current_role == 'al_administrador') && ($role == "al_administrador" || $role == "al_superadministrador"))
+					$bandera = true;
+		    }
+		}
+
+		return $bandera ;
+	}
+//*********************************************
+//*********************************************
+//*********************************************
+
 
 	/**
 	 * Generate HTML for a single row on the users.php admin panel.

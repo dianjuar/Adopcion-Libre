@@ -331,11 +331,17 @@ $user_role  = array_shift( $user_roles );
 // print the full list of roles with the primary one selected.
 wp_dropdown_roles($user_role);
 
+//**********************************************************************************
+/* Comentado porque todos los usuarios deben tener asignado un rol. Y estas lineas permitian que un usuario
+no tuviera rol.
+
 // print the 'no role' option. Make it selected if the user has no role yet.
 if ( $user_role )
 	echo '<option value="">' . __('&mdash; No role for this site &mdash;') . '</option>';
 else
 	echo '<option value="" selected="selected">' . __('&mdash; No role for this site &mdash;') . '</option>';
+*/
+//***********************************************************************************
 ?>
 </select></td></tr>
 <?php endif; //!IS_PROFILE_PAGE

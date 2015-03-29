@@ -329,3 +329,23 @@ require get_template_directory() . '/inc/template-tags.php';
  * @since Twenty Fifteen 1.0
  */
 require get_template_directory() . '/inc/customizer.php';
+
+//+++++++++++++++++++++++++++++++++++++PERSONALIZACION+++++++++++++++++++++++++++++++++++++++++++++++++++
+//Set a custom role for a new user
+function oa_social_login_set_new_user_role ($user_role)
+{
+  //This is an example for a custom setting with one role
+  //$user_role = 'subscriber';
+  $user_role = 'author';
+   
+  //This is an example for a custom setting with two roles
+  //$user_role = 'author editor';
+ 
+  //The new user will be created with this role
+  return $user_role;
+}
+ 
+//This filter is applied to the roles of new users
+add_filter('oa_social_login_filter_new_user_role', 'oa_social_login_set_new_user_role');
+
+
