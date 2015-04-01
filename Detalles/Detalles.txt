@@ -1,22 +1,22 @@
-Version Wordpress 4.1.1 Español
+Version Wordpress 4.1.1 Español --- ¡¡¡¡¡NO ACTUALIZAR!!!!
 
 Base de datos
      usuario: admin
      contraseña: admin1231
      nombre base de datos: SC
 
-Datos usados para iniciar la aplicación
+Datos usados para iniciar la aplicación (super admin de wordpress)
      usuario: admin
      contraseña: Admin.1231::66
      correo: adopcion.libre@gmail.com
      
+Las claves de todos los usuarios es 123123123 y su usuario es el correo
+
 Correo para el sitio
 	 adopcion.libre@gmail.com 
 	 clave: Rocko_Spunky
 
-
 SOCIAL LOGIN ONEALL
-
 	 contraseña: Rocko_Spunky
 
 FACEBOOK
