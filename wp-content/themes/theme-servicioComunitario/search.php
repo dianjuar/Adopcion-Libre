@@ -15,6 +15,9 @@
       <?php require_once("menu.php"); ?>
 
       <article class="container padding-xlarge-left">
+        <?php if (!function_exists('dynamic_sidebar') || 
+          !dynamic_sidebar('servicio-001')) : ?>
+        <?php endif; ?>
         <div class="searchBox">
           <?php 
           if (!function_exists('dynamic_sidebar') || 

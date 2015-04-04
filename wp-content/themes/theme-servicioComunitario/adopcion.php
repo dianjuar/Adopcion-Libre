@@ -22,6 +22,9 @@
       <?php require_once("menu.php"); ?>
 
       <article class="container padding-xlarge-left">
+        <?php if (!function_exists('dynamic_sidebar') || 
+          !dynamic_sidebar('servicio-001')) : ?>
+        <?php endif; ?>
         <div class="searchBox">
           <?php 
           if (!function_exists('dynamic_sidebar') || 
@@ -39,7 +42,7 @@
         <section class="post no-margin padding-medium-left">
           <?php 
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            query_posts('cat=2&paged='.$paged ) ?>
+            query_posts('category_name=adopcion&paged='.$paged ) ?>
 
           <?php if (have_posts()): while ( have_posts() ) : the_post(); ?>
             <?php $data = get_post_meta( $post->ID, 'post', true );  ?>

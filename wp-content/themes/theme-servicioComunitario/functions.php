@@ -33,11 +33,11 @@
 		"tipo" => array(
     		"nombre" => "tipo",
     		"titulo" => "Tipo de mascota:",
-    		"descripcion" => "Indicar el tipo de mascota"),
+    		"descripcion" => "Ingrese el tipo de mascota"),
 		"raza" => array(
     		"nombre" => "raza",
     		"titulo" => "Raza de la mascota:",
-    		"descripcion" => "Raza de la mascota"),
+    		"descripcion" => "Ingrese la raza de la mascota"),
 		"esterilizacion" => array(
     		"nombre" => "esterilizacion",
     		"titulo" => "Esterilizado:",
@@ -85,16 +85,16 @@
 		        <label for="<?php echo $meta_box[ 'nombre' ]; ?>"><?php echo $meta_box[ 'titulo' ]; ?></label>
 		        
 		        <?php if($meta_box[ 'nombre' ]=="esterilizacion"){ ?>
-		        	<select name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
-						<option value=" " <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
+		        	<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
+						<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
 						<option value="Si" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Si") {?>selected<?php } ?> >Si</option>
 		        		<option value="No" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No") {?>selected<?php } ?> >No</option>
 		        		<option value="No se" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No") {?>selected<?php } ?> >No se</option>
 		        	</select>		        	
 		        <?php } 
 		        	if($meta_box[ 'nombre' ]=="estatus"){ ?>
-						<select name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
-							<option value=" " <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
+						<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
+							<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
 							<option value="En adopción" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="En adopción") {?>selected<?php } ?> >En adopción</option>
 		        			<option value="Adoptado" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Adoptado") {?>selected<?php } ?> >Adoptado</option>
 		        			<option value="Encontrado" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Adoptado") {?>selected<?php } ?> >Encontrado</option>
@@ -103,21 +103,21 @@
 		        		</select>	
 		        <?php }
 		        	if($meta_box[ 'nombre' ]=="tipo"){ ?>
-						<select name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
-							<option value=" " <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
+						<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
+							<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
 							<option value="Perro" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Perro") {?>selected<?php } ?> >Perro</option>
 		        			<option value="Gato" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Gato") {?>selected<?php } ?> >Gato</option>
 		        			<option value="Otro" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Otro") {?>selected<?php } ?> >Otro</option>
 		        		</select>	
 		        <?php }
 		        	 if($meta_box[ 'nombre' ]=="telefono") { ?>
-		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
+		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
 		        <?php }
 		        	if($meta_box[ 'nombre' ]=="direccion") { ?>
-		        		<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_direccin; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
+		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_direccin; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
 		        <?php }
 		        	if($meta_box[ 'nombre' ]=="raza") { ?>	
-		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); else echo 'Ingrese raza'; ?>" />
+		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
 		        <?php } ?>
 		        <p><?php echo $meta_box[ 'descripcion' ]; ?></p>
 		    </div>

@@ -13,7 +13,9 @@
         <![endif]-->
       <?php require_once("header.php"); ?>
       <?php require_once("menu.php"); ?>
-
+      <?php if (!function_exists('dynamic_sidebar') || 
+          !dynamic_sidebar('servicio-001')) : ?>
+        <?php endif; ?>
       <div class="container searchBox">
           <?php 
           if (!function_exists('dynamic_sidebar') || 

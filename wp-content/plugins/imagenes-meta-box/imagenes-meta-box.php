@@ -33,7 +33,7 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
         ?>
         <strong>Foto 1:</strong><br>
-        <input id="em_mtbx_img1" class="em_mtbx_img" type="text" size="40" name="em_mtbx_img1" value="<?php echo esc_url( $em_mtbx_img1 ); ?>" />
+        <input required id="em_mtbx_img1" class="em_mtbx_img" type="text" size="40" name="em_mtbx_img1" value="<?php echo esc_url( $em_mtbx_img1 ); ?>" />
           <input id="img_boton1" type="button" value="Seleccionar imagen" class="img_boton button-secondary"  />
           <br /><br />
           <?php if($em_mtbx_img1 && $em_mtbx_img1 != '') echo '<img src="' . esc_url( $em_mtbx_img1 ) .'" width="150" height="150" alt="" />'; ?>  
@@ -44,7 +44,7 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img2 = get_post_meta( $post->ID, '_em_mtbx_img2', true );
         ?>
         <strong>Foto 2:</strong><br>
-        <input id="em_mtbx_img2" class="em_mtbx_img" type="text" size="40" name="em_mtbx_img2" value="<?php echo esc_url( $em_mtbx_img2 ); ?>" />
+        <input required id="em_mtbx_img2" class="em_mtbx_img" type="text" size="40" name="em_mtbx_img2" value="<?php echo esc_url( $em_mtbx_img2 ); ?>" />
           <input id="img_boton2" type="button" value="Seleccionar imagen" class="img_boton button-secondary"  />
           <br /><br />
           <?php if($em_mtbx_img2 && $em_mtbx_img2 != '') echo '<img src="' . esc_url( $em_mtbx_img2 ) .'" width="150" height="150" alt="" />'; ?>
