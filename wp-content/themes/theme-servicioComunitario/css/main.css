@@ -131,8 +131,7 @@ dt {
 /*=============== Huellas ===========================================================*/
 /*=============== Login SingIn ======================================================*/
 .BoxLoginSingIm {
-  margin-top: 10px;
-  /* margin: 10px; */
+  margin: 5px;
   z-index: 1;
   position: relative;
   float: right;
@@ -142,38 +141,35 @@ dt {
 }
 .BoxLoginSingIm ul {
   list-style: none;
-  margin-left: -50px;
-  float: right;
 }
 .BoxLoginSingIm ul li {
-  /* float: right; */
+  float: right;
   padding: 10px;
   color: #000000;
   display: none;
 }
 .BoxLoginSingIm ul li span {
-
+  margin-left: 10px;
 }
-.BoxLoginSingIm ul li:nth-child(1) {
+.BoxLoginSingIm ul li:nth-child(2) {
   border-top-left-radius: 9px;
   border-bottom-left-radius: 9px;
   background-color: #f78e1d;
   display: inline-block;
 }
-.BoxLoginSingIm ul li:nth-child(1):hover,
-.BoxLoginSingIm ul li:nth-child(1):hover a {
+.BoxLoginSingIm ul li:nth-child(2):hover,
+.BoxLoginSingIm ul li:nth-child(2):hover a {
   background-color: #000000;
   color: #fada37;
 }
-.BoxLoginSingIm ul li:nth-child(2) {
+.BoxLoginSingIm ul li:nth-child(1) {
   border-top-right-radius: 9px;
   border-bottom-right-radius: 9px;
   background-color: #fada37;
   display: inline-block;
-  margin-left: -5px;
 }
-.BoxLoginSingIm ul li:nth-child(2):hover,
-.BoxLoginSingIm ul li:nth-child(2):hover a {
+.BoxLoginSingIm ul li:nth-child(1):hover,
+.BoxLoginSingIm ul li:nth-child(1):hover a {
   background-color: #000000;
   color: #f78e1d;
 }
@@ -182,8 +178,8 @@ dt {
 .BoxImgPrincipal {
   z-index: 0;
   position: relative;
-  top: -60px;
-  margin-bottom: -60px;
+  top: -90px;
+  margin-bottom: -90px;
 }
 /*=============== CabezeraME ========================================================*/
 .boxCabezeraME {
@@ -421,7 +417,7 @@ dt {
   margin-top: 10px;
   height: 300px;
   width: 100%;
-  /* border: 1px solid #f78e1d; */
+  border: 1px solid #f78e1d;
 }
 .BoxDetPet__title {
   text-transform: capitalize;
@@ -493,7 +489,6 @@ dt {
 }
 .post__imgPost {
   height: 250px;
-  width: 100%;
 }
 .post__imgPost--noFound {
   display: table-cell;
@@ -542,6 +537,11 @@ dt {
   padding-top: 10px;
   background-color: rgba(250, 218, 55, 0.77);
 }
+.post__NoPost {
+  font-size: 1.6em;
+  padding-top: 30px;
+  min-height: 185px;
+}
 /*=============== Caja moscota ======================================================*/
 /*=============== Paginacion ========================================================*/
 .pagina {
@@ -569,7 +569,7 @@ dt {
 .searchBox {
   float: right;
   display: block;
-  /* margin-top: -65px; */
+  margin-top: 5px;
 }
 .widget_search {
   float: right;
@@ -602,7 +602,7 @@ dt {
   background-color: #fada37;
 }
 #commentform p:nth-child(1) {
-  /* display: none; */
+  display: none;
 }
 .commentlist {
   list-style: none;
@@ -629,9 +629,6 @@ dt {
 }
 .comment-author {
   margin-left: 80px;
-}
-.comment-awaiting-moderation{
-  margin-left:85px;
 }
 .comment-meta {
   margin-left: 80px;

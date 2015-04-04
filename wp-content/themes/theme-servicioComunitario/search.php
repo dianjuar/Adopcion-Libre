@@ -28,7 +28,7 @@
       <br>
       <article class="container">
         <section class="post no-margin padding-medium-left">
-        	<h1 class="page-title"><?php printf( __( 'Resultados de la busqueda de: %s', 'twentyfifteen' ), get_search_query() ); ?></h1>
+        	<h2 class="page-title"><?php printf( __( 'Resultados de la busqueda de: %s', 'twentyfifteen' ), get_search_query() ); ?></h2>
             
           <?php if (have_posts()): while ( have_posts() ) : the_post(); ?>
           	<?php $data = get_post_meta( $post->ID, 'post', true );  ?>
@@ -62,7 +62,7 @@
                   </a>
                 </div>      
           <?php endwhile; else: ?>
-            <div class="BoxCardPet__NoPost">
+            <div class="post__NoPost">
               No hay resultados
             </div>
           <?php endif; ?>
