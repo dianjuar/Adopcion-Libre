@@ -13,16 +13,24 @@
         <![endif]-->
       <?php require_once("header.php"); ?>
       <?php require_once("menu.php"); ?>
-      <?php if (!function_exists('dynamic_sidebar') || 
+      
+      <article class="container padding-large-left">
+        <?php if (!function_exists('dynamic_sidebar') || 
           !dynamic_sidebar('servicio-001')) : ?>
         <?php endif; ?>
-      <div class="container searchBox">
+        <div class="searchBox">
           <?php 
           if (!function_exists('dynamic_sidebar') || 
                 !dynamic_sidebar('servicio-002')) : ?>
           <?php endif; ?>
-      </div>
+        </div>
+      </article>
+
       <article class="container padding-large-left">
+        <div class="col-md-12 no-padding">
+            <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
+        </div>
+
         <div class="row no-margin margin-medium" >
           <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
           <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
@@ -53,7 +61,7 @@
                 <?php } ?>
             </div>
             <div  class="col-md-10 BoxDetPet__ImgBigBox no-padding">
-              <img id="ImgBig" src="" class="img-responsive img-thumbnail BoxDetPet__ImgBig" alt="...">
+              <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
           </section>
 

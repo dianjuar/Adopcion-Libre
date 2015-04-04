@@ -21,7 +21,7 @@
       <?php require_once("header.php"); ?>
       <?php require_once("menu.php"); ?>
 
-      <article class="container padding-xlarge-left">
+      <article class="container padding-large-left">
         <?php if (!function_exists('dynamic_sidebar') || 
           !dynamic_sidebar('servicio-001')) : ?>
         <?php endif; ?>
@@ -31,19 +31,25 @@
                 !dynamic_sidebar('servicio-002')) : ?>
           <?php endif; ?>
         </div>
-        
-        <?php if($user_ID){ ?>
-          <a id="btn-dar" href="<?php echo admin_url( 'edit.php?post_type=post&mode=list', 'http' ); ?>" class="btn BtnAdopcion">Dar en adopcion</a>
-        <?php } ?>
-        
       </article>
+
       <br>
       <article class="container">
         <section class="post no-margin padding-medium-left">
+
+          <div class="col-md-12 no-padding">
+            <h1 class="titulo--azul"><span class="icon icon-Pata_vector"></span>Mascotas en adopción</h1>
+
+            <?php if($user_ID){ ?>
+            <a id="btn-dar" href="<?php echo admin_url( 'edit.php?post_type=post&mode=list', 'http' ); ?>" class="btn BtnAdopcion BtnPosicion">Dar en adopcion</a>
+            <?php } ?>
+          </div>
+          
+          <div class="col-md-12 pagina pagina--adopcion"></div>
           <?php 
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             query_posts('category_name=adopcion&paged='.$paged ) ?>
-
+          
           <?php if (have_posts()): while ( have_posts() ) : the_post(); ?>
             <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
               <div class="col-md-4 no-padding">
@@ -93,7 +99,7 @@
       <script>
         $(document).ready(function(){
           $("ul.nav-justified li:nth-child(2)").html("Adopta un amigo");
-          $("ul.nav-justified li:nth-child(2)").addClass("BoxMenu--azulActive");
+          $("ul.nav-justified li:nth-child(2)").addClass("Active");
 
           $(".post a").mouseover(function() {
               $(this).children('.post__info').css("display","block");

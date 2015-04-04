@@ -10,6 +10,10 @@ body {
 a {
   color: #000000;
 }
+article {
+  z-index: 0;
+  position: relative;
+}
 footer.container {
   padding: 0px 16px 0px 55px;
 }
@@ -131,10 +135,12 @@ dt {
 /*=============== Huellas ===========================================================*/
 /*=============== Login SingIn ======================================================*/
 .BoxLoginSingIm {
-  margin: 5px;
+  margin-top: 10px;
   z-index: 1;
   position: relative;
   float: right;
+  width: initial;
+  padding: 0;
 }
 .BoxLoginSingIm h2 {
   display: none;
@@ -178,13 +184,13 @@ dt {
 .BoxImgPrincipal {
   z-index: 0;
   position: relative;
-  top: -90px;
-  margin-bottom: -90px;
 }
 /*=============== CabezeraME ========================================================*/
 .boxCabezeraME {
   padding: 0px;
   background-color: #ac0000;
+  z-index: 0;
+  position: relative;
 }
 .boxCabezeraME__imgME {
   position: relative;
@@ -207,73 +213,75 @@ dt {
 .nav-justified {
   margin-bottom: 0px;
 }
-#menuTop {
-  background-color: #ededed;
-}
 #menuTop li {
   display: table-cell;
-}
-#menuTop li:nth-child(1) {
   text-align: center;
   padding: 5px;
   list-style: none;
+  border-bottom: 4px solid;
+}
+#menuTop li:nth-child(1) {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom-color: #f78e1d;
 }
 #menuTop li:nth-child(1):hover,
 #menuTop li:nth-child(1):hover a {
   background-color: #f78e1d;
-  text-decoration: none;
   color: #ffffff;
+  text-decoration: none;
 }
 #menuTop li:nth-child(2) {
-  text-align: center;
-  padding: 5px;
-  list-style: none;
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom-color: #05a9fc;
 }
 #menuTop li:nth-child(2):hover,
 #menuTop li:nth-child(2):hover a {
   background-color: #05a9fc;
-  text-decoration: none;
   color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li.Active:nth-child(2) {
+  background-color: #05a9fc;
+  color: #ffffff;
+  text-decoration: none;
 }
 #menuTop li:nth-child(3) {
-  text-align: center;
-  padding: 5px;
-  list-style: none;
+  color: #000000;
+  border-bottom-color: #15db5b;
+  background-color: #ffffff;
 }
 #menuTop li:nth-child(3):hover,
 #menuTop li:nth-child(3):hover a {
   background-color: #15db5b;
-  text-decoration: none;
   color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li.Active:nth-child(3) {
+  background-color: #15db5b;
+  color: #ffffff;
+  text-decoration: none;
 }
 #menuTop li:nth-child(4) {
-  text-align: center;
-  padding: 5px;
-  list-style: none;
+  background-color: #ffffff;
+  border-bottom-color: #e01f95;
+  color: #000000;
 }
 #menuTop li:nth-child(4):hover,
 #menuTop li:nth-child(4):hover a {
   background-color: #e01f95;
-  text-decoration: none;
   color: #ffffff;
-}
-.BoxMenu {
-  background-color: #ededed;
-}
-.BoxMenu--azulActive {
-  background-color: #05a9fc;
   text-decoration: none;
-  color: #ffffff;
 }
-.BoxMenu--verdeActive {
-  background-color: #15db5b;
-  text-decoration: none;
-  color: #ffffff;
-}
-.BoxMenu--moradoActive {
+#menuTop li.Active:nth-child(4) {
   background-color: #e01f95;
-  text-decoration: none;
   color: #ffffff;
+  text-decoration: none;
+}
+.BoxBorderBottom {
+  z-index: 0;
+  position: relative;
 }
 .BoxBorderBottom__Item {
   padding: 0px;
@@ -368,28 +376,21 @@ dt {
 /*=============== Registro ==========================================================*/
 /*=============== boton =============================================================*/
 .BtnAdopcion {
-  margin-left: -10px;
-  margin-top: 10px;
-  width: 200px;
-  display: block;
   background-color: #05a9fc;
   color: white;
 }
 .BtnEncontrados {
-  margin-left: -10px;
-  margin-top: 10px;
-  width: 200px;
-  display: block;
   background-color: #15db5b;
   color: white;
 }
 .BtnPerdidos {
-  margin-left: -10px;
-  margin-top: 10px;
-  width: 200px;
-  display: block;
   background-color: #e01f95;
   color: white;
+}
+.BtnPosicion {
+  float: right;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -397,7 +398,7 @@ dt {
   display: block;
 }
 .BoxDetPet__ImgBox {
-  border: 2px solid #f78e1d;
+  border: 2px solid #d7d7d7;
 }
 .BoxDetPet__ImgSmall {
   margin-top: 10px;
@@ -417,7 +418,7 @@ dt {
   margin-top: 10px;
   height: 300px;
   width: 100%;
-  border: 1px solid #f78e1d;
+  border: 1px solid #d7d7d7;
 }
 .BoxDetPet__title {
   text-transform: capitalize;
@@ -481,14 +482,17 @@ dt {
   text-decoration: none;
 }
 .post__titulo {
-  background-color: #fada37;
+  /* background-color: #fada37; */
   padding: 15px 20px;
+  border-bottom: 7px solid #fada37;
+  border-top: 7px solid;
 }
 .post__titulo h2 {
   margin: 0px;
 }
 .post__imgPost {
   height: 250px;
+  width: 100%;
 }
 .post__imgPost--noFound {
   display: table-cell;
@@ -546,7 +550,7 @@ dt {
 /*=============== Paginacion ========================================================*/
 .pagina {
   text-align: center;
-  padding: 15px;
+  padding: 5px;
 }
 .pagina--adopcion {
   background-color: #05a9fc;
@@ -564,12 +568,14 @@ dt {
   color: white;
   padding-right: 15px;
 }
+.pagina__titulo {
+  border-top-right-radius: 1.2em;
+  border-top-left-radius: 1.2em;
+}
 /*=============== Paginacion ========================================================*/
 /*=============== Widget busqueda ===================================================*/
 .searchBox {
-  float: right;
-  display: block;
-  margin-top: 5px;
+  display: inline-block;
 }
 .widget_search {
   float: right;
@@ -600,9 +606,6 @@ dt {
   padding: 5px;
   border: 1px solid #fada37;
   background-color: #fada37;
-}
-#commentform p:nth-child(1) {
-  display: none;
 }
 .commentlist {
   list-style: none;
@@ -658,4 +661,46 @@ dt {
   color: white;
   margin-left: 5px;
 }
+.comment-awaiting-moderation {
+  margin-left: 82px;
+}
 /*=============== Comentarios =======================================================*/
+/*=============== Modal =============================================================*/
+.ventana {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(6, 6, 6, 0.41);
+}
+.ventana__warning {
+  font-size: 4em;
+  color: red;
+  text-align: center;
+  display: block;
+}
+.ventana p {
+  padding: 0px 30px;
+  text-align: center;
+}
+.ventana__btnx {
+  text-align: center;
+}
+.modal-header .close {
+  margin-top: -8px;
+}
+/*=============== Modal =============================================================*/
+.titulo--verde {
+  border-bottom: 3px solid #15db5b;
+}
+.titulo--azul {
+  border-bottom: 3px solid #05a9fc;
+}
+.titulo--morado {
+  border-bottom: 3px solid #e01f95;
+}
+.titulo--naranja {
+  border-bottom: 3px solid #f78e1d;
+  margin-bottom: 40px;
+}

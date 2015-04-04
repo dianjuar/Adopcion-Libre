@@ -14,7 +14,7 @@
       <?php require_once("header.php"); ?>
       <?php require_once("menu.php"); ?>
 
-      <article class="container padding-xlarge-left">
+      <article class="container padding-large-left">
         <?php if (!function_exists('dynamic_sidebar') || 
           !dynamic_sidebar('servicio-001')) : ?>
         <?php endif; ?>
@@ -28,7 +28,10 @@
       <br>
       <article class="container">
         <section class="post no-margin padding-medium-left">
-        	<h2 class="page-title"><?php printf( __( 'Resultados de la busqueda de: %s', 'twentyfifteen' ), get_search_query() ); ?></h2>
+          <div class="col-md-12 no-padding">
+            <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Resultados de la busqueda</h1>
+          </div>
+        	<h3 class="page-title"><?php printf( __( 'Resultados de: "%s"', 'twentyfifteen' ), get_search_query() ); ?></h3>
             
           <?php if (have_posts()): while ( have_posts() ) : the_post(); ?>
           	<?php $data = get_post_meta( $post->ID, 'post', true );  ?>
