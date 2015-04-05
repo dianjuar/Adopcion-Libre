@@ -1,0 +1,706 @@
+/*============== Colores ============================================================*/
+/*============== Colores ============================================================*/
+/*============== Fuentes ============================================================*/
+/*============== Fuentes ============================================================*/
+/*=============== Etiquetas gobables ================================================*/
+body {
+  font-family: Amaranth, Helvetica Neue, sans-serif;
+  font-size: 14px;
+}
+a {
+  color: #000000;
+}
+article {
+  z-index: 0;
+  position: relative;
+}
+footer.container {
+  padding: 0px 16px 0px 55px;
+}
+dt {
+  float: left;
+}
+/*=============== Etiquetas gobables ================================================*/
+/*=============== Margins y paddings ================================================*/
+.no-margin {
+  margin: 0;
+}
+.margin-medium {
+  margin-top: 30px;
+}
+.margin-small-top {
+  margin-top: 10px;
+}
+.margin-small-left {
+  margin-left: 15px;
+}
+.no-padding {
+  padding: 0;
+}
+.padding-medium {
+  padding: 10px;
+}
+.padding-medium-left {
+  padding-left: 40px;
+}
+.padding-large-left {
+  padding-left: 55px;
+}
+.padding-xlarge-left {
+  padding-left: 65px;
+}
+/*=============== Margins y paddings ================================================*/
+/*=============== Menu  Index =======================================================*/
+.boxMenuIndex {
+  list-style: none;
+}
+.boxMenuIndex li {
+  float: left;
+  width: 33.3%;
+  padding: 10px 15px;
+  font-size: 1.7em;
+}
+.boxMenuIndex li span {
+  display: block;
+  font-size: 5em;
+}
+.boxMenuIndex li:nth-child(1) {
+  background-color: #05a9fc;
+  border-top-left-radius: 1.2em;
+  content: "\e602";
+}
+.boxMenuIndex li:nth-child(1):hover {
+  background-color: #000000;
+}
+.boxMenuIndex li:nth-child(1):hover a,
+.boxMenuIndex li:nth-child(1):hover span {
+  color: #05a9fc;
+  text-decoration: none;
+}
+.boxMenuIndex li:nth-child(2) {
+  background-color: #15db5b;
+}
+.boxMenuIndex li:nth-child(2):hover {
+  background-color: #000000;
+}
+.boxMenuIndex li:nth-child(2):hover a,
+.boxMenuIndex li:nth-child(2):hover span {
+  color: #15db5b;
+  text-decoration: none;
+}
+.boxMenuIndex li:nth-child(3) {
+  background-color: #e01f95;
+  border-top-right-radius: 1.2em;
+}
+.boxMenuIndex li:nth-child(3):hover {
+  background-color: #000000;
+}
+.boxMenuIndex li:nth-child(3):hover a,
+.boxMenuIndex li:nth-child(3):hover span {
+  color: #e01f95;
+  text-decoration: none;
+}
+/*=============== Menu  Index =======================================================*/
+/*=============== Huellas ===========================================================*/
+.boxHuellas {
+  background-color: #000000;
+  width: initial;
+}
+.boxHuellas__list {
+  padding: 0px;
+  list-style: none;
+  color: #ffffff;
+}
+.boxHuellas__list li {
+  float: left;
+  font-size: 1.2em;
+}
+.boxHuellas__list li:nth-child(odd) {
+  margin-left: 5px;
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(90deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+}
+.boxHuellas__list li:nth-child(even) {
+  -ms-transform: rotate(40deg);
+  /* IE 9 */
+  -webkit-transform: rotate(40deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(40deg);
+  margin-left: 5px;
+  margin-top: 7px;
+}
+/*=============== Huellas ===========================================================*/
+/*=============== Login SingIn ======================================================*/
+.BoxLoginSingIm {
+  margin-top: 10px;
+  z-index: 1;
+  position: relative;
+  float: right;
+  width: initial;
+  padding: 0;
+}
+.BoxLoginSingIm h2 {
+  display: none;
+}
+.BoxLoginSingIm ul {
+  list-style: none;
+}
+.BoxLoginSingIm ul li {
+  float: right;
+  padding: 10px;
+  color: #000000;
+  display: none;
+}
+.BoxLoginSingIm ul li span {
+  margin-left: 10px;
+}
+.BoxLoginSingIm ul li:nth-child(2) {
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+  background-color: #f78e1d;
+  display: inline-block;
+}
+.BoxLoginSingIm ul li:nth-child(2):hover,
+.BoxLoginSingIm ul li:nth-child(2):hover a {
+  background-color: #000000;
+  color: #fada37;
+}
+.BoxLoginSingIm ul li:nth-child(1) {
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  background-color: #fada37;
+  display: inline-block;
+}
+.BoxLoginSingIm ul li:nth-child(1):hover,
+.BoxLoginSingIm ul li:nth-child(1):hover a {
+  background-color: #000000;
+  color: #f78e1d;
+}
+/*=============== Login SingIn ======================================================*/
+/*=============== Img Principal Index ===============================================*/
+.BoxImgPrincipal {
+  z-index: 0;
+  position: relative;
+}
+/*=============== CabezeraME ========================================================*/
+.boxCabezeraME {
+  padding: 0px;
+  background-color: #ac0000;
+  z-index: 0;
+  position: relative;
+}
+.boxCabezeraME__imgME {
+  position: relative;
+  left: 50%;
+  margin-left: -500px;
+}
+/*=============== CabezeraME ========================================================*/
+/*=============== Footer ============================================================*/
+.boxFooter {
+  background-color: #000000;
+  color: #ffffff;
+  width: initial;
+  text-align: center;
+  padding: 10px;
+  border-bottom-left-radius: 1.2em;
+  border-bottom-right-radius: 1.2em;
+}
+/*=============== Footer ============================================================*/
+/*=============== Menu ==============================================================*/
+.nav-justified {
+  margin-bottom: 0px;
+}
+#menuTop li {
+  display: table-cell;
+  text-align: center;
+  padding: 5px;
+  list-style: none;
+  border-bottom: 4px solid;
+}
+#menuTop li:nth-child(1) {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom-color: #f78e1d;
+}
+#menuTop li:nth-child(1):hover,
+#menuTop li:nth-child(1):hover a {
+  background-color: #f78e1d;
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li:nth-child(2) {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom-color: #05a9fc;
+}
+#menuTop li:nth-child(2):hover,
+#menuTop li:nth-child(2):hover a {
+  background-color: #05a9fc;
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li.Active:nth-child(2) {
+  background-color: #05a9fc;
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li:nth-child(3) {
+  color: #000000;
+  border-bottom-color: #15db5b;
+  background-color: #ffffff;
+}
+#menuTop li:nth-child(3):hover,
+#menuTop li:nth-child(3):hover a {
+  background-color: #15db5b;
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li.Active:nth-child(3) {
+  background-color: #15db5b;
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li:nth-child(4) {
+  background-color: #ffffff;
+  border-bottom-color: #e01f95;
+  color: #000000;
+}
+#menuTop li:nth-child(4):hover,
+#menuTop li:nth-child(4):hover a {
+  background-color: #e01f95;
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuTop li.Active:nth-child(4) {
+  background-color: #e01f95;
+  color: #ffffff;
+  text-decoration: none;
+}
+.BoxBorderBottom {
+  z-index: 0;
+  position: relative;
+}
+.BoxBorderBottom__Item {
+  padding: 0px;
+}
+.BoxBorderBottom__Item--rojo {
+  background-color: #ac0000;
+  float: left;
+  height: 4px;
+}
+.BoxBorderBottom__Item--naranja {
+  background-color: #f78e1d;
+  float: left;
+  height: 4px;
+}
+.BoxBorderBottom__Item--amarillo {
+  background-color: #fada37;
+  float: left;
+  height: 4px;
+}
+.BoxBorderBottom__Item--azul {
+  background-color: #05a9fc;
+  float: left;
+  height: 4px;
+}
+.BoxBorderBottom__Item--verde {
+  background-color: #15db5b;
+  float: left;
+  height: 4px;
+}
+.BoxBorderBottom__Item--morado {
+  background-color: #e01f95;
+  float: left;
+  height: 4px;
+}
+/*=============== Menu ==============================================================*/
+/*=============== Inicio  sesion ====================================================*/
+.boxMainLogin {
+  padding: 20px 5px;
+}
+.boxMainLogin > hr {
+  display: block;
+}
+.boxMainLogin__check {
+  float: left;
+}
+.boxMainLogin__help {
+  float: right;
+}
+.boxMainLogin__SingInBtn {
+  display: block;
+  background-color: #f78e1d;
+  padding: 5px 138px;
+  margin-top: 10px;
+}
+.boxMainLogin__btn {
+  display: block;
+  background-color: #15db5b;
+  padding: 5px 148px;
+  margin-top: 10px;
+}
+.boxMainLogin__redesSociales {
+  background-color: #05a9fc;
+  padding: 10px 0px;
+  font-size: large;
+  text-decoration: none;
+}
+.boxMainLogin__redesSociales:hover {
+  color: #ffffff;
+}
+/*=============== Inicio  sesion ====================================================*/
+/*=============== Registro ==========================================================*/
+.boxSingIn {
+  padding: 20px 20px;
+}
+.boxSingIn__titulo {
+  padding-left: 15px;
+}
+.boxSingIn__InputGroup {
+  margin: 10px 0px;
+}
+.boxSingIn__InputImg {
+  background-color: #05a9fc;
+  border: 1px solid #05a9fc;
+}
+.boxSingIn__boxBtn {
+  padding-top: 20px;
+}
+.boxSingIn__Btn {
+  background-color: #f78e1d;
+  padding: 5px 30px;
+}
+/*=============== Registro ==========================================================*/
+/*=============== boton =============================================================*/
+.BtnAdopcion {
+  background-color: #05a9fc;
+  color: white;
+}
+.BtnEncontrados {
+  background-color: #15db5b;
+  color: white;
+}
+.BtnPerdidos {
+  background-color: #e01f95;
+  color: white;
+}
+.BtnPosicion {
+  float: right;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/*=============== boton =============================================================*/
+/*=============== Detalle mascota ===================================================*/
+.BoxDetPet {
+  display: block;
+}
+.BoxDetPet__ImgBox {
+  border: 2px solid #d7d7d7;
+}
+.BoxDetPet__ImgSmall {
+  margin-top: 10px;
+}
+.BoxDetPet__ImgSmall--active {
+  border: 3px solid #f78e1d;
+}
+.BoxDetPet__ImgBig {
+  margin: 10px 10px 10px 0px;
+  height: 300px;
+  width: 100%;
+}
+.BoxDetPet__ImgBigBox {
+  padding-right: 10px;
+}
+.BoxDetPet__ImgBig {
+  margin-top: 10px;
+  height: 300px;
+  width: 100%;
+  border: 1px solid #d7d7d7;
+}
+.BoxDetPet__title {
+  text-transform: capitalize;
+  margin-left: 15px;
+}
+.BoxDetPet__title small {
+  font-size: 0.4em;
+}
+.BoxDetPet__data {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.BoxDetPet__data > dt {
+  float: left;
+  margin-right: 5px;
+}
+.BoxDetPet__data > dd {
+  margin-bottom: 10px;
+}
+.BoxDetPet__label {
+  padding: 5px;
+  background-color: #f78e1d;
+  font-size: 1em;
+  color: #ffffff;
+}
+.BoxDetPet__label__titulo {
+  padding: 8px;
+  margin-right: 5px;
+  background: #FADA37;
+  color: #000000;
+}
+.BoxDetPet__labelBox {
+  /*padding: 5px;*/
+  background: #f78e1d;
+}
+.BoxDetPet__contacto {
+  height: 61px;
+}
+.BoxDetPet__contacto dl {
+  padding-left: 10px;
+}
+.BoxDetPet__contacto dl dt {
+  float: left;
+}
+.BoxDetPet__estatus {
+  height: 61px;
+  text-align: center;
+}
+/*=============== Detalle mascota ===================================================*/
+/*=============== Breadcrumbs =======================================================*/
+.breadcrumbs {
+  float: right;
+  margin: 20px;
+}
+.breadcrumbs a {
+  margin: 5px;
+}
+/*=============== Breadcrumbs =======================================================*/
+/*=============== Caja moscota ======================================================*/
+.post a:hover {
+  text-decoration: none;
+}
+.post__titulo {
+  /* background-color: #fada37; */
+  padding: 15px 20px;
+  border-bottom: 7px solid #fada37;
+  border-top: 7px solid;
+}
+.post__titulo h2 {
+  margin: 0px;
+}
+.post__imgPost {
+  height: 250px;
+  width: 100%;
+}
+.post__imgPost--noFound {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  min-width: 300px;
+  background-color: #ededed;
+}
+.post__imgContainer {
+  position: relative;
+  z-index: 0;
+}
+.post__info {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 70px;
+  color: white;
+  position: relative;
+  z-index: 10;
+  margin-top: -70px;
+  display: none;
+}
+.post__info h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post__info__estatus {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+.post__info__estatus--adopcion {
+  padding-top: 10px;
+  background-color: rgba(5, 169, 252, 0.77);
+}
+.post__info__estatus--encontrados {
+  padding-top: 25px;
+  background-color: rgba(21, 219, 91, 0.77);
+}
+.post__info__estatus--perdidos {
+  padding-top: 25px;
+  background-color: rgba(224, 31, 149, 0.77);
+}
+.post__info__estatus--otros {
+  padding-top: 10px;
+  background-color: rgba(250, 218, 55, 0.77);
+}
+.post__NoPost {
+  font-size: 1.6em;
+  padding-top: 30px;
+  min-height: 185px;
+}
+/*=============== Caja moscota ======================================================*/
+/*=============== Paginacion ========================================================*/
+.pagina {
+  text-align: center;
+  padding: 5px;
+}
+.pagina--adopcion {
+  background-color: #05a9fc;
+}
+.pagina--encontrados {
+  background-color: #15db5b;
+}
+.pagina--perdidos {
+  background-color: #e01f95;
+}
+.pagina--busqueda {
+  background-color: #f78e1d;
+}
+.pagina a {
+  color: white;
+  padding-right: 15px;
+}
+.pagina__titulo {
+  border-top-right-radius: 1.2em;
+  border-top-left-radius: 1.2em;
+}
+/*=============== Paginacion ========================================================*/
+/*=============== Widget busqueda ===================================================*/
+.searchBox {
+  display: inline-block;
+}
+.widget_search {
+  float: right;
+}
+.widget_search label {
+  display: none;
+}
+.widget_search input:last-child {
+  border-radius: 0.3em;
+  padding: 5px;
+  border: 1px solid #fada37;
+  background-color: #fada37;
+}
+#advanced-search-widget-2-s {
+  border-radius: 0.3em;
+  padding: 5px;
+  border: 1px solid #ededed;
+}
+/*=============== Widget busqueda ===================================================*/
+/*=============== Comentarios =======================================================*/
+#comment {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ededed;
+}
+#submit {
+  border-radius: 0.3em;
+  padding: 5px;
+  border: 1px solid #fada37;
+  background-color: #fada37;
+}
+.commentlist {
+  list-style: none;
+}
+.commentlist .photo {
+  margin-left: -85px;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  border: 4px solid #d7d7d7;
+}
+.commentlist .children {
+  list-style: none;
+}
+.commentlist .children .photo {
+  width: 60px;
+  height: 60px;
+  margin-left: -70px;
+}
+.comment-body p {
+  margin-left: 80px;
+  padding: 5px;
+  text-align: justify;
+}
+.comment-author {
+  margin-left: 80px;
+}
+.comment-meta {
+  margin-left: 80px;
+}
+.comment-meta a:nth-child(1) {
+  font-size: 0.8em;
+  padding-left: 5px;
+}
+.comment-meta a:nth-child(2) {
+  color: #f78e1d;
+  font-weight: 600;
+}
+.fn {
+  color: #f78e1d;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin-left: 5px;
+}
+.reply {
+  margin-left: 80px;
+  margin-bottom: 20px;
+}
+.reply a {
+  padding: 5px;
+  border: 1px solid #f78e1d;
+  background-color: #f78e1d;
+  color: white;
+  margin-left: 5px;
+}
+.comment-awaiting-moderation {
+  margin-left: 82px;
+}
+/*=============== Comentarios =======================================================*/
+/*=============== Modal =============================================================*/
+.ventana {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(6, 6, 6, 0.41);
+}
+.ventana__warning {
+  font-size: 4em;
+  color: red;
+  text-align: center;
+  display: block;
+}
+.ventana p {
+  padding: 0px 30px;
+  text-align: center;
+}
+.ventana__btnx {
+  text-align: center;
+}
+.modal-header .close {
+  margin-top: -8px;
+}
+/*=============== Modal =============================================================*/
+.titulo--verde {
+  border-bottom: 3px solid #15db5b;
+}
+.titulo--azul {
+  border-bottom: 3px solid #05a9fc;
+}
+.titulo--morado {
+  border-bottom: 3px solid #e01f95;
+}
+.titulo--naranja {
+  border-bottom: 3px solid #f78e1d;
+  margin-bottom: 40px;
+}

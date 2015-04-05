@@ -1,0 +1,813 @@
+@import "variables.less";
+/*=============== Etiquetas gobables ================================================*/
+body{
+	font-family: @font;
+	font-size: 14px;
+}
+a{
+	color: @negro;
+}
+article{
+	z-index: 0;
+  	position: relative;
+}
+footer.container{
+	padding: 0px 16px 0px 55px;
+}
+
+dt{ float: left; }
+/*=============== Etiquetas gobables ================================================*/
+/*=============== Margins y paddings ================================================*/
+.no-margin{ margin: 0; }
+.margin-medium{ margin-top: 30px; }
+.margin-small-top{ margin-top: 10px; }
+.margin-small-left{ margin-left: 15px; }
+
+.no-padding{ padding: 0; }
+
+.padding-medium{ padding: 10px; }
+.padding-medium-left{ padding-left: 40px; }
+.padding-large-left{ padding-left: 55px; }
+.padding-xlarge-left{ padding-left: 65px; }
+/*=============== Margins y paddings ================================================*/
+/*=============== Menu  Index =======================================================*/
+.boxMenuIndex{
+	list-style: none;
+
+	& li {
+		float: left;
+		width: 33.3%;
+		padding: 10px 15px;
+		font-size: 1.7em;
+
+		& span{
+			display: block;
+			font-size: 5em;
+		}
+
+		&:nth-child(1){
+			background-color: @azul;
+			border-top-left-radius:1.2em;
+			content: "\e602";
+
+			&:hover{
+				background-color: @negro;
+
+				& a, & span{
+					color:@azul;
+					text-decoration: none; 
+				}
+			}
+		}
+
+		&:nth-child(2){
+			background-color: @verde;
+
+			&:hover{
+				background-color: @negro;
+
+				& a, & span{
+					color:@verde;
+					text-decoration: none; 
+				}
+			}
+		}
+
+		&:nth-child(3){
+			background-color: @morado;
+			border-top-right-radius:1.2em;
+
+			&:hover{
+				background-color: @negro;
+				
+				& a, & span{
+					color:@morado;
+					text-decoration: none; 
+				}
+			}
+		}
+	}
+}
+/*=============== Menu  Index =======================================================*/
+/*=============== Huellas ===========================================================*/
+.boxHuellas{
+	background-color: @negro;
+	width: initial;
+	
+	&__list{
+		padding: 0px;
+		list-style: none;
+		color: @blanco;
+	
+			& li{
+				float: left;
+				font-size: 1.2em;
+	
+				&:nth-child(odd){
+					margin-left:5px;
+					-ms-transform: rotate(90deg); /* IE 9 */
+	    			-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+	    			transform: rotate(90deg);
+				}
+	
+				&:nth-child(even){
+					-ms-transform: rotate(40deg); /* IE 9 */
+	    			-webkit-transform: rotate(40deg); /* Chrome, Safari, Opera */
+	    			transform: rotate(40deg);
+	    			margin-left:5px;
+	    			margin-top: 7px;
+				}
+		}
+}
+}
+/*=============== Huellas ===========================================================*/
+/*=============== Login SingIn ======================================================*/
+.BoxLoginSingIm{
+	margin-top: 10px;
+	z-index: 1;
+	position: relative;
+	float: right;
+	width: initial;
+	padding: 0;
+
+	& h2{
+		display: none;
+	}
+
+
+	& ul{
+		list-style: none;
+
+		& li{
+			float: right;
+			padding: 10px;
+			color: @negro;
+			display: none;
+
+			& span{
+				margin-left: 10px;
+			}
+
+			&:nth-child(2){
+				border-top-left-radius: 9px;
+				border-bottom-left-radius: 9px;
+				background-color: @naranja;
+				display: inline-block;
+
+				&:hover, &:hover a{
+					background-color: @negro;
+					color:@amarillo;
+				}
+			}
+
+			&:nth-child(1){
+				border-top-right-radius: 9px;
+				border-bottom-right-radius: 9px;
+				background-color: @amarillo;
+				display: inline-block;
+
+				&:hover, &:hover a{
+					background-color: @negro;
+					color:@naranja;
+				}
+			}
+		}
+	}
+
+}
+/*=============== Login SingIn ======================================================*/
+/*=============== Img Principal Index ===============================================*/
+.BoxImgPrincipal{
+	z-index: 0;
+	position: relative;
+}
+//*=============== Img Principal Index ===============================================*/
+/*=============== CabezeraME ========================================================*/
+.boxCabezeraME{
+	padding: 0px;
+	background-color: @rojo;
+	z-index: 0;
+  	position: relative;
+
+	&__imgME{
+		position: relative;
+		left: 50%;
+		margin-left: -500px;
+	}
+}
+/*=============== CabezeraME ========================================================*/
+/*=============== Footer ============================================================*/
+.boxFooter{
+	background-color: @negro;
+	color: @blanco;
+	width: initial;
+	text-align: center;
+	padding: 10px;
+	border-bottom-left-radius:1.2em;
+	border-bottom-right-radius:1.2em;
+}
+/*=============== Footer ============================================================*/
+/*=============== Menu ==============================================================*/
+.nav-justified{
+	margin-bottom: 0px;
+}
+
+#menuTop{
+
+	& li{
+		display: table-cell;
+		text-align: center;
+		padding: 5px;
+		list-style: none;
+		border-bottom: 4px solid;
+	}
+
+	& li:nth-child(1){
+		background-color: @blanco;
+		color: @negro;
+		border-bottom-color: @naranja;
+
+		&:hover, &:hover a{
+			background-color: @naranja;
+			color: @white;
+			text-decoration: none;
+		}
+	}
+
+	& li:nth-child(2){
+		background-color: @blanco;
+		color: @negro;
+		border-bottom-color: @azul;
+
+		&:hover,&:hover a{
+			background-color: @azul;
+			color: @white;
+			text-decoration: none;
+		}
+	}
+
+	& li.Active:nth-child(2){
+		background-color: @azul;
+		color: @white;
+		text-decoration: none;
+
+	}
+
+	& li:nth-child(3){
+		color: @negro;
+		border-bottom-color: @verde;
+		background-color: @blanco;
+
+		&:hover,&:hover a{
+			background-color: @verde;
+			color: @white;
+			text-decoration: none;
+		}
+	}
+
+	& li.Active:nth-child(3){
+		background-color: @verde;
+		color: @white;
+		text-decoration: none;
+
+	}
+
+	& li:nth-child(4){
+		background-color: @blanco;
+		border-bottom-color: @morado;
+		color: @negro;
+
+		&:hover,&:hover a{
+			background-color: @morado;
+			color: @white;
+			text-decoration: none;
+		}
+	}
+
+	& li.Active:nth-child(4){
+		background-color: @morado;
+		color: @white;
+		text-decoration: none;
+
+	}
+}
+
+
+.BoxBorderBottom{
+	z-index: 0;
+  	position: relative;
+
+	&__Item{
+		padding: 0px;
+
+		&--rojo{
+			background-color:@rojo;
+			float: left;
+			height: 4px;
+		}
+
+		&--naranja{
+			background-color:@naranja;
+			float: left;
+			height: 4px;
+		}
+
+		&--amarillo{
+			background-color:@amarillo;
+			float: left;
+			height: 4px;
+		}
+	
+		&--azul{
+			background-color:@azul;
+			float: left;
+			height: 4px;
+		}
+	
+		&--verde{
+			background-color:@verde;
+			float: left;
+			height: 4px;
+		}
+		
+		&--morado{
+			background-color:@morado;
+			float: left;
+			height: 4px;
+		}
+	}
+}
+/*=============== Menu ==============================================================*/
+/*=============== Inicio  sesion ====================================================*/
+.boxMainLogin{
+	padding: 20px 5px;
+	
+	& > hr{
+		display: block;
+	}
+
+	&__check{
+		float: left;
+	}
+
+	&__help{
+		float: right;
+	}
+
+	&__SingInBtn{
+		display: block;
+		background-color:@naranja;
+		padding: 5px 138px;
+		margin-top: 10px;
+	}
+
+	&__btn{
+		display: block;
+		background-color:@verde;
+		padding: 5px 148px;
+		margin-top: 10px;
+	}
+
+	&__redesSociales{
+		background-color: @azul;
+		padding: 10px 0px;
+		font-size: large;
+		text-decoration: none;
+
+		&:hover{
+			color:@blanco;
+		}
+	}
+
+}
+/*=============== Inicio  sesion ====================================================*/
+/*=============== Registro ==========================================================*/
+.boxSingIn{
+	padding: 20px 20px;
+
+	&__titulo{
+		padding-left: 15px;
+	}
+	
+	&__InputGroup{
+		margin: 10px 0px;
+	}
+
+	&__InputImg{
+		background-color: @azul;
+		border: 1px solid @azul;
+	}
+
+	&__boxBtn{
+		padding-top: 20px;
+	}
+
+	&__Btn{
+		background-color:@naranja;
+		padding: 5px 30px; 
+	}
+}
+/*=============== Registro ==========================================================*/
+/*=============== boton =============================================================*/
+.Btn{
+	
+	&Adopcion{
+		background-color: @azul;
+		color: white;
+
+	}
+	&Encontrados{
+		background-color: @verde;
+		color: white;
+	}
+	&Perdidos{
+		background-color: @morado;
+		color: white;
+	}
+
+	&Posicion{
+		float: right;
+  		border-bottom-left-radius: 0;
+  		border-bottom-right-radius: 0;
+	}
+}
+/*=============== boton =============================================================*/
+/*=============== Detalle mascota ===================================================*/
+.BoxDetPet{
+	display: block;
+
+	&__Img{
+
+		&Box{
+			border: 2px solid @gris-drak;
+		}
+
+		&Small{
+			margin-top: 10px;
+
+			&--active{
+				border: 3px solid @naranja;
+			}
+		}
+
+		&Big{
+			margin: 10px 10px 10px 0px;
+			height: 300px;
+			width: 100%;
+
+			&Box{
+				padding-right: 10px;
+			}
+		}
+	}
+
+	&__ImgBig{
+		margin-top:10px;
+		height: 300px;
+		width: 100%;
+		border: 1px solid @gris-drak;
+	}
+
+	&__title{
+		text-transform: capitalize;
+		margin-left: 15px;
+
+		& small{
+			font-size: 0.4em;
+		}
+	}
+
+	&__data{
+		margin-top: 10px;
+		margin-left: 15px;
+
+		& > dt {
+			float: left;
+			margin-right: 5px;
+		}
+
+		& > dd {
+			margin-bottom: 10px;
+		}
+	}
+
+	&__label{
+		padding: 5px;
+		background-color: @naranja;
+		font-size: 1em;
+		color: @blanco;
+
+		&__titulo{
+			padding: 8px;
+  			margin-right: 5px;
+  			background: #FADA37;
+  			color: @negro;
+		}
+	}
+
+	&__labelBox{
+		/*padding: 5px;*/
+  		background: @naranja;
+	}
+
+	&__contacto{
+		height: 61px;
+
+		& dl{
+			padding-left: 10px;
+
+			& dt{
+				float: left;
+			}
+		}
+	}
+
+	&__estatus{
+		height: 61px;
+		text-align: center;
+	}
+}
+/*=============== Detalle mascota ===================================================*/
+/*=============== Breadcrumbs =======================================================*/
+.breadcrumbs{
+	float: right;
+  	margin: 20px;
+	
+	& a{
+		margin: 5px;
+	}
+}
+/*=============== Breadcrumbs =======================================================*/
+/*=============== Caja moscota ======================================================*/
+.post{
+
+	& a:hover{
+		text-decoration:none;
+	}
+
+
+	&__titulo{
+		  /* background-color: #fada37; */
+  		padding: 15px 20px;
+  		border-bottom: 7px solid #fada37;
+  		border-top: 7px solid;
+
+  		& h2{
+  			margin: 0px;
+  		}
+	}
+
+	&__imgPost{
+		height: 250px;
+		width: 100%;
+
+		&--noFound{
+			display: table-cell;
+  			vertical-align: middle;
+  			text-align: center;
+  			min-width: 300px;
+  			background-color: @gris;
+		}
+	}
+
+	&__imgContainer{
+		position: relative;
+  		z-index: 0;
+	}
+
+	&__info{
+		background-color: rgba(0, 0, 0, 0.3);
+  		height: 70px;
+  		color: white;
+  		position: relative;
+ 		z-index: 10;
+ 		margin-top: -70px;
+ 		display: none;
+
+ 		& h4 {
+ 			white-space: nowrap;
+ 			overflow: hidden;
+ 			text-overflow: ellipsis;
+ 		}
+
+ 		&__estatus{
+  			display: table-cell;
+  			height: 100%;
+  			vertical-align: middle;
+  			text-align: center;
+			
+
+  			&--adopcion{
+  				padding-top: 10px;
+				background-color: rgba(5, 169, 252, 0.77);
+  			}
+  			&--encontrados{
+  				padding-top: 25px;
+				background-color: rgba(21, 219, 91, 0.77);
+  			}
+  			&--perdidos{
+  				padding-top: 25px;
+				background-color: rgba(224, 31, 149, 0.77);
+  			}
+  			&--otros{
+  				padding-top: 10px;
+				background-color:rgba(250, 218, 55, 0.77);
+  			}
+ 		}
+	}
+
+	&__NoPost{
+		font-size: 1.6em;
+  		padding-top: 30px;
+  		min-height: 185px;
+	}
+}
+/*=============== Caja moscota ======================================================*/
+/*=============== Paginacion ========================================================*/
+.pagina{
+	text-align: center;
+  	padding: 5px;
+
+  	&--adopcion{
+  		background-color: @azul;
+  	}
+
+	&--encontrados{
+  		background-color: @verde;
+  	}
+
+	&--perdidos{
+  		background-color: @morado;
+  	}
+
+  	&--busqueda{
+  		background-color: @naranja;
+  	}
+
+	& a{
+		color: white;
+  		padding-right: 15px;
+	}
+
+	&__titulo{
+		border-top-right-radius: 1.2em;
+  		border-top-left-radius: 1.2em;
+	}
+}
+/*=============== Paginacion ========================================================*/
+/*=============== Widget busqueda ===================================================*/
+.searchBox{
+  	display: inline-block;
+}
+
+.widget_search{
+	float: right;
+
+	& label{
+		display: none;
+	}
+
+	& input:last-child{
+		border-radius: 0.3em;
+  		padding: 5px;
+  		border: 1px solid @amarillo;
+  		background-color: @amarillo;
+	}
+}
+
+#advanced-search-widget-2-s{
+	border-radius: 0.3em;
+  	padding: 5px;
+  	border: 1px solid @gris;
+}
+/*=============== Widget busqueda ===================================================*/
+/*=============== Comentarios =======================================================*/
+#comment{
+	width: 100%;
+  	height: 100px;
+  	border: 1px solid #ededed;
+}
+
+#submit{
+	border-radius: 0.3em;
+  	padding: 5px;
+  	border: 1px solid @amarillo;
+  	background-color: @amarillo;
+}
+
+
+.commentlist{
+	list-style: none;
+
+	& .photo{
+		margin-left: -85px;
+  		width: 70px;
+  		height: 70px;
+  		position: absolute;
+  		border: 4px solid @gris-drak;
+	}
+
+	& .children{
+		list-style: none;
+
+		& .photo{
+			width: 60px;
+  			height: 60px;
+  			margin-left: -70px;
+		}
+	}
+}
+
+.comment-body{
+	& p {
+		margin-left: 80px;
+  		padding: 5px;
+  		text-align: justify;
+	}
+}
+
+.comment-author{
+  	margin-left: 80px;
+}
+
+.comment-meta{
+  	margin-left: 80px;
+
+  	& a:nth-child(1){
+  		font-size: 0.8em;
+  		padding-left: 5px;
+  	}
+
+  	& a:nth-child(2){
+  		color: @naranja;
+  		font-weight: 600;
+  	}
+}
+
+.fn{
+	color: @naranja;
+  	text-transform: capitalize;
+  	font-weight: 600;
+  	margin-left: 5px;
+}
+
+.reply{
+	margin-left: 80px;
+  	margin-bottom: 20px;
+
+  	& a {
+  		padding: 5px;
+  		border: 1px solid #f78e1d;
+  		background-color: #f78e1d;
+  		color: white;
+  		margin-left: 5px;
+  	}
+}
+.comment-awaiting-moderation{
+	margin-left: 82px;
+}
+/*=============== Comentarios =======================================================*/
+/*=============== Modal =============================================================*/
+.ventana{
+	display: none;
+  	z-index: 1000;
+  	position: absolute;
+  	width: 100%;
+  	height: 100%;
+  	background: rgba(6, 6, 6, 0.41);
+
+  	&__warning{
+  		font-size: 4em;
+  		color: red;
+  		text-align: center;
+  		display: block;
+  	}
+
+  	& p{
+  		padding: 0px 30px;
+  		text-align: center;
+  	}
+
+  	&__btnx{
+  		text-align: center;
+  	}
+}
+.modal-header .close {
+  margin-top: -8px;
+}
+/*=============== Modal =============================================================*/
+.titulo{
+	&--verde{
+		border-bottom: 3px solid @verde;
+	}
+	&--azul{
+		border-bottom: 3px solid @azul;
+	}
+	&--morado{
+		border-bottom: 3px solid @morado;
+	}
+	&--naranja{
+		border-bottom: 3px solid @naranja;
+		  margin-bottom: 40px;
+	}
+}
