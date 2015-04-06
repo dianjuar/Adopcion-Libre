@@ -11,9 +11,6 @@ article{
 	z-index: 0;
   	position: relative;
 }
-footer.container{
-	padding: 0px 16px 0px 55px;
-}
 
 dt{ float: left; }
 /*=============== Etiquetas gobables ================================================*/
@@ -24,7 +21,7 @@ dt{ float: left; }
 .margin-small-left{ margin-left: 15px; }
 
 .no-padding{ padding: 0; }
-
+.padding-small{ padding-left: 9px; padding-right: 9px; }
 .padding-medium{ padding: 10px; }
 .padding-medium-left{ padding-left: 40px; }
 .padding-large-left{ padding-left: 55px; }
@@ -33,6 +30,7 @@ dt{ float: left; }
 /*=============== Menu  Index =======================================================*/
 .boxMenuIndex{
 	list-style: none;
+	padding: 0;
 
 	& li {
 		float: left;
@@ -191,8 +189,6 @@ dt{ float: left; }
 
 	&__imgME{
 		position: relative;
-		left: 50%;
-		margin-left: -500px;
 	}
 }
 /*=============== CabezeraME ========================================================*/
@@ -210,6 +206,14 @@ dt{ float: left; }
 /*=============== Menu ==============================================================*/
 .nav-justified{
 	margin-bottom: 0px;
+}
+
+.MenuBoton{
+	border: 2px solid @amarillo !important;
+
+	&__lineas{
+		border: 1px solid @naranja;
+	}
 }
 
 #menuTop{
@@ -565,7 +569,7 @@ dt{ float: left; }
 			display: table-cell;
   			vertical-align: middle;
   			text-align: center;
-  			min-width: 300px;
+  			min-width: 380px;
   			background-color: @gris;
 		}
 	}
@@ -811,3 +815,245 @@ dt{ float: left; }
 		  margin-bottom: 40px;
 	}
 }
+/*=============== Modal =============================================================*/
+/*=============== MEdia <768 px Phones ==============================================*/
+@media (max-width: @screen-xs-max) { 
+
+	
+	/*=============== Menú ==========================================================*/
+	#menuTop{
+
+		& li{
+			display: block;
+			padding: 0;
+			border: 0;
+
+			&.Active{
+				padding: 8px;
+				margin-bottom: 5px;
+			}
+		}
+
+		& li:nth-child(1),& li:nth-child(1) a{
+			background-color: @naranja;
+			color: @white;
+		}
+
+		
+
+		& li:nth-child(2),& li:nth-child(2) a{
+			background-color: @azul;
+			color: @white;
+		}
+
+		& li:nth-child(3),& li:nth-child(3) a{
+			background-color: @verde;
+			color: @white;
+		}
+
+		& li:nth-child(4),& li:nth-child(4) a{
+			background-color: @morado;
+			color: @white;
+		}
+	}
+	/*=============== Menú ==========================================================*/
+	/*=============== Inicio Sesión =================================================*/
+	.BoxLoginSingIm{
+		padding: 0;
+		margin-top: 15px;
+		float: none;
+
+		& ul {
+			padding: 0;
+
+			& li{
+				padding: 10px;
+				margin-bottom: 5px;
+				display: none;
+				text-align: center;
+				float: none;
+
+				a {
+					color: @blanco;
+				}
+
+				&:nth-child(1) {
+    				background-color: @amarillo;
+    				display: block;
+    				border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
+    			}
+
+    			&:nth-child(2) {
+    				background-color: @naranja;
+    				display: block;
+    				border-top-left-radius: 0;
+					border-bottom-left-radius: 0;
+    			}
+			}
+		}
+	}
+	/*=============== Inicio Sesión =================================================*/
+	/*=============== Busqueda ======================================================*/
+	.searchBox {
+    	display: block;
+	}
+	.widget_search {
+    	float: none;
+	}
+
+	#advanced-search-widget-2-s {
+	   width: 80%;
+	}
+
+	.widget_search input:last-child {
+	    float: right;
+	}
+	/*=============== Busqueda ======================================================*/
+	/*=============== Info mascota ==================================================*/
+	.post{
+		&__info{
+			display: block;
+		}
+
+		&__imgPost{
+
+			&--noFound{
+  				min-width: 290px;
+			}
+		}
+
+		__NoPost {
+    		min-height: 157px;
+		}
+	}
+	/*=============== Info mascota ==================================================*/
+	.BoxDetPet{
+		display: block;
+	
+		&__Img{
+	
+			&Box{
+			border: 0;
+			}
+	
+			&Small{
+				margin-top: 10px;
+				float: left;
+				margin-right: 5px;
+				width: 48px;
+			}
+	
+			&Big{
+				height:200px;
+				border: 0;
+				margin-left: 0;
+	
+				&Box{
+					padding-right: 10px;
+				}
+			}
+		}
+
+		&__title{
+
+			& small{
+				display: block;
+			}
+		}
+
+		&__label {
+	    display: inline-block;
+		}
+
+	}
+	/*=============== Detalle mascota ===============================================*/
+	/*=============== Menu  Index ===================================================*/
+	.boxMenuIndex{
+
+		& li {
+			float: none;
+			width: 100%;
+			font-size: 1.6em;
+
+			& span{
+				display: inline-block;
+				font-size: 1.6em;
+			}
+
+			&:nth-child(1){
+				border-top-left-radius:0;
+			}
+
+			&:nth-child(3){
+				border-top-right-radius:0;
+			}
+		}
+	}
+	/*=============== Menu  Index ===================================================*/
+}
+/*=============== MEdia <768 px Phones ==============================================*/
+/*=============== MEdia ≥768 px Tablets =============================================*/
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+
+	/*=============== Menú ==========================================================*/
+	#menuTop{
+
+		& li{
+			display: table-cell;
+			padding: 0;
+			border: 0;
+
+			&.Active{
+				padding: 8px;
+				margin-bottom: 5px;
+			}
+		}
+
+		& li:nth-child(1),& li:nth-child(1) a{
+			background-color: @naranja;
+			color: @white;
+		}
+
+		
+
+		& li:nth-child(2),& li:nth-child(2) a{
+			background-color: @azul;
+			color: @white;
+		}
+
+		& li:nth-child(3),& li:nth-child(3) a{
+			background-color: @verde;
+			color: @white;
+		}
+
+		& li:nth-child(4),& li:nth-child(4) a{
+			background-color: @morado;
+			color: @white;
+		}
+	}
+	/*=============== Menú ==========================================================*/
+	/*=============== Info mascota ==================================================*/
+	.post{
+		&__info{
+			display: block;
+		}
+
+		&__imgPost{
+
+			&--noFound{
+  				min-width: 360px;
+			}
+		}
+	}
+	/*=============== Info mascota ==================================================*/
+		/*=============== Menu  Index ===================================================*/
+	.boxMenuIndex{
+
+		& li {
+			min-height: 210px;
+		}
+	}
+	/*=============== Menu  Index ===================================================*/
+}
+/*=============== MEdia ≥768 px Tablets =============================================*/

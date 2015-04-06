@@ -13,20 +13,8 @@
         <![endif]-->
       <?php require_once("header.php"); ?>
       <?php require_once("menu.php"); ?>
-      
-      <article class="container padding-large-left">
-        <?php if (!function_exists('dynamic_sidebar') || 
-          !dynamic_sidebar('servicio-001')) : ?>
-        <?php endif; ?>
-        <div class="searchBox">
-          <?php 
-          if (!function_exists('dynamic_sidebar') || 
-                !dynamic_sidebar('servicio-002')) : ?>
-          <?php endif; ?>
-        </div>
-      </article>
 
-      <article class="container padding-large-left">
+      <article class="container padding-small">
         <div class="col-md-12 no-padding">
             <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
         </div>
@@ -35,8 +23,8 @@
           <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
           <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
 
-          <section  class="col-md-6 no-padding BoxDetPet__ImgBox">
-            <div  class="col-md-2">
+          <section  class="col-md-6 col-sm-7 col-xs-12 no-padding BoxDetPet__ImgBox">
+            <div  class="col-md-2 col-sm-2 col-xs-12">
               <?php $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
                 if($em_mtbx_img1 != '') { // Si existe el valor ?>
                   <img src="<?php echo $em_mtbx_img1; ?>" class="img-responsive BoxDetPet__ImgSmall BoxDetPet__ImgSmall--active" alt="" /> 
@@ -60,12 +48,12 @@
                   <img src="<?php echo $em_mtbx_img5; ?>" class="img-responsive BoxDetPet__ImgSmall" alt="" /> 
                 <?php } ?>
             </div>
-            <div  class="col-md-10 BoxDetPet__ImgBigBox no-padding">
+            <div  class="col-md-10 col-sm-10 col-xs-12 BoxDetPet__ImgBigBox no-padding">
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
           </section>
 
-          <section  class="col-md-6 no-padding">
+          <section  class="col-md-6 col-sm-5 col-xs-12 no-padding">
             <div>
               <h1 class="BoxDetPet__title no-margin"><?php the_title(); ?> <small>Fecha de publicación: <?php the_date(); ?></small></h1>
             </div>
@@ -83,14 +71,14 @@
               <dd><?php if(!empty($data[ 'estatus' ])) {echo $data[ 'estatus' ];} ?></dd>
             </dl> 
             <h3 class="no-margin margin-small-left">Información de contacto</h3> 
-            <dl class="margin-small-left no-margin">
+            <dl class="BoxDetPet__data no-margin">
               <dt>Ubicación:</dt>
               <dd> <?php if(!empty($data[ 'direccion' ])) {echo $data[ 'direccion' ];} ?></dd>
               <dt><abbr title="Telefono">Tlf:</abbr></dt>
               <dd> <?php if(!empty($data[ 'telefono' ])) {echo $data[ 'telefono' ];} ?></dd>
             </dl>
           </section>
-          <section class="col-md-12 BoxDetPet__labelBox margin-small-top">
+          <section class="col-md-12 col-sm-12 col-xs-12 BoxDetPet__labelBox margin-small-top">
             <span class="label BoxDetPet__label BoxDetPet__label__titulo">Etiquetas: </span> 
               <?php $mytags = get_the_tags(); ?> 
               <?php if ($mytags) : ?> 
