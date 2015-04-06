@@ -12,7 +12,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
       <?php require_once("header.php"); ?>
-      <header class="container padding-large-left">
+      <header class="container">
         <?php if (!function_exists('dynamic_sidebar') || 
           !dynamic_sidebar('servicio-001')) : ?>
         <?php endif; ?>
@@ -27,7 +27,7 @@
         </div> 
       </header>
 
-      <article class="container boxMenuIndex text-center">
+      <article class="container text-center">
         <?php wp_nav_menu(
             array(
               'container'     => 'nav',
@@ -37,7 +37,8 @@
           );
         ?>
       </article>
-      <article class="container post padding-large-left"> 
+      
+      <article class="container post"> 
         <div class="post__titulo">
           <h2>Publicaciones recientes:</h2>
         </div>
@@ -46,7 +47,7 @@
           <?php if (have_posts()): while ( have_posts() ) : the_post(); ?>
             <?php $myposts = get_posts('numberposts=6&offset=0');
               foreach($myposts as $post) { ?>
-                <div class="col-md-4 no-padding">
+                <div class="col-md-4 col-sm-6 no-padding">
                   <?php $variable = get_the_ID(); ?>
                   <a href="<?php the_permalink(); ?>" id="<?php echo $variable; ?>">
                     <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
@@ -61,11 +62,11 @@
                       </div>
                     <?php } ?>
                     <div class="post__info row no-margin">
-                      <div class="col-md-8 padding-medium"> 
+                      <div class="col-md-8 col-xs-7 padding-medium"> 
                         <h4 class="no-margin"><?php the_title();?></h4>
                         <span><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></span>
                       </div>
-                      <div class="col-md-4 post__info__estatus <?php 
+                      <div class="col-md-4 col-xs-5 post__info__estatus <?php 
                             if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='En adopción') {echo 'post__info__estatus--adopcion';} else { 
                             if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='Perdido') {echo 'post__info__estatus--perdidos';} else {
                             if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='Encontrado') {echo 'post__info__estatus--encontrados';} else { 
