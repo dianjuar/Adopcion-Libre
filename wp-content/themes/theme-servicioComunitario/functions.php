@@ -193,4 +193,25 @@
 	add_action("manage_posts_custom_column",  "obt_valores_columnas");
 	add_filter( 'the_search_query', 'searchAll' );
 
+
+	//Set a custom role for a new user
+	function oa_social_login_set_new_user_role ($user_role)
+	{
+	  //This is an example for a custom setting with one role
+	  $user_role = 'al_suscriptor';
+	   
+	  //This is an example for a custom setting with two roles
+	  //$user_role = 'author editor';
+	  
+	  //Comprobado que si llama esta funcion
+	  //die("funcion new user role: $user_role");
+
+	  //The new user will be created with this role
+	  return $user_role;
+	}
+	 
+	//This filter is applied to the roles of new users
+	add_filter('oa_social_login_filter_new_user_role', 'oa_social_login_set_new_user_role');
 ?>
+
+
