@@ -214,4 +214,13 @@
 	add_filter('oa_social_login_filter_new_user_role', 'oa_social_login_set_new_user_role');
 ?>
 
+<?php 
 
+	// This filter is aplied to remove the media library tab.
+  	function remove_media_library_tab($tabs) {
+    	unset($tabs['library']);
+    	return $tabs;
+	}
+	add_filter('media_upload_tabs', 'remove_media_library_tab');
+
+?>
