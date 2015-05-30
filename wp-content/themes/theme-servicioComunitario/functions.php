@@ -222,5 +222,58 @@
     	return $tabs;
 	}
 	add_filter('media_upload_tabs', 'remove_media_library_tab');
+//*************************************************************************************
+//*************************************************************************************
+	// Remueve el tab Todos en la lista de posts
+	function mine_published_only($views) 
+	{
+	  unset($views['all']);
+	  return $views;
+	}
+
+	// Remueve el los posts que no son del usuario actual
+	function only_own_posts_parse_query( $wp_query ) 
+	{
+	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php' ) !== false ) 
+	    {
+		  global $current_user;
+		  $wp_query->set( 'author', $current_user->id );
+	    }
+	}
+	 
+	if ( !current_user_can('al_superadministrador'))
+	{
+		add_filter('views_edit-post', 'mine_published_only');
+		add_filter('parse_query', 'only_own_posts_parse_query' );
+	}
+//*************************************************************************************
+//*************************************************************************************
+
+	// Remueve el los posts en estado "borrador" que no son del usuario actual
+	function only_own_posts_parse_query_superadmin_draft( $wp_query ) 
+	{
+	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php?post_status=draft' ) !== false ) 
+	    {
+		  global $current_user;
+		  $wp_query->set( 'author', $current_user->id );
+	    }
+	}
+
+	//añade el tab 'mio' en edit.php, muestra los post donde el propetario es el super administrador.
+	function remove_edit_post_views( $views ) {
+		global $current_user;
+	    $views['mine'] = '<a href="'.admin_url().'edit.php?post_type=post&author='.$current_user->id.'">Mío <span class="count"></span> </a>';
+
+	    return $views;
+	}
+
+	if ( current_user_can('al_superadministrador'))
+	{
+		add_filter('parse_query', 'only_own_posts_parse_query_superadmin_draft' );
+
+		add_action( 'views_edit-post', 'remove_edit_post_views' );
+
+	}
+//*************************************************************************************
 
 ?>
