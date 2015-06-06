@@ -27,7 +27,7 @@
 		'after_title' => '</h2>',
 		));
 	}
-
+	// Campos personalizados
 	$key = "post";
 	$meta_boxes = array(
 		"tipo" => array(
@@ -212,6 +212,27 @@
 	 
 	//This filter is applied to the roles of new users
 	add_filter('oa_social_login_filter_new_user_role', 'oa_social_login_set_new_user_role');
+
+	function remove_admin_bar_links() {
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu('wp-logo');
+		$wp_admin_bar->remove_menu('updates');
+		$wp_admin_bar->remove_menu('site-name');
+	}
+	add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
+
+	function add_sumtips_admin_bar_link() {
+		global $wp_admin_bar;
+		if ( !is_super_admin() || !is_admin_bar_showing() )
+			return;
+		$wp_admin_bar->add_menu( array(
+		'id' => 'ir_a_sitio',
+		'title' => __( 'Ir a sitio'),
+		'href' => __( site_url()),
+		) );
+	}
+	add_action('admin_bar_menu', 'add_sumtips_admin_bar_link',25);
+
 ?>
 
 <?php
