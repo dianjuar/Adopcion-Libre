@@ -4,9 +4,9 @@ Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, subscription, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 4.1.2
+Stable tag: 4.2
 
-Enhances the user registration process with complete customization and additional administration options.
+Enhance user registration with customization and administration options. Automate user growth and revenue with ReadyGraph integration.
 
 == Description ==
 
@@ -69,6 +69,10 @@ ReadyGraph’s automated email system encourages visitors to return to your site
 Track daily-new subscribers, daily invites, total traffic, and other key metrics that quantify growth and user engagement. ReadyGraph safely stores user data in the cloud so you can access data from anywhere.
 = Newsfeed =
 ReadyGraph’s newsfeed is an optional overlay on your site where your users can engage with others in your community and recommend your content or products to each other. It is like having a social network that engages users embedded on your site. Users can leave comments, ‘like’ comments left by other subscribers and ‘follow’ other subscribers. Subscribers will receive automated email updates based on these actions.
+
+= Monetization Through Sponsored Units =
+
+Due to popular demand, we are excited to announce that we have now added a new layer onto the ReadyGraph product: monetization. For quality sites with enough users and traffic to qualify, we will enable you to earn revenue through a set of elegant, unobtrusive sponsorship units.The ad units will be shown occasionally (much of the time they won't be noticeable) and are highly targeted based on user interests. Most importantly, they can be turned off or on at any time. In addition to helping qualifying sites support themselves, this initiative will allow us to continue to put resources towards enhancing the free features we offer each and every site owner.  Sites qualify on the basis of quality and a minimum traffic threshold.  You can view, adjust, or opt out through your site monetization settings page.
 
 = Want To Grow Even Faster? =
 Try [ReadyGraph premium](https://readygraph.com/accounts/payment/) for free to get these advanced features:
@@ -242,6 +246,10 @@ On the right side of the “ReadyGraph App” page, you will find a link to a pa
 
 No, it isn’t; you can use this plug-in without ReadyGraph features enabled, but you would be missing out on added growth opportunities.
 
+= Does this plugin help me earn revenue? =
+
+Due to popular demand, we are excited to announce that we have now added a new layer onto the ReadyGraph product: monetization. For quality sites with enough users and traffic to qualify, we will enable you to earn revenue through a set of elegant, unobtrusive sponsorship units.The ad units will be shown occasionally (much of the time they won't be noticeable) and are highly targeted based on user interests. Most importantly, they can be turned off or on at any time. In addition to helping qualifying sites support themselves, this initiative will allow us to continue to put resources towards enhancing the free features we offer each and every site owner.  Sites qualify on the basis of quality and a minimum traffic threshold.  You can view, adjust, or opt out through your site monetization settings page.
+
 If you have questions or concerns, contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
 
 == Screenshots ==
@@ -252,6 +260,15 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 4. Unverified User Management http://plugins.readygraph.com/register-plus-redux/screenshots/
 
 == Changelog ==
+
+= 4.2 =
+June 2, 2015 by tanaylakhani
+
+* Bug Fix for readygraph and compatibility with other plugins
+* New code structure for readygraph
+* User can delete the readygraph to completely remove it.
+* Subsequent upgrades wont load readygraph except a plugin is disabled and re-enabled.
+* Add monetization option for readygraph
 
 = 4.1.2 =
 March 22, 2015 by tanaylakhani
