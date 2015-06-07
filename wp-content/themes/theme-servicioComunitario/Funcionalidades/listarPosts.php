@@ -39,6 +39,18 @@
 
 	add_filter('parse_query', 'only_own_posts_parse_query_draft' );
 
+	// Remueve los posts en estado "papelera" que no son del usuario actual
+	function only_own_posts_parse_query_trash( $wp_query ) 
+	{
+	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php?post_status=trash' ) !== false ) 
+	    {
+		  global $current_user;
+		  $wp_query->set( 'author', $current_user->id );
+	    }
+	}
+
+	add_filter('parse_query', 'only_own_posts_parse_query_trash' );
+
 
 	// Remueve los posts en estado "publicados" que no son del usuario actual
 	function only_own_posts_parse_query_publish( $wp_query ) 
