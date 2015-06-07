@@ -201,7 +201,7 @@
 .folded #adminmenu .wp-has-current-submenu .wp-submenu {
 	padding: 7px 0 8px;
 	z-index: 9999;
-	background-color: #333;
+	background-color: #fff;
 	-webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
@@ -228,7 +228,7 @@
 	margin-top: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-	background-color: #333;
+	background-color: #fff;
 }
 
 /* ensure that wp-submenu's box shadow doesn't appear on top of the focused menu item's background. */
@@ -464,7 +464,7 @@ ul#adminmenu > li.current > a.current:after {
 }
 
 #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after {
-	border-right-color: #333;
+	border-right-color: #fff;
 }
 
 #adminmenu li.menu-top:hover .wp-menu-image img,
@@ -870,7 +870,7 @@ li#wp-admin-bar-menu-toggle {
 	}
 
 	.wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle a {
-		background: #333;
+		background: #fff;
 	}
 
 	li#wp-admin-bar-menu-toggle {

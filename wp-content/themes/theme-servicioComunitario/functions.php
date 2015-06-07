@@ -223,15 +223,35 @@
 
 	function add_sumtips_admin_bar_link() {
 		global $wp_admin_bar;
-		if ( !is_super_admin() || !is_admin_bar_showing() )
-			return;
 		$wp_admin_bar->add_menu( array(
 		'id' => 'ir_a_sitio',
-		'title' => __( 'Ir a sitio'),
+		'title' => __( 'Volver al sitio'),
 		'href' => __( site_url()),
 		) );
 	}
 	add_action('admin_bar_menu', 'add_sumtips_admin_bar_link',25);
+
+	/* Agregar hoja de estilo */
+	function wb_admin_css() {
+		$url = content_url('/themes/theme-servicioComunitario/css/wp-admin.css', __FILE__);
+	    //$url = get_settings('siteurl') . '/wp-content/plugins/wp-admin-theme/wp-admin.css';
+	    echo '
+	    <link rel="stylesheet" type="text/css" href="' . $url . '" />
+	    <link rel="stylesheet" href="/wp-admin/css/upload.css" type="text/css" />
+	    ';
+	}
+	add_action('admin_head','wb_admin_css', 1000);
+
+	function hide_personal_options(){
+	?>
+	<script type="text/javascript">
+	  jQuery(document).ready(function(){
+	    jQuery("#your-profile .form-table:first, #your-profile h3:first, #contextual-help-link-wrap").remove();
+	  });
+	</script>
+	<?php
+	}
+	add_action('admin_head','hide_personal_options');
 
 ?>
 

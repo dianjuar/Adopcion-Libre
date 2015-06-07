@@ -9,7 +9,6 @@
   /* color de background*/
   #wpadminbar{
     background: #fff;
-    border-bottom: 3px solid #FADA37;
   }
   /* color de texto*/
   #wpadminbar a.ab-item, #wpadminbar>#wp-toolbar span.ab-label, #wpadminbar>#wp-toolbar span.noticon{
@@ -22,13 +21,25 @@
 /*fin estilos barra superior*/
 
 /*Inicio barra lateral*/
-  /* barra lateral ancho*/
+  #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+    height: 100%;
+  }
+  #adminmenu {
+    margin: 0;
+    padding: 0;
+  }
+  /* barra lateral separador */
+  #adminmenu li.wp-menu-separator {
+    display: none;
+  }
+  /* barra lateral ancho y alto*/
   #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
     width: 200px;
+    height: 100%;
   }
   /* color de background*/
   #adminmenuback, #adminmenuwrap, #adminmenu{
-    background: #fff;
+    background: transparent;
   }
   /* color de texto*/
   #adminmenu .wp-submenu a, #adminmenu a,#wpadminbar a.ab-item, #wpadminbar>#wp-toolbar span.ab-label, #wpadminbar>#wp-toolbar span.noticon {
@@ -40,34 +51,38 @@
   }
   /* item seleccionado*/
   #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, .folded #adminmenu li.current.menu-top, .folded #adminmenu li.wp-has-current-submenu{
-    background: #f78e1d;
+    background: #f78e1d; /*Naranja*/
   }
   /* item seleccionado flechita*/
   ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu>li.current>a.current:after{
     border-right-color: #FFFFFF;
   }
+  /* item seleccionado notificacion */
+  #adminmenu li a.wp-has-current-submenu .update-plugins, #adminmenu li.current a .awaiting-mod {
+    background-color: #fff;
+    color: #f78e1d;/*Naranja*/
+  }
   /* item seleccionado Submenu*/
   #adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, #adminmenu a.wp-has-current-submenu:focus+.wp-submenu, .no-js li.wp-has-current-submenu:hover .wp-submenu{
     background-color: #FFFFFF;
-    border-bottom: 3px solid #f78e1d;
+    border-bottom: 3px solid #f78e1d;/*Naranja*/
   }
   /* item seleccionado Submenu item selecionado */
   #adminmenu .opensub .wp-submenu li.current a, #adminmenu .wp-submenu li.current, #adminmenu .wp-submenu li.current a, #adminmenu .wp-submenu li.current a:focus, #adminmenu .wp-submenu li.current a:hover, #adminmenu a.wp-has-current-submenu:focus+.wp-submenu li.current a{
     color: #000;
-    margin-left: 5px;
+    font-size: 1.05em;
   }
   /* item seleccionado Submenu item selecionado flechita */
-  /*#adminmenu .wp-submenu li.current:before{
-    left: 10px;
+  #adminmenu .wp-submenu li.current:after{
+    right: 0;
     border: 8px solid transparent;
     content: " ";
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-right-color:#FADA37;
-    transform: rotate(180deg);
-    margin-top: 3%;
+    border-right-color: #f78e1d; /* naranja */
+    margin-top: -25px;
   }
   /* item seleccionado Submenu hover items */
   #adminmenu .wp-submenu a:hover, #adminmenu a:hover, #wpadminbar a.ab-item:hover{
@@ -75,28 +90,34 @@
     color:#000;
   }
   /* item seleccionado Submenu hover items flechita */
-  /*#adminmenu .wp-submenu li:hover:before{
+  #adminmenu .wp-submenu li:hover:before{
+    right: 0;
     border: 8px solid transparent;
     content: " ";
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-right-color:#FADA37;
-    transform: rotate(180deg);
-    margin-top: 3%;
+    border-right-color: #f78e1d; /* naranja */
+    margin-top: 0;
   }
   /* item hover submenu */
   #adminmenu .wp-submenu {
     left: 200px;
     background: #fff;
+    height: auto;
   }
   #adminmenu .wp-not-current-submenu .wp-submenu, .folded #adminmenu .wp-has-current-submenu .wp-submenu{
     min-width: 200px;
   }
+  /* item hover */
   #adminmenu li.menu-top:hover,#adminmenu li.menu-top:focus, #adminmenu li.opensub> a.menu-top{
-    background: #f78e1d;
+    background: #f78e1d; /*Naranja*/
     color:#fff;
+  }
+  /* item hover flechita */
+  #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after {
+    border-right-color: #fff;
   }
   /* color iconos*/
   #adminmenu li:hover  div.wp-menu-image:before {
@@ -106,26 +127,57 @@
   #adminmenu li.opensub:after:hover {
     border-right-color: #FFFFFF;
   }
-  /* item notifiaciones*/
+  #adminmenu a.menu-top:hover,#adminmenu a.menu-top:focus,#adminmenu li.menu-top > a:focus{
+    color: #fff;
+    background: #f78e1d; /*Naranja*/
+  }
+  /* item notifiaciones */
   #adminmenu .awaiting-mod, #adminmenu .update-plugins, #sidemenu li a span.update-plugins{
     background-color: #000;
     color: #fff;
   }
+  /* item notifiaciones hover */
+  #adminmenu li:hover .awaiting-mod, #adminmenu li:hover .update-plugins, #sidemenu li a span.update-plugins{
+    background-color: #fff;
+    color: #f78e1d; /*Naranja*/
+  }
    /* ultimo item*/
   #adminmenu #collapse-menu{
-    color:#f78e1d;
+    color:#000; 
+  }
+  #adminmenu #collapse-menu:hover{
+    color:#fff; 
+    background: #f78e1d; /*Naranja*/
   }
   /* ultimo item icono*/
   #collapse-button div:after{
-    color:#f78e1d;
+    color:#000; /*Naranja*/
   }
-  /*Fin barra lateral*/
+  /* ultimo item icono*/
+  #collapse-menu:hover #collapse-button div:after {
+    color:#fff; /*Naranja*/
+    background: #f78e1d; /*Naranja*/
+  }
+  /* menu cerro item hover primer item sub menu */
+  #adminmenu .wp-submenu .wp-submenu-head {
+    color: #FFF;
+    background-color: #f78e1d;
+    font-weight: 600;
+  }
+/*Fin barra lateral*/
 /*Inicio contenido*/
   #wpwrap{
     background: #fff;
   }
-  #wpbody {
-    position: relative;
-    margin-left: 40px;
+  #wpcontent {
+    margin-left: 197px;
+    background: #fff;
+    border-left: 3px solid #f78e1d;
+    border-top: 3px solid #f78e1d; /* amarillo */
+    height: 100%;
+    min-height: 600px;
+  }
+  #wpfooter{
+    display: none;
   }
 /*Fin contenido*/
