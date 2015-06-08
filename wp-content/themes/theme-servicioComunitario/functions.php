@@ -253,9 +253,17 @@
 	}
 	add_action('admin_head','hide_personal_options');
 
+
+	//Deshabilita la funcion de autoguardado de los post
+	function disableAutoSave(){
+		wp_deregister_script('autosave');
+	}
+	add_action( 'wp_print_scripts', 'disableAutoSave' );
+
 ?>
 
 <?php
 
 include 'Funcionalidades/listarPosts.php';
+include 'Funcionalidades/Quitar opciones del dashboard.php';
 ?>
