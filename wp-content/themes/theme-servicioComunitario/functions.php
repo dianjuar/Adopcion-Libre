@@ -266,4 +266,6 @@
 
 include 'Funcionalidades/listarPosts.php';
 include 'Funcionalidades/Quitar opciones del dashboard.php';
+include 'Funcionalidades/ListarEditarUsuarios.php';
+
 ?>

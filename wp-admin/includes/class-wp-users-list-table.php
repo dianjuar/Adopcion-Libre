@@ -323,10 +323,10 @@ class WP_Users_List_Table extends WP_List_Table {
 			if ( is_multisite() && empty( $user_object->allcaps ) )
 				continue;
 
-		//*********************************************
-		  if( $this->func_can_view_all_roles( $role ) )
-				continue;
-		//*********************************************
+		
+		
+		
+		
 
 
 
@@ -335,28 +335,7 @@ class WP_Users_List_Table extends WP_List_Table {
 		}
 	}
 
-//*********************************************
-//*********************************************
-//*********************************************
-	private function func_can_view_all_roles($role)
-	{
-		$bandera = false;
 
-		$user = new WP_User( get_current_user_id() );
-
-		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
-
-		    foreach ( $user->roles as $current_role ){
-		    	if( ($current_role == 'al_administrador') && ($role == "al_administrador" || $role == "al_superadministrador"))
-					$bandera = true;
-		    }
-		}
-
-		return $bandera ;
-	}
-//*********************************************
-//*********************************************
-//*********************************************
 
 
 	/**

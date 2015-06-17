@@ -1284,15 +1284,15 @@ function count_users($strategy = 'time') {
 		$result['avail_roles'] =& $avail_roles;
 	}
 
-	//*************************************
-	//*************************************
-	//*************************************
-	//var_dump($result['total_users']);
-	$result['avail_roles'] = apply_filters( 'remove_higher_roles_SC' , $result['avail_roles']);
-	$result['total_users'] = count( $result['avail_roles'] );
-	//*************************************
-	//*************************************
-	//*************************************
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	return $result;
 }
