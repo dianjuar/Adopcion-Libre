@@ -41,24 +41,8 @@ include("functions.php");
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url( 'assets/css/admin.css', __FILE__ ) ?>">
 <style>a.help-tooltip {outline:none; }a.help-tooltip strong {line-height:30px;}a.help-tooltip:hover {text-decoration:none;} a.help-tooltip span {    z-index:10;display:none; padding:14px 20px;    margin-top:40px; margin-left:-150px;    width:300px; line-height:16px;}a.help-tooltip:hover span{    display:inline; position:absolute;     border:2px solid #FFF;    background:#fff;	text-align: justify;	z-index:1000000000;}.callout {z-index:1000000000;position:absolute;border:0;top:-14px;left:120px;}    /*CSS3 extras*/a.help-tooltip span{    border-radius:2px;    -moz-border-radius: 2px;    -webkit-border-radius: 2px;            -moz-box-shadow: 0px 0px 8px 4px #666;    -webkit-box-shadow: 0px 0px 8px 4px #666;    box-shadow: 0px 0px 8px 4px #666;}</style>
 <script type="text/javascript" src="<?php echo plugins_url( 'assets/js/admin.js', __FILE__ ) ?>"></script>
-	<?php if (!get_option('readygraph_access_token') || strlen(get_option('readygraph_access_token')) <= 0) { ?>
-	<div class="readygraph-nav-menu">
-	<ul><li style="width: 250px;"><a style="color:#D5DEE4" href="<?php $current_url = explode("?", $_SERVER['REQUEST_URI']); echo $current_url[0];?>?page=register-plus-redux">Register Plus Redux Settings</a>
-	</li>
-	 <li style="width: 200px;color:#D5DEE4"><a style="color:#D5DEE4" href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=monetization-settings">Monetization Settings</a></li>
-	</ul>
-		<div class="btn-group" style="margin: 8px 10px 0 10px;">
-		<p><a href="mailto:info@readygraph.com" style="color: #b1c1ca" >Help <img src="<?php echo plugin_dir_url( __FILE__ );?>assets/9.png"/></a></p>
-	</div>
-	<div class="btn-group" style="margin: 8px 10px 0 10px;">
-		<p>
-		<a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=faq" style="color: #b1c1ca" >FAQ  <img src="<?php echo plugin_dir_url( __FILE__ );?>assets/10.png" /></a></p>
-	</div>
-	<div class="btn-group" style="">
-		<p><a href="https://readygraph.com/accounts/payment/?email=<?php echo get_option('readygraph_email', '') ?>" target="_blank" style="color: #b1c1ca" ><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/go-premium.png" height="40px" style="margin:5px" /></a></p>
-	</div>
-	</div>
-	<?php }else { ?>
+
+	<?php if (get_option('readygraph_access_token') || strlen(get_option('readygraph_access_token')) > 0){ ?>
 	<div style="background-color: #2691CB; min-width: 90%; height: 50px;margin-right: 1%;">
 		<img src="<?php echo plugin_dir_url( __FILE__ );?>assets/white-logo.png" style="width: 138px; height: 30px; margin: 10px 0 0 15px; float: left;">
 		<div class="btn-group pull-right" style="margin: 8px 10px 0 0;">

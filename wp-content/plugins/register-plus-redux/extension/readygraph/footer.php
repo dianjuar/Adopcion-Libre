@@ -69,6 +69,28 @@
 		});	
 		
 		$("a.connect").click(function() {
+			if (enable_monetize){
+			if(app_id.length > 0) {
+			$.ajax({
+				url: resourceHost + '/api/v1/wp-monetize/'
+			, method: 'POST'
+			, data: {
+            app_id: $('[name="readygraph_application_id"]').val(),
+			monetize: "true",
+            client_id: settings.clientId
+					}
+			, success: function (response) {
+					var monetize_adsoptimal_id = response.data.adsoptimal_id;
+					var monetize_adsoptimal_secret = response.data.adsoptimal_secret;
+					jQuery.post(ajaxurl,{action : 'rpr-myajax-submit',readygraph_monetize : "true",adsoptimal_id : monetize_adsoptimal_id, adsoptimal_secret : monetize_adsoptimal_secret},function() {});
+					/* future processing for sites opted in for monetization */
+				}
+			, error: function (response) {
+					console.log(response);
+					/* future process */
+			}
+			});}
+			}
 			var url = authHost + '/oauth/authenticate?client_id=' + settings.clientId + '&redirect_uri=' + encodeURIComponent(location.href.replace('#' + location.hash,"")) + '&response_type=token&app_id='+app_id+'&app_secret='+app_secret;
 			openPopup(url);
 			$(document.body).bind('focus', parent_disable);

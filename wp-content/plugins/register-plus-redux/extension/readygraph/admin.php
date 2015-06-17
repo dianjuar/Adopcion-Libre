@@ -1,4 +1,4 @@
-<?php
+	<?php
 /**
  * Represents the view for the administration dashboard.
  *
@@ -37,33 +37,19 @@ include("header.php");
 <div class="authenticate" style="display: none;">
 	<div class="wrap1" style="min-height: 600px;">
 		<div id="icon-plugins" class="icon32"></div>
-		<h2>Earn Revenue with <?php echo $rpr_main_plugin_title ?>'s ReadyGraph Growth Engine</h2>
+		<h2>We have enhanced <?php echo $rpr_main_plugin_title ?> with ReadyGraph's Growth/Revenue Engine</h2>
 		<p style="display:none;color:red;" id="error"></p>
 		<div class="register-left">
-	<div class="alert" style="margin: 0px auto; padding: 15px; text-align: center;">
-			<h3>Make money and grow your site with ReadyGraph</h3>
+	<div class="alert" style="margin: 0px auto; padding: 20px 15px; text-align: center;">
+			<h3>Activate ReadyGraph to get more traffic and revenue</h3>
 <!--		<h3 style="margin-top: 0px; font-weight: 300;"><?php //echo $main_plugin_title ?>, Now with ReadyGraph</h3> -->
-		
-		
-		<?php if(get_option('readygraph_enable_monetize') && get_option('readygraph_enable_monetize') == "true") { ?>
-		<p style="padding: 20px 0px 10px 0px;"><a class="btn btn-primary connect" href="javascript:void(0);" style="font-size: 18px; padding: 10px 30px;">Growth Features Only<br><span style="font-size: 10px;">Connect ReadyGraph</span></a></p>
-		
-		<p style="padding: 20px 0px 10px 0px;"><a class="btn btn-success" href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=monetization-settings" style="font-size: 18px; padding: 20px 85px;">Settings</a></p>
-		<h5 style="padding: 0px 0px 20px 0px;font-weight: normal; text-align: center;"><img style="height: 30px;" src="<?php echo plugin_dir_url( __FILE__ );?>assets/check.png"/>Monetization Active</h5>
-		<?php } else {?>
-		<p style="padding: 20px 0px 10px 0px;">
-		
-		<a class="btn btn-primary monetize" href="javascript:void(0);" style="font-size: 18px; padding: 10px 30px;">Start Earning Revenue<br><span style="font-size: 10px;">Connect ReadyGraph</span></a>
-		<span style="width: 100%; display: block;margin: 5px;">
-		<input type="checkbox" name="readygraph_monetize" value="1" checked disabled>Activate Monetization<br></span>
-		</p>
-		<p style="padding: 20px 0px 30px 0px;"><a class="btn btn-default connect" href="javascript:void(0);" style="font-size: 18px; padding: 10px 30px;">Growth Features Only<br><span style="font-size: 10px;">Connect ReadyGraph</span></a></p>
-		<?php } ?>
-		
+		<p style="padding: 50px 0px 10px 0px;"><a class="btn btn-primary connect" href="javascript:void(0);" style="font-size: 18px; padding: 20px 25px;">Connect ReadyGraph >></a></p>
+		<span><input type="checkbox" id="readygraph_monetize" name="readygraph_monetize" value="1" style="margin: 0 10px;" checked >Enable Monetization</span>
 		
 		<!--<p style="padding: 0px 0px;"><a class="btn btn-default skip" href="javascript:void(0);" style="font-size: 10px; line-height: 20px; padding: 0 30px;">Skip ReadyGraph</a></p>-->
-		<p>Readygraph maximizes your Growth and Revenue</p>
+		<p style="margin-top:50px">Readygraph maximizes your Growth and Revenue</p>
 		<p style="text-align: left; padding: 0 20px;">
+			- Collect site reviews<br> 
 			- Monetize mobile and web traffic with optimized, non-intrusive ad units<br> 
 			- Get more traffic<br>
 			- Send automatic email digests of all your site posts<br>
@@ -217,6 +203,13 @@ include("header.php");
 </form>
 
 <script type="text/javascript" charset="utf-8">
+var enable_monetize;
+if(document.getElementById('readygraph_monetize').checked) {
+    enable_monetize = true;
+} else {
+    enable_monetize = false;
+}
+
 function subscribe_readygraph() {
     var radios = document.getElementsByName("select-plan");
 	if (document.getElementById('plan-type').checked) {
