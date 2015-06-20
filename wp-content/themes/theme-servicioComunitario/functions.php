@@ -260,6 +260,25 @@
 	}
 	add_action( 'wp_print_scripts', 'disableAutoSave' );
 
+	//Login estilos
+
+	function my_login_stylesheet() {
+	    wp_enqueue_style( 'custom-login', content_url('/themes/theme-servicioComunitario/css/wp-login.css', __FILE__) );
+	    wp_enqueue_script( 'custom-login', get_template_directory_uri() . '/style-login.js' );
+	}
+	add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
+
+	function my_login_logo() { ?>
+	    <style type="text/css">
+	        .login h1 a {
+	            background-image: url(<?php echo  content_url('/themes/theme-servicioComunitario/img/Cat_and_Dog_Vector.svg', __FILE__); ?>);
+	            height: 100px;
+	            background-size: 100px;
+	        }
+	    </style>
+	<?php }
+	add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
 ?>
 
 <?php
