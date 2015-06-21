@@ -181,3 +181,48 @@
     display: none;
   }
 /*Fin contenido*/
+
+/* Barra superior */
+  #wpadminbar ul li.hover:last-child .ab-item,#wpadminbar ul li:last-child .ab-item:hover{
+    background: #f78e1d; /* naranja */
+    color: #fff;
+  }
+
+  #wpadminbar #wp-admin-bar-user-actions.ab-submenu{
+    background: #fff; 
+    border-bottom: 3px solid #f78e1d; /* naranja */
+    border-left: 3px solid #f78e1d; /* naranja */
+    color: #fff;
+    -webkit-box-shadow: none; 
+    box-shadow: none;
+  }
+
+  #wpadminbar #wp-admin-bar-user-info a,#wpadminbar .ab-submenu .ab-item, #wpadminbar .quicklinks .menupop ul li a, #wpadminbar .quicklinks .menupop ul li a strong, #wpadminbar .quicklinks .menupop.hover ul li a, #wpadminbar.nojs .quicklinks .menupop:hover ul li a{
+    color: #000;
+    background: #fff;
+  }
+
+  #wpadminbar .quicklinks .menupop ul li a:hover, #wpadminbar .quicklinks .menupop ul li a strong:hover, #wpadminbar .quicklinks .menupop.hover ul li a:hover, #wpadminbar.nojs .quicklinks .menupop:hover ul li a:hover{
+    color: #fff;
+    background: #f78e1d; /* naranja */
+  }
+  /* Volver a sitio */
+  #wp-admin-bar-ir_a_sitio a{
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  /* Volver a sitio */
+  /* item seleccionado Submenu hover items flechita */
+  #wp-admin-bar-ir_a_sitio a:after{
+    right: -10px;
+    top: 8px;
+    border: 8px solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #f78e1d; /* naranja */
+    margin-top: 0;
+  }
+/* Barra superior */

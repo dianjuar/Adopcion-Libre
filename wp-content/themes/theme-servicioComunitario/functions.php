@@ -218,6 +218,8 @@
 		$wp_admin_bar->remove_menu('wp-logo');
 		$wp_admin_bar->remove_menu('updates');
 		$wp_admin_bar->remove_menu('site-name');
+		$wp_admin_bar->remove_menu('comments');
+		$wp_admin_bar->remove_menu('new-content');
 	}
 	add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 
