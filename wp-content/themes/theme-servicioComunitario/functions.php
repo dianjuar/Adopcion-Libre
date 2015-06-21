@@ -291,6 +291,11 @@
 		</script>
 	<?php }
 	add_action( 'login_enqueue_scripts', 'add_header_login' );
+
+	function remove_screen_options(){
+	    return false;
+	}
+	add_filter('screen_options_show_screen', 'remove_screen_options');
 ?>
 
 <?php
