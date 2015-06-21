@@ -16,7 +16,7 @@
                     <?php } ?>
                     <div class="post__info row no-margin">
                       <div class="col-md-8 col-xs-7 padding-medium"> 
-                        <h4 class="no-margin"><?php the_title();?></h4>
+                        <h4 class="no-margin"><?php the_title(); ?></h4>
                         <span><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></span>
                       </div>
                       <div class="col-md-4 col-xs-5 post__info__estatus <?php 

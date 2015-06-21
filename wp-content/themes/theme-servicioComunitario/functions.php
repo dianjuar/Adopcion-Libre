@@ -283,19 +283,11 @@
 	<?php }
 	add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
-	function add_header_login() { ?>
-	    <script type="text/javascript">
-		  jQuery(document).ready(function(){
-		    jQuery(".login").html("<div>Prueba</div>");
-		  });
-		</script>
-	<?php }
-	add_action( 'login_enqueue_scripts', 'add_header_login' );
-
+	/* Esconder opciones de pantalla */
 	function remove_screen_options(){
 	    return false;
 	}
-	add_filter('screen_options_show_screen', 'remove_screen_options');
+	/*add_filter('screen_options_show_screen', 'remove_screen_options');*/
 ?>
 
 <?php
