@@ -80,6 +80,10 @@ body.login div#login p#backtoblog{
   margin: 0 250px;
 }
 
+.login .register{
+  display: none;
+}
+
 .login #login_error{
   border-left: 0;
   background: #ac0000; /* Rojo */

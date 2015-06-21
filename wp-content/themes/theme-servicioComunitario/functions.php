@@ -273,9 +273,11 @@
 	function my_login_logo() { ?>
 	    <style type="text/css">
 	        .login h1 a {
-	            background-image: url(<?php echo  content_url('/themes/theme-servicioComunitario/img/Cat_and_Dog_Vector.svg', __FILE__); ?>);
+	        	background-image:none;
+	        	height: 0;
+	            /*background-image: url(<?php echo  content_url('/themes/theme-servicioComunitario/img/Cat_and_Dog_Vector.svg', __FILE__); ?>);
 	            height: 100px;
-	            background-size: 100px;
+	            background-size: 100px;*/
 	        }
 	    </style>
 	<?php }
