@@ -235,3 +235,6 @@
     border-right-color: #fff; /* naranja */
   }
 /* Barra superior */
+.metabox-holder .postbox-container .empty-container {
+  border: 0;
+}
