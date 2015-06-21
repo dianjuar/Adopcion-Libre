@@ -148,6 +148,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = '' ) {
 	?>
 	</head>
 	<body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+	<?php get_header(); ?>
 	<div id="login">
 		<h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1"><?php bloginfo( 'name' ); ?></a></h1>
 	<?php
@@ -235,6 +236,7 @@ function login_footer($input_id = '') {
 	 * @since 3.1.0
 	 */
 	do_action( 'login_footer' ); ?>
+	<?php get_footer(); ?>
 	<div class="clear"></div>
 	</body>
 	</html>

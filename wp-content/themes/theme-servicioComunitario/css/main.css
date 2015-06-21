@@ -68,6 +68,9 @@ dt {
   display: block;
   font-size: 5em;
 }
+.boxMenuIndex li span:last-child {
+  font-size: 0.6em;
+}
 .boxMenuIndex li:nth-child(1) {
   background-color: #05a9fc;
   border-top-left-radius: 1.2em;

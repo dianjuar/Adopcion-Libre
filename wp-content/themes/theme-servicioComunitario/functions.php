@@ -281,6 +281,14 @@
 	<?php }
 	add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
+	function add_header_login() { ?>
+	    <script type="text/javascript">
+		  jQuery(document).ready(function(){
+		    jQuery(".login").html("<div>Prueba</div>");
+		  });
+		</script>
+	<?php }
+	add_action( 'login_enqueue_scripts', 'add_header_login' );
 ?>
 
 <?php
