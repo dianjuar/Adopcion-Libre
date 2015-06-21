@@ -71,9 +71,7 @@
 
         </section>
       </article>
-      <footer class="container">
-          <?php require_once("footer.php"); ?>
-      </footer>  
+      <?php require_once("footer.php"); ?>
 
       <script>
         $(document).ready(function(){

@@ -71,10 +71,8 @@
 
         </section>
       </article>
-      <footer class="container">
-          <?php require_once("footer.php"); ?>
-      </footer>  
-
+      <?php require_once("footer.php"); ?>
+      
       <script>
         $(document).ready(function(){
           $("ul.nav-justified li:nth-child(4)").html("Mascotas perdidas");
