@@ -86,11 +86,6 @@
         
       </article>
       <?php require_once("footer.php"); ?>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-      <script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script>
-      <script src="<?php bloginfo('template_url') ?>/js/plugins.js"></script>
-      <script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
       <script>
         $(document).ready(function(){
           $("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span><span>En esta sección podras dar y encontrar mascotas en adopción</span>" );

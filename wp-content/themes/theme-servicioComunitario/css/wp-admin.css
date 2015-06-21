@@ -9,6 +9,7 @@
   /* color de background*/
   #wpadminbar{
     background: #fff;
+    border-bottom: 3px solid #f78e1d;
   }
   /* color de texto*/
   #wpadminbar a.ab-item, #wpadminbar>#wp-toolbar span.ab-label, #wpadminbar>#wp-toolbar span.noticon{
@@ -173,7 +174,7 @@
     margin-left: 197px;
     background: #fff;
     border-left: 3px solid #f78e1d;
-    border-top: 3px solid #f78e1d; /* amarillo */
+    /*border-top: 3px solid #f78e1d; /* amarillo */
     height: 100%;
     min-height: 600px;
   }
