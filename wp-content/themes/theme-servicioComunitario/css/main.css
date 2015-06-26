@@ -57,19 +57,34 @@ dt {
 .boxMenuIndex {
   list-style: none;
   padding: 0;
+  display: table-row;
 }
 .boxMenuIndex li {
-  float: left;
   width: 33.3%;
-  padding: 10px 15px;
-  font-size: 1.7em;
+  padding: 15px 20px;
+  font-size: 1.4em;
+  font-weight: 500;
+  display: table-cell;
+  text-transform: uppercase;
+  text-shadow: 1.5px 0px #5E5B5B;
+}
+.boxMenuIndex li:nth-child(2) span:first-child{
+  font-size: 7em;
+  margin-top: -25px;
+  margin-bottom: -15px;
 }
 .boxMenuIndex li span {
   display: block;
   font-size: 5em;
+  text-shadow:none;
 }
 .boxMenuIndex li span:last-child {
-  font-size: 0.6em;
+  font-size: 0.82em;
+  font-weight: 100;
+  font-style: oblique;
+  font-stretch: ultra-condensed;
+  padding: 0 20px;
+  text-transform: initial;
 }
 .boxMenuIndex li:nth-child(1) {
   background-color: #05a9fc;
