@@ -270,19 +270,6 @@
 	}
 	add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 
-	function my_login_logo() { ?>
-	    <style type="text/css">
-	        .login h1 a {
-	        	background-image:none;
-	        	height: 0;
-	            /*background-image: url(<?php echo  content_url('/themes/theme-servicioComunitario/img/Cat_and_Dog_Vector.svg', __FILE__); ?>);
-	            height: 100px;
-	            background-size: 100px;*/
-	        }
-	    </style>
-	<?php }
-	add_action( 'login_enqueue_scripts', 'my_login_logo' );
-
 	/* Esconder opciones de pantalla */
 	function remove_screen_options(){
 	    return false;
@@ -291,19 +278,53 @@
 
 	function remove_dashboard_widgets() {
 
-	global $wp_meta_boxes;
+		global $wp_meta_boxes;
 
-	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
-	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
-	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
-	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
 
-	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
-	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
-	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
-	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
-}
-add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+	}
+	add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+
+	//-- Titulo Inicio Sesion ------
+	function titulo_inicio_sesion() { ?>
+	    <script type="text/javascript">
+		  jQuery(document).ready(function(){
+		    jQuery(".login h1 ").html("Inicia sesión");
+		  });
+		</script>
+		<?php
+	}
+	add_action( 'login_form', 'titulo_inicio_sesion' );
+	//-- Titulo Inicio Sesion ------
+	//-- Titulo Registro ------
+	function titulo_registro() { ?>
+	    <script type="text/javascript">
+		  jQuery(document).ready(function(){
+		    jQuery(".login h1 ").html("Registrate");
+		  });
+		</script>
+		<?php
+	}
+	add_action( 'register_form', 'titulo_registro' );
+	//-- Titulo Registro ------
+	//-- Titulo Registro ------
+	function titulo_contrasena() { ?>
+	    <script type="text/javascript">
+		  jQuery(document).ready(function(){
+		    jQuery(".login h1 ").html("¿Olvido su contraseña?");
+		  });
+		</script>
+		<?php
+	}
+	add_action( 'lostpassword_form', 'titulo_contrasena' );
+	//-- Titulo Registro ------
 ?>
 
 <?php
