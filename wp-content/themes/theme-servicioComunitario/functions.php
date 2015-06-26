@@ -314,7 +314,7 @@
 	}
 	add_action( 'register_form', 'titulo_registro' );
 	//-- Titulo Registro ------
-	//-- Titulo Registro ------
+	//-- Titulo Olvido su contraseña ------
 	function titulo_contrasena() { ?>
 	    <script type="text/javascript">
 		  jQuery(document).ready(function(){
@@ -324,7 +324,18 @@
 		<?php
 	}
 	add_action( 'lostpassword_form', 'titulo_contrasena' );
-	//-- Titulo Registro ------
+	//-- Titulo Olvido su contraseña ------
+	//-- Titulo Olvido su contraseña ------
+	function titulo_reset() { ?>
+	    <script type="text/javascript">
+		  jQuery(document).ready(function(){
+		    jQuery(".login h1 ").html("Recuperar contraseña");
+		  });
+		</script>
+		<?php
+	}
+	add_action( 'resetpass_form', 'titulo_reset' );
+	//-- Titulo Olvido su contraseña ------
 ?>
 
 <?php
