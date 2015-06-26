@@ -5,11 +5,19 @@
   display:none;
 }
 
+html{
+  background: #fff;
+}
+
 /*inicio estilos barra superior*/
   /* color de background*/
   #wpadminbar{
     background: #fff;
     border-bottom: 3px solid #f78e1d;
+    top: 48px;
+  }
+  #adminmenuback {
+    top: 83px;
   }
   /* color de texto*/
   #wpadminbar a.ab-item, #wpadminbar>#wp-toolbar span.ab-label, #wpadminbar>#wp-toolbar span.noticon{
@@ -22,6 +30,9 @@
 /*fin estilos barra superior*/
 
 /*Inicio barra lateral*/
+  .sticky-menu #adminmenuwrap {
+    top: 83px;
+  }
   #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
     height: 100%;
   }
@@ -177,6 +188,8 @@
     /*border-top: 3px solid #f78e1d; /* amarillo */
     height: 100%;
     min-height: 600px;
+    top: 50px;
+    position: relative;
   }
   #wpfooter{
     display: none;
@@ -238,3 +251,82 @@
 .metabox-holder .postbox-container .empty-container {
   border: 0;
 }
+/*  Header */
+.boxCabezeraME {
+  padding: 0px;
+  background-color: #ac0000;
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.boxCabezeraME .boxCabezeraME__imgME {
+  position: relative;
+  width: 100%;
+}
+
+.BoxBorderBottom {
+  position: fixed;
+  height: 4px;
+  top: 44px;
+  z-index: 99999;
+  width: 100%;
+}
+.BoxBorderBottom__Item {
+  padding: 0px;
+  width: 25%;
+  float: left;
+}
+.BoxBorderBottom__Item--rojo {
+  background-color: #ac0000;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--naranja {
+  background-color: #f78e1d;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--amarillo {
+  background-color: #fada37;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--azul {
+  background-color: #05a9fc;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--verde {
+  background-color: #15db5b;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--morado {
+  background-color: #e01f95;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+/*  Header */
+/*=============== Footer ============================================================*/
+.boxFooter {
+  background-color: #000000;
+  color: #ffffff;
+  width: initial;
+  text-align: center;
+  padding: 10px;
+  border-bottom-left-radius: 1.2em;
+  border-bottom-right-radius: 1.2em;
+}
+.container {
+  width: 940px;
+  margin: auto;
+  position: relative;
+}
+/*=============== Footer ============================================================*/

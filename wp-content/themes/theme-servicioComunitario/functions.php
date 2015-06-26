@@ -337,16 +337,18 @@
 	add_action( 'resetpass_form', 'titulo_reset' );
 	//-- Titulo Olvido su contraseña ------
 	//-- Login Footer ------
-	function loginFooter() {
+	function showFooter() {
 		get_footer();
 	}
-	add_action( 'login_footer', 'loginFooter' );
+	add_action( 'login_footer', 'showFooter' );
+	add_action( 'admin_footer', 'showFooter' );
 	//-- Login Footer ------
 	//-- Titulo Olvido su contraseña ------
-	function loginHeader() {
+	function showHeader() {
 		 get_header();
 	}
-	add_action( 'login_head', 'loginHeader' );
+	add_action( 'login_head', 'showHeader' );
+	add_action( 'admin_head', 'showHeader' );
 	//-- Titulo Olvido su contraseña ------
 ?>
 
