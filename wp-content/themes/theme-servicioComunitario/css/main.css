@@ -538,12 +538,13 @@ dt {
   position: relative;
   z-index: 10;
   margin-top: -70px;
-  display: none;
+  
 }
-.post__info h4 {
+.post__info h4,.post__info span{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: white;
 }
 .post__info__estatus {
   display: table-cell;
@@ -552,15 +553,15 @@ dt {
   text-align: center;
 }
 .post__info__estatus--adopcion {
-  padding-top: 10px;
+  padding-top: 5px;
   background-color: rgba(5, 169, 252, 0.77);
 }
 .post__info__estatus--encontrados {
-  padding-top: 25px;
+  padding-top: 15px;
   background-color: rgba(21, 219, 91, 0.77);
 }
 .post__info__estatus--perdidos {
-  padding-top: 25px;
+  padding-top: 15px;
   background-color: rgba(224, 31, 149, 0.77);
 }
 .post__info__estatus--otros {
@@ -571,6 +572,14 @@ dt {
   font-size: 1.6em;
   padding-top: 30px;
   min-height: 185px;
+}
+.post__info__estatus ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post__info__estatus a{
+  color: white;
 }
 /*=============== Caja moscota ======================================================*/
 /*=============== Paginacion ========================================================*/
@@ -853,6 +862,7 @@ dt {
     float: none;
     width: 100%;
     font-size: 1.6em;
+    display: block;
   }
   .boxMenuIndex li span {
     display: inline-block;
@@ -863,6 +873,9 @@ dt {
   }
   .boxMenuIndex li:nth-child(3) {
     border-top-right-radius: 0;
+  }
+  .boxMenuIndex li:nth-child(2) span:first-child {
+    font-size: 1.9em;
   }
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/
@@ -918,6 +931,10 @@ dt {
   /*=============== Menu  Index ===================================================*/
   .boxMenuIndex li {
     min-height: 210px;
+    display: block;
+  }
+  .boxMenuIndex li:nth-child(2) span:first-child {
+    font-size: 1.9em;
   }
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/

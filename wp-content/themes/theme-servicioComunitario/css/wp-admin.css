@@ -494,6 +494,9 @@ ul.add-menu-item-tabs li, ul.category-tabs li, ul.wp-tab-bar li,.wp-tab-active, 
 .categorydiv div.tabs-panel, .customlinkdiv div.tabs-panel, .posttypediv div.tabs-panel, .taxonomydiv div.tabs-panel, .wp-tab-panel {
   background-color: #fff;
 }
+ul.categorychecklist li:last-child{
+  display: none;
+}
 /*=============== Categorias ========================================================*/
 /*=============== Publicar Post =====================================================*/
 #minor-publishing{

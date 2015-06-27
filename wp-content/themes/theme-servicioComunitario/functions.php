@@ -42,10 +42,6 @@
     		"nombre" => "esterilizacion",
     		"titulo" => "Esterilizado:",
     		"descripcion" => "Indicar si la mascota esta esterilizada"),
-		"estatus" => array(
-    		"nombre" => "estatus",
-    		"titulo" => "Estatus de la mascota:",
-    		"descripcion" => "Indicar el estatus de la publicación"),
 		"telefono" => array(
     		"nombre" => "telefono",
     		"titulo" => "Telefono:",
@@ -93,16 +89,6 @@
 		        		<option value="No se" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No se") {?>selected<?php } ?> >No se</option>
 		        	</select>		        	
 		        <?php } 
-		        	if($meta_box[ 'nombre' ]=="estatus"){ ?>
-						<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
-							<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
-							<option value="En adopción" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="En adopción") {?>selected<?php } ?> >En adopción</option>
-		        			<option value="Adoptado" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Adoptado") {?>selected<?php } ?> >Adoptado</option>
-		        			<option value="Encontrado" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Adoptado") {?>selected<?php } ?> >Encontrado</option>
-		        			<option value="Perdido" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Adoptado") {?>selected<?php } ?> >Perdido</option>
-		        			<option value="Devuelto" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Adoptado") {?>selected<?php } ?> >Devuelto</option>
-		        		</select>	
-		        <?php }
 		        	if($meta_box[ 'nombre' ]=="tipo"){ ?>
 						<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
 							<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
@@ -155,8 +141,7 @@
 				"description" => "Descripción",
 				"tipo" => "Tipo",
 				"raza" => "Raza",
-				"esterilizacion" => "Esterilizado",
-	            "estatus" => "Estatus"
+				"esterilizacion" => "Esterilizado"
 			);
 			return $columns;
 	}
@@ -182,9 +167,6 @@
     	                break;
     	        case "tipo":
      	               	if(empty($data['tipo'])) echo "--"; else echo $data['tipo'];
-    	                break;
-    	        case "estatus":
-    	                if(empty($data['estatus'])) echo "--"; else echo $data['estatus'];
     	                break;
     	}
 	}
@@ -388,7 +370,7 @@
 	    global $submenu;
 	    $menu[5][0] = 'Mascotas';
 	    $submenu['edit.php'][5][0] = 'Mascotas';
-	    $submenu['edit.php'][10][0] = 'Nueva mascotas';
+	    $submenu['edit.php'][10][0] = 'Nueva mascota';
 	    $submenu['edit.php'][16][0] = 'Etiquetas de mascotas';
 	    echo '';
 	}

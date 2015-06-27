@@ -36,7 +36,7 @@
           <?php 
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             query_posts('category_name=adopcion&paged='.$paged ) ?>
-            
+          <?php $category_name = "adopcion" ?>
           <?php require_once("posts.php"); ?>
 
           <div class="col-md-12 pagina pagina--adopcion">
