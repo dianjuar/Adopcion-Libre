@@ -10,13 +10,14 @@ html{
 }
 
 /*inicio estilos barra superior*/
+
   /* color de background*/
   #wpadminbar{
     background: #fff;
     border-bottom: 3px solid #f78e1d;
-    top: 48px;
+    top: 44px;
   }
-  #adminmenuback {
+  #adminmenuback {w
     top: 83px;
   }
   /* color de texto*/
@@ -31,7 +32,9 @@ html{
 
 /*Inicio barra lateral*/
   .sticky-menu #adminmenuwrap {
-    top: 83px;
+    top: 76px;
+    z-index: 1000000;
+    border-top: 3px solid #fff;
   }
   #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
     height: 100%;
@@ -188,7 +191,7 @@ html{
     /*border-top: 3px solid #f78e1d; /* amarillo */
     height: 100%;
     min-height: 600px;
-    top: 50px;
+    top: 43px;
     position: relative;
   }
   #wpfooter{
@@ -268,7 +271,7 @@ html{
 .BoxBorderBottom {
   position: fixed;
   height: 4px;
-  top: 44px;
+  top: 40px;
   z-index: 99999;
   width: 100%;
 }
@@ -316,17 +319,222 @@ html{
 /*  Header */
 /*=============== Footer ============================================================*/
 .boxFooter {
-  background-color: #000000;
+  background-color: #fff;
   color: #ffffff;
   width: initial;
   text-align: center;
   padding: 10px;
-  border-bottom-left-radius: 1.2em;
-  border-bottom-right-radius: 1.2em;
+  border-top:  1px solid #ddd;
 }
 .container {
-  width: 940px;
   margin: auto;
   position: relative;
 }
 /*=============== Footer ============================================================*/
+/*=============== Bienvenida Escritorio =============================================*/
+#wpbody-content #dashboard-widgets .postbox-container {
+  width: 100%;
+}
+.postbox {
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.postbox h3.ui-sortable-handle{
+  font-size: 1.5em;
+}
+
+.postbox .handlediv {
+  display: none;
+}
+.postbox .hndle {
+  border-bottom: 3px solid #f78e1d;
+  border-top: 3px solid #f78e1d;
+}
+/*=============== Bienvenida Escritorio =============================================*/
+/*=============== Botones ===========================================================*/
+.wrap .add-new-h2,.wrap .add-new-h2:active,.wrap .add-new-h2:hover,.wp-core-ui .button,.wp-core-ui .button:hover,.wp-core-ui .button-secondary,.wp-core-ui .button-secondary:hover{
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background: #f78e1d;
+  color: #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #f78e1d;
+}
+
+.wrap .add-new-h2, .wrap .add-new-h2:active,  .wrap .add-new-h2:hover{
+  padding: 6px 10px;
+}
+/*=============== Botones ===========================================================*/
+/*=============== Busqueda ==========================================================*/
+p.search-box {
+  float: none;
+  margin: 0;
+  position: relative;
+  top: -40px;
+  text-align: right;
+}
+.search-box input[name="s"], .tablenav .search-plugins input[name="s"], .tagsdiv .newtag {
+  float:none; 
+}
+/*=============== Busqueda ==========================================================*/
+/*=============== Campos ============================================================*/
+input[type=checkbox], input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=radio], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, input[type=datetime]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, input[type=radio]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, select:focus, textarea:focus {
+  border:  #f78e1d; /*  naranja  */
+  -webkit-box-shadow: 0 0 4px  #f78e1d; /*  naranja  */
+  box-shadow: 0 0 4px  #f78e1d; /*  naranja  */
+}
+/*=============== Campos ============================================================*/
+/*=============== Tipos de post =====================================================*/
+.subsubsub {
+  margin: 8px 0;
+}
+.subsubsub a {
+  color: #000;
+}
+.subsubsub a:hover {
+  color:  #f78e1d; /*  naranja  */
+  font-size: 1.195em;
+}
+.subsubsub a .count, .subsubsub a.current .count {
+  display: none;
+}
+.ac_match, .subsubsub a.current {
+  color:  #f78e1d; /*  naranja  */
+  font-size: 1.195em;
+}
+/*=============== Tipos de post =====================================================*/
+/*=============== Table view ========================================================*/
+.wp-switch-editor,.tmce-active .switch-tmce,.wp-media-buttons, .tablenav .view-switch, .tablenav .tablenav-pages {
+  display: none;
+}
+/*=============== Table view ========================================================*/
+/*=============== Table =============================================================*/
+table.widefat {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin-top: 25px;
+}
+input[type=checkbox]{
+  border-color: #f78e1d; /*  naranja  */
+}
+input[type=checkbox]:checked:before {
+  color: #f78e1d; /*  naranja  */
+}
+.alternate, .striped>tbody>:nth-child(odd) {
+  background-color: #fff;
+}
+.widefat a {
+  text-decoration: none;
+  color: #000;
+}
+#post-status-info td {
+  background-color: #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.wp-editor-expand div.mce-toolbar-grp {
+  background-color: #fff;
+}
+#the-comment-list .unapproved td, #the-comment-list .unapproved th {
+  background-color: #fff; /*  naranja  */
+}
+#the-comment-list .unapproved th.check-column {
+  border-left: 4px solid  #f78e1d; /*  naranja  */
+}
+.widefat tfoot tr th, .widefat thead tr th {
+  border-width: 2px;
+  border-color: rgb(135, 135, 136); /* gris oscuro*/
+}
+.column-response .post-com-count:hover span,.post-com-count span,.post-com-count span:hover,strong .post-com-count span,strong .post-com-count span:hover{
+  background-color: #f78e1d; /*  naranja  */
+}
+.column-response .post-com-count:hover:after,.post-com-count:after,.post-com-count:after:hover,strong .post-com-count:after,strong .post-com-count:after:hover {
+  border-top: 5px solid #f78e1d; /*  naranja  */
+}
+.fixed .column-response {
+  width: 20%;
+}
+/*=============== Table =============================================================*/
+/*=============== Nueva entrada descripcion =========================================*/
+#wp-content-editor-tools {
+  background-color: #fff;
+  border-top: 3px solid #f78e1d; /*  naranja  */
+  border-bottom: 3px solid #f78e1d; /*  naranja  */
+  font-size: 1.2em;
+  font-weight: 600;
+  padding: 10px 0;
+}
+#wp-content-editor-tools > span{
+  padding-left: 10px;
+}
+.wp-editor-expand #wp-content-wrap .mce-wp-dfw {
+  display: none;
+}
+/*=============== Nueva entrada descripcion =========================================*/
+/*=============== Etiquetas =========================================================*/
+.postbox .inside>p:last-child, .rss-widget ul li:last-child {
+  display: none;
+}
+#bulk-titles div a:hover:before, #welcome-panel.welcome-panel .welcome-panel-close:hover:before, .tagchecklist span a:hover:before {
+  color: #FF7400;
+}
+/*=============== Etiquetas =========================================================*/
+/*=============== Categorias ========================================================*/
+ul.add-menu-item-tabs li, ul.category-tabs li, ul.wp-tab-bar li,.wp-tab-active, ul.add-menu-item-tabs li.tabs, ul.category-tabs li.tabs {
+  display: none;
+}
+.categorydiv div.tabs-panel, .customlinkdiv div.tabs-panel, .posttypediv div.tabs-panel, .taxonomydiv div.tabs-panel, .wp-tab-panel {
+  background-color: #fff;
+}
+/*=============== Categorias ========================================================*/
+/*=============== Publicar Post =====================================================*/
+#minor-publishing{
+  display: none;
+}
+#major-publishing-actions {
+  display: table-row;
+}
+#delete-action {
+  display: table-cell;
+  width: 50%;
+  text-align: right;
+  float: none;
+}
+#publishing-action {
+  text-align: center;
+  float: none;
+  line-height: 23px;
+  display: table-cell;
+  width: 50%;
+  text-align: left;
+  padding: 10px 0;
+}
+#major-publishing-actions input, #minor-publishing-actions .preview, #minor-publishing-actions input {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+/*=============== Publicar Post =====================================================*/
+/*=============== Perfil ============================================================*/
+#your-profile h3{
+  border-top: 3px solid #f78e1d; /*  naranja  */
+  border-bottom: 3px solid #f78e1d; /*  naranja  */
+  padding: 10px 0;
+}
+table.form-table+input+input+p.submit{
+  text-align: center;
+}
+.form-table th {
+  text-align: right;
+}
+.form-table td input[type=text]{
+  display: block;
+}
+/*=============== Perfil ============================================================*/
