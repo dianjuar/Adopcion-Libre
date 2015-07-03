@@ -16,9 +16,9 @@ Author URI: http://untame.net
         remove_menu_page('upload.php');
 
 
-        if ( strpos( $_SERVER[ 'REQUEST_URI' ], 'tools.php' ) !== false ||
+        if ( strpos( $_SERVER[ 'REQUEST_URI' ], 'tools.php' ) !== false //||
         	 //strpos( $_SERVER[ 'REQUEST_URI' ], 'edit-comments.php' ) !== false ||
-        	 strpos( $_SERVER[ 'REQUEST_URI' ], 'upload.php' ) !== false
+        	 //strpos( $_SERVER[ 'REQUEST_URI' ], 'upload.php' ) !== false
         	)
         {
         	wp_die( __( 'No tienes suficientes permisos para entrar a esta página.' ) );
@@ -26,4 +26,17 @@ Author URI: http://untame.net
     }
 
     add_action( 'admin_menu', 'my_remove_menu_pages' );
+
+    //Manage Your Media Only
+    function mymo_parse_query_useronly( $wp_query ) {
+        if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/upload.php' ) !== false ) {
+            if ( current_user_can('al_suscriptor') || current_user_can('al_moderador') ) {
+                die('sdad');
+                global $current_user;
+                $wp_query->set( 'author', $current_user->id );
+            }
+        }
+    }
+
+    add_filter('parse_query', 'mymo_parse_query_useronly' );
 ?>

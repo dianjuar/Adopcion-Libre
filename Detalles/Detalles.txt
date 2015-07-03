@@ -31,4 +31,10 @@ TWITTER
 	 nombre de usuario: AdopcionLibre
 	 telefono asociado: 4162786280
 
+AKISMET --> Plugin comments spam
+	 correo: adopcion.libre@gmail.com
+	 contraseña: Rocko_Spunky
+	 First Name: Adopcion
+	 Last Name: Libre
+
 //funcionalidades//funcionalidades//funcionalidades
