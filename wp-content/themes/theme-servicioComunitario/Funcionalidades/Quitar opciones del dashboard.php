@@ -39,4 +39,18 @@ Author URI: http://untame.net
     }
 
     add_filter('parse_query', 'mymo_parse_query_useronly' );
+
+
+
+    // RadioButton category on post page para (Todos los usuario menos para el Admin-programador)
+ 
+     if(!current_user_can( 'activate_plugins' ) && (strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || 
+        strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php'))) {
+            ob_start('one_category_only');
+     }
+
+     function one_category_only($content) {
+        $content = str_replace('type="checkbox" ', 'type="radio" ', $content);
+        return $content;
+     }
 ?>
