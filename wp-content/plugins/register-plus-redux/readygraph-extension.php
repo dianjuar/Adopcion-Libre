@@ -1,5 +1,6 @@
 <?php
-  // Extension Configuration
+	if ( ! defined( 'ABSPATH' ) ) exit;
+	// Extension Configuration
 	$rpr_plugin_slug = basename(dirname(__FILE__));
 	$rpr_menu_slug = 'readygraph-app';
 	$rpr_main_plugin_title = 'Register Plus Redux';
@@ -165,6 +166,8 @@ function rg_rpr_popup_options_enqueue_scripts() {
 
 function rpr_post_updated_send_email( $post_id ) {
 	// If this is just a revision, don't send the email.
+	$post_type = get_post_type( $post_id );
+	if ('page' != $post_type && 'post' != $post_type) return;
 	if ( wp_is_post_revision( $post_id ) ) return;
 	if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0 && get_option('readygraph_send_blog_updates') == "true"){
 		$post_title = get_the_title( $post_id );
@@ -183,7 +186,8 @@ function rpr_post_updated_send_email( $post_id ) {
 			$images_list[] = $full_img_url;
 		// Your Code here
 		}
-		$post_image = reset($arr);
+		$post_image = "";
+		if ($images_list) $post_image = reset($images_list);
 		$url = 'http://readygraph.com/api/v1/post.json/';
 		$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url, 'message_image_link' => $post_image, 'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 		if ( is_wp_error( $response ) ) {

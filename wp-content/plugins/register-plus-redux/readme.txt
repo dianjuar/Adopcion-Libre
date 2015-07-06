@@ -4,7 +4,7 @@ Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, subscription, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 4.2.1
+Stable tag: 4.2.4
 
 Enhance user registration with customization and administration options. Automate user growth and revenue with ReadyGraph integration.
 
@@ -260,6 +260,21 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 4. Unverified User Management http://plugins.readygraph.com/register-plus-redux/screenshots/
 
 == Changelog ==
+
+= 4.2.4 =
+July 1, 2015 by tanaylakhani
+
+* Security Fix
+
+= 4.2.3 =
+June 25, 2015 by tanaylakhani
+
+* Bug Fix for readygraph
+
+= 4.2.2 =
+June 22, 2015 by tanaylakhani
+
+* Bug Fix for readygraph
 
 = 4.2.1 =
 June 10, 2015 by tanaylakhani

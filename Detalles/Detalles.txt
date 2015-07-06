@@ -1,4 +1,4 @@
-Version Wordpress 4.1.1 Español --- ¡¡¡¡¡NO ACTUALIZAR!!!!
+Version Wordpress 4.2.2–es_ES
 
 Base de datos
      usuario: admin

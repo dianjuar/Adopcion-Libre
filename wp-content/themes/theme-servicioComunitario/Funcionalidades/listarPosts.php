@@ -93,4 +93,19 @@
 
 //*************************************************************************************
 
+
+	// Remueve los posts en estado "pendiente" que no son del usuario actual
+	function only_own_comments_parse_query_pending( $wp_query ) 
+	{
+	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit-comments.php?comment_status=all' ) !== false ) 
+	    {
+		  global $current_user;
+		  $wp_query->set( 'comment_author', $current_user->id );
+	    }
+	}
+
+	if( current_user_can('al_suscriptor') )
+		add_filter('parse_query', 'only_own_comments_parse_query_pending' );
+
+
 ?>

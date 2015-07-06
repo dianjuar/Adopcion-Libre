@@ -53,4 +53,6 @@ Author URI: http://untame.net
         $content = str_replace('type="checkbox" ', 'type="radio" ', $content);
         return $content;
      }
+
+
 ?>
