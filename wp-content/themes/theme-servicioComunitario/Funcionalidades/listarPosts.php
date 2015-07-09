@@ -7,10 +7,11 @@
 	}
 	add_filter('media_upload_tabs', 'remove_media_library_tab');
 //*************************************************************************************
-	// Remueve el tab Todos en la lista de posts y pone pordefecto el tab publish
+	// Remueve el tab Todos y Borradores en la lista de posts y pone pordefecto el tab publish
 	function eliminar_tab_todos($views) 
 	{
 	  unset($views['all']);
+	  unset($views['draft']);
 	  return $views;
 	}
 	add_filter('views_edit-post', 'eliminar_tab_todos');
@@ -27,17 +28,6 @@
 
 //*************************************************************************************
 //*************************************************************************************
-	// Remueve los posts en estado "borrador" que no son del usuario actual
-	function only_own_posts_parse_query_draft( $wp_query ) 
-	{
-	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php?post_status=draft' ) !== false ) 
-	    {
-		  global $current_user;
-		  $wp_query->set( 'author', $current_user->id );
-	    }
-	}
-
-	add_filter('parse_query', 'only_own_posts_parse_query_draft' );
 
 	// Remueve los posts en estado "papelera" que no son del usuario actual
 	function only_own_posts_parse_query_trash( $wp_query ) 
@@ -92,20 +82,5 @@
 		add_action( 'views_edit-post', 'add_tab_mine' );
 
 //*************************************************************************************
-
-
-	// Remueve los posts en estado "pendiente" que no son del usuario actual
-	function only_own_comments_parse_query_pending( $wp_query ) 
-	{
-	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit-comments.php?comment_status=all' ) !== false ) 
-	    {
-		  global $current_user;
-		  $wp_query->set( 'comment_author', $current_user->id );
-	    }
-	}
-
-	if( current_user_can('al_suscriptor') )
-		add_filter('parse_query', 'only_own_comments_parse_query_pending' );
-
 
 ?>
