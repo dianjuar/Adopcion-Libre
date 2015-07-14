@@ -55,4 +55,11 @@ Author URI: http://untame.net
      }
 
 
+     //Asignar Rol "Suscriptor." a los nuevos usuarios.
+    add_filter('pre_option_default_role', function(){
+        // You can also add conditional tags here and return whatever
+        return 'al_suscriptor'; // This is changed
+    });
+
+
 ?>
