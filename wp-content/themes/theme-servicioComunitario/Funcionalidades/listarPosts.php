@@ -70,6 +70,19 @@
 		add_filter('parse_query', 'only_own_posts_parse_query_pending' );
 	
 
+	// Remueve los posts en estado "archive" que no son del usuario actual
+	function only_own_posts_parse_query_archive( $wp_query ) 
+	{
+	    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php?post_status=archive' ) !== false ) 
+	    {
+		  global $current_user;
+		  $wp_query->set( 'author', $current_user->id );
+	    }
+	}
+
+	if( current_user_can('al_suscriptor') || current_user_can('al_moderador') )
+		add_filter('parse_query', 'only_own_posts_parse_query_archive' );
+
 	//añade el tab 'mio' en edit.php al moderador, administrador y suscriptor
 	function add_tab_mine( $views ) {
 		global $current_user;

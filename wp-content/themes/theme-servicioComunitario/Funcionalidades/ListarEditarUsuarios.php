@@ -138,4 +138,27 @@ if ( !current_user_can( 'manage_options' ))
 	add_filter('post_row_actions','remove_quick_edit',10,1);
 
 
+function add_finalizar($actions, $post) {
+
+    if( $post->post_status == "publish" )
+        $actions['finalizar'] = '<a href="http://localhost/SC/wp-admin/edit.php?post_status=publish&post_type=post&archived=yes&postID='.$post->ID.'">Finalizar</a>';    
+    
+    return $actions;
+}
+add_filter('post_row_actions','add_finalizar',10,2);
+
+if ($_GET['archived'] == 'yes') {
+    cambiarEstado_archivado($_GET['postID']);
+} 
+
+function cambiarEstado_archivado($postID)
+{   
+    $post = get_post( $postID );
+    $post->post_status = "archive";
+
+    wp_update_post( $post );
+}
+
+
+
 ?>
