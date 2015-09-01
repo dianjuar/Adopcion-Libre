@@ -139,9 +139,7 @@
               <dd> <?php if(!empty($data[ 'telefono-dueno' ])) {echo $data[ 'telefono-dueno' ];} ?></dd>
             </dl>
           </section>
-           <?php global $post_id; ?> 
-          <?php $post_id = $post->ID; echo $post_id; ?> 
-          
+                     
           <section class="col-md-12 col-sm-12 col-xs-12 BoxDetPet__labelBox margin-small-top">
             <span class="label BoxDetPet__label BoxDetPet__label__titulo">Etiquetas: </span> 
               <?php $mytags = get_the_tags(); ?> 
