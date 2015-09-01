@@ -50,6 +50,14 @@
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
     		"descripcion" => "Dirección actual de la mascota"),
+		"nombre-Dueño" => array(
+    		"nombre" => "nombre-Dueño",
+    		"titulo" => "Nombre del dueño:",
+    		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
+		"dueño-telefono" => array(
+    		"nombre" => "dueño-telefono",
+    		"titulo" => "Telefono del dueño:",
+    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),
 	);
 	/*===== ADMIN Declarar meta box - Post OFF ==========================================*/
 	/*===== ADMIN Crear meta box - Post ON ==============================================*/
@@ -119,7 +127,7 @@
 	    global $post, $meta_boxes, $key, $aux;
 	 
 	    foreach( $meta_boxes as $meta_box ) {
-	        	$data[ $meta_box[ 'nombre' ] ] = $_POST[ $meta_box[ 'nombre' ] ];
+	        $data[ $meta_box[ 'nombre' ] ] = $_POST[ $meta_box[ 'nombre' ] ];
 	    }
 	 
 	    if ( !wp_verify_nonce( $_POST[ $key . '_wpnonce' ], plugin_basename(__FILE__) ) )
@@ -404,6 +412,5 @@ include 'Funcionalidades/Quitar opciones del dashboard.php';
 include 'Funcionalidades/ListarEditarUsuarios.php';
 include 'Funcionalidades/Modificar acciones del listado de post.php';
 include 'Funcionalidades/finalizar post.php';
-include 'Funcionalidades/editar usuarios.php';
 
 ?>

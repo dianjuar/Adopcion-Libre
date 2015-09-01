@@ -62,11 +62,12 @@ dt {
 .boxMenuIndex li {
   width: 33.3%;
   padding: 15px 20px;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 500;
   display: table-cell;
   text-transform: uppercase;
   text-shadow: 1.5px 0px #5E5B5B;
+  
 }
 .boxMenuIndex li:nth-child(2) span:first-child{
   font-size: 7em;
@@ -75,7 +76,7 @@ dt {
 }
 .boxMenuIndex li span {
   display: block;
-  font-size: 5em;
+  font-size: 4em;
   text-shadow:none;
 }
 .boxMenuIndex li span:last-child {
@@ -417,6 +418,13 @@ dt {
   float: right;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.BtnFinalizar{
+  background-color: #f78e1d;
+  color: white;
+  position: absolute;
+  top: 27px;
+  right: 9px;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
