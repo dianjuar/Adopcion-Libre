@@ -5,14 +5,17 @@
     $post_id = $_POST["post-id"];
     echo '<script language="javascript">alert("'.$post_id.'");</script>';
     
-    $data['nombre-Dueño'] = $_POST['nombre-Dueño'];
-    $data['dueño-telefono'] = $_POST['dueño-telefono'];
-    
+    $data['nombre-Dueno'] = $_POST['nombre-Dueno'];
+    $data['dueño-telefono'] = $_POST['telefono-Dueno'];
+    //update_post_meta( $post_id, 'nombre-Dueno', $_POST['nombre-Dueño'] );
+    $return = update_post_meta( $post_id, 'telefono-Dueno', $_POST['telefono-Dueno'] );
+    echo '<script language="javascript">alert("'.$return.'");</script>';
     // update_post_meta( $_POST["post-id"], 'nombre-Dueño',  $_POST['nombre-dueno'] );
     // update_post_meta( $_POST["post-id"], 'dueño-telefono',  $_POST['telefono-dueno'] );
-    update_post_meta( $post_id, 'post', $data);
+    //update_post_meta( $post_id, 'post', $data);
   }
-  /*===== USER Archivar publicación - Post OFF ========================================*/
+
+_/*===== USER Archivar publicación - Post OFF ========================================*/
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -41,11 +44,11 @@
                 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nombre:</label>
-                    <input type="text" class="form-control" name="nombre-Dueño" id="nombre-Dueño" placeholder="Nombre" required>
+                    <input type="text" class="form-control" name="nombre-Dueno" id="nombre-Dueno" placeholder="Nombre" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Telefono</label>
-                    <input type="text" class="form-control" name="telefono-dueno" id="telefono-dueno" placeholder="telefono" required>
+                    <input type="text" class="form-control" name="telefono-Dueno" id="telefono-Dueno" placeholder="telefono" required>
                   </div>
                    <input type="hidden" name="post-id" value="<?php echo $post_id; ?>">
               </div>
@@ -122,8 +125,6 @@
               <dd><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></dd>
               <dt>Esterelizado:</dt>
               <dd><?php if(!empty($data[ 'esterilizacion' ])) {echo $data[ 'esterilizacion' ];} ?></dd>
-              <dt>Estado:</dt>
-              <dd><?php if(!empty($data[ 'estatus' ])) {echo $data[ 'estatus' ];} ?></dd>
             </dl> 
             <h3 class="no-margin margin-small-left">Información de contacto</h3> 
             <dl class="BoxDetPet__data no-margin">
@@ -132,12 +133,14 @@
               <dt><abbr title="Telefono">Tlf:</abbr></dt>
               <dd> <?php if(!empty($data[ 'telefono' ])) {echo $data[ 'telefono' ];} ?></dd>
             </dl>
+            <?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>
             <dl class="BoxDetPet__data no-margin">
-              <dt>Datos del dueño actual:</dt>
-              <dd> <?php if(!empty($data[ 'nombre-dueno' ])) {echo $data[ 'nombre-dueno' ];} ?></dd>
+              <dt>Datos del dueño actual:</dt><br>
+              <dd> <?php echo $data[ 'nombre-dueno' ]; ?></dd>
               <dt><abbr title="Telefono">Tlf:</abbr></dt>
-              <dd> <?php if(!empty($data[ 'telefono-dueno' ])) {echo $data[ 'telefono-dueno' ];} ?></dd>
+              <dd> <?php echo $data[ 'telefono-dueno' ]; ?></dd>
             </dl>
+            <?php } ?>
           </section>
                      
           <section class="col-md-12 col-sm-12 col-xs-12 BoxDetPet__labelBox margin-small-top">
@@ -154,10 +157,10 @@
         <h2><span class="icon icon-Pata_vector"></span> Comentarios:</h2>
         <section class="col-md-12">
           <?php comments_template( '', true ); ?>
-        </section>
-          
-        <?php endwhile; // end of the loop. ?>
+        </section>  
       </article>
+      <?php endwhile; // end of the loop. ?>
+      
 
       <?php require_once("footer.php"); ?>
       <script>

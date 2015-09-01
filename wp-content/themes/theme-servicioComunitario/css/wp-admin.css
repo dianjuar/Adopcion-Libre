@@ -541,3 +541,9 @@ table.form-table+input+input+p.submit{
   display: block;
 }
 /*=============== Perfil ============================================================*/
+#edit-slug-box,#category-adder,.page-title-action{
+  display: none;
+}
+.postbox .hndle:hover {
+    cursor:default;
+}

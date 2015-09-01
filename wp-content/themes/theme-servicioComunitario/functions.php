@@ -50,15 +50,17 @@
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
     		"descripcion" => "Dirección actual de la mascota"),
-		"nombre-Dueño" => array(
-    		"nombre" => "nombre-Dueño",
+		/*"nombre-dueno" => array(
+    		"nombre" => "nombre-dueno",
     		"titulo" => "Nombre del dueño:",
     		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
-		"dueño-telefono" => array(
-    		"nombre" => "dueño-telefono",
+		"telefono-dueno" => array(
+    		"nombre" => "telefono-dueno",
     		"titulo" => "Telefono del dueño:",
-    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),
+    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),*/
 	);
+
+	
 	/*===== ADMIN Declarar meta box - Post OFF ==========================================*/
 	/*===== ADMIN Crear meta box - Post ON ==============================================*/
 	function crear_meta_box() {
@@ -113,7 +115,14 @@
 		        <?php }
 		        	if($meta_box[ 'nombre' ]=="raza") { ?>	
 		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
-		        <?php } ?>
+		        <?php } 
+		        	if($meta_box[ 'nombre' ]=="nombre-dueno") { ?> 
+		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
+		        <?php }
+		        	if($meta_box[ 'nombre' ]=="telefono-dueno") { ?>
+		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
+		    	<?php }
+		        ?>
 		        <p><?php echo $meta_box[ 'descripcion' ]; ?></p>
 		    </div>
 		 
@@ -337,7 +346,6 @@
 		get_footer();
 	}
 	add_action( 'login_footer', 'showFooter' );
-	add_action( 'admin_footer', 'showFooter' );
 	/*===== LOGIN-FORM Y ADMIN agregar footer OFF =======================================*/
 	/*===== LOGIN-FORM Y ADMIN agregar header ON ========================================*/
 	function showHeader() {
@@ -403,6 +411,23 @@
 	add_action( 'admin_menu', 'revcon_change_post_label' );
 	add_action( 'init', 'revcon_change_post_object' );
 	/*===== ADMIN Cambiar nombre - Post OFF =============================================*/
+	/*===== ADMIN Eliminar cosas de head - ON ===========================================*/
+	remove_action('wp_head', 'rsd_link');
+	remove_action('wp_head', 'wp_generator');
+	remove_action('wp_head', 'feed_links', 2);
+	remove_action('wp_head', 'index_rel_link');
+	remove_action('wp_head', 'wlwmanifest_link');
+	remove_action('wp_head', 'feed_links_extra', 3);
+	remove_action('wp_head', 'start_post_rel_link', 10, 0);
+	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
+	/*===== ADMIN Eliminar cosas de head - OFF ==========================================*/
+	/*===== ADMIN Desabilitar movimiento metaboxes - ON =================================*/
+	function fb_remove_postbox() {
+	    wp_deregister_script('postbox');
+	}
+	add_action( 'admin_init', 'fb_remove_postbox' );
+	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
 ?>
 
 <?php
