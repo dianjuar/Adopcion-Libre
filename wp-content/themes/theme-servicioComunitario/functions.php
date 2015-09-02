@@ -422,12 +422,45 @@
 	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 	/*===== ADMIN Eliminar cosas de head - OFF ==========================================*/
-	/*===== ADMIN Desabilitar movimiento metaboxes - ON =================================*/
+	/*===== ADMIN Desabilitar movimiento metaboxes - ON ================================*/
 	function fb_remove_postbox() {
 	    wp_deregister_script('postbox');
 	}
 	add_action( 'admin_init', 'fb_remove_postbox' );
 	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
+	/*function myplugin_add_meta_box() {
+
+	$screens = array( 'post');
+
+	foreach ( $screens as $screen ) {
+
+		add_meta_box(
+			'myplugin_sectionid',
+			__( 'Finalizar ', 'myplugin_textdomain' ),
+			'myplugin_meta_box_callback',
+			$screen
+		);
+	}
+}
+add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
+
+/*function myplugin_meta_box_callback( $post ) {
+
+	// Add a nonce field so we can check for it later.
+	wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
+
+	/*
+	 * Use get_post_meta() to retrieve an existing value
+	 * from the database and use the value for the form.
+	 */
+	/*$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
+
+	echo '<label for="myplugin_new_field">';
+	_e( 'Description for this field', 'myplugin_textdomain' );
+	echo '</label> ';
+	echo '<input type="text" id="myplugin_new_field" name="myplugin_new_field" value="' . esc_attr( $value ) . '" size="25" />';
+}*/
+
 ?>
 
 <?php
