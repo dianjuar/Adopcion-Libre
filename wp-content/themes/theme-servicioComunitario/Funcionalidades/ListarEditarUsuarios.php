@@ -3,7 +3,6 @@
 /*MODIFICAR DROPDOWN DE ROLES EN LA PAGINA PRINCIPAL users.php Y EN user-edit.php*/
 
 add_filter( 'remove_default_wp_roles' , 'func_remove_default_wp_roles' );
-
 add_filter( 'editable_roles' , 'func_remove_higher_roles_SC' );
 
 function func_remove_higher_roles_SC($allRoles){
@@ -59,8 +58,6 @@ function func_remove_default_wp_roles($allRoles){
  * - Set Role Change dropdown menu
  * */
 function custom_user_filter_links( $views ) {
-
-  global $wp_roles; // For Role Change dropdown menu
   
 
   if( current_user_can('al_administrador') ){
@@ -79,16 +76,6 @@ function custom_user_filter_links( $views ) {
     unset($views['al_administrador']);
     unset($views['al_superadministrador']);
 
-    /* Modify Role Change dropdown menu in the main page users.php 
-    unset ( $wp_roles->roles['editor'] );
-    unset ( $wp_roles->roles['author'] );
-    unset ( $wp_roles->roles['contributor'] );
-    unset ( $wp_roles->roles['subscriber'] );
-    unset ( $wp_roles->roles['rpr_unverified'] );
-    unset ( $wp_roles->roles['al_administrador'] );
-    unset ( $wp_roles->roles['al_superadministrador'] );
-	*/
-
   }
 
   return $views;
@@ -97,7 +84,6 @@ add_filter( 'views_users', 'custom_user_filter_links' );
 
 
 /*MODIFICAR ALL VIEW*/
-
 add_action('pre_user_query','list_moderador_suscriptor');
 
 function list_moderador_suscriptor($user_search) {

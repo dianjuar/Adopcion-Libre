@@ -207,6 +207,12 @@
 	/*===== Set a custom role for a new user OFF ========================================*/
 	/*===== This filter is applied to the roles of new users ON =========================*/
 	add_filter('oa_social_login_filter_new_user_role', 'oa_social_login_set_new_user_role');
+
+	    //Asignar Rol "Suscriptor." a los nuevos usuarios.
+	    add_filter('pre_option_default_role', function(){
+	        // You can also add conditional tags here and return whatever
+	        return 'al_suscriptor'; // This is changed
+	    });
 	/*===== This filter is applied to the roles of new users OFF ========================*/
 	/*===== ADMIN Quitar link a la barra superior ON ====================================*/
 	function remove_admin_bar_links() {
@@ -470,5 +476,31 @@ include 'Funcionalidades/Quitar opciones del dashboard.php';
 include 'Funcionalidades/ListarEditarUsuarios.php';
 include 'Funcionalidades/Modificar acciones del listado de post.php';
 include 'Funcionalidades/finalizar post.php';
+include 'Funcionalidades/post-new.php';
+include 'Funcionalidades/users.php';
+
+?>
+
+<?php //security esto no ejecuta código html en la caja de comentarios
+add_filter('pre_comment_content', 'wp_specialchars');
+
+function al_rolUser_CanEdit($rolToEdit)
+{
+
+$userRol = wp_get_current_user()->roles[0];
+
+	if($userRol == 'al_administrador' && $rolToEdit == 'al_administrador' ||
+	   $userRol == 'al_administrador' && $rolToEdit == 'al_superadministrador')
+	{
+		//die("NOOOOO!! SE PUEDE!!!!!");
+		return false;
+	}
+	else
+	{
+		//die("SIIIII SE PUEDE!!!!!");
+		return true;
+	}
+		
+}
 
 ?>

@@ -28,7 +28,7 @@ function add_finalizar($actions, $post) {
     if( $post->post_status == "publish" )
     {
         $url = admin_url('edit.php?post_status=publish&post_type=post&archived=yes&postID='.$post->ID);
-        $actions['finalizar'] = '<a href="'.$url.'">Finalizar</a>';    
+        $actions['finalizar'] = '<a href="'.$url.'">Finalizar</a>';
     }
     
     return $actions;
