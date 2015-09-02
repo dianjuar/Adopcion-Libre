@@ -11,6 +11,6 @@ function cambiarEstado_archivado($postID)
 
 if ($_GET['archived'] == 'yes') {
     cambiarEstado_archivado($_GET['postID']);
-} 
+}
 
 ?>

@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <a class="btn BtnEncontrados" href="<?php echo admin_url( 'post-new.php', 'http' ); ?>">Reportar una mascota</a>
+                <a class="btn BtnEncontrados" href="<?php echo admin_url( 'post-new.php?post_category=encontrado', 'http' ); ?>">Reportar una mascota</a>
                 <button id="Mclose" type="button" class="btn">Cerrar</button>
                 
               </div>
