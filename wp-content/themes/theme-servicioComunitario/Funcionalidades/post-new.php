@@ -8,33 +8,41 @@
 
     function one_category_only($content) 
     {
-       $content = str_replace('type="checkbox" ', 'type="radio" disabled ', $content);
+        $content = str_replace('type="checkbox" ', 'type="radio" ', $content);
+
+        if( isset( $_GET['post_category']) )
+        {
+            die("perra");
+            $content = str_replace('type="radio"', ' type="radio disabled ', $content);
 
 
-        switch ( $_GET['post_category'] ) {
-            case 'adopcion':
-                //<input value="2" name="post_category[]" id="in-category-2" type="radio">
-                $content = str_replace('<input value="2" ', 
-                                       '<input value="2" checked ', 
-                                       $content);
+            switch ( $_GET['post_category'] ) {
+                case 'adopcion':
+                    //<input value="2" name="post_category[]" id="in-category-2" type="radio">
+                    $content = str_replace('<input value="2" ', 
+                                           '<input value="2" checked ', 
+                                           $content);
                 break;
 
-            case 'encontrado':
-                $content = str_replace('<input value="3" ', 
-                                       '<input value="3" checked ', 
-                                       $content);
+                case 'encontrado':
+                    $content = str_replace('<input value="3" ', 
+                                           '<input value="3" checked ', 
+                                           $content);
                 break;
 
-            case 'perdido':
-                $content = str_replace('<input value="4" ', 
-                                       '<input value="4" checked ', 
-                                       $content);
+                case 'perdido':
+                    $content = str_replace('<input value="4" ', 
+                                           '<input value="4" checked ', 
+                                           $content);
                 break;
 
-            default:
-                # nothing
+                default:
+                    # nothing
                 break;
+            }
         }
+
+        
 
         return $content;
     }
