@@ -1,19 +1,22 @@
 <?php
 
 // RadioButton category on post page para todos los usuarios y es seleccionado la categoria correspondiente dependiendo de dond provenga el usuario
-    if( (strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || 
-        strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php'))) {
-            ob_start('one_category_only');
+    
+    add_action( 'load-post-new.php', 'Checbox2RadioButton');
+    add_action( 'load-post.php', 'Checbox2RadioButton');
+
+    function Checbox2RadioButton()
+    {        
+        ob_start('one_category_only');
     }
 
     function one_category_only($content) 
     {
-        $content = str_replace('type="checkbox" ', 'type="radio" ', $content);
+        $content = str_replace('type="checkbox" ', ' type="radio" ', $content);
 
         if( isset( $_GET['post_category']) )
         {
-            die("perra");
-            $content = str_replace('type="radio"', ' type="radio disabled ', $content);
+            $content = str_replace('type="radio"', ' type="radio" disabled ', $content);
 
 
             switch ( $_GET['post_category'] ) {
@@ -43,6 +46,22 @@
         }
 
         
+
+        return $content;
+    }
+
+    add_action( 'load-post-new.php', 'remover_enviarALaPapelera');
+
+    function remover_enviarALaPapelera()
+    {
+        ob_start('remove_trahsLink');   
+    }
+
+    function remove_trahsLink($content)
+    {
+        $content = str_replace('"delete-action"', 
+                               '"delete-action" style="display:none" ', $content);
+
 
         return $content;
     }
