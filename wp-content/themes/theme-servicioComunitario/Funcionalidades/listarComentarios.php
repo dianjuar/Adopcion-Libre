@@ -7,8 +7,10 @@
 	  unset($views['approved']);
 
 	  $views['Enviados']="<a href='edit-comments.php?comment_status=enviados' >Enviados</a>";
-
 	  $views['Recibidos']="<a href='edit-comments.php?comment_status=recibidos' >Recibidos</a>";
+
+	  if( al_isSuperAdministradorLogged() )
+	  	$views['mios']="<a href='edit-comments.php?comment_status=mios' >Mios</a>";
 
 	  return $views;
 	}
@@ -53,7 +55,8 @@
 	    global $user_ID;
 
 	    if($pagenow == 'edit-comments.php' && 
-	      (!al_isProgrammerLogged() && !al_isSuperAdministradorLogged() ) )
+	       ( ( $_GET['comment_status']=='enviados' || $_GET['comment_status']=='recibidos' || $_GET['comment_status']=='mios'  ) ||
+	      (!al_isProgrammerLogged() && !al_isSuperAdministradorLogged() ) ) )
 	    {
 	        foreach($comments as $i => $comment)
 	        {
