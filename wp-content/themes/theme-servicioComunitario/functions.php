@@ -478,6 +478,7 @@ include 'Funcionalidades/Modificar acciones del listado de post.php';
 include 'Funcionalidades/finalizar post.php';
 include 'Funcionalidades/post-new.php';
 include 'Funcionalidades/users.php';
+include 'Funcionalidades/listarComentarios.php';
 
 ?>
 
@@ -486,8 +487,7 @@ add_filter('pre_comment_content', 'wp_specialchars');
 
 function al_rolUser_CanEdit($rolToEdit)
 {
-
-$userRol = wp_get_current_user()->roles[0];
+	$userRol = wp_get_current_user()->roles[0];
 
 	if($userRol == 'al_administrador' && $rolToEdit == 'al_administrador' ||
 	   $userRol == 'al_administrador' && $rolToEdit == 'al_superadministrador')
@@ -500,7 +500,18 @@ $userRol = wp_get_current_user()->roles[0];
 		//die("SIIIII SE PUEDE!!!!!");
 		return true;
 	}
-		
 }
+
+function al_isProgrammerLogged()
+{
+	return current_user_can('manage_options');
+}
+
+function al_isSuperAdministradorLogged()
+{
+	return current_user_can('al_superadministrador');
+}
+
+
 
 ?>
