@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Archived Post Status/0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-27 11:57-0600\n"
-"PO-Revision-Date: 2015-01-27 12:10-0600\n"
+"PO-Revision-Date: 2015-09-07 16:59-0430\n"
 "Last-Translator: Frankie Jarrett <fjarrett@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -13,14 +13,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-KeywordsList: _e;__;esc_html_e;esc_html__;esc_attr_e;esc_attr_;_n_noop\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../archived-post-status.php:43
 msgid "Archived Post Status"
-msgstr "Archivado Publicar Estado"
+msgstr "Estado de Post Archivado"
 
 #: ../archived-post-status.php:44
 msgid ""
@@ -37,11 +37,11 @@ msgid "Archived"
 msgstr "﻿Archivado"
 
 #: ../archived-post-status.php:62
-#, fuzzy, php-format
+#, php-format
 msgid "Archived <span class=\"count\">(%s)</span>"
 msgid_plural "Archived <span class=\"count\">(%s)</span>"
-msgstr[0] "Archivado <span class=\"count\">(%s)</span>"
-msgstr[1] "Archivado <span class=\"count\">(%s)</span>"
+msgstr[0] "Finalizada <span class=\"count\">(%s)</span>"
+msgstr[1] "Finalizadas <span class=\"count\">(%s)</span>"
 
 #: ../archived-post-status.php:257
 msgid ""

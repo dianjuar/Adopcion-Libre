@@ -53,13 +53,13 @@ function aps_i18n_strings() {
  */
 function aps_register_archive_post_status() {
 	$args = array(
-		'label'                     => __( 'Archived', 'archived-post-status' ),
+		'label'                     => __( 'Archived', 'archived-post-status' ), 
 		'public'                    => apply_filters( 'aps_status_arg_public', aps_current_user_can_view() ),
 		'private'                   => apply_filters( 'aps_status_arg_private', true ),
 		'exclude_from_search'       => apply_filters( 'aps_status_arg_exclude_from_search', ! aps_current_user_can_view() ),
 		'show_in_admin_all_list'    => apply_filters( 'aps_status_arg_show_in_admin_all_list', aps_current_user_can_view() ),
 		'show_in_admin_status_list' => apply_filters( 'aps_status_arg_show_in_admin_status_list', aps_current_user_can_view() ),
-		'label_count'               => _n_noop( 'Archived <span class="count">(%s)</span>', 'Archived <span class="count">(%s)</span>', 'archived-post-status' ),
+		'label_count' 				=> _n_noop( 'Archived <span class="count">(%s)</span>', 'Archived <span class="count">(%s)</span>', 'archived-post-status' ),
 	);
 
 	register_post_status( 'archive', $args );
