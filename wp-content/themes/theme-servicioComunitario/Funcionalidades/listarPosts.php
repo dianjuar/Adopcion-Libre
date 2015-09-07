@@ -95,5 +95,37 @@
 		add_action( 'views_edit-post', 'add_tab_mine' );
 
 //*************************************************************************************
+//*************************************************************************************
+
+//ADD AUTHOR COLUMN TO THE LIST OF POSTS
+
+function add_author_column( $columns ) {
+	
+    $columns["autor"] = "Autor"; //if I set the the "author" instead "autor" I cann't modify its content
+    unset($columns["description"]); //it works
+    return $columns;
+}
+add_filter('manage_edit-post_columns', 'add_author_column'); //add the author to the columns names array
+add_filter('manage_edit-post_sortable_columns', 'add_author_column'); //add the author to the columns names sortable array
+
+
+//MODIFY CONTENT IN AUTHOR COLUMN (SET DISPLAY NAME)
+function set_display_name_autor_column( $column) {
+
+	global $post;
+
+	$user = get_user_by( 'id', $post->post_author );
+	
+    switch ( $column ) {
+      case 'autor':
+        echo $user->display_name;
+        break;
+
+    }
+}
+add_action( 'manage_posts_custom_column' , 'set_display_name_autor_column' );
+
+//*************************************************************************************
+//*************************************************************************************
 
 ?>
