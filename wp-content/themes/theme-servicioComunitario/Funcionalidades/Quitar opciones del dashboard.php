@@ -32,7 +32,6 @@ Author URI: http://untame.net
     function mymo_parse_query_useronly( $wp_query ) {
         if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/upload.php' ) !== false ) {
             if ( current_user_can('al_suscriptor') || current_user_can('al_moderador') ) {
-                die('sdad');
                 global $current_user;
                 $wp_query->set( 'author', $current_user->id );
             }
