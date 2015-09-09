@@ -50,14 +50,14 @@
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
     		"descripcion" => "Dirección actual de la mascota"),
-		/*"nombre-dueno" => array(
+		"nombre-dueno" => array(
     		"nombre" => "nombre-dueno",
     		"titulo" => "Nombre del dueño:",
     		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
 		"telefono-dueno" => array(
     		"nombre" => "telefono-dueno",
     		"titulo" => "Telefono del dueño:",
-    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),*/
+    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),
 	);
 
 	
@@ -89,6 +89,7 @@
 		    ?>
 		 
 		    <div class="form-field form-required">
+		    <?php if($meta_box[ 'nombre' ]!="nombre-dueno" && $meta_box[ 'nombre' ]!="telefono-dueno" ){ ?>
 		        <label for="<?php echo $meta_box[ 'nombre' ]; ?>"><?php echo $meta_box[ 'titulo' ]; ?></label>
 		        
 		        <?php if($meta_box[ 'nombre' ]=="esterilizacion"){ ?>
@@ -126,6 +127,7 @@
 		        <p><?php echo $meta_box[ 'descripcion' ]; ?></p>
 		    </div>
 		 
+		<?php } // Fin del foreach?>
 		<?php } // Fin del foreach?>
 		</div>
 		<?php
@@ -434,40 +436,123 @@
 	}
 	add_action( 'admin_init', 'fb_remove_postbox' );
 	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
-	/*function myplugin_add_meta_box() {
+	function make_save_button(){ ?>
+		<script>
+		jQuery('.metabox_finish').click(function(e) {
+		    e.preventDefault();
+		    jQuery('#publish').click();
+		});
+		</script>
+	<?php }
+	add_action( 'admin_init', 'make_save_button' );
 
-	$screens = array( 'post');
+	function myplugin_add_meta_box() {
 
-	foreach ( $screens as $screen ) {
+		$screens = array( 'post');
 
-		add_meta_box(
-			'myplugin_sectionid',
-			__( 'Finalizar ', 'myplugin_textdomain' ),
-			'myplugin_meta_box_callback',
-			$screen
-		);
+		foreach ( $screens as $screen ) {
+
+			if ( get_post_status ( $ID ) == 'publish' ) {
+				add_meta_box(
+					'myplugin_sectionid',
+					__( 'Finalizar la publicación', 'myplugin_textdomain' ),
+					'myplugin_meta_box_callback',
+					$screen
+				);
+			}			
+		}
 	}
-}
-add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
+	add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
 
-/*function myplugin_meta_box_callback( $post ) {
+	function myplugin_meta_box_callback( $post ) {
 
-	// Add a nonce field so we can check for it later.
-	wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
+		// Add a nonce field so we can check for it later.
+		wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
 
-	/*
-	 * Use get_post_meta() to retrieve an existing value
-	 * from the database and use the value for the form.
-	 */
-	/*$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
+		/*
+		 * Use get_post_meta() to retrieve an existing value
+		 * from the database and use the value for the form.
+		 */
+		$nombre = get_post_meta( $post->ID, 'nombre-dueno', true );
+		$telefono = get_post_meta( $post->ID, 'telefono-dueno', true );
 
-	echo '<label for="myplugin_new_field">';
-	_e( 'Description for this field', 'myplugin_textdomain' );
-	echo '</label> ';
-	echo '<input type="text" id="myplugin_new_field" name="myplugin_new_field" value="' . esc_attr( $value ) . '" size="25" />';
-}*/
+		echo '<p>Datos de la persona que quedara acargo de la mascota, estos campos son obligatorios para finalizar la publicación </p>';
+		echo '<label for="nombre-dueno">';
+		_e( 'Nombre: ', 'myplugin_textdomain' );
+		echo '</label> ';
+		echo "<br>";
+		echo '<input type="text" id="nombre-dueno" name="nombre-dueno" value="' . $nombre . '" size="25" />';
+		echo "<br>";
+		echo '<i>Nombre de la persona que quedara acargo de la mascota</i>';
+		echo "<br> <br>";
 
-?>
+		echo '<label for="telefono-dueno">';
+		_e( 'Telefono: ', 'myplugin_textdomain' );
+		echo '</label> ';
+		echo "<br>";
+		echo '<input type="text" id="telefono-dueno" name="telefono-dueno" value="' . esc_attr( $telefono) . '" size="25" />';
+		echo "<br>";
+		echo '<i>Telefono de la persona que quedara acargo de la mascota</i>';
+		echo "<br> <br>";
+
+		echo '<input type="submit" class="metabox_finish button button-large" value="Finalizar" />';
+	}
+
+	function myplugin_save_meta_box_data( $post_id ) {
+
+		/*
+		 * We need to verify this came from our screen and with proper authorization,
+		 * because the save_post action can be triggered at other times.
+		 */
+
+		// Check if our nonce is set.
+		if ( ! isset( $_POST['myplugin_meta_box_nonce'] ) ) {
+			return;
+		}
+
+		// Verify that the nonce is valid.
+		if ( ! wp_verify_nonce( $_POST['myplugin_meta_box_nonce'], 'myplugin_save_meta_box_data' ) ) {
+			return;
+		}
+
+		// If this is an autosave, our form has not been submitted, so we don't want to do anything.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		// Check the user's permissions.
+		if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+			if ( ! current_user_can( 'edit_page', $post_id ) ) {
+				return;
+			}
+
+		} else {
+
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return;
+			}
+		}
+
+		/* OK, it's safe for us to save the data now. */
+		
+		// Make sure that it is set.
+		if ( ! isset( $_POST['nombre-dueno'] ) || ! isset( $_POST['telefono-dueno'] ) ) {
+			return;
+		}
+
+		// Sanitize user input.
+		$nombre = sanitize_text_field( $_POST['nombre-dueno'] );
+		$telefono = sanitize_text_field( $_POST['telefono-dueno'] );
+
+
+		// Update the meta field in the database.
+		update_post_meta( $post_id, 'nombre-dueno', $nombre );
+		update_post_meta( $post_id, 'telefono-dueno', $telefono );
+	}
+	add_action( 'save_post', 'myplugin_save_meta_box_data' );
+
+	?>
 
 <?php
 

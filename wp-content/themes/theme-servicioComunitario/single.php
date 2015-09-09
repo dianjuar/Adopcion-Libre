@@ -1,22 +1,3 @@
-<?php 
-  session_start();
-  /*===== USER Archivar publicación - Post ON =========================================*/
-  if(isset($_POST["Boton"])){
-    $post_id = $_POST["post-id"];
-    echo '<script language="javascript">alert("'.$post_id.'");</script>';
-    
-    $data['nombre-Dueno'] = $_POST['nombre-Dueno'];
-    $data['dueño-telefono'] = $_POST['telefono-Dueno'];
-    //update_post_meta( $post_id, 'nombre-Dueno', $_POST['nombre-Dueño'] );
-    $return = update_post_meta( $post_id, 'telefono-Dueno', $_POST['telefono-Dueno'] );
-    echo '<script language="javascript">alert("'.$return.'");</script>';
-    // update_post_meta( $_POST["post-id"], 'nombre-Dueño',  $_POST['nombre-dueno'] );
-    // update_post_meta( $_POST["post-id"], 'dueño-telefono',  $_POST['telefono-dueno'] );
-    //update_post_meta( $post_id, 'post', $data);
-  }
-
-_/*===== USER Archivar publicación - Post OFF ========================================*/
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -27,40 +8,6 @@ _/*===== USER Archivar publicación - Post OFF =================================
       <?php require_once("head.php"); 
       ?>
     </head>
-    <div class="ventana" id="myModal">
-      <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-        <div class="modal-dialog">
-           <div class="modal-content">
-            <form  method="post" action="">
-              <div class="modal-header">
-                <button id="btnClose" type="button" class="close"><span aria-hidden="true">&times;</span></button>
-                <h3>Finalizar publicación</h3>
-              </div>
-              <div class="modal-body">
-                <p> 
-                  Por favor ingresa los datos de la persona que quedara a cargo de la mascota,
-                  <?php $post_id = $post->ID; echo $post_id; ?> 
-                </p>
-                
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre:</label>
-                    <input type="text" class="form-control" name="nombre-Dueno" id="nombre-Dueno" placeholder="Nombre" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Telefono</label>
-                    <input type="text" class="form-control" name="telefono-Dueno" id="telefono-Dueno" placeholder="telefono" required>
-                  </div>
-                   <input type="hidden" name="post-id" value="<?php echo $post_id; ?>">
-              </div>
-              <div class="modal-footer">
-                <button name="Boton" type="submit" class="btn" >Guardar</button>
-                <button id="Mclose" type="button" class="btn">Cancelar</button>
-              </div>
-            </form>
-            </div>
-        </div>
-        <?php endwhile; // end of the loop. ?>
-      </div>
     <body >
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -75,8 +22,9 @@ _/*===== USER Archivar publicación - Post OFF =================================
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
           <?php $cu = wp_get_current_user(); ?>
           <?php $autor = get_the_author(); ?> 
+          <?php $post_id = $post->ID; ?> 
           <?php if($autor==$cu->display_name){ ?>
-            <a id="btn-dar" class="btn BtnFinalizar BtnPosicion">Finalizar publicación</a>
+            <a id="btn-dar" href="<?php echo admin_url( 'post.php?post='.$post_id.'&action=edit', 'http' ); ?>" class="btn BtnFinalizar BtnPosicion">Finalizar publicación</a>
           <?php } ?>
         </div>
 
@@ -171,17 +119,6 @@ _/*===== USER Archivar publicación - Post OFF =================================
             $(this).addClass("BoxDetPet__ImgSmall--active");
             $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
             $("#ImgBig").attr("src",$(this).attr("src"));
-          });
-          $("#btn-dar").click(function() {
-              $("#myModal").css("display","block");
-            });
-
-          $("#Mclose").click(function() {
-              $("#myModal").css("display","none");
-          });
-
-          $("#btnClose").click(function() {
-              $("#myModal").css("display","none");
           });
         });
 
