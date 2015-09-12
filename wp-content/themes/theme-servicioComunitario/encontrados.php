@@ -52,7 +52,7 @@
           <div class="col-md-12 no-padding">
             <h1 class="titulo--verde"><span class="icon icon-Pata_vector"></span> Mascotas encontradas</h1>
             <?php if($user_ID){ ?>
-              <a id="btn-dar" class="btn BtnEncontrados BtnPosicion">Reportar una mascota</a>
+              <a id="btn-dar" class="btn btn-lg BtnEncontrados BtnPosicion">Reportar una mascota</a>
             <?php } ?>
           </div>
 
@@ -95,7 +95,18 @@
           $("#btnClose").click(function() {
               $("#myModal").css("display","none");
           });
+          <?php if ( is_user_logged_in() ) { 
+            ?>
+            $('.BoxLoginSingIm ul li:nth-child(2) a').text("Cerrar sesión");
+            $('.BoxLoginSingIm ul li:nth-child(1) a').text("Hola, <?php echo $current_user->user_firstname; ?>");
 
+          <?php
+          } else {?>
+
+            $('.BoxLoginSingIm ul li:nth-child(2) a').text("Iniciar sesión");
+
+          <?php
+          } ?>
         });
       </script>
     </body>

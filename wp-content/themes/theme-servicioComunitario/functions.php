@@ -67,7 +67,7 @@
 	   global $key;
 	 
 	   if( function_exists( 'add_meta_box' ) ) {
-	       add_meta_box( 'nuevo-meta-boxes', ucfirst( $key ) . ' Datos:', 'mostrar_meta_box', 'post', 'normal', 'high' );
+	       add_meta_box( 'nuevo-meta-boxes',  __('Datos de la mascota:'), 'mostrar_meta_box', 'post', 'normal', 'high' );
 	   }
 	}
 	add_action( 'admin_menu', 'crear_meta_box' );
@@ -191,6 +191,7 @@
 	}
 	add_action("manage_posts_custom_column",  "obt_valores_columnas");
 	/*===== ADMIN Mostrar meta box en tabla - Post OFF ==================================*/
+	
 	/*===== Set a custom role for a new user ON =========================================*/
 	function oa_social_login_set_new_user_role ($user_role)
 	{
@@ -216,6 +217,7 @@
 	        return 'al_suscriptor'; // This is changed
 	    });
 	/*===== This filter is applied to the roles of new users OFF ========================*/
+	
 	/*===== ADMIN Quitar link a la barra superior ON ====================================*/
 	function remove_admin_bar_links() {
 		global $wp_admin_bar;
@@ -436,16 +438,21 @@
 	}
 	add_action( 'admin_init', 'fb_remove_postbox' );
 	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
+
+	/*===== ADMIN hacer que finalizar guarde el post - ON ===============================*/
 	function make_save_button(){ ?>
 		<script>
 		jQuery('.metabox_finish').click(function(e) {
-		    e.preventDefault();
+
+		    //e.preventDefault();
 		    jQuery('#publish').click();
 		});
 		</script>
 	<?php }
 	add_action( 'admin_init', 'make_save_button' );
+	/*===== ADMIN hacer que finalizar guarde el post - OFF ==============================*/
 
+	/*===== ADMIN Meta box finalizar publicacion - ON ===================================*/
 	function myplugin_add_meta_box() {
 
 		$screens = array( 'post');
@@ -455,7 +462,7 @@
 			if ( get_post_status ( $ID ) == 'publish' ) {
 				add_meta_box(
 					'myplugin_sectionid',
-					__( 'Finalizar la publicación', 'myplugin_textdomain' ),
+					__( 'Finalizar la publicación: ', 'myplugin_textdomain' ),
 					'myplugin_meta_box_callback',
 					$screen
 				);
@@ -494,8 +501,7 @@
 		echo "<br>";
 		echo '<i>Telefono de la persona que quedara acargo de la mascota</i>';
 		echo "<br> <br>";
-
-		echo '<input type="submit" class="metabox_finish button button-large" value="Finalizar" />';
+		echo '<a class="metabox_finish button button-large" href="http://localhost/SC/wp-admin/edit.php?post_status=publish&post_type=post&archived=yes&postID='.$post->ID.'">Finalizar</a>';
 	}
 
 	function myplugin_save_meta_box_data( $post_id ) {
@@ -551,10 +557,39 @@
 		update_post_meta( $post_id, 'telefono-dueno', $telefono );
 	}
 	add_action( 'save_post', 'myplugin_save_meta_box_data' );
+	/*===== ADMIN Meta box finalizar publicacion - ON ===================================*/
 
-	?>
+	/*===== ADMIN que los meta box se muestren in one row - ON ==========================*/
+	function my_screen_layout_columns( $columns ) {
+	    $columns["post"] = 1;
+	    return $columns;
+	}
 
-<?php
+	function my_screen_layout() {
+	    return 1;
+	}
+
+	add_filter( 'screen_layout_columns', 'my_screen_layout_columns' );
+	add_filter( 'get_user_option_screen_layout_post', 'my_screen_layout' );
+	/*===== ADMIN que los meta box se muestren in one row - OFF =========================*/
+
+	/*===== ADMIN cambiar de posicion los meta boxes - ON ===============================*/
+	add_action('do_meta_boxes', 'move_meta_box');
+
+	function move_meta_box(){
+		remove_meta_box( 'commentsdiv', 'post', 'side' );
+
+	    remove_meta_box( 'categorydiv', 'post', 'side' );
+	    add_meta_box('categorydiv', __('Categoria de la mascota:'), 'post_categories_meta_box', 'post', 'normal', 'high');
+
+	    remove_meta_box( 'tagsdiv-post_tag', 'post', 'side' );
+	    add_meta_box('tagsdiv-post_tag', __('Añadir etiquetas:'), 'post_tags_meta_box', 'post', 'normal', 'high');
+	    
+	    remove_meta_box( 'submitdiv', 'post', 'side' );
+	    add_meta_box('submitdiv', __('Publicar:'), 'post_submit_meta_box', 'post', 'normal', 'high');
+	}
+	/*===== ADMIN cambiar de posicion los meta boxes - OFF ==============================*/
+
 
 include 'Funcionalidades/listarPosts.php';
 include 'Funcionalidades/Quitar opciones del dashboard.php';

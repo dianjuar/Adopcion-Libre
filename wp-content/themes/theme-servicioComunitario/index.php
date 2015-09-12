@@ -125,6 +125,18 @@
           $("ul.post-categories li a").removeAttr("href");
           $("ul.post-categories li a").removeAttr("rel");
 
+          <?php if ( is_user_logged_in() ) { 
+            ?>
+            $('.BoxLoginSingIm ul li:nth-child(2) a').text("Cerrar sesión");
+            $('.BoxLoginSingIm ul li:nth-child(1) a').text("Hola, <?php echo $current_user->user_firstname; ?>");
+
+          <?php
+          } else {?>
+
+            $('.BoxLoginSingIm ul li:nth-child(2) a').text("Iniciar sesión");
+
+          <?php
+          } ?>
         });
       </script>
     

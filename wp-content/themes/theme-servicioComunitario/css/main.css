@@ -419,12 +419,14 @@ dt {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.BtnFinalizarPosicion{
+  position: absolute;
+  top: 17px;
+  right: 9px;
+}
 .BtnFinalizar{
   background-color: #f78e1d;
   color: white;
-  position: absolute;
-  top: 27px;
-  right: 9px;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -706,6 +708,9 @@ dt {
 }
 .comment-awaiting-moderation {
   margin-left: 82px;
+}
+.comment-edit-link{
+  display: none;
 }
 /*=============== Comentarios =======================================================*/
 /*=============== Modal =============================================================*/
