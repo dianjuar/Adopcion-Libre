@@ -43,8 +43,8 @@
           <?php if ( is_user_logged_in() ) { 
             ?>
             $('.BoxLoginSingIm ul li:nth-child(2) a').text("Cerrar sesión");
-            $('.BoxLoginSingIm ul li:nth-child(1) a').text("Hola, <?php echo $current_user->user_firstname; ?>");
-
+            $('.BoxLoginSingIm ul li:nth-child(1) a').text("<?php echo $current_user->display_name; ?> ");
+            $('.BoxLoginSingIm ul li:nth-child(1) a').append("<i class='fa fa-user fa-fw'/>");
           <?php
           } else {?>
 
