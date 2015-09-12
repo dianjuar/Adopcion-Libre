@@ -1,16 +1,19 @@
 <?php 
 
 //si envían por URL la opción archivados se cambiará el estado a archivado
-function cambiarEstado_archivado($postID)
+function cambiarEstado_archivado()
 {   
-    $post = get_post( $postID );
-    $post->post_status = "archive";
+	if ($_GET['archived'] == 'yes') 
+	{
+	    $post = get_post( $_GET['postID'] );
+	    $post->post_status = "archive";
 
-    wp_update_post( $post );
+	    wp_update_post( $post );
+	}
 }
 
-if ($_GET['archived'] == 'yes') {
-    cambiarEstado_archivado($_GET['postID']);
-}
+add_action( 'load-edit.php', 'cambiarEstado_archivado' );
+
+
 
 ?>

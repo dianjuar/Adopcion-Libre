@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Archived Post Status/0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-27 11:57-0600\n"
-"PO-Revision-Date: 2015-09-07 16:59-0430\n"
+"PO-Revision-Date: 2015-09-12 13:19-0430\n"
 "Last-Translator: Frankie Jarrett <fjarrett@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -34,7 +34,7 @@ msgstr ""
 #: ../archived-post-status.php:160 ../archived-post-status.php:190
 #: ../archived-post-status.php:284
 msgid "Archived"
-msgstr "﻿Archivado"
+msgstr "Finalizado"
 
 #: ../archived-post-status.php:62
 #, php-format
@@ -48,8 +48,8 @@ msgid ""
 "You can't edit this item because it has been Archived. Please change the post "
 "status and try again."
 msgstr ""
-"No puede editar esta entrada, porque ha sido archivado. Por favor, cambie el estado "
-"de la entrada y vuelva a intentarlo."
+"No puede editar esta mascota, porque ha sido finalizada. Por favor cambie el estado "
+"de la mascota e intente de nuevo."
 
 #~ msgid "WordPress &rsaquo; Error"
 #~ msgstr "WordPress &rsaquo; Error"
