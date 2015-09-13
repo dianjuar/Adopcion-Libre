@@ -632,6 +632,20 @@ function al_isSuperAdministradorLogged()
 	return current_user_can('al_superadministrador');
 }
 
+function al_isAdministradorLogged()
+{
+	return current_user_can('al_administrador');
+}
+
+function al_isModeradorLogged()
+{
+	return current_user_can('al_moderador');
+}
+
+function al_isSuscriptorLogged()
+{
+	return current_user_can('al_suscriptor');
+}
 
 
 ?>

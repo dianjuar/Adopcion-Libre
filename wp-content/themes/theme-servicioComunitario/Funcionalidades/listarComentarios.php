@@ -58,6 +58,7 @@
 	       ( ( $_GET['comment_status']=='enviados' || $_GET['comment_status']=='recibidos' || $_GET['comment_status']=='mios'  ) ||
 	      (!al_isProgrammerLogged() && !al_isSuperAdministradorLogged() ) ) )
 	    {
+
 	        foreach($comments as $i => $comment)
 	        {
 	            $the_post = get_post($comment->comment_post_ID);

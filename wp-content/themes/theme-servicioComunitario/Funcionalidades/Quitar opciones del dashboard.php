@@ -16,7 +16,6 @@ Author URI: http://untame.net
         remove_menu_page('tools.php');
         remove_menu_page('upload.php');
 
-
         if ( $pagenow  == 'tools.php'||
             ( !al_isProgrammerLogged()  &&  $pagenow == 'user-edit.php' ) //solo el adminsitrador(programador) puede acceder a esta página 
         	 //strpos( $_SERVER[ 'REQUEST_URI' ], 'edit-comments.php' ) !== false ||
@@ -43,4 +42,12 @@ Author URI: http://untame.net
     }
 
     add_filter('parse_query', 'mymo_parse_query_useronly' );
+
+    //*************************************************************************************
+    // This filter is aplied to remove the media library tab.
+    function remove_media_library_tab($tabs) {
+        unset($tabs['library']);
+        return $tabs;
+    }
+    add_filter('media_upload_tabs', 'remove_media_library_tab');
 ?>
