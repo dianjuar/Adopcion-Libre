@@ -48,7 +48,7 @@
 
 	function wpse56652_filter_comments($comments){
 		/*
-		Terminantemente PROHIVIDO mover estas 2 variables dentro del IF
+		Terminantemente PROHIBIDO mover estas 2 variables dentro del IF
 		por alguna extraña razón deja de funcionar todo
 		*/
 	    global $pagenow;
@@ -92,5 +92,26 @@
 	//---------------------------------------------------------------------
 	//add_filter('admin_comment_types_dropdown','__return_zero');
 	//---------------------------------------------------------------------
+
+	//------------------------------------------------------------------------------
+	/*REMOVER LINK "EDITAR" EN COMMENTARIOS EN EL SITIO*/
+
+	//Ojo: Esto también elimina todas las opciones de row_comments_action :/ por eso está comentado el filtro
+	
+	function restrict_comment_editing( $caps, $cap, $user_id, $args ) {
+		
+		if ( 'edit_comment' == $cap ) {
+			$comment = get_comment( $args[0] );
+	  
+			
+			$caps[] = 'moderate_comments';
+		}
+	  
+		return $caps;
+	}
+	//add_filter( 'map_meta_cap', 'restrict_comment_editing', 10, 4 );
+
+	//---------------------------------------------------------------------
+
 
 ?>
