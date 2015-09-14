@@ -3,8 +3,9 @@
 	add_filter('the_posts', function ($posts)
 	{		
 	    global $user_ID;
+	    global $pagenow;
 
-	    if( !al_isProgrammerLogged() ) 
+	    if( !al_isProgrammerLogged() && $pagenow == "edit.php" ) 
 	    {
 	        foreach($posts as $i => $post)
 	        {

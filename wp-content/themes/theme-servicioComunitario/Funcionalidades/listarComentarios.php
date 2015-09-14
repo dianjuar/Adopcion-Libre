@@ -99,17 +99,24 @@
 	//Ojo: Esto también elimina todas las opciones de row_comments_action :/ por eso está comentado el filtro
 	
 	function restrict_comment_editing( $caps, $cap, $user_id, $args ) {
-		
-		if ( 'edit_comment' == $cap ) {
-			$comment = get_comment( $args[0] );
-	  
-			
-			$caps[] = 'moderate_comments';
+	
+		global $pagenow;
+
+		if($pagenow == "index.php" )
+		{
+			if ( 'edit_comment' == $cap ) 
+			{
+				$comment = get_comment( $args[0] );
+				$caps[] = 'moderate_comments';
+			}
 		}
+
+		
 	  
 		return $caps;
 	}
-	//add_filter( 'map_meta_cap', 'restrict_comment_editing', 10, 4 );
+
+	add_filter( 'map_meta_cap', 'restrict_comment_editing', 10, 4 );
 
 	//---------------------------------------------------------------------
 
