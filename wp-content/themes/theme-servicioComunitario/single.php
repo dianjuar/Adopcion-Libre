@@ -1,21 +1,18 @@
 <?php 
   session_start();
   /*===== USER Archivar publicación - Post ON =========================================*/
-  if(isset($_POST["Boton"])){
+  if(isset($_POST["Boton"]))
+  {
     $post_id = $_POST["post-id"];
-    echo '<script language="javascript">alert("'.$post_id.'");</script>';
+    $data = get_post_meta( $post_id, 'post', true );
     
-    $data['nombre-Dueno'] = $_POST['nombre-Dueno'];
-    $data['dueño-telefono'] = $_POST['telefono-Dueno'];
-    //update_post_meta( $post_id, 'nombre-Dueno', $_POST['nombre-Dueño'] );
-    $return = update_post_meta( $post_id, 'telefono-Dueno', $_POST['telefono-Dueno'] );
-    echo '<script language="javascript">alert("'.$return.'");</script>';
-    // update_post_meta( $_POST["post-id"], 'nombre-Dueño',  $_POST['nombre-dueno'] );
-    // update_post_meta( $_POST["post-id"], 'dueño-telefono',  $_POST['telefono-dueno'] );
-    //update_post_meta( $post_id, 'post', $data);
+    $data['nombre-dueno'] = $_POST['nombre-Dueno'];
+    $data['telefono-dueno'] = $_POST['telefono-Dueno'];
+   
+    update_post_meta( $post_id, 'post', $data);
   }
 
-_/*===== USER Archivar publicación - Post OFF ========================================*/
+/*===== USER Archivar publicación - Post OFF ========================================*/
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -38,10 +35,9 @@ _/*===== USER Archivar publicación - Post OFF =================================
               </div>
               <div class="modal-body">
                 <p> 
-                  Por favor ingresa los datos de la persona que quedara a cargo de la mascota,
-                  <?php $post_id = $post->ID; echo $post_id; ?> 
+                  Por favor ingresa los datos de la persona que quedara a cargo de la mascota 
+                  "<b><?php echo $post->post_title; ?></b>" 
                 </p>
-                
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nombre:</label>
                     <input type="text" class="form-control" name="nombre-Dueno" id="nombre-Dueno" placeholder="Nombre" required>
@@ -50,7 +46,7 @@ _/*===== USER Archivar publicación - Post OFF =================================
                     <label for="exampleInputPassword1">Telefono</label>
                     <input type="text" class="form-control" name="telefono-Dueno" id="telefono-Dueno" placeholder="telefono" required>
                   </div>
-                   <input type="hidden" name="post-id" value="<?php echo $post_id; ?>">
+                   <input type="hidden" name="post-id" value="<?php echo $post->ID; ?>">
               </div>
               <div class="modal-footer">
                 <button name="Boton" type="submit" class="btn" >Guardar</button>
