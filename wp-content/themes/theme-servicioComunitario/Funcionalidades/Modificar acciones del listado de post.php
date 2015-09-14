@@ -26,7 +26,7 @@ if ( !current_user_can( 'manage_options' ))
 /*Añadir opcion finalizar a los post en estado publicados publicados*/
 function add_finalizar($actions, $post) {
  
-    if( $post->post_status == "publish" )
+    if( $post->post_status == "publish" && $post->post_author ==  wp_get_current_user()->ID)
     {
         $url = admin_url('post.php?post='.$post->ID.'&action=edit');
         $actions['finalizar'] = '<a title="Haga click para ir a editar y llenar el formulario que se encuentra al final" href="'.$url.'">Finalizar</a>';

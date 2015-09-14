@@ -48,11 +48,11 @@
       <article class="container padding-small">
         <div class="col-md-12 no-padding">
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
-          <?php $cu = wp_get_current_user(); ?>
-          <?php $autor = get_the_author(); ?> 
-          <?php $post_id = $post->ID; ?> 
-          <?php if($autor==$cu->display_name){ ?>
-            <a id="btn-dar" class="btn btn-lg BtnFinalizar BtnPosicion BtnFinalizarPosicion">Finalizar publicación</a>
+          <?php 
+            $cu = wp_get_current_user(); 
+            $post_id = $post->ID; 
+            if(($cu->ID==$post->post_author) && ($post->post_status == "publish")){ ?>
+              <a id="btn-dar" class="btn btn-lg BtnFinalizar BtnPosicion BtnFinalizarPosicion">Finalizar publicación</a>
           <?php } ?>
         </div>
 
