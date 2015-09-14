@@ -17,7 +17,9 @@ Author URI: http://untame.net
         remove_menu_page('upload.php');
 
         if ( $pagenow  == 'tools.php'||
-            ( !al_isProgrammerLogged()  &&  $pagenow == 'user-edit.php' ) //solo el adminsitrador(programador) puede acceder a esta página 
+              //solo el programador puede acceder a esta página 
+            ( !al_isProgrammerLogged()  &&  $pagenow == 'user-edit.php' )  || 
+            ( !al_isProgrammerLogged() && $pagenow == "comment.php" && $_GET['action']=="editcomment")
         	 //strpos( $_SERVER[ 'REQUEST_URI' ], 'edit-comments.php' ) !== false ||
         	 //strpos( $_SERVER[ 'REQUEST_URI' ], 'upload.php' ) !== false
         	)
