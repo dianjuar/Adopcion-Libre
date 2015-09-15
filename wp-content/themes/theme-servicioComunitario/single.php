@@ -3,6 +3,7 @@
   /*===== USER Archivar publicación - Post ON =========================================*/
   if(isset($_POST["Boton"]))
   {
+    cambiarEstado_archivado($post_id);
     $post_id = $_POST["post-id"];
     $data = get_post_meta( $post_id, 'post', true );
     
@@ -10,6 +11,7 @@
     $data['telefono-dueno'] = $_POST['telefono-Dueno'];
    
     update_post_meta( $post_id, 'post', $data);
+
   }
 
 /*===== USER Archivar publicación - Post OFF ========================================*/
@@ -24,6 +26,7 @@
       <?php require_once("head.php"); 
       ?>
     </head>
+    <!-- MODAL -->
     <div class="ventana" id="myModal">
       <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
         <div class="modal-dialog">
@@ -49,7 +52,7 @@
                    <input type="hidden" name="post-id" value="<?php echo $post->ID; ?>">
               </div>
               <div class="modal-footer">
-                <button name="Boton" type="submit" class="btn" >Guardar</button>
+                <button name="Boton" type="submit" class="btn">Guardar</button>
                 <button id="Mclose" type="button" class="btn">Cancelar</button>
               </div>
             </form>
@@ -57,6 +60,7 @@
         </div>
         <?php endwhile; // end of the loop. ?>
       </div>
+      <!-- MODAL -->
     <body >
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -171,7 +175,7 @@
             $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
             $("#ImgBig").attr("src",$(this).attr("src"));
           });
-          $("#btn-dar").click(function() {
+            $("#btn-dar").click(function() {
               $("#myModal").css("display","block");
             });
 
