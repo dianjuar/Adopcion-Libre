@@ -1,21 +1,3 @@
-<?php 
-  session_start();
-  /*===== USER Archivar publicación - Post ON =========================================*/
-  if(isset($_POST["Boton"]))
-  {
-    cambiarEstado_archivado($post_id);
-    $post_id = $_POST["post-id"];
-    $data = get_post_meta( $post_id, 'post', true );
-    
-    $data['nombre-dueno'] = $_POST['nombre-Dueno'];
-    $data['telefono-dueno'] = $_POST['telefono-Dueno'];
-   
-    update_post_meta( $post_id, 'post', $data);
-
-  }
-
-/*===== USER Archivar publicación - Post OFF ========================================*/
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -23,44 +5,11 @@
 <!--[if gt IE 8]><!--> 
 <html class="no-js"> <!--<![endif]-->
     <head>
-      <?php require_once("head.php"); 
+      <?php 
+        require_once("head.php"); 
+        require_once ("Funcionalidades/finalizar post.php");
       ?>
     </head>
-    <!-- MODAL -->
-    <div class="ventana" id="myModal">
-      <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-        <div class="modal-dialog">
-           <div class="modal-content">
-            <form  method="post" action="">
-              <div class="modal-header">
-                <button id="btnClose" type="button" class="close"><span aria-hidden="true">&times;</span></button>
-                <h3>Finalizar publicación</h3>
-              </div>
-              <div class="modal-body">
-                <p> 
-                  Por favor ingresa los datos de la persona que quedara a cargo de la mascota 
-                  "<b><?php echo $post->post_title; ?></b>" 
-                </p>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre:</label>
-                    <input type="text" class="form-control" name="nombre-Dueno" id="nombre-Dueno" placeholder="Nombre" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Telefono</label>
-                    <input type="text" class="form-control" name="telefono-Dueno" id="telefono-Dueno" placeholder="telefono" required>
-                  </div>
-                   <input type="hidden" name="post-id" value="<?php echo $post->ID; ?>">
-              </div>
-              <div class="modal-footer">
-                <button name="Boton" type="submit" class="btn">Guardar</button>
-                <button id="Mclose" type="button" class="btn">Cancelar</button>
-              </div>
-            </form>
-            </div>
-        </div>
-        <?php endwhile; // end of the loop. ?>
-      </div>
-      <!-- MODAL -->
     <body >
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -76,7 +25,7 @@
           <?php $cu = wp_get_current_user(); ?>
           <?php $autor = get_the_author(); ?> 
           <?php if($autor==$cu->display_name){ ?>
-            <a id="btn-dar" class="btn BtnFinalizar BtnPosicion">Finalizar publicación</a>
+            <a id="btn-finalizar" class="btn BtnFinalizar BtnPosicion">Finalizar publicación</a>
           <?php } ?>
         </div>
 
@@ -170,22 +119,28 @@
         $(document).ready(function(){
 
           $("#ImgBig").attr("src",$(".BoxDetPet__ImgSmall:nth-child(1)").attr("src"));
+          
           $( ".BoxDetPet__ImgSmall" ).click(function() {
             $(this).addClass("BoxDetPet__ImgSmall--active");
             $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
             $("#ImgBig").attr("src",$(this).attr("src"));
           });
-            $("#btn-dar").click(function() {
-              $("#myModal").css("display","block");
-            });
+
+          $("#btn-finalizar").click(function() {
+            $("#myModal").css("display","block");
+          });
 
           $("#Mclose").click(function() {
-              $("#myModal").css("display","none");
+            $("#myModal").css("display","none");
+            //alert("Mclose on single.php");
           });
 
           $("#btnClose").click(function() {
-              $("#myModal").css("display","none");
+            $("#myModal").css("display","none");
+            //alert("btnClose on single.php");
           });
+
+
         });
 
       </script>
