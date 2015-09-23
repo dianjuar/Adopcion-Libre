@@ -2,11 +2,11 @@
 //session_start();
 /*===== USER Archivar publicación - Post ON =========================================*/
 if(isset($_POST["Guardar_Datos_DuenoActual"]))
-{
-	cambiarEstado_archivado($post_id);
+{	
 	$post_id = $_POST["post-id"];
+  cambiarEstado_archivado($post_id);
 	$data = get_post_meta( $post_id, 'post', true );
-  
+
 	$data['nombre-dueno'] = $_POST['nombre-Dueno'];
 	$data['telefono-dueno'] = $_POST['telefono-Dueno'];
 
