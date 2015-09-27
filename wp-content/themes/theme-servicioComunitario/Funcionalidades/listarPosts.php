@@ -17,16 +17,15 @@
 	add_filter('views_edit-post', 'eliminar_tab_todos');
 
 	////////////////////////////////////////////////////
-	function your_function() {
+	
+	add_action( 'admin_footer', function() {
 
 		global $pagenow;
 
 		if($pagenow == "edit.php")
-		{
-			//necesario para mostar el modal de finalizar post.
-			require_once ("finalizar post.php");
+		{			
 			?>
-
+			<script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
 			<script>
 				jQuery(document).ready(function($){
 					$('.btn-finalizar').on('click',function()
@@ -56,24 +55,11 @@
 			</script> 
 			<?php
 		}
-	}
-	add_action( 'admin_footer', 'your_function' );
+	} );
 	///////////////////////////////////////////////////
 
 	add_action( 'load-edit.php', function() 
 	{
-		?>
-			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css">
-			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
-			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/main.css">
-			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/fonts.css">
-			<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-			<script src="<?php bloginfo('template_url') ?>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-			<script src="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.min.js"></script>
-			<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.css">
-
-		<?php
 		if ( strpos( $_SERVER[ 'REQUEST_URI' ], 'post_type' ) === false )
 		{
 		    wp_redirect( admin_url('edit.php?post_status=publish&post_type=post') ); exit;
@@ -82,6 +68,30 @@
 	});
 
 //*************************************************************************************
+add_action( 'admin_head', function(){
+
+		global $pagenow;
+
+		?>
+			<script src="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.css">
+		<?php
+
+		if($pagenow == "edit.php")
+		{
+			?>
+			<!--<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> 
+		    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
+			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/main.css">
+				<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/fonts.css">
+				<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> 
+				<script src="<?php bloginfo('template_url') ?>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> -->
+			
+			<?php
+			//necesario para mostar el modal de finalizar post.
+			require_once ("finalizar post.php");
+		}
+});
 //*************************************************************************************
 
 	// Remueve los posts en estado "papelera" que no son del usuario actual
