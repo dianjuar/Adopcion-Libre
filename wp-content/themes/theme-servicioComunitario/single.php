@@ -138,7 +138,10 @@
       <?php endwhile; // end of the loop. ?>
       
 
-      <?php require_once("footer.php"); ?>
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
       <script>
         $(document).ready(function(){
 
@@ -158,19 +161,6 @@
           $("#btnClose").click(function() {
               $("#myModal").css("display","none");
           });
-
-          <?php if ( is_user_logged_in() ) { 
-            ?>
-            $('.BoxLoginSingIm ul li:nth-child(2) a').text("Cerrar sesión");
-            $('.BoxLoginSingIm ul li:nth-child(1) a').text("<?php echo $current_user->display_name; ?> ");
-            $('.BoxLoginSingIm ul li:nth-child(1) a').append("<i class='fa fa-user fa-fw'/>");
-          <?php
-          } else {?>
-
-            $('.BoxLoginSingIm ul li:nth-child(2) a').text("Iniciar sesión");
-
-          <?php
-          } ?>
         });
 
       </script>
