@@ -5,37 +5,11 @@
 <!--[if gt IE 8]><!--> 
 <html class="no-js"> <!--<![endif]-->
     <head>
-      <?php require_once("head.php"); 
+      <?php 
+        require_once("head.php"); 
+        require_once ("Funcionalidades/finalizar post.php");
       ?>
     </head>
-    <div class="ventana" id="myModal">
-      <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-      <?php $post_id = $post->ID; ?>
-        <div class="modal-dialog">
-           <div class="modal-content">
-            <form  method="post" action="">
-              <div class="modal-header">
-                <button id="btnClose" type="button" class="close"><span aria-hidden="true">&times;</span></button>
-                <h3>Finalizar publicación</h3>
-              </div>
-              <div class="modal-body">
-                <p> 
-                  Para finalizar la publicación por favor llenar el formulario con los datos
-                  de la persona que quedara a cargo de la mascota que se encuentra al final
-                  de la pagina de editar publicación
-                </p>
-                <div class="ventana__btn">
-                  <a href="<?php echo admin_url( 'post.php?post='.$post_id.'&action=edit', 'http' ); ?>" class="btn BtnFinalizar">Ir a editar publicación</a>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button id="Mclose" type="button" class="btn">Cancelar</button>
-              </div>
-            </form>
-            </div>
-        </div>
-      <?php endwhile; // end of the loop. ?>
-    </div>
     <body >
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -52,7 +26,9 @@
             $cu = wp_get_current_user(); 
             $post_id = $post->ID; 
             if(($cu->ID==$post->post_author) && ($post->post_status == "publish")){ ?>
-              <a id="btn-dar" class="btn btn-lg BtnFinalizar BtnPosicion BtnFinalizarPosicion">Finalizar publicación</a>
+              <button type="button" class="btn btn-lg BtnFinalizar BtnPosicion BtnFinalizarPosicion" data-toggle="modal" data-target="#myModal">
+              	Finalizar publicación
+              </button>
           <?php } ?>
         </div>
 
@@ -102,18 +78,21 @@
               <dt>Esterelizado:</dt>
               <dd><?php if(!empty($data[ 'esterilizacion' ])) {echo $data[ 'esterilizacion' ];} ?></dd>
             </dl> 
-            <h3 class="no-margin margin-small-left">Información de contacto</h3> 
+            <h3 class="no-margin margin-small-left">Información de Contacto</h3> 
             <dl class="BoxDetPet__data no-margin">
+              <dt>Nombre:</dt>
+              <dd> <?php echo wp_get_current_user()->display_name; ?></dd>
               <dt>Ubicación:</dt>
               <dd> <?php if(!empty($data[ 'direccion' ])) {echo $data[ 'direccion' ];} ?></dd>
-              <dt><abbr title="Telefono">Tlf:</abbr></dt>
+              <dt><abbr title="Teléfono">Tlf:</abbr></dt>
               <dd> <?php if(!empty($data[ 'telefono' ])) {echo $data[ 'telefono' ];} ?></dd>
             </dl>
             <?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>
+            <h3 class="no-margin margin-small-left">Información del Dueño Actual</h3>
             <dl class="BoxDetPet__data no-margin">
-              <dt>Datos del dueño actual:</dt><br>
+              <dt>Nombre:</dt>
               <dd> <?php echo $data[ 'nombre-dueno' ]; ?></dd>
-              <dt><abbr title="Telefono">Tlf:</abbr></dt>
+              <dt><abbr title="Teléfono">Tlf:</abbr></dt>
               <dd> <?php echo $data[ 'telefono-dueno' ]; ?></dd>
             </dl>
             <?php } ?>
@@ -146,21 +125,13 @@
         $(document).ready(function(){
 
           $("#ImgBig").attr("src",$(".BoxDetPet__ImgSmall:nth-child(1)").attr("src"));
+          
           $( ".BoxDetPet__ImgSmall" ).click(function() {
             $(this).addClass("BoxDetPet__ImgSmall--active");
             $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
             $("#ImgBig").attr("src",$(this).attr("src"));
           });
 
-          $("#btn-dar").click(function() {
-              $("#myModal").css("display","block");
-            });
-          $("#Mclose").click(function() {
-              $("#myModal").css("display","none");
-          });
-          $("#btnClose").click(function() {
-              $("#myModal").css("display","none");
-          });
         });
 
       </script>
