@@ -25,13 +25,19 @@
 		if($pagenow == "edit.php")
 		{			
 			?>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+			<script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
+			<script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script>
+
 			<script>
 				jQuery(document).ready(function($){
 					$('.btn-finalizar').on('click',function()
-					{
-						$("#myModal").css("display","block"); 
-
+					{						
+						/*En el area administrativa, para finalizar post, no es posible obtener facilmente 
+						el PostId y el postName (Necesarios para finalizar el post) entonces a través de js 
+						se obtien gracias a que wordpress guarda estos datos en cada row de la tabla donde se
+						muestran los post publicados de cada usuario.*/
 						var postId = $(this).closest('tr').attr('id').split("-");
 						$("#post-id").val(postId[1]);
 
@@ -40,26 +46,30 @@
 
 						//alert($("#post-id").val()+" and "+$("#nombre-mascota").text());
 					});
-					$('#Mclose').on('click',function()
-		          	{
-			          	$("#myModal").css("display","none"); 
-			            //alert("Mclose on listarPosts.php");
-			        });
-
-			        $('#btnClose').on('click',function()
-			        {
-			        	$("#myModal").css("display","none"); 
-			            //alert("btnClose on listarPosts.php");
-				    });
 				});
 			</script> 
 			<?php
+
+
 		}
 	} );
 	///////////////////////////////////////////////////
 
 	add_action( 'load-edit.php', function() 
 	{
+		global $pagenow;
+		if($pagenow == "edit.php")
+		{
+			?>
+			<!-- Estilos de boostrap en la seccion administrativa de wordpress -->
+			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> 
+  		    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
+			
+			<?php
+			
+		}
+
+
 		if ( strpos( $_SERVER[ 'REQUEST_URI' ], 'post_type' ) === false )
 		{
 		    wp_redirect( admin_url('edit.php?post_status=publish&post_type=post') ); exit;
@@ -68,29 +78,19 @@
 	});
 
 //*************************************************************************************
+//añade los archivos necesarios para que en la parte de administrativa se pueda usar el sweetalert :))))
 add_action( 'admin_head', function(){
-
-		global $pagenow;
-
 		?>
-			<script src="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.min.js"></script>
-			<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.css">
+			<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.css"> 
+		    <script src="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.min.js"></script>
 		<?php
 
-		if($pagenow == "edit.php")
-		{
-			?>
-			<!--<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> 
-		    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
-			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/main.css">
-				<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/fonts.css">
-				<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> 
-				<script src="<?php bloginfo('template_url') ?>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> -->
-			
-			<?php
-			//necesario para mostar el modal de finalizar post.
+		//necesario para mostar el modal de finalizar post.
+		global $pagenow;
+
+		if($pagenow == "edit.php")	
 			require_once ("finalizar post.php");
-		}
+		
 });
 //*************************************************************************************
 

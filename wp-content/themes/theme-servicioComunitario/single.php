@@ -25,7 +25,10 @@
           <?php $cu = wp_get_current_user(); ?>
           <?php $autor = get_the_author(); ?> 
           <?php if($autor==$cu->display_name){ ?>
-            <a id="btn-finalizar" class="btn BtnFinalizar BtnPosicion">Finalizar publicación</a>
+            <!--Button trigger modal -->
+            <button type="button" class="btn BtnFinalizar BtnPosicion" data-toggle="modal" data-target="#myModal">
+              Finalizar publicación
+            </button>
           <?php } ?>
         </div>
 
@@ -125,21 +128,6 @@
             $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
             $("#ImgBig").attr("src",$(this).attr("src"));
           });
-
-          $("#btn-finalizar").click(function() {
-            $("#myModal").css("display","block");
-          });
-
-          $("#Mclose").click(function() {
-            $("#myModal").css("display","none");
-            //alert("Mclose on single.php");
-          });
-
-          $("#btnClose").click(function() {
-            $("#myModal").css("display","none");
-            //alert("btnClose on single.php");
-          });
-
 
         });
 

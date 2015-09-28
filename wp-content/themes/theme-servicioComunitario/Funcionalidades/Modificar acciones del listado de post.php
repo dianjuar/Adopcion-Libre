@@ -28,7 +28,7 @@ function add_finalizar($actions, $post) {
  
     if( $post->post_status == "publish" )
     {
-        $actions['finalizar'] = '<a class="btn-finalizar" href="#" >Finalizar</a> ';
+        $actions['finalizar'] = '<a class="btn-finalizar" data-toggle="modal" data-target="#myModal" href="#" >Finalizar</a> ';
     }
     
     return $actions;

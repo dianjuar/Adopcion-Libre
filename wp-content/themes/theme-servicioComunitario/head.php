@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Servicio Comunitario</title>
+<title>Adopción Libre</title>
 <link rel="icon" type="image/png" href="imagen.png" />
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
