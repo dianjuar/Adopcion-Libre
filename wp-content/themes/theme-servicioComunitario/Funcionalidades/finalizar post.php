@@ -26,11 +26,15 @@ function cambiarEstado_archivado($postID)
     ?>
 	<script type="text/javascript">
 	window.onload = function() {
-		swal(
-	    '¡Que Bien!',
-	    '¡Nos alegra mucho que esta mascota haya encontrado un hogar!',
-	    'success'
-		);
+		swal({
+	    title: '¡Que Bien!',
+	    text:  '¡Nos alegra mucho que esta mascota haya encontrado un hogar!',
+	    type:  'success'
+		},
+        function()
+        {
+            window.location.replace(  window.location.href  );
+        });
 	};
 	</script>
     <?php
