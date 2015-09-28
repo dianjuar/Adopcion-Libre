@@ -52,7 +52,7 @@
           <div class="col-md-12 no-padding">
             <h1 class="titulo--verde"><span class="icon icon-Pata_vector"></span> Mascotas encontradas</h1>
             <?php if($user_ID){ ?>
-              <a id="btn-dar" class="btn BtnEncontrados BtnPosicion">Reportar una mascota</a>
+              <a id="btn-dar" class="btn btn-lg BtnEncontrados BtnPosicion">Reportar una mascota</a>
             <?php } ?>
           </div>
 
@@ -71,7 +71,10 @@
 
         </section>
       </article>
-      <?php require_once("footer.php"); ?>
+        <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
 
       <script>
         $(document).ready(function(){
@@ -94,8 +97,7 @@
 
           $("#btnClose").click(function() {
               $("#myModal").css("display","none");
-          });
-
+          });          
         });
       </script>
     </body>

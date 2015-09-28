@@ -21,7 +21,7 @@ function em_mtbx_img_crear() {
                 'em_mtbx_img_function', // Función que muestra el HTML que aparecerá en la pantalla
                 'post', // Tipo de entrada. Puede ser 'post', 'page', 'link', o 'custom_post_type'
                 'normal', // Parte de la pantalla donde aparecerá. Puede ser 'normal', 'advanced', o 'side'
-                'default' // Prioridad u orden en el que aparecerá. Puede ser 'high', 'core', 'default' o 'low'
+                'high' // Prioridad u orden en el que aparecerá. Puede ser 'high', 'core', 'default' o 'low'
                 );
 	
 }

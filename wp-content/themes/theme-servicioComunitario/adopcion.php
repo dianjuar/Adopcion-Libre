@@ -46,7 +46,10 @@
         </section>
 
       </article>
-      <?php require_once("footer.php"); ?>
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
       
       <script>
         $(document).ready(function(){
@@ -57,16 +60,7 @@
               $(this).children('.post__info').css("display","block");
             }).mouseout(function (){
               $('.post a').children('.post__info').css("display","none"); 
-            });
-
-          $('Affix').affix({
-            offset: {
-              top: 10,
-              bottom: function () {
-                return (this.bottom = $('.footer').outerHeight(true))
-              }
-            }
-          })
+            });         
         });
 
       </script>

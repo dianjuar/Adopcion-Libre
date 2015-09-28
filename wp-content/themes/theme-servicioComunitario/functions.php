@@ -50,14 +50,14 @@
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
     		"descripcion" => "Dirección actual de la mascota"),
-		/*"nombre-dueno" => array(
+		"nombre-dueno" => array(
     		"nombre" => "nombre-dueno",
     		"titulo" => "Nombre del dueño:",
     		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
 		"telefono-dueno" => array(
     		"nombre" => "telefono-dueno",
     		"titulo" => "Telefono del dueño:",
-    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),*/
+    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),
 	);
 
 	
@@ -67,7 +67,7 @@
 	   global $key;
 	 
 	   if( function_exists( 'add_meta_box' ) ) {
-	       add_meta_box( 'nuevo-meta-boxes', ucfirst( $key ) . ' Datos:', 'mostrar_meta_box', 'post', 'normal', 'high' );
+	       add_meta_box( 'nuevo-meta-boxes',  __('Datos de la mascota:'), 'mostrar_meta_box', 'post', 'normal', 'high' );
 	   }
 	}
 	add_action( 'admin_menu', 'crear_meta_box' );
@@ -89,6 +89,7 @@
 		    ?>
 		 
 		    <div class="form-field form-required">
+		    <?php if($meta_box[ 'nombre' ]!="nombre-dueno" && $meta_box[ 'nombre' ]!="telefono-dueno" ){ ?>
 		        <label for="<?php echo $meta_box[ 'nombre' ]; ?>"><?php echo $meta_box[ 'titulo' ]; ?></label>
 		        
 		        <?php if($meta_box[ 'nombre' ]=="esterilizacion"){ ?>
@@ -126,6 +127,7 @@
 		        <p><?php echo $meta_box[ 'descripcion' ]; ?></p>
 		    </div>
 		 
+		<?php } // Fin del foreach?>
 		<?php } // Fin del foreach?>
 		</div>
 		<?php
@@ -189,6 +191,7 @@
 	}
 	add_action("manage_posts_custom_column",  "obt_valores_columnas");
 	/*===== ADMIN Mostrar meta box en tabla - Post OFF ==================================*/
+	
 	/*===== Set a custom role for a new user ON =========================================*/
 	function oa_social_login_set_new_user_role ($user_role)
 	{
@@ -214,6 +217,7 @@
 	        return 'al_suscriptor'; // This is changed
 	    });
 	/*===== This filter is applied to the roles of new users OFF ========================*/
+	
 	/*===== ADMIN Quitar link a la barra superior ON ====================================*/
 	function remove_admin_bar_links() {
 		global $wp_admin_bar;
@@ -434,42 +438,158 @@
 	}
 	add_action( 'admin_init', 'fb_remove_postbox' );
 	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
-	/*function myplugin_add_meta_box() {
 
-	$screens = array( 'post');
+	/*===== ADMIN hacer que finalizar guarde el post - ON ===============================*/
+	function make_save_button(){ ?>
+		<script>
+		jQuery('.metabox_finish').click(function(e) {
 
-	foreach ( $screens as $screen ) {
+		    //e.preventDefault();
+		    jQuery('#publish').click();
+		});
+		</script>
+	<?php }
+	add_action( 'admin_init', 'make_save_button' );
+	/*===== ADMIN hacer que finalizar guarde el post - OFF ==============================*/
 
-		add_meta_box(
-			'myplugin_sectionid',
-			__( 'Finalizar ', 'myplugin_textdomain' ),
-			'myplugin_meta_box_callback',
-			$screen
-		);
+	/*===== ADMIN Meta box finalizar publicacion - ON ===================================*/
+	function myplugin_add_meta_box() {
+
+		$screens = array( 'post');
+
+		foreach ( $screens as $screen ) {
+
+			if ( get_post_status ( $ID ) == 'publish' ) {
+				add_meta_box(
+					'myplugin_sectionid',
+					__( 'Finalizar la publicación: ', 'myplugin_textdomain' ),
+					'myplugin_meta_box_callback',
+					$screen
+				);
+			}			
+		}
 	}
-}
-add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
+	add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
 
-/*function myplugin_meta_box_callback( $post ) {
+	function myplugin_meta_box_callback( $post ) {
 
-	// Add a nonce field so we can check for it later.
-	wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
+		// Add a nonce field so we can check for it later.
+		wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
 
-	/*
-	 * Use get_post_meta() to retrieve an existing value
-	 * from the database and use the value for the form.
-	 */
-	/*$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
+		/*
+		 * Use get_post_meta() to retrieve an existing value
+		 * from the database and use the value for the form.
+		 */
+		$nombre = get_post_meta( $post->ID, 'nombre-dueno', true );
+		$telefono = get_post_meta( $post->ID, 'telefono-dueno', true );
 
-	echo '<label for="myplugin_new_field">';
-	_e( 'Description for this field', 'myplugin_textdomain' );
-	echo '</label> ';
-	echo '<input type="text" id="myplugin_new_field" name="myplugin_new_field" value="' . esc_attr( $value ) . '" size="25" />';
-}*/
+		echo '<p>Datos de la persona que quedara acargo de la mascota, estos campos son obligatorios para finalizar la publicación </p>';
+		echo '<label for="nombre-dueno">';
+		_e( 'Nombre: ', 'myplugin_textdomain' );
+		echo '</label> ';
+		echo "<br>";
+		echo '<input type="text" id="nombre-dueno" name="nombre-dueno" value="' . $nombre . '" size="25" />';
+		echo "<br>";
+		echo '<i>Nombre de la persona que quedara acargo de la mascota</i>';
+		echo "<br> <br>";
 
-?>
+		echo '<label for="telefono-dueno">';
+		_e( 'Telefono: ', 'myplugin_textdomain' );
+		echo '</label> ';
+		echo "<br>";
+		echo '<input type="text" id="telefono-dueno" name="telefono-dueno" value="' . esc_attr( $telefono) . '" size="25" />';
+		echo "<br>";
+		echo '<i>Telefono de la persona que quedara acargo de la mascota</i>';
+		echo "<br> <br>";
+		echo '<a class="metabox_finish button button-large" href="http://localhost/SC/wp-admin/edit.php?post_status=publish&post_type=post&archived=yes&postID='.$post->ID.'">Finalizar</a>';
+	}
 
-<?php
+	function myplugin_save_meta_box_data( $post_id ) {
+
+		/*
+		 * We need to verify this came from our screen and with proper authorization,
+		 * because the save_post action can be triggered at other times.
+		 */
+
+		// Check if our nonce is set.
+		if ( ! isset( $_POST['myplugin_meta_box_nonce'] ) ) {
+			return;
+		}
+
+		// Verify that the nonce is valid.
+		if ( ! wp_verify_nonce( $_POST['myplugin_meta_box_nonce'], 'myplugin_save_meta_box_data' ) ) {
+			return;
+		}
+
+		// If this is an autosave, our form has not been submitted, so we don't want to do anything.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		// Check the user's permissions.
+		if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+			if ( ! current_user_can( 'edit_page', $post_id ) ) {
+				return;
+			}
+
+		} else {
+
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return;
+			}
+		}
+
+		/* OK, it's safe for us to save the data now. */
+		
+		// Make sure that it is set.
+		if ( ! isset( $_POST['nombre-dueno'] ) || ! isset( $_POST['telefono-dueno'] ) ) {
+			return;
+		}
+
+		// Sanitize user input.
+		$nombre = sanitize_text_field( $_POST['nombre-dueno'] );
+		$telefono = sanitize_text_field( $_POST['telefono-dueno'] );
+
+
+		// Update the meta field in the database.
+		update_post_meta( $post_id, 'nombre-dueno', $nombre );
+		update_post_meta( $post_id, 'telefono-dueno', $telefono );
+	}
+	add_action( 'save_post', 'myplugin_save_meta_box_data' );
+	/*===== ADMIN Meta box finalizar publicacion - ON ===================================*/
+
+	/*===== ADMIN que los meta box se muestren in one row - ON ==========================*/
+	function my_screen_layout_columns( $columns ) {
+	    $columns["post"] = 1;
+	    return $columns;
+	}
+
+	function my_screen_layout() {
+	    return 1;
+	}
+
+	add_filter( 'screen_layout_columns', 'my_screen_layout_columns' );
+	add_filter( 'get_user_option_screen_layout_post', 'my_screen_layout' );
+	/*===== ADMIN que los meta box se muestren in one row - OFF =========================*/
+
+	/*===== ADMIN cambiar de posicion los meta boxes - ON ===============================*/
+	add_action('do_meta_boxes', 'move_meta_box');
+
+	function move_meta_box(){
+		remove_meta_box( 'commentsdiv', 'post', 'side' );
+
+	    remove_meta_box( 'categorydiv', 'post', 'side' );
+	    add_meta_box('categorydiv', __('Categoria de la mascota:'), 'post_categories_meta_box', 'post', 'normal', 'high');
+
+	    remove_meta_box( 'tagsdiv-post_tag', 'post', 'side' );
+	    add_meta_box('tagsdiv-post_tag', __('Añadir etiquetas:'), 'post_tags_meta_box', 'post', 'normal', 'high');
+	    
+	    remove_meta_box( 'submitdiv', 'post', 'side' );
+	    add_meta_box('submitdiv', __('Publicar:'), 'post_submit_meta_box', 'post', 'normal', 'high');
+	}
+	/*===== ADMIN cambiar de posicion los meta boxes - OFF ==============================*/
+
 
 include 'Funcionalidades/listarPosts.php';
 include 'Funcionalidades/Quitar opciones del dashboard.php';
@@ -511,6 +631,20 @@ function al_isSuperAdministradorLogged()
 	return current_user_can('al_superadministrador');
 }
 
+function al_isAdministradorLogged()
+{
+	return current_user_can('al_administrador');
+}
+
+function al_isModeradorLogged()
+{
+	return current_user_can('al_moderador');
+}
+
+function al_isSuscriptorLogged()
+{
+	return current_user_can('al_suscriptor');
+}
 
 
 ?>

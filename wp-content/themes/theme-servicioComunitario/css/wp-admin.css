@@ -189,8 +189,7 @@ html{
     background: #fff;
     border-left: 3px solid #f78e1d;
     /*border-top: 3px solid #f78e1d; /* amarillo */
-    height: 100%;
-    min-height: 600px;
+    height: auto;
     top: 43px;
     position: relative;
   }
@@ -544,6 +543,19 @@ table.form-table+input+input+p.submit{
 #edit-slug-box,#category-adder,.page-title-action{
   display: none;
 }
+
+.username strong a,#posts-filter .tablenav #cat option:last-child,#comments-form .tablenav div:nth-child(2){
+  display: none;
+}
+
+
 .postbox .hndle:hover {
     cursor:default;
+}
+
+#major-publishing-actions{
+    display: inline-block;
+    background-color: #fff;
+    border: 0;
+    padding: 10px 25%;
 }

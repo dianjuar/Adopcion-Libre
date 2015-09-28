@@ -1,97 +1,104 @@
-<?php 
-//session_start();
-/*===== USER Archivar publicación - Post ON =========================================*/
-if(isset($_POST["Guardar_Datos_DuenoActual"]))
-{   
-    
-  cambiarEstado_archivado();
-    
-}
-/*===== USER Archivar publicación - Post OFF ========================================*/
-
-//Cambia el estado de un post a archivado.
-function cambiarEstado_archivado()
-{ 
-    ?>
-    <script type="text/javascript">
-    window.onload = function() {
-        alert('vite');
-    };
-    </script>
-    <?php
-}
+<?php
+/*
+ * Template Name: perdidos
+ * Description: Plantilla la pagina mascotas perdidas.
+ */
 ?>
-
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Prueba de modales</title>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+    <head>
+       <?php require_once("head.php"); ?>
+    </head>
+          <div class="ventana" id="myModal">
+          <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header">
+                <button id="btnClose" type="button" class="close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <div class="ventana__warning">
+                  <span class="glyphicon glyphicon-warning-sign"></span>
+                </div>
+                <p> 
+                  Antes de reportar un animal como perdido busca primero en la sección “Mascotas encontradas” para asegurarte de que no haya sido reportada como encontrada.
+                </p>
+                <div class="ventana__btn">
+                  <a class="btn BtnEncontrados" href="<?=get_permalink( get_page_by_title('Mascotas perdidas') );?>">Ir a mascotas Encontradas</a>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a class="btn BtnPerdidos" href="<?php echo admin_url( 'post-new.php?post_category=perdido', 'http' ); ?>">Reportar una mascota</a>
+                <button id="Mclose" type="button" class="btn">Cerrar</button>
+                
+              </div>
+            </div>
+          </div>
+      </div>
+    <body >
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+      <?php require_once("header.php"); ?>
+      <?php require_once("menu.php"); ?>
 
-  <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> 
-  <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.css"> 
+      <article class="container">
+        <section class="post no-margin padding-small">
 
-  
-</head>
-<body>
+          <div class="col-md-12 no-padding">
+            <h1 class="titulo--morado"><span class="icon icon-Pata_vector"></span>Mascotas perdidas</h1>
+            
+            <?php if($user_ID){ ?>
+            <a id="btn-dar" class="btn btn-lg BtnPerdidos BtnPosicion">Reportar una mascota</a>
+            <?php } ?>
+          </div>
 
+          <div class="col-md-12 pagina pagina--perdidos"></div>
 
-<!-- Button trigger modal -->
+          <?php 
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+            query_posts('category_name=perdidos&paged='.$paged ) ?>
+          <?php $category_name = "perdidos" ?>
+          <?php require_once("posts.php"); ?>
 
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
-<p> Pizza </p>
+          <div class="col-md-12 pagina pagina--perdidos">
+            <?php previous_posts_link('<span class="glyphicon glyphicon-backward"></span> Anteriores') ?>
+            <?php next_posts_link('Siguientes <span class="glyphicon glyphicon-forward"></span>') ?>
+          </div>
 
-    <script type="text/javascript">
-    window.onload = function() {
-        swal(
-        '¡Que Bien!',
-        '¡Nos alegra mucho que esta mascota haya encontrado un hogar!',
-        'success'
-        );
-    };
-    </script>
+        </section>
+      </article>
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
+      
+      <script>
+        $(document).ready(function(){
+          $("ul.nav-justified li:nth-child(4)").html("Mascotas perdidas");
+          $("ul.nav-justified li:nth-child(4)").toggleClass("Active");
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-<script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
-<script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script>
-<script src="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.min.js"></script>
+          $(".post a").mouseover(function() {
+              $(this).children('.post__info').css("display","block");
+            }).mouseout(function (){
+              $('.post a').children('.post__info').css("display","none"); 
+            });
 
+          $("#btn-dar").click(function() {
+              $("#myModal").css("display","block");
+            });
 
-</body>
+          $("#Mclose").click(function() {
+              $("#myModal").css("display","none");
+          });
+
+          $("#btnClose").click(function() {
+              $("#myModal").css("display","none");
+          });          
+        });
+      </script>
+    </body>
 </html>

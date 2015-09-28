@@ -113,7 +113,10 @@
         </div>
         
       </article>
-      <?php require_once("footer.php"); ?>
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
       <script>
         $(document).ready(function(){
           $("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span><span>En esta sección podras dar y encontrar mascotas en adopción</span>" );
@@ -125,6 +128,7 @@
           $("ul.post-categories li a").removeAttr("href");
           $("ul.post-categories li a").removeAttr("rel");
 
+          
         });
       </script>
     
