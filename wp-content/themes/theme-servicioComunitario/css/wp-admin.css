@@ -544,7 +544,7 @@ table.form-table+input+input+p.submit{
   display: none;
 }
 
-.username strong a,#posts-filter .tablenav #cat option:last-child,#comments-form .tablenav div:nth-child(2){
+#posts-filter .tablenav #cat option:last-child,#comments-form .tablenav div:nth-child(2){
   display: none;
 }
 
