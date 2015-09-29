@@ -443,9 +443,9 @@
 	function make_save_button(){ ?>
 		<script>
 		jQuery('.metabox_finish').click(function(e) {
-
+			alert("Click");
 		    //e.preventDefault();
-		    jQuery('#publish').click();
+		    //jQuery('#publish').click();
 		});
 		</script>
 	<?php }
@@ -488,7 +488,7 @@
 		_e( 'Nombre: ', 'myplugin_textdomain' );
 		echo '</label> ';
 		echo "<br>";
-		echo '<input type="text" id="nombre-dueno" name="nombre-dueno" value="' . $nombre . '" size="25" />';
+		echo '<input required type="text" id="nombre-dueno" name="nombre-dueno" value="' . $nombre . '" size="25" />';
 		echo "<br>";
 		echo '<i>Nombre de la persona que quedara acargo de la mascota</i>';
 		echo "<br> <br>";
@@ -497,11 +497,12 @@
 		_e( 'Telefono: ', 'myplugin_textdomain' );
 		echo '</label> ';
 		echo "<br>";
-		echo '<input type="text" id="telefono-dueno" name="telefono-dueno" value="' . esc_attr( $telefono) . '" size="25" />';
+		echo '<input required type="text" id="telefono-dueno" name="telefono-dueno" value="' . esc_attr( $telefono) . '" size="25" />';
 		echo "<br>";
 		echo '<i>Telefono de la persona que quedara acargo de la mascota</i>';
 		echo "<br> <br>";
-		echo '<a class="metabox_finish button button-large" href="http://localhost/SC/wp-admin/edit.php?post_status=publish&post_type=post&archived=yes&postID='.$post->ID.'">Finalizar</a>';
+		echo '<input required type="submit" class="metabox_finish button button-large"/>';
+		//echo '<a class="metabox_finish button button-large" >Finalizar</a>';
 	}
 
 	function myplugin_save_meta_box_data( $post_id ) {
@@ -591,47 +592,41 @@
 	/*===== ADMIN cambiar de posicion los meta boxes - OFF ==============================*/
 
 
-include 'Funcionalidades/listarPosts.php';
-include 'Funcionalidades/Quitar opciones del dashboard.php';
-include 'Funcionalidades/ListarEditarUsuarios.php';
-include 'Funcionalidades/Modificar acciones del listado de post.php';
-include 'Funcionalidades/finalizar post.php';
-include 'Funcionalidades/post-new.php';
-include 'Funcionalidades/users.php';
-include 'Funcionalidades/listarComentarios.php';
+	include 'Funcionalidades/listarPosts.php';
+	include 'Funcionalidades/Quitar opciones del dashboard.php';
+	include 'Funcionalidades/ListarEditarUsuarios.php';
+	include 'Funcionalidades/Modificar acciones del listado de post.php';
+	include 'Funcionalidades/finalizar post.php';
+	include 'Funcionalidades/post-new.php';
+	include 'Funcionalidades/users.php';
+	include 'Funcionalidades/listarComentarios.php';
 
-?>
+	//security esto no ejecuta código html en la caja de comentarios
+	add_filter('pre_comment_content', 'wp_specialchars');
 
-<?php //security esto no ejecuta código html en la caja de comentarios
-add_filter('pre_comment_content', 'wp_specialchars');
+	function al_rolUser_CanEdit($rolToEdit){
 
-function al_rolUser_CanEdit($rolToEdit)
-{
-	$userRol = wp_get_current_user()->roles[0];
+		$userRol = wp_get_current_user()->roles[0];
 
-	if($userRol == 'al_administrador' && $rolToEdit == 'al_administrador' ||
-	   $userRol == 'al_administrador' && $rolToEdit == 'al_superadministrador')
-	{
-		//die("NOOOOO!! SE PUEDE!!!!!");
-		return false;
+		if($userRol == 'al_administrador' && $rolToEdit == 'al_administrador' ||
+		   $userRol == 'al_administrador' && $rolToEdit == 'al_superadministrador'){
+			//die("NOOOOO!! SE PUEDE!!!!!");
+			return false;
+		}
+		else{
+			//die("SIIIII SE PUEDE!!!!!");
+			return true;
+		}
 	}
-	else
-	{
-		//die("SIIIII SE PUEDE!!!!!");
-		return true;
+
+	function al_isProgrammerLogged(){
+
+		return current_user_can('manage_options');
 	}
-}
 
-function al_isProgrammerLogged()
-{
-	return current_user_can('manage_options');
-}
-
-function al_isSuperAdministradorLogged()
-{
-	return current_user_can('al_superadministrador');
-}
-
-
+	function al_isSuperAdministradorLogged(){
+		
+		return current_user_can('al_superadministrador');
+	}
 
 ?>
