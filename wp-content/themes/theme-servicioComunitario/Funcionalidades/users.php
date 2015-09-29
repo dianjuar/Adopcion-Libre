@@ -1,18 +1,4 @@
 <?php
-// removes the `profile.php` admin color scheme options
-/*function remove_unnecesaryThings_at_userEdit()
-{	
-	remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
-
-		if ( strpos( $_SERVER[ 'REQUEST_URI' ], 'user-edit.php' ) !== false )
-		{
-			//aqui se modificarán los campos que no deben ser editados por otros usuarios con esta capasidad. 
-
-		}
-}
-
-remove_unnecesaryThings_at_userEdit();*/
-
 
 /*Quitar opcion editar usuario al momento de visualizar todos los usuarios al momento de cambiarles el perfil*/
 function modify_UserActions($actions, $user) 
@@ -46,11 +32,10 @@ function modify_UserActions($actions, $user)
 
     return $actions;
 }
-
+add_filter('user_row_actions','modify_UserActions',10,2);
+//////////////////////////////////////////////////////
 add_action('load-users.php', function()
 {
-	//ob_start('remove_editProfile');
-
 	if ( !current_user_can( 'manage_options' ))
 	{
 		if($_GET['updateUserRol']==yes)
@@ -71,17 +56,24 @@ add_action('load-users.php', function()
 		}
 	}
 });
-
-/*function remove_editProfile($content)
+////////////////////////////////////////////////////////////
+//los usuarios que pueden modificar otros roles no tienen acceso a editar el perfil.
+add_action( 'admin_footer', function()
 {
-	$content = preg_replace('Mascotas', 'Spunky', $content);
-	//href=".user-edit\.php\?user_id=.\&amp;wp_http_referer=\%2FSC\%2Fwp-admin\%2Fusers\.php
+	global $pagenow;
 
-	
-	return $content;
-}*/
+	if($pagenow == 'users.php')
+	{
+	?>
+		<script>
+	        jQuery(document).ready(function(){
+	        	jQuery('.username').children('strong').children('a').removeAttr('href');
+	    	});		
+		</script>
+	<?php
+	}
+} );
 
-add_filter('user_row_actions','modify_UserActions',10,2);
 
 
 ?>

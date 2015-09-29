@@ -194,6 +194,7 @@ dt {
   border-bottom-left-radius: 9px;
   background-color: #f78e1d;
   display: inline-block;
+  cursor: pointer;
 }
 .BoxLoginSingIm ul li:nth-child(2):hover,
 .BoxLoginSingIm ul li:nth-child(2):hover a {
@@ -205,6 +206,7 @@ dt {
   border-bottom-right-radius: 9px;
   background-color: #fada37;
   display: inline-block;
+  cursor: pointer;
 }
 .BoxLoginSingIm ul li:nth-child(1):hover,
 .BoxLoginSingIm ul li:nth-child(1):hover a {
@@ -718,9 +720,6 @@ h1.BoxDetPet__title + small {
 }
 .comment-awaiting-moderation {
   margin-left: 82px;
-}
-.comment-edit-link{
-  display: none;
 }
 /*=============== Comentarios =======================================================*/
 /*=============== Modal =============================================================*/
