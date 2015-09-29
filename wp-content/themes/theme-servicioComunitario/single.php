@@ -7,6 +7,10 @@
     <head>
       <?php require_once("head.php"); 
       ?>
+      <!-- Boton g+ -->
+      <link rel="canonical" href="http://bepra.zet.edu.ve/" />
+      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+      <!-- Boton g+ -->
     </head>
     <div class="ventana" id="myModal">
       <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
@@ -36,7 +40,17 @@
         </div>
       <?php endwhile; // end of the loop. ?>
     </div>
-    <body >
+    <body >     
+      <!-- Boton fb -->
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4&appId=1597708607152911";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <!-- Boton fb -->
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -47,7 +61,7 @@
       <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
       <article class="container padding-small">
         <div class="col-md-12 no-padding">
-          <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
+          <h1 class="titulo--naranja margin-medium-bottom "><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
           <?php $cu = wp_get_current_user(); ?>
           <?php $autor = get_the_author(); ?> 
           <?php $post_id = $post->ID; ?> 
@@ -85,11 +99,17 @@
             <div  class="col-md-10 col-sm-10 col-xs-12 BoxDetPet__ImgBigBox no-padding">
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
+            <section class="redes_sociales">
+              <div class="fb-share-button btn_fb_margin" data-href="http://bepra.zet.edu.ve/" data-layout="button_count"></div>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-via="karilaz">Tweet</a>
+              <g:plus action="share" annotation="none"></g:plus>
+            </section>
           </section>
 
           <section  class="col-md-6 col-sm-5 col-xs-12 no-padding">
             <div>
-              <h1 class="BoxDetPet__title no-margin"><?php the_title(); ?> <small>Fecha de publicación: <?php the_date(); ?></small></h1>
+              <h1 class="BoxDetPet__title no-margin"><?php the_title(); ?> </h1>
+              <small>Fecha de publicación: <?php the_date(); ?></small>
             </div>
 
             <dl class="BoxDetPet__data no-margin">
@@ -102,22 +122,29 @@
               <dt>Esterelizado:</dt>
               <dd><?php if(!empty($data[ 'esterilizacion' ])) {echo $data[ 'esterilizacion' ];} ?></dd>
             </dl> 
-            <h3 class="no-margin margin-small-left">Información de contacto</h3> 
+          </section>
+
+          <section class="<?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>col-md-6 col-sm-6 <?php }else { ?> col-md-12 col-sm-12  <?php } ?>col-xs-12 info_mas">
+            <h3 class="titulo--naranja margin-small-top"><span class="icon icon-Pata_vector"></span>Información de contacto:</h3>
             <dl class="BoxDetPet__data no-margin">
               <dt>Ubicación:</dt>
               <dd> <?php if(!empty($data[ 'direccion' ])) {echo $data[ 'direccion' ];} ?></dd>
               <dt><abbr title="Telefono">Tlf:</abbr></dt>
               <dd> <?php if(!empty($data[ 'telefono' ])) {echo $data[ 'telefono' ];} ?></dd>
             </dl>
-            <?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>
+          </section>
+
+          <?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>
+          <section class="col-md-6 col-sm-6 col-xs-12 info_mas">
+            <h3 class="titulo--naranja margin-small-top"><span class="icon icon-Pata_vector"></span>Datos del dueño actual:</h3>
             <dl class="BoxDetPet__data no-margin">
-              <dt>Datos del dueño actual:</dt><br>
+              <dt>Nombre:</dt>
               <dd> <?php echo $data[ 'nombre-dueno' ]; ?></dd>
               <dt><abbr title="Telefono">Tlf:</abbr></dt>
               <dd> <?php echo $data[ 'telefono-dueno' ]; ?></dd>
             </dl>
-            <?php } ?>
           </section>
+          <?php } ?>
                      
           <section class="col-md-12 col-sm-12 col-xs-12 BoxDetPet__labelBox margin-small-top">
             <span class="label BoxDetPet__label BoxDetPet__label__titulo">Etiquetas: </span> 
@@ -129,8 +156,10 @@
               <?php endif; ?>
           
           </section>
+          
         </div>
-        <h2><span class="icon icon-Pata_vector"></span> Comentarios:</h2>
+
+        <h2 class="titulo--naranja margin-large-top"><span class="icon icon-Pata_vector"></span> Comentarios:</h2>
         <section class="col-md-12">
           <?php comments_template( '', true ); ?>
         </section>  
@@ -173,6 +202,18 @@
           } ?>
         });
 
+      </script>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <script type="text/javascript">
+        window.___gcfg = {
+          lang: 'en-US'
+        };
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
       </script>
     </body>
 </html>

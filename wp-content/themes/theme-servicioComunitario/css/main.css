@@ -21,17 +21,26 @@ dt {
 }
 /*=============== Etiquetas gobables ================================================*/
 /*=============== Margins y paddings ================================================*/
+.btn_fb_margin{
+  top: -5px;
+}
 .no-margin {
   margin: 0;
 }
 .margin-medium {
   margin-top: 30px;
 }
+.margin-large-top {
+  margin-top: 50px;
+}
 .margin-small-top {
   margin-top: 10px;
 }
 .margin-small-left {
   margin-left: 15px;
+}
+.margin-medium-bottom {
+  margin-bottom: 40px;
 }
 .no-padding {
   padding: 0;
@@ -434,7 +443,7 @@ dt {
   display: block;
 }
 .BoxDetPet__ImgBox {
-  border: 2px solid #d7d7d7;
+  /*border: 2px solid #d7d7d7;*/
 }
 .BoxDetPet__ImgSmall {
   margin-top: 10px;
@@ -460,8 +469,9 @@ dt {
   text-transform: capitalize;
   margin-left: 15px;
 }
-.BoxDetPet__title small {
-  font-size: 0.4em;
+h1.BoxDetPet__title + small {
+    display: block;
+    margin-left: 15px;
 }
 .BoxDetPet__data {
   margin-top: 10px;
@@ -644,7 +654,7 @@ dt {
 #comment {
   width: 100%;
   height: 100px;
-  border: 1px solid #ededed;
+  border: 1px solid #888888;
 }
 #submit {
   border-radius: 0.3em;
@@ -750,9 +760,15 @@ dt {
 }
 .titulo--naranja {
   border-bottom: 3px solid #f78e1d;
-  margin-bottom: 40px;
 }
 /*=============== Modal =============================================================*/
+.info_mas{
+  padding: 5px 20px;
+}
+.redes_sociales{
+  text-align: right;
+  padding: 10px;
+}
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: 767px) {
   /*=============== Menú ==========================================================*/
@@ -863,9 +879,7 @@ dt {
   .BoxDetPet__ImgBigBox {
     padding-right: 10px;
   }
-  .BoxDetPet__title small {
-    display: block;
-  }
+  
   .BoxDetPet__label {
     display: inline-block;
   }
@@ -896,6 +910,11 @@ dt {
     float: none;
     display: block;
     margin-bottom: 5px;
+  }
+  .BtnFinalizarPosicion {
+    position: inherit;
+    top: 0;
+    right: 0;
   }
   /*=============== boton =========================================================*/
 }
@@ -953,6 +972,9 @@ dt {
   /*=============== boton =========================================================*/
   .BtnPosicion {
     float: none;
+  }
+  .BtnFinalizarPosicion {
+    top: -1px;
   }
   /*=============== boton =========================================================*/
 }
