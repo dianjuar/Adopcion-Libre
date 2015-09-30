@@ -103,7 +103,7 @@
             <div  class="col-md-10 col-sm-10 col-xs-12 BoxDetPet__ImgBigBox no-padding">
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
-            <section class="redes_sociales">
+            <section class="col-md-12 redes_sociales">
               <div class="fb-share-button" data-href="http://bepra.zet.edu.ve/" data-layout="button_count"></div>
               <a href="https://twitter.com/share" class="twitter-share-button" data-via="karilaz">Tweet</a>
               <g:plus action="share" annotation="none"></g:plus>
@@ -113,7 +113,7 @@
           <section  class="col-md-6 col-sm-5 col-xs-12 no-padding">
             <div>
               <h1 class="BoxDetPet__title no-margin"><?php the_title(); ?> </h1>
-              <small>Fecha de publicación: <?php the_date(); ?></small>
+              <small><strong>Fecha de publicación:</strong> <?php the_date(); ?></small>
             </div>
 
             <dl class="BoxDetPet__data no-margin">
