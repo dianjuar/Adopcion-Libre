@@ -60,7 +60,7 @@
         
           <?php 
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            query_posts('category_name=encontrados&paged='.$paged ) ?>
+            query_posts('post_status=publish&category_name=encontrados&paged='.$paged ) ?>
           <?php require_once("posts.php"); ?>
 
           <div class="col-md-12 pagina pagina--encontrados">

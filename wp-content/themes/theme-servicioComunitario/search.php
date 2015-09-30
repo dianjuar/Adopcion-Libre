@@ -16,9 +16,9 @@
       <strong></strong>
       <article class="container">
         <section class="post no-margin">
-          <div class="col-md-12 no-padding">
-            <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Resultados de la busqueda</h1>
-          </div>
+          
+          <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Resultados de la busqueda</h1>
+
         	<h3 class="page-title"><?php printf( __( 'Resultados de: "<strong>%s</strong>"', 'twentyfifteen' ), get_search_query() ); ?></h3>
             
           <?php require_once("posts.php"); ?>
