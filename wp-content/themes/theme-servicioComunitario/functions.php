@@ -592,7 +592,6 @@
 	/*===== ADMIN cambiar de posicion los meta boxes - OFF ==============================*/
 
 
-<<<<<<< HEAD
 	include 'Funcionalidades/listarPosts.php';
 	include 'Funcionalidades/Quitar opciones del dashboard.php';
 	include 'Funcionalidades/ListarEditarUsuarios.php';
@@ -601,15 +600,6 @@
 	include 'Funcionalidades/post-new.php';
 	include 'Funcionalidades/users.php';
 	include 'Funcionalidades/listarComentarios.php';
-=======
-include 'Funcionalidades/listarPosts.php';
-include 'Funcionalidades/Quitar opciones del dashboard.php';
-include 'Funcionalidades/ListarEditarUsuarios.php';
-include 'Funcionalidades/Modificar acciones del listado de post.php';
-include 'Funcionalidades/post-new.php';
-include 'Funcionalidades/users.php';
-include 'Funcionalidades/listarComentarios.php';
->>>>>>> 1c12743d17024f230cdbaf4e8b97c5ed9b9d0056
 
 	//security esto no ejecuta código html en la caja de comentarios
 	add_filter('pre_comment_content', 'wp_specialchars');
@@ -631,25 +621,23 @@ include 'Funcionalidades/listarComentarios.php';
 
 	function al_isProgrammerLogged(){
 
-<<<<<<< HEAD
 		return current_user_can('manage_options');
 	}
-=======
-function al_isAdministradorLogged()
-{
-	return current_user_can('al_administrador');
-}
 
-function al_isModeradorLogged()
-{
-	return current_user_can('al_moderador');
-}
+	function al_isAdministradorLogged()
+	{
+		return current_user_can('al_administrador');
+	}
 
-function al_isSuscriptorLogged()
-{
-	return current_user_can('al_suscriptor');
-}
->>>>>>> 1c12743d17024f230cdbaf4e8b97c5ed9b9d0056
+	function al_isModeradorLogged()
+	{
+		return current_user_can('al_moderador');
+	}
+
+	function al_isSuscriptorLogged()
+	{
+		return current_user_can('al_suscriptor');
+	}
 
 	function al_isSuperAdministradorLogged(){
 		
