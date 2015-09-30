@@ -14,4 +14,3 @@
 
 <script src="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/js/sweetalert2-master/dist/sweetalert2.css">
-<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/font-awesome-4.4.0/css/font-awesome.min.css">

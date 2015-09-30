@@ -14,7 +14,7 @@
         ?>
         $('.BoxLoginSingIm ul li:nth-child(2) a').text("Cerrar sesión");
         $('.BoxLoginSingIm ul li:nth-child(1) a').text("<?php echo $current_user->display_name; ?> ");
-        $('.BoxLoginSingIm ul li:nth-child(1) a').append("<i class='fa fa-user fa-fw'/>");
+        $('.BoxLoginSingIm ul li:nth-child(1) a').append("<span class='glyphicon glyphicon-user'></span>");
       <?php
       } else {?>
 

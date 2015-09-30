@@ -1,6 +1,7 @@
 <?php
 
-/*Quitar opcion editar usuario al momento de visualizar todos los usuarios al momento de cambiarles el perfil*/
+/*Quitar opcion editar usuario al momento de visualizar todos los usuarios al 
+momento de cambiarles el perfil*/
 function modify_UserActions($actions, $user) 
 {
 	if ( !current_user_can( 'manage_options' ))
