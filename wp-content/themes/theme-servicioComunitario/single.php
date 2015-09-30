@@ -14,7 +14,6 @@
       <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
       <!-- Boton g+ -->
     </head>
-<<<<<<< HEAD
     <div class="ventana" id="myModal">
       <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
       <?php $post_id = $post->ID; ?>
@@ -54,9 +53,6 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
       <!-- Boton fb -->
-=======
-    <body >
->>>>>>> 1c12743d17024f230cdbaf4e8b97c5ed9b9d0056
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -108,7 +104,7 @@
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
             <section class="redes_sociales">
-              <div class="fb-share-button btn_fb_margin" data-href="http://bepra.zet.edu.ve/" data-layout="button_count"></div>
+              <div class="fb-share-button" data-href="http://bepra.zet.edu.ve/" data-layout="button_count"></div>
               <a href="https://twitter.com/share" class="twitter-share-button" data-via="karilaz">Tweet</a>
               <g:plus action="share" annotation="none"></g:plus>
             </section>
@@ -130,14 +126,10 @@
               <dt>Esterelizado:</dt>
               <dd><?php if(!empty($data[ 'esterilizacion' ])) {echo $data[ 'esterilizacion' ];} ?></dd>
             </dl> 
-<<<<<<< HEAD
           </section>
 
-          <section class="<?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>col-md-6 col-sm-6 <?php }else { ?> col-md-12 col-sm-12  <?php } ?>col-xs-12 info_mas">
+          <section class="col-md-6 col-sm-6 col-xs-12 info_mas">
             <h3 class="titulo--naranja margin-small-top"><span class="icon icon-Pata_vector"></span>Información de contacto:</h3>
-=======
-            <h3 class="no-margin margin-small-left">Información de Contacto</h3> 
->>>>>>> 1c12743d17024f230cdbaf4e8b97c5ed9b9d0056
             <dl class="BoxDetPet__data no-margin">
               <dt>Nombre:</dt>
               <dd> <?php echo wp_get_current_user()->display_name; ?></dd>
@@ -146,16 +138,11 @@
               <dt><abbr title="Teléfono">Tlf:</abbr></dt>
               <dd> <?php if(!empty($data[ 'telefono' ])) {echo $data[ 'telefono' ];} ?></dd>
             </dl>
-<<<<<<< HEAD
           </section>
 
           <?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>
           <section class="col-md-6 col-sm-6 col-xs-12 info_mas">
             <h3 class="titulo--naranja margin-small-top"><span class="icon icon-Pata_vector"></span>Datos del dueño actual:</h3>
-=======
-            <?php if(!empty($data[ 'nombre-dueno' ]) && !empty($data[ 'telefono-dueno' ])){ ?>
-            <h3 class="no-margin margin-small-left">Información del Dueño Actual</h3>
->>>>>>> 1c12743d17024f230cdbaf4e8b97c5ed9b9d0056
             <dl class="BoxDetPet__data no-margin">
               <dt>Nombre:</dt>
               <dd> <?php echo $data[ 'nombre-dueno' ]; ?></dd>
