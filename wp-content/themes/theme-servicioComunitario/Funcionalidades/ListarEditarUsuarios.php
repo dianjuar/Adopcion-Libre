@@ -94,7 +94,7 @@ function list_moderador_suscriptor($user_search) {
 
     $user = wp_get_current_user();
 
-    if ( $user->roles[0] == 'al_administrador' ) 
+    if ( al_isAdministradorLogged() ) 
     { 
         global $wpdb;
 

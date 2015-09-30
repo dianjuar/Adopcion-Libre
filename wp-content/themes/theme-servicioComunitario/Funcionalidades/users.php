@@ -8,8 +8,8 @@ function modify_UserActions($actions, $user)
 	    unset($actions['edit']); 
 
 	    $actions['cambiarRol_Mensaje'] = '<span class="actionsMensaje"> 
-	    							<a>Cambiar rol a:</a>	    							
-	    						  </span>';
+	    									<a>Cambiar rol a:</a>	    							
+	    								  </span>';
 
 	    $roles = get_editable_roles();
 
@@ -18,14 +18,17 @@ function modify_UserActions($actions, $user)
 			unset( $roles[ $rolesUsuario ] );
 
 		//coloca los roles a los cuales puede ser cambiado
+		$idRol = key($roles);
+		
 		foreach ($roles as $rol) 
-		{						
+		{		
 			$rolName = $rol['name'];			
-			$href = admin_url("users.php?updateUserRol=yes&userID=".$user->ID."&rolID=".key($roles));
+			$href = admin_url("users.php?updateUserRol=yes&userID=".$user->ID."&rolID=".$idRol);
     		$actions['cambiarRol_'.$rolName] = '<span class="actionsROL_'.$rolName.'"> 
     												<a href='.$href.'>'.$rolName.'</a>	    											
     						  	 			  	</span>';
 
+    		$idRol = key($roles);
     		next($roles);
 		}
 	}
@@ -38,20 +41,46 @@ add_action('load-users.php', function()
 {
 	if ( !current_user_can( 'manage_options' ))
 	{
-		if($_GET['updateUserRol']==yes)
+		if($_GET['updateUserRol']=='yes')
 		{
-			$userID = $_GET['userID'];
-			$rolID = $_GET['rolID'];
+			$userID = $_GET['userID']; 
+			$rolID = $_GET['rolID']; 
 
 			$user = get_user_by( 'id', $userID );
 
-
-			if(al_rolUser_CanEdit($rolID))
+			if(al_rolUser_CanEdit($user->roles))
 			{
 				//remove role
-				$user->remove_role( $user->roles[0] );
+				foreach ($user->roles as $rol) 
+					$user->remove_role( $rol );
+				
 				//Add role
 				$user->add_role( $rolID );	
+				//mensaje al usuario
+
+				?>
+				<script type="text/javascript">
+				window.onload = function() {
+					swal({
+				    title: '¡Rol Cambiado con Exito!',
+				    type:  'success'
+					});
+				};
+				</script>
+			    <?php
+			}else
+			{
+				?>
+				<script type="text/javascript">
+				window.onload = function() {
+					swal({
+				    title: 'Haciendo Trampa, ¿Eh?',
+				    type:  'warning'
+					});
+				};
+				</script>
+			    <?php
+
 			}
 		}
 	}

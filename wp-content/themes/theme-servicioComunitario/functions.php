@@ -599,23 +599,25 @@
 	include 'Funcionalidades/post-new.php';
 	include 'Funcionalidades/users.php';
 	include 'Funcionalidades/listarComentarios.php';
+	include 'Funcionalidades/estilos y scripts en parte administrativa.php';
 
 	//security esto no ejecuta código html en la caja de comentarios
 	add_filter('pre_comment_content', 'wp_specialchars');
 
-	function al_rolUser_CanEdit($rolToEdit){
+	//se le pasa por parametro los roles de otro usuario a editar y se retorna true o false si este puede editarlos o no.
+	function al_rolUser_CanEdit($rolesToEdit)
+	{
+		foreach ($rolesToEdit as $rolToEdit) 
+			foreach (wp_get_current_user()->roles as $userRol) 
+				if($userRol == 'al_administrador' && $rolToEdit == 'al_administrador' ||
+				   $userRol == 'al_administrador' && $rolToEdit == 'al_superadministrador')
+				{
+					//die("NOOOOO!! SE PUEDE!!!!!");
+					return false;
+				}
 
-		$userRol = wp_get_current_user()->roles[0];
-
-		if($userRol == 'al_administrador' && $rolToEdit == 'al_administrador' ||
-		   $userRol == 'al_administrador' && $rolToEdit == 'al_superadministrador'){
-			//die("NOOOOO!! SE PUEDE!!!!!");
-			return false;
-		}
-		else{
-			//die("SIIIII SE PUEDE!!!!!");
-			return true;
-		}
+		//die("SIIIII SE PUEDE!!!!!");
+		return true;
 	}
 
 	function al_isProgrammerLogged(){
