@@ -596,7 +596,6 @@
 	include 'Funcionalidades/Quitar opciones del dashboard.php';
 	include 'Funcionalidades/ListarEditarUsuarios.php';
 	include 'Funcionalidades/Modificar acciones del listado de post.php';
-	include 'Funcionalidades/finalizar post.php';
 	include 'Funcionalidades/post-new.php';
 	include 'Funcionalidades/users.php';
 	include 'Funcionalidades/listarComentarios.php';
