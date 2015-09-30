@@ -546,7 +546,7 @@ h1.BoxDetPet__title + small {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  min-width: 380px;
+  width: 33.33333333%;
   background-color: #ededed;
 }
 .post__imgContainer {
@@ -594,6 +594,7 @@ h1.BoxDetPet__title + small {
   font-size: 1.6em;
   padding-top: 30px;
   min-height: 185px;
+  text-align: center;
 }
 .post__info__estatus ul{
   list-style: none;

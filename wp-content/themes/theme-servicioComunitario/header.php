@@ -1,5 +1,5 @@
 <div class="boxCabezeraME">
-        <img src="<?php bloginfo('template_url') ?>/img/cabecera_me.jpg" class="container img-responsive boxCabezeraME__imgME" alt="Membrete zona educativa">
+    <img src="<?php bloginfo('template_url') ?>/img/cabecera_me.jpg" class="container img-responsive boxCabezeraME__imgME" alt="Membrete zona educativa">
 </div>
 <div class="BoxBorderBottom">
 	<div class="col-md-3 col-sm-3 col-xs-6 BoxBorderBottom__Item">

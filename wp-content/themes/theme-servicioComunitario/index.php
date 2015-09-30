@@ -100,10 +100,10 @@
                           }
                         }
                       ?>
-                      
-                    </div>
+                  </div>
                   </a>
                 </div>
+                
             <?php } break; ?>
           <?php endwhile; else: ?>
               <div class="BoxCardPet__NoPost">

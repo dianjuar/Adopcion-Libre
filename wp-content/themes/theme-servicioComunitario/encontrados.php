@@ -61,7 +61,6 @@
           <?php 
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             query_posts('category_name=encontrados&paged='.$paged ) ?>
-          <?php $category_name = "encontrados" ?>
           <?php require_once("posts.php"); ?>
 
           <div class="col-md-12 pagina pagina--encontrados">
