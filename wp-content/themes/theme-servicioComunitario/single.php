@@ -14,34 +14,6 @@
       <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
       <!-- Boton g+ -->
     </head>
-    <div class="ventana" id="myModal">
-      <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-      <?php $post_id = $post->ID; ?>
-        <div class="modal-dialog">
-           <div class="modal-content">
-            <form  method="post" action="">
-              <div class="modal-header">
-                <button id="btnClose" type="button" class="close"><span aria-hidden="true">&times;</span></button>
-                <h3>Finalizar publicación</h3>
-              </div>
-              <div class="modal-body">
-                <p> 
-                  Para finalizar la publicación por favor llenar el formulario con los datos
-                  de la persona que quedara a cargo de la mascota que se encuentra al final
-                  de la pagina de editar publicación
-                </p>
-                <div class="ventana__btn">
-                  <a href="<?php echo admin_url( 'post.php?post='.$post_id.'&action=edit', 'http' ); ?>" class="btn BtnFinalizar">Ir a editar publicación</a>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button id="Mclose" type="button" class="btn">Cancelar</button>
-              </div>
-            </form>
-            </div>
-        </div>
-      <?php endwhile; // end of the loop. ?>
-    </div>
     <body >     
       <!-- Boton fb -->
       <div id="fb-root"></div>

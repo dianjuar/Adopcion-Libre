@@ -44,8 +44,8 @@
     		"descripcion" => "Indicar si la mascota esta esterilizada"),
 		"telefono" => array(
     		"nombre" => "telefono",
-    		"titulo" => "Telefono:",
-    		"descripcion" => "Telefono del actual dueño de la mascota"),
+    		"titulo" => "Teléfono:",
+    		"descripcion" => "Teléfono del actual dueño de la mascota. Ejm: +58 (0426) 1234.56.78"),
 		"dirección" => array(
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
@@ -56,8 +56,8 @@
     		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
 		"telefono-dueno" => array(
     		"nombre" => "telefono-dueno",
-    		"titulo" => "Telefono del dueño:",
-    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),
+    		"titulo" => "Teléfono del dueño:",
+    		"descripcion" => "Teléfono de la persona que sera la encargada de la mascota"),
 	);
 
 	
@@ -108,20 +108,21 @@
 		        			<option value="Otro" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Otro") {?>selected<?php } ?> >Otro</option>
 		        		</select>	
 		        <?php }
-		        	 if($meta_box[ 'nombre' ]=="telefono") { ?>
-		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
+		        	if($meta_box[ 'nombre' ]=="telefono") { ?>
+		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " 
+		        		pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3,4})[-. )]*(\d{3})[-. ]*(\d{2})[-. ]*(\d{2})(?: *x(\d+))?\s*$"/>
 		        <?php }
 		        	if($meta_box[ 'nombre' ]=="direccion") { ?>
 		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_direccin; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
 		        <?php }
 		        	if($meta_box[ 'nombre' ]=="raza") { ?>	
-		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
+		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
 		        <?php } 
 		        	if($meta_box[ 'nombre' ]=="nombre-dueno") { ?> 
-		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
+		        		<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
 		        <?php }
-		        	if($meta_box[ 'nombre' ]=="telefono-dueno") { ?>
-		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
+		        	if($meta_box[ 'nombre' ]=="telefono-dueno") { ?>	
+		        		<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
 		    	<?php }
 		        ?>
 		        <p><?php echo $meta_box[ 'descripcion' ]; ?></p>
