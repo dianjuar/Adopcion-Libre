@@ -433,25 +433,13 @@
 	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 	/*===== ADMIN Eliminar cosas de head - OFF ==========================================*/
+	
 	/*===== ADMIN Desabilitar movimiento metaboxes - ON ================================*/
 	function fb_remove_postbox() {
 	    wp_deregister_script('postbox');
 	}
 	add_action( 'admin_init', 'fb_remove_postbox' );
 	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
-
-	/*===== ADMIN hacer que finalizar guarde el post - ON ===============================*/
-	function make_save_button(){ ?>
-		<script>
-		jQuery('.metabox_finish').click(function(e) {
-			alert("Click");
-		    //e.preventDefault();
-		    //jQuery('#publish').click();
-		});
-		</script>
-	<?php }
-	add_action( 'admin_init', 'make_save_button' );
-	/*===== ADMIN hacer que finalizar guarde el post - OFF ==============================*/
 
 	/*===== ADMIN Meta box finalizar publicacion - ON ===================================*/
 	function myplugin_add_meta_box() {

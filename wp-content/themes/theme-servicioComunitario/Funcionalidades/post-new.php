@@ -9,7 +9,6 @@
     {        
         ob_start('one_category_only');
     }
-
     function one_category_only($content) 
     {
         $content = str_replace('type="checkbox" ', ' type="radio" ', $content);
@@ -47,7 +46,7 @@
         
         return $content;
     }
-
+/////////////////////////////////////////////////////////////////////////////////
     add_action( 'load-post-new.php', 'remover_enviarALaPapelera');
 
     function remover_enviarALaPapelera()
@@ -63,5 +62,4 @@
 
         return $content;
     }
-
 ?>
