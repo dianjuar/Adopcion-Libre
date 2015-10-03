@@ -540,7 +540,9 @@ table.form-table+input+input+p.submit{
   display: block;
 }
 /*=============== Perfil ============================================================*/
-#edit-slug-box,#category-adder,.page-title-action{
+.slidetoggle tr:nth-child(4),.slidetoggle tr:nth-child(5),.slidetoggle tr:nth-child(6),.slidetoggle tr:nth-child(7),.slidetoggle tr:nth-child(8),.slidetoggle tr:nth-child(9),
+.A1B1 p:nth-child(2),#edit-slug-box,#category-adder,.page-title-action, div#media-upload-header ul#sidemenu li#tab-type_url
+{
   display: none;
 }
 
@@ -548,7 +550,19 @@ table.form-table+input+input+p.submit{
   display: none;
 }
 
+p.savebutton.ml-submit input:nth-child(1)
+{
+  display: none;
+}
 
+body#media-upload div.boxCabezeraME
+{
+  display: none;
+}
+body#media-upload div.BoxBorderBottom
+{
+  display: none;
+}
 .postbox .hndle:hover {
     cursor:default;
 }
