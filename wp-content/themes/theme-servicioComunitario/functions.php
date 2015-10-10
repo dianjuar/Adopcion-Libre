@@ -110,7 +110,7 @@
 		        <?php }
 		        	 if($meta_box[ 'nombre' ]=="telefono") { ?>
 		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
-		        <?php }
+		        			        <?php }
 		        	if($meta_box[ 'nombre' ]=="direccion") { ?>
 		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_direccin; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
 		        <?php }
