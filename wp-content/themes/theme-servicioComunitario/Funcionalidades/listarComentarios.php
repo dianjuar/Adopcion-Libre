@@ -44,13 +44,9 @@
 	 * los mensajes dependiendo del valor recibido.
 	 */
 
-	add_filter('the_comments', 'wpse56652_filter_comments');
+	add_filter('the_comments', 'filter_comments');
 
-	function wpse56652_filter_comments($comments){
-		/*
-		Terminantemente PROHIBIDO mover estas 2 variables dentro del IF
-		por alguna extraña razón deja de funcionar todo
-		*/
+	function filter_comments($comments){
 	    global $pagenow;
 	    global $user_ID;
 
@@ -62,7 +58,11 @@
 	        foreach($comments as $i => $comment)
 	        {
 	            $the_post = get_post($comment->comment_post_ID);
-	            if($comment->user_id != $user_ID && $the_post->post_author != $user_ID)
+	            /*Elimina los comentarios que no son propios ni los hechos en un post que soy propietario
+	            	o los comentarios de los posts ya finalizados
+	            */ 
+	            if(($comment->user_id != $user_ID && $the_post->post_author != $user_ID)
+	            	||$the_post->post_status == 'archive')
 	                unset($comments[$i]);
 
 	           if( isset( $_GET['comment_status'] ) )		    	
@@ -78,9 +78,6 @@
 	                			unset($comments[$i]);
 		    				break;
 
-		    			default:
-		    				# Nothing
-		    				break;
 		    		}
 		    	
 	        }
@@ -89,10 +86,6 @@
 	    return $comments;
 	}
 	
-	//---------------------------------------------------------------------
-	//add_filter('admin_comment_types_dropdown','__return_zero');
-	//---------------------------------------------------------------------
-
 	//------------------------------------------------------------------------------
 	/*REMOVER LINK "EDITAR" EN COMMENTARIOS EN EL SITIO*/
 
