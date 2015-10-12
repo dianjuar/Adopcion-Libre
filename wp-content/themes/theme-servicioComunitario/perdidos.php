@@ -12,32 +12,7 @@
 <html class="no-js"> <!--<![endif]-->
     <head>
        <?php require_once("head.php"); ?>
-    </head>
-          <div class="ventana" id="myModal">
-          <div class="modal-dialog">
-           <div class="modal-content">
-              <div class="modal-header">
-                <button id="btnClose" type="button" class="close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-                <div class="ventana__warning">
-                  <span class="glyphicon glyphicon-warning-sign"></span>
-                </div>
-                <p> 
-                  Antes de reportar un animal como perdido busca primero en la sección “Mascotas encontradas” para asegurarte de que no haya sido reportada como encontrada.
-                </p>
-                <div class="ventana__btn">
-                  <a class="btn BtnEncontrados" href="<?=get_permalink( get_page_by_title('Mascotas perdidas') );?>">Ir a mascotas Encontradas</a>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a class="btn BtnPerdidos" href="<?php echo admin_url( 'post-new.php?post_category=perdido', 'http' ); ?>">Reportar una mascota</a>
-                <button id="Mclose" type="button" class="btn">Cerrar</button>
-                
-              </div>
-            </div>
-          </div>
-      </div>
+    </head>          
     <body >
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -86,17 +61,23 @@
               $('.post a').children('.post__info').css("display","none"); 
             });
 
-          $("#btn-dar").click(function() {
-              $("#myModal").css("display","block");
+            $("#btn-dar").click( function(){
+                swal({
+                    title: 'Importante',
+                    html: 'Revisa primero en la sección ' +
+                          '<a target="_blank" href="<?php echo get_permalink( get_page_by_title("Mascotas encontradas") ); ?>"><b>"Mascotas Encontradas"</b></a>' +
+                          ' a ver si alguien reportó tu mascota.',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#E01F95',
+                    confirmButtonText: 'Reportar Mascota',
+                    cancelButtonText: 'Cerrar'
+                },
+                function() {
+                    window.location.replace(  '<?php echo admin_url( "post-new.php?post_category=perdido" ); ?>' );
+                });
             });
-
-          $("#Mclose").click(function() {
-              $("#myModal").css("display","none");
-          });
-
-          $("#btnClose").click(function() {
-              $("#myModal").css("display","none");
-          });          
+         
         });
       </script>
     </body>

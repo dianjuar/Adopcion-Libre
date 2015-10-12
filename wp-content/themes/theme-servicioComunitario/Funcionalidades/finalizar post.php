@@ -64,7 +64,6 @@ function cambiarEstado_archivado($postID)
                         <label for="exampleInputPassword1">Teléfono</label>
                                                     <!--+58(0426)702-2951-->
                                                     <!-- 04267022951 -->
-                                                    <!--+99(99)9999-9999-->
                         <input type="text" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3,4})[-. )]*(\d{3})[-. ]*(\d{2})[-. ]*(\d{2})(?: *x(\d+))?\s*$" class="form-control" name="telefono-Dueno" id="telefono-Dueno" placeholder="teléfono" required>
                         <small>Ejm: +58 (0426) 123.45.67</small>
                     </div>
