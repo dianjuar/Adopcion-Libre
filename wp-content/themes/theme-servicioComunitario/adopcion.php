@@ -28,7 +28,7 @@
             <h1 class="titulo--azul"><span class="icon icon-Pata_vector"></span>Mascotas en adopción</h1>
 
             <?php if($user_ID){ ?>
-            <a id="btn-dar" href="<?php echo admin_url( 'post-new.php?post_category=adopcion', 'http' ); ?>" class="btn BtnAdopcion BtnPosicion">Dar en adopcion</a>
+            <a id="btn-dar" href="<?php echo admin_url( 'post-new.php?post_category=adopcion', 'http' ); ?>" class="btn btn-lg BtnAdopcion BtnPosicion">Dar en adopcion</a>
             <?php } ?>
           </div>
           
