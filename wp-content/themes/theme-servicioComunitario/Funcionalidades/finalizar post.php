@@ -66,7 +66,7 @@ function cambiarEstado_archivado($postID)
                                                     <!-- 04267022951 -->
                                                     <!--+99(99)9999-9999-->
                         <input type="text" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3,4})[-. )]*(\d{3})[-. ]*(\d{2})[-. ]*(\d{2})(?: *x(\d+))?\s*$" class="form-control" name="telefono-Dueno" id="telefono-Dueno" placeholder="teléfono" required>
-                        <small>Ejm: +58 (0426) 1234.56.78</small>
+                        <small>Ejm: +58 (0426) 123.45.67</small>
                     </div>
                     <input type="hidden" id="post-id" name="post-id" value="<?php echo $post->ID; ?>">
                 </div>

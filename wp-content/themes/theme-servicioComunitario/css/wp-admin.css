@@ -539,9 +539,18 @@ table.form-table+input+input+p.submit{
 .form-table td input[type=text]{
   display: block;
 }
+.user-url-wrap, #your-profile h3:nth-child(8) /*about you*/, 
+#your-profile table:nth-child(9)
+{
+  display: none;
+}
+
+
 /*=============== Perfil ============================================================*/
-.slidetoggle tr:nth-child(4),.slidetoggle tr:nth-child(5),.slidetoggle tr:nth-child(6),.slidetoggle tr:nth-child(7),.slidetoggle tr:nth-child(8),.slidetoggle tr:nth-child(9),
-.A1B1 p:nth-child(2),#edit-slug-box,#category-adder,.page-title-action, div#media-upload-header ul#sidemenu li#tab-type_url
+.slidetoggle tr:nth-child(4),.slidetoggle tr:nth-child(5),.slidetoggle tr:nth-child(6),
+.slidetoggle tr:nth-child(7),.slidetoggle tr:nth-child(8),.slidetoggle tr:nth-child(9),
+.A1B1 p:nth-child(2),#edit-slug-box,#category-adder,.page-title-action, 
+div#media-upload-header ul#sidemenu li#tab-type_url
 {
   display: none;
 }

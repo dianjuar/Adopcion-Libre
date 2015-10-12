@@ -44,8 +44,8 @@
     		"descripcion" => "Indicar si la mascota esta esterilizada"),
 		"telefono" => array(
     		"nombre" => "telefono",
-    		"titulo" => "Telefono:",
-    		"descripcion" => "Telefono del actual dueño de la mascota"),
+    		"titulo" => "Teléfono:",
+    		"descripcion" => "Teléfono del actual dueño de la mascota. Ejm: +58 (0426) 123.45.67"),
 		"dirección" => array(
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
@@ -56,8 +56,8 @@
     		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
 		"telefono-dueno" => array(
     		"nombre" => "telefono-dueno",
-    		"titulo" => "Telefono del dueño:",
-    		"descripcion" => "Telefono de la persona que sera la encargada de la mascota"),
+    		"titulo" => "Teléfono del dueño:",
+    		"descripcion" => "Teléfono de la persona que sera la encargada de la mascota"),
 	);
 
 	
@@ -109,7 +109,8 @@
 		        		</select>	
 		        <?php }
 		        	 if($meta_box[ 'nombre' ]=="telefono") { ?>
-		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
+		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " 
+		        	pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3,4})[-. )]*(\d{3})[-. ]*(\d{2})[-. ]*(\d{2})(?: *x(\d+))?\s*$"/>
 		        			        <?php }
 		        	if($meta_box[ 'nombre' ]=="direccion") { ?>
 		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_direccin; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
@@ -432,11 +433,6 @@
 	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 	/*===== ADMIN Eliminar cosas de head - OFF ==========================================*/
-	/*===== ADMIN Desabilitar movimiento metaboxes - ON ================================*/
-	
-	/*===== ADMIN Desabilitar movimiento metaboxes - OFF ================================*/
-
-
 
 	/*===== ADMIN que los meta box se muestren in one row - ON ==========================*/
 	function my_screen_layout_columns( $columns ) {
@@ -522,5 +518,9 @@
 		
 		return current_user_can('al_superadministrador');
 	}
+
+	add_filter('login_redirect', function () {
+	  return home_url();
+	});
 
 ?>

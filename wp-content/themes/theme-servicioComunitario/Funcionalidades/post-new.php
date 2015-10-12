@@ -58,8 +58,43 @@
     {
         $content = str_replace('"delete-action"', 
                                '"delete-action" style="display:none" ', $content);
-
-
         return $content;
     }
+
+
+    add_filter('redirect_post_location', function($location)
+    {
+        global $post;
+
+        if(  $_POST["post_status"] == "pending" ) // cuando envia a revisión
+        {
+            $location = admin_url("edit.php?post_status=pending&post_type=post&mensaje=pendiente");
+        }
+        else if( $_POST["post_status"] == "publish" && !isset($_POST['save']) )  //publica o aprueba
+        {
+            if( $post->post_author != wp_get_current_user()->ID ) //aprobar publicación, redirige al tab pendiente     
+                $location = admin_url("edit.php?post_status=pending&post_type=post&mensaje=aprobado");
+            else //publicó un post
+            {
+                if( al_isModeradorLogged() )     //se redirige al tab publicadas       
+                    $location = admin_url("edit.php?post_status=publish&post_type=post&mensaje=publicado");
+                else //es el administrador o superadministrador se redirige a tab mío.
+                    $location = admin_url("edit.php?post_type=post&author=".wp_get_current_user()->ID ."&post_type=post&mensaje=publicado");
+            }
+        }
+        else if( $_POST["post_status"] == "publish" && isset($_POST['save']) ) //edita (actualiza)
+        {
+            if( $post->post_author != wp_get_current_user()->ID ) // publicacion que no es mia, solo administrador y superadministrador
+                $location = admin_url("edit.php?post_status=publish&post_type=post&mensaje=editado");
+            else //solo post publicados propios
+            {
+                if( al_isSuscriptorLogged() || al_isModeradorLogged() )
+                    $location = admin_url("edit.php?post_status=publish&post_type=post&mensaje=editado");
+                else //administrador y superadministrador
+                    $location = admin_url("edit.php?post_type=post&author=".wp_get_current_user()->ID ."&post_type=post&mensaje=editado");
+            }
+        }
+
+        return $location."&postID=".$post->ID;
+    });
 ?>

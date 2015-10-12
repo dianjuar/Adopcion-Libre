@@ -41,7 +41,7 @@
 	 * Runs only for the programador and superadmi role.
 	 *
 	 * Si la variable comment_status tiene el valor "enviados" o "recibidos" se filtrarán
-	 * los mensajes pedendiendo del valor recibido.
+	 * los mensajes dependiendo del valor recibido.
 	 */
 
 	add_filter('the_comments', 'wpse56652_filter_comments');

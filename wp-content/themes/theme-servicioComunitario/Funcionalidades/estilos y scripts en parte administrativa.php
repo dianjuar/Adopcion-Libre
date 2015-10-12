@@ -34,6 +34,7 @@ add_action( 'admin_head', function(){
 			if ($pagenow == "edit.php")
 			{
 				?>
+				<!--Script para que salte el modal cuando se quiera finalizar un post-->
 				<script>
 					jQuery(document).ready(function($){
 						$('.btn-finalizar').on('click',function()
@@ -51,8 +52,54 @@ add_action( 'admin_head', function(){
 							//alert($("#post-id").val()+" and "+$("#nombre-mascota").text());
 						});
 					});
-				</script> 
-				<?php
+				</script>
+
+				<!-- Script para que salte el sweetalert al gestionar post -->
+				<?php 
+				if(isset($_GET["mensaje"]))
+				{	
+					$the_post = get_post( $_POST["postID"] );
+					$link = $the_post->guid;
+
+					switch ($_GET["mensaje"]) 
+					{
+						case 'pendiente':
+							$texto = 'Esta mascota está pendiente por revisión.';
+						break;
+
+						case 'aprobado':
+							$texto = 'Esta mascota ha sido aprobada.';
+						break;
+
+						case 'publicado':
+							$texto = 'Esta mascota ha sido publicada.';
+						break;
+
+						case 'editado':
+							$texto = 'Esta mascota ha sido actualizada.';
+						break;
+					}
+					?>
+					
+					<script type="text/javascript">
+					window.onload = function() {
+						swal({
+				            title: '¡Perfecto!',
+				            text: '<?php echo $texto; ?>',
+				            type:  'success',
+				            showCancelButton: true,
+				            confirmButtonText: 'Ver',
+				            cancelButtonText: 'Cerrar'
+				        },
+				        function() {
+
+				        	window.open( '<?php echo $link; ?>' );					            
+				        });
+					};
+					</script>
+				    <?php
+				    
+				}				
 			}// if ($pagenow == "edit.php")
 			else
 				if( $pagenow == "profile.php" )
