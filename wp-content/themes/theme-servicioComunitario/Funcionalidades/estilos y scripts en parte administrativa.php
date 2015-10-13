@@ -118,13 +118,16 @@ add_action( 'admin_head', function(){
 		}// if($pagenow == "edit.php" || $pagenow == "profile.php")
 	} );
 	///////////////////////////////////////////////////
-	add_action( 'load-edit.php', function() 
+	function agregar_bootstrap() 
 	{
-			?>
-			<!-- Estilos de boostrap en la seccion administrativa de wordpress -->
-			<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> 
-  		    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
-			<?php
-	});
+		?>
+		<!-- Estilos de boostrap en la seccion administrativa de wordpress -->
+		<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> 
+		    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
+		<?php
+	}
+
+	add_action( 'load-edit.php', 'agregar_bootstrap');
+	//add_action( 'load-users.php', 'agregar_bootstrap');
 	////////////////////////////////////////////////////
 ?>

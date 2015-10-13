@@ -28,7 +28,7 @@ function add_finalizar($actions, $post) {
  
     if( $post->post_status == "publish" && $post->post_author ==  wp_get_current_user()->ID)
     {
-        $actions['finalizar'] = '<a class="btn-finalizar" data-toggle="modal" data-target="#myModal" href="#" >Finalizar</a> ';
+        $actions['finalizar'] = '<a class="btn-xs btn-info" data-toggle="modal" data-target="#myModal" href="#" >Finalizar</a> ';
     }
     
     return $actions;

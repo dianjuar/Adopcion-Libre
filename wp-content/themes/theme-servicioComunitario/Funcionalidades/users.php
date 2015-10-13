@@ -1,42 +1,90 @@
 <?php
+	//ADD AUTHOR COLUMN TO THE LIST OF POSTS
+	function add_roles_column( $columns ) {
+	    unset($columns['ure_roles']); //Eliminar columna "Otros roles"
 
-/*Quitar opcion editar usuario al momento de visualizar todos los usuarios al 
-momento de cambiarles el perfil*/
-function modify_UserActions($actions, $user) 
+		    //Ordenar columnas 
+		    $aux = $columns["role"];
+		    unset($columns['role']);	   
+			$columns["role"] = $aux;$columns["posts"] = "Mascotas";
+
+	    $columns["roles"] = "Cambiar rol a"; //Agregar columna "Cambiar rol a"
+
+		//var_dump($columns);die();
+
+	    return $columns;
+	}
+	add_filter('manage_users_columns', 'add_roles_column'); //add the author to the columns names array
+
+	//MODIFY CONTENT IN AUTHOR COLUMN (SET DISPLAY NAME)
+	function set_roles_column( $value, $column_name, $user_id) {
+
+		$user = get_userdata( $user_id );
+		
+	    switch ( $column_name ) {
+	      case 'roles':
+
+	      	$roles = get_sorted_roles();
+
+	      	//quita todos los roles que ya es actualmente ese usuario. Así un usuario que ya es moderador no puede se puede cambiar a moderador
+			foreach ($user->roles as $rolesUsuario) 		
+				unset( $roles[ $rolesUsuario ] );
+
+			//coloca los roles a los cuales puede ser cambiado
+
+			/*obtengo el ultimo rol del vector de roles pero establece el puntero interno del 
+			vector en la última posición*/
+			end($roles);
+			$ultimoRol = key( $roles );
+
+			//establece el puntero interno del vector a la primera posición.
+			reset($roles);
+			$idRol = key($roles);
+			
+			$value = "<div class='row-actions' style='visibility: visible;' >";
+			foreach ($roles as $rol) 
+			{		
+				foreach ($user->roles as $rolesUsuario)
+					if( isLowerRole($rolesUsuario, $idRol) )
+						$class = "rolehigher";
+					else
+						$class = "rolelower";
+
+
+				$rolName = $rol['name'];			
+				$href = admin_url("users.php?updateUserRol=yes&userID=".$user->ID."&rolID=".$idRol);
+	    		
+	    		$value = $value.'<span class="'.$class.'"> 									
+									<a href='.$href.'> <span class="glyphicon glyphicon-user"></span>'.$rolName.' </a>';
+				
+				if( $ultimoRol != $idRol )
+					$value = $value.'|';
+
+			  	 			  	$value = $value.'</span>';
+
+	    		$idRol = key($roles);
+	    		next($roles);
+			}
+			$value = $value.'</div>';
+
+
+	        break;
+
+	    }
+
+	    return $value;
+	}
+	add_action( 'manage_users_custom_column' , 'set_roles_column', 10, 3 );
+ 
+//////////////////////////////////////////////////////
+/*Quitar opcion "editar" al momento de visualizar todos los usuarios*/
+add_filter('user_row_actions', function ($actions) 
 {
-	if ( !current_user_can( 'manage_options' ))
-	{
+	if ( !al_isProgrammerLogged() )	
 	    unset($actions['edit']); 
 
-	    $actions['cambiarRol_Mensaje'] = '<span class="actionsMensaje"> 
-	    									<a>Cambiar rol a:</a>	    							
-	    								  </span>';
-
-	    $roles = get_editable_roles();
-
-		//quita todos los roles que ya es actualmente ese usuario. Así un usuario que ya es moderador no puede se puede cambiar a moderador
-		foreach ($user->roles as $rolesUsuario) 		
-			unset( $roles[ $rolesUsuario ] );
-
-		//coloca los roles a los cuales puede ser cambiado
-		$idRol = key($roles);
-		
-		foreach ($roles as $rol) 
-		{		
-			$rolName = $rol['name'];			
-			$href = admin_url("users.php?updateUserRol=yes&userID=".$user->ID."&rolID=".$idRol);
-    		$actions['cambiarRol_'.$rolName] = '<span class="actionsROL_'.$rolName.'"> 
-    												<a href='.$href.'>'.$rolName.'</a>	    											
-    						  	 			  	</span>';
-
-    		$idRol = key($roles);
-    		next($roles);
-		}
-	}
-
     return $actions;
-}
-add_filter('user_row_actions','modify_UserActions',10,2);
+});
 //////////////////////////////////////////////////////
 add_action('load-users.php', function()
 {

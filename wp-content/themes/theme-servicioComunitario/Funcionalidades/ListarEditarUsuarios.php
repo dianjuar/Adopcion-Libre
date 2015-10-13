@@ -7,7 +7,7 @@ add_filter( 'editable_roles' , 'func_remove_higher_roles_SC' );
 
 function func_remove_higher_roles_SC($allRoles){
 
-	$allRoles = apply_filters(remove_default_wp_roles, $allRoles);
+	$allRoles = apply_filters('remove_default_wp_roles', $allRoles);
 
 	$user = new WP_User( get_current_user_id() );
 

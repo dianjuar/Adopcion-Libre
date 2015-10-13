@@ -582,3 +582,19 @@ body#media-upload div.BoxBorderBottom
     border: 0;
     padding: 10px 25%;
 }
+/*===============  rows actions ============================================================*/
+.rolelower a
+{
+  color: #0582FC;
+}
+
+.rolehigher a
+{
+  color: green;
+}
+
+.finalizar a
+{
+  color: #FFF;
+}
+/*===============  rows actions ============================================================*/

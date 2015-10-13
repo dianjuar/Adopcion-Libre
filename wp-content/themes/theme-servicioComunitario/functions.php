@@ -523,4 +523,64 @@
 	  return home_url();
 	});
 
+	//ordena los roles según su jerarquía.
+	function get_sorted_roles(){
+
+		$roles = get_editable_roles();
+
+		$suscriptor = $roles["al_suscriptor"];
+		$moderador = $roles["al_moderador"];
+		$administrador = $roles["al_administrador"];
+		$superadministrador = $roles["al_superadministrador"];
+
+		$rolesSorted["al_suscriptor"] = $suscriptor;
+		$rolesSorted["al_moderador"] = $moderador;
+		$rolesSorted["al_administrador"] = $administrador;
+		$rolesSorted["al_superadministrador"] = $superadministrador;
+
+		return $rolesSorted;
+	}
+
+	//is role 1 lower than 2, roles are ids
+	function isLowerRole($role1, $role2)
+	{
+		/*var_dump($role1);
+		echo "-----------------------------------";
+		var_dump($role2);
+		die();*/
+
+		if($role1 == $role2)
+			return false;
+
+		$roles = get_sorted_roles();
+
+		$suscriptor = "al_suscriptor";
+		$moderador = "al_moderador";
+		$administrador = "al_administrador";
+		$superadministrador = "al_superadministrador";
+
+		if( $role1 == $suscriptor )
+			return true;
+
+		if( $role1 == $superadministrador )
+			return false;
+
+		if( $role1 == $administrador )
+		{
+			if($role2 == $superadministrador)
+				return true;
+			else
+				return false;
+		}
+		else
+		{
+			//aquí entran todos los moderadores
+			if( $role2 == $suscriptor)
+				return false;
+			else
+				return true;
+		}
+
+	}
+
 ?>
