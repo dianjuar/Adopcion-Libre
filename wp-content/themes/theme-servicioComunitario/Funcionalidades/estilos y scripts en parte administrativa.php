@@ -182,6 +182,8 @@ add_action( 'admin_head', function(){
 	}
 	////////////////////////////////////////////////
 	add_action( 'get_footer', function(){
-		set_patterTelef('#registerform');
+
+		if( $_GET["action"] == "register" )
+			set_patterTelef('#registerform');
 	});
 ?>
