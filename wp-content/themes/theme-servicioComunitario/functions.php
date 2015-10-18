@@ -45,7 +45,7 @@
 		"telefono" => array(
     		"nombre" => "telefono",
     		"titulo" => "Teléfono:",
-    		"descripcion" => "Teléfono del actual dueño de la mascota. Ejm: +58 (0426) 123.45.67"),
+    		"descripcion" => "Teléfono del actual dueño de la mascota. <abbr title='Ejemplo'>Ejm:</abbr> +58 (0426) 123.45.67"),
 		"dirección" => array(
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
@@ -494,8 +494,8 @@
 		return true;
 	}
 
-	function al_isProgrammerLogged(){
-
+	function al_isProgrammerLogged()
+	{
 		return current_user_can('manage_options');
 	}
 
@@ -514,8 +514,8 @@
 		return current_user_can('al_suscriptor');
 	}
 
-	function al_isSuperAdministradorLogged(){
-		
+	function al_isSuperAdministradorLogged()
+	{		
 		return current_user_can('al_superadministrador');
 	}
 

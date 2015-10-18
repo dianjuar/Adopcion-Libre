@@ -114,7 +114,7 @@
 	function add_tab_mine( $views ) 
 	{
 		global $current_user;
-	    $views['mine'] = '<a href="'.admin_url().'edit.php?post_type=post&author='.$current_user->id.'">Mío <span class="count"></span> </a>';
+	    $views['mine'] = '<a id="post_mine" href="'.admin_url().'edit.php?post_type=post&author='.$current_user->id.'">Mío <span class="count"></span> </a>';
 
 	    return $views;
 	}

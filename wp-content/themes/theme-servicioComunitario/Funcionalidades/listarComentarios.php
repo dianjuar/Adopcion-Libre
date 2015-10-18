@@ -6,8 +6,8 @@
 	  unset($views['moderated']);
 	  unset($views['approved']);
 
-	  $views['Enviados']="<a href='edit-comments.php?comment_status=enviados' >Enviados</a>";
-	  $views['Recibidos']="<a href='edit-comments.php?comment_status=recibidos' >Recibidos</a>";
+	  $views['Enviados']="<a id='com_enviados' href='edit-comments.php?comment_status=enviados' >Enviados</a>";
+	  $views['Recibidos']="<a id='com_recibidos' href='edit-comments.php?comment_status=recibidos' >Recibidos</a>";
 
 	  if( al_isSuperAdministradorLogged() )
 	  	$views['mios']="<a href='edit-comments.php?comment_status=mios' >Mios</a>";
