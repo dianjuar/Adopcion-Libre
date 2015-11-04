@@ -37,4 +37,4 @@ AKISMET --> Plugin comments spam
 	 First Name: Adopcion
 	 Last Name: Libre
 
-//funcionalidades//funcionalidades//funcionalidades
+#integración con Telegram.
