@@ -5,7 +5,7 @@ Plugin Name: Register Plus Redux
 Author URI: http://radiok.info/
 Plugin URI: http://radiok.info/blog/category/register-plus-redux/
 Description: Enhances the user registration process with complete customization and additional administration options.
-Version: 4.1.2
+Version: 4.2.4
 Text Domain: register-plus-redux
 Domain Path: /languages
 */
@@ -26,7 +26,7 @@ Domain Path: /languages
 // TODO: Enhancement- Alter admin pages to match registration/signup
 // TODO: Enhancement- Widget is lame/near worthless
 
-define( 'RPR_VERSION', '4.1.2' );
+define( 'RPR_VERSION', '4.2.3' );
 define( 'RPR_ACTIVATION_REQUIRED', '3.9.6' );
 
 if ( !class_exists( 'Register_Plus_Redux' ) ) {
@@ -619,24 +619,49 @@ if ( !class_exists( 'Register_Plus_Redux' ) ) {
 	}
 }
 
-if ( file_exists( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' ) ) {
-	include_once( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' );
-}
+			if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php' )) {
+			if (get_option('readygraph_deleted') && get_option('readygraph_deleted') == 'true'){}
+			else{
+				include "readygraph-extension.php";
+			}
+			if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
+			register_deactivation_hook( __FILE__, 'rpr_readygraph_plugin_deactivate' );
+			}
+			function rpr_readygraph_plugin_deactivate(){
+				$app_id = get_option('readygraph_application_id');
+				update_option('readygraph_deleted', 'false');
+				wp_remote_get( "http://readygraph.com/api/v1/tracking?event=register_plug_redux_plugin_uninstall&app_id=$app_id" );
+				rpr_delete_rg_options();
+			}
+			}
+			else {
 
+			}
 /*.void.*/ function rpr_delete_rg_options() {
-	delete_option( 'readygraph_access_token' );
-	delete_option( 'readygraph_application_id' );
-	delete_option( 'readygraph_refresh_token' );
-	delete_option( 'readygraph_email' );
-	delete_option( 'readygraph_settings' );
-	delete_option( 'readygraph_delay' );
-	delete_option( 'readygraph_enable_sidebar' );
-	delete_option( 'readygraph_auto_select_all' );
-	delete_option( 'readygraph_enable_notification' );
-	delete_option( 'readygraph_enable_branding' );
-	delete_option( 'readygraph_send_blog_updates' );
-	delete_option( 'readygraph_send_real_time_post_updates' );
-	delete_option( 'readygraph_popup_template' );
+			delete_option('readygraph_access_token');
+			delete_option('readygraph_application_id');
+			delete_option('readygraph_refresh_token');
+			delete_option('readygraph_email');
+			delete_option('readygraph_settings');
+			delete_option('readygraph_delay');
+			delete_option('readygraph_enable_sidebar');
+			delete_option('readygraph_auto_select_all');
+			delete_option('readygraph_enable_notification');
+			delete_option('readygraph_enable_popup');
+			delete_option('readygraph_enable_branding');
+			delete_option('readygraph_send_blog_updates');
+			delete_option('readygraph_send_real_time_post_updates');
+			delete_option('readygraph_popup_template');
+			delete_option('readygraph_upgrade_notice');
+			delete_option('readygraph_adsoptimal_secret');
+			delete_option('readygraph_adsoptimal_id');
+			delete_option('readygraph_connect_anonymous');
+			delete_option('readygraph_connect_anonymous_app_secret');
+			delete_option('readygraph_tutorial');
+			delete_option('readygraph_site_url');
+			delete_option('readygraph_enable_monetize');
+			delete_option('readygraph_monetize_email');
+			delete_option('readygraph_plan');
 }
 
 /*.void.*/ function rpr_rrmdir( /*.string.*/ $dir ) {

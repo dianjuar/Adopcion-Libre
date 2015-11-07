@@ -1,0 +1,186 @@
+/*wp-login-theme*/
+
+body.login, html {
+  background: #FFFFFF;
+}
+
+#login {
+  padding: 10px 0 20px 0;
+  width: 940px;
+}
+
+body.login div#login form#loginform,body.login div#login form#registerform,body.login div#login form#lostpasswordform, body.login div#login form#resetpassform{
+  -webkit-box-shadow: none; 
+  box-shadow: none;
+  border-top: 2px solid #f78e1d; /* Naranja */
+  border-bottom: 2px solid #f78e1d; /* Naranja */
+  padding: 26px 300px 46px;
+}
+
+/* Campos */
+.login form .input, .login form input[type=checkbox], .login input[type=text],form#registerform input,form#registerform textarea {
+  background: #fff;
+  border: 2px solid #FADA37; /* Amarillo */
+  -webkit-box-shadow: none; 
+  box-shadow: none;
+}
+/* Campos */
+/* Campos click */
+input[type=text]:focus,input[type=password]:focus,form#registerform input:focus{
+  border-color: #FADA37;
+  -webkit-box-shadow: 0 0 4px #FADA37; /* Amarillo */
+  box-shadow: 0 0 4px #FADA37; /* Amarillo */
+}
+/* Campos click */
+/* Boton acceder */
+body.login div#login form#loginform p.submit input#wp-submit,body.login div#login form#registerform p.submit input#wp-submit, body.login div#login form#lostpasswordform  p.submit input#wp-submit, body.login div#login form#resetpassform  p.submit input#wp-submit{
+  background: #f78e1d; /* Naranja */
+  -webkit-box-shadow: none; 
+  box-shadow: none;
+  border-color: #f78e1d; /* Naranja */
+  font-weight: 600;
+  font-size: 1.1em;
+  border-radius: 0;
+}
+/* Boton acceder */
+/* Checkbox click */
+input[type=checkbox]:checked:before {
+  margin: -4px 0 0 -5px;
+  color: #f78e1d;
+}
+/* Checkbox click */
+body.login div#login p#nav a,body.login div#login p#backtoblog a,body.login div#login p#nav{
+  color: #000;
+  text-align: center;
+}
+body.login div#login p#nav a:first-child{
+  font-size: 1.3em;
+}
+
+body.login div#login p#nav a:hover,body.login div#login p#backtoblog a:hover{
+  color: #FADA37; /* amarillo */
+  font-weight: bold;
+}
+
+body.login div#login p#backtoblog{
+  padding: 0 60px 16px 60px;
+  margin: 16px 0;
+  border-bottom: 2px solid #f78e1d; /* Naranja */
+  text-align: center;
+}
+
+.login .message {
+  border-left: 0;
+  background-color: #f78e1d; /* Naranja */
+  text-align: center;
+  color: #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-weight: bold;
+  margin: 0 250px;
+}
+
+.login .register{
+  display: none;
+}
+
+.login #login_error{
+  border-left: 0;
+  background: #ac0000; /* Rojo */
+  -webkit-box-shadow:none;
+  box-shadow: none;
+  color: #fff;
+  margin: 0 250px;
+}
+
+.login #login_error a{
+  margin-left: 15px;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
+}
+
+#pass-strength-result {
+  background-color: #f78e1d; /* Naranja */
+  border-color: #f78e1d !important;
+  color: #fff;
+}
+
+.boxCabezeraME {
+  padding: 0px;
+  background-color: #ac0000;
+  z-index: 0;
+  position: relative;
+}
+.boxCabezeraME__imgME {
+  position: relative;
+}
+.BoxBorderBottom {
+  z-index: 0;
+  position: relative;
+  height: 4px;
+}
+.BoxBorderBottom__Item {
+  padding: 0px;
+  width: 25%;
+  float: left;
+}
+.BoxBorderBottom__Item--rojo {
+  background-color: #ac0000;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--naranja {
+  background-color: #f78e1d;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--amarillo {
+  background-color: #fada37;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--azul {
+  background-color: #05a9fc;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--verde {
+  background-color: #15db5b;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+.BoxBorderBottom__Item--morado {
+  background-color: #e01f95;
+  float: left;
+  height: 4px;
+  width: 16.66666667%;
+}
+/*=============== Footer ============================================================*/
+.boxFooter {
+  background-color: #000000;
+  color: #ffffff;
+  width: initial;
+  text-align: center;
+  padding: 10px;
+  border-bottom-left-radius: 1.2em;
+  border-bottom-right-radius: 1.2em;
+}
+.container {
+  width: 940px;
+    margin: auto;
+}
+/*=============== Footer ============================================================*/
+.login h1{
+  margin: 20px;
+
+}
+.login h1 a {
+  background-image:none;
+}

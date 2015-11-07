@@ -16,15 +16,14 @@
                     <?php } ?>
                     <div class="post__info row no-margin">
                       <div class="col-md-8 col-xs-7 padding-medium"> 
-                        <h4 class="no-margin"><?php the_title();?></h4>
+                        <h4 class="no-margin"><?php the_title(); ?></h4>
                         <span><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></span>
                       </div>
                       <div class="col-md-4 col-xs-5 post__info__estatus <?php 
-                            if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='En adopción') {echo 'post__info__estatus--adopcion';} else { 
-                            if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='Perdido') {echo 'post__info__estatus--perdidos';} else {
-                            if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='Encontrado') {echo 'post__info__estatus--encontrados';} else { 
-                            if(empty($data[ 'estatus' ]) || $data[ 'estatus' ]!='Encontrado' || $data[ 'estatus' ]=='Perdido' || $data[ 'estatus' ]=='En adopcion')  {echo 'post__info__estatus--otros';} } } } ?>"> 
-                        <?php if(!empty($data[ 'estatus' ])) {echo $data[ 'estatus' ];} ?>
+                            if(in_category('adopcion')) {echo 'post__info__estatus--adopcion';} else { 
+                            if(in_category('perdidos')) {echo 'post__info__estatus--perdidos';} else {
+                            if(in_category('encontrados')) {echo 'post__info__estatus--encontrados';} } } ?>"> 
+                        <?php the_category(); ?>
                       </div>
                     </div>
                   </a>

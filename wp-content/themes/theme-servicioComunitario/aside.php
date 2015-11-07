@@ -1,7 +1,7 @@
 <div class="affix-top" id="Affix" data-spy="affix">
   <?php if($user_ID){ ?>
 
-    <a id="btn-dar" href="<?php echo admin_url( 'edit.php?post_type=post&mode=list', 'http' ); ?>" class="btn">Dar en adopcion</a>
+    <a id="btn-dar" href="<?php echo admin_url( 'edit.php?post_type=post&mode=list' ); ?>" class="btn">Dar en adopcion</a>
   <?php }
    ?>
 

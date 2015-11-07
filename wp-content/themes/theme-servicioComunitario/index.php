@@ -66,16 +66,44 @@
                         <h4 class="no-margin"><?php the_title();?></h4>
                         <span><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></span>
                       </div>
-                      <div class="col-md-4 col-xs-5 post__info__estatus <?php 
-                            if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='En adopción') {echo 'post__info__estatus--adopcion';} else { 
-                            if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='Perdido') {echo 'post__info__estatus--perdidos';} else {
-                            if(!empty($data[ 'estatus' ]) && $data[ 'estatus' ]=='Encontrado') {echo 'post__info__estatus--encontrados';} else { 
-                            if(empty($data[ 'estatus' ]) || $data[ 'estatus' ]!='Encontrado' || $data[ 'estatus' ]=='Perdido' || $data[ 'estatus' ]=='En adopcion')  {echo 'post__info__estatus--otros';} } } } ?>"> 
-                        <?php if(!empty($data[ 'estatus' ])) {echo $data[ 'estatus' ];} else {echo "Sin categoria";} ?>
-                      </div>
-                    </div>
+                      <?php 
+                        if (in_category('adopcion')){
+                          ?>
+                          <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--adopcion"> 
+                            <?php the_category(); ?>
+                          </div>
+                          <?php
+                        }
+                        else{
+                          if (in_category('perdidos')){
+                            ?>
+                            <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--perdidos"> 
+                              <?php the_category(); ?>
+                            </div>
+                            <?php
+                          }
+                          else{
+                            if (in_category('encontrados')){
+                              ?>
+                              <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--encontrados"> 
+                                <?php the_category(); ?>
+                              </div>
+                              <?php
+                            }
+                            else{
+                              ?>
+                              <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--otros"> 
+                                <?php the_category(); ?>
+                              </div>
+                              <?php
+                            }
+                          }
+                        }
+                      ?>
+                  </div>
                   </a>
                 </div>
+                
             <?php } break; ?>
           <?php endwhile; else: ?>
               <div class="BoxCardPet__NoPost">
@@ -85,25 +113,24 @@
         </div>
         
       </article>
-      <footer class="container">
-          <?php require_once("footer.php"); ?>
-      </footer>  
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
       <script>
         $(document).ready(function(){
-          $("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span>" );
-          $("#menuIndex li:nth-child(2) a").append( "<span class='icon icon-Lupa_Vector'></span>" );
-          $("#menuIndex li:nth-child(3) a").append( "<span class='icon icon-Dog_Vector'></span>" );
+          $("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span><span>En esta sección podras dar y encontrar mascotas en adopción</span>" );
+          $("#menuIndex li:nth-child(2) a").append( "<span class='icon icon-Lupa_Vector'></span><span>En esta sección podras reportar y ver las mascotas que han sido encontradas</span>" );
+          $("#menuIndex li:nth-child(3) a").append( "<span class='icon icon-Dog_Vector'></span><span>En esta sección podras reportar y ver las mascotas que se han perdido</span>" );
 
           $("#menuIndexTop li:nth-child(1) a").append( "<span class='glyphicon glyphicon-log-in'></span>" );
           $("#menuIndexTop li:nth-child(2) a").append( "<span class='icon icon-edit3'></span>" );
+          $("ul.post-categories li a").removeAttr("href");
+          $("ul.post-categories li a").removeAttr("rel");
 
-          $(".post a").mouseover(function() {
-              $(this).children('.post__info').css("display","block");
-            }).mouseout(function (){
-              $('.post a').children('.post__info').css("display","none"); 
-            });
-
+          
         });
       </script>
+    
     </body>
 </html>

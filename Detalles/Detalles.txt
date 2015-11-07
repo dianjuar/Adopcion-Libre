@@ -1,4 +1,4 @@
-Version Wordpress 4.1.1 Español --- ¡¡¡¡¡NO ACTUALIZAR!!!!
+Version Wordpress 4.2.2–es_ES
 
 Base de datos
      usuario: admin
@@ -16,9 +16,25 @@ Correo para el sitio
 	 adopcion.libre@gmail.com 
 	 clave: Rocko_Spunky
 
+
 SOCIAL LOGIN ONEALL
+
 	 contraseña: Rocko_Spunky
 
 FACEBOOK
 	 correo: adopcion.libre@gmail.com
 	 contraseña: Rocko_Spunky
+
+TWITTER
+	 correo: adopcion.libre@gmail.com
+	 contraseña: Rocko_Spunky
+	 nombre de usuario: AdopcionLibre
+	 telefono asociado: 4162786280
+
+AKISMET --> Plugin comments spam
+	 correo: adopcion.libre@gmail.com
+	 contraseña: Rocko_Spunky
+	 First Name: Adopcion
+	 Last Name: Libre
+
+#integración con Telegram. Prueba2
