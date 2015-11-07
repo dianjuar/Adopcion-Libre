@@ -21,17 +21,26 @@ dt {
 }
 /*=============== Etiquetas gobables ================================================*/
 /*=============== Margins y paddings ================================================*/
+.btn_fb_margin{
+  top: -5px;
+}
 .no-margin {
   margin: 0;
 }
 .margin-medium {
   margin-top: 30px;
 }
+.margin-large-top {
+  margin-top: 50px;
+}
 .margin-small-top {
   margin-top: 10px;
 }
 .margin-small-left {
   margin-left: 15px;
+}
+.margin-medium-bottom {
+  margin-bottom: 40px;
 }
 .no-padding {
   padding: 0;
@@ -57,16 +66,35 @@ dt {
 .boxMenuIndex {
   list-style: none;
   padding: 0;
+  display: table-row;
 }
 .boxMenuIndex li {
-  float: left;
   width: 33.3%;
-  padding: 10px 15px;
-  font-size: 1.7em;
+  padding: 15px 20px;
+  font-size: 1.2em;
+  font-weight: 500;
+  display: table-cell;
+  text-transform: uppercase;
+  text-shadow: 1.5px 0px #5E5B5B;
+  
+}
+.boxMenuIndex li:nth-child(2) span:first-child{
+  font-size: 7em;
+  margin-top: -25px;
+  margin-bottom: -15px;
 }
 .boxMenuIndex li span {
   display: block;
-  font-size: 5em;
+  font-size: 4em;
+  text-shadow:none;
+}
+.boxMenuIndex li span:last-child {
+  font-size: 0.82em;
+  font-weight: 100;
+  font-style: oblique;
+  font-stretch: ultra-condensed;
+  padding: 0 20px;
+  text-transform: initial;
 }
 .boxMenuIndex li:nth-child(1) {
   background-color: #05a9fc;
@@ -166,6 +194,7 @@ dt {
   border-bottom-left-radius: 9px;
   background-color: #f78e1d;
   display: inline-block;
+  cursor: pointer;
 }
 .BoxLoginSingIm ul li:nth-child(2):hover,
 .BoxLoginSingIm ul li:nth-child(2):hover a {
@@ -177,6 +206,7 @@ dt {
   border-bottom-right-radius: 9px;
   background-color: #fada37;
   display: inline-block;
+  cursor: pointer;
 }
 .BoxLoginSingIm ul li:nth-child(1):hover,
 .BoxLoginSingIm ul li:nth-child(1):hover a {
@@ -400,13 +430,22 @@ dt {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.BtnFinalizarPosicion{
+  position: absolute;
+  top: 17px;
+  right: 9px;
+}
+.BtnFinalizar{
+  background-color: #f78e1d;
+  color: white;
+}
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
 .BoxDetPet {
   display: block;
 }
 .BoxDetPet__ImgBox {
-  border: 2px solid #d7d7d7;
+  /*border: 2px solid #d7d7d7;*/
 }
 .BoxDetPet__ImgSmall {
   margin-top: 10px;
@@ -432,8 +471,9 @@ dt {
   text-transform: capitalize;
   margin-left: 15px;
 }
-.BoxDetPet__title small {
-  font-size: 0.4em;
+h1.BoxDetPet__title + small {
+    display: block;
+    margin-left: 15px;
 }
 .BoxDetPet__data {
   margin-top: 10px;
@@ -506,7 +546,7 @@ dt {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  min-width: 380px;
+  width: 33.33333333%;
   background-color: #ededed;
 }
 .post__imgContainer {
@@ -520,12 +560,13 @@ dt {
   position: relative;
   z-index: 10;
   margin-top: -70px;
-  display: none;
+  
 }
-.post__info h4 {
+.post__info h4,.post__info span{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: white;
 }
 .post__info__estatus {
   display: table-cell;
@@ -534,15 +575,15 @@ dt {
   text-align: center;
 }
 .post__info__estatus--adopcion {
-  padding-top: 10px;
+  padding-top: 5px;
   background-color: rgba(5, 169, 252, 0.77);
 }
 .post__info__estatus--encontrados {
-  padding-top: 25px;
+  padding-top: 15px;
   background-color: rgba(21, 219, 91, 0.77);
 }
 .post__info__estatus--perdidos {
-  padding-top: 25px;
+  padding-top: 15px;
   background-color: rgba(224, 31, 149, 0.77);
 }
 .post__info__estatus--otros {
@@ -553,6 +594,15 @@ dt {
   font-size: 1.6em;
   padding-top: 30px;
   min-height: 185px;
+  text-align: center;
+}
+.post__info__estatus ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post__info__estatus a{
+  color: white;
 }
 /*=============== Caja moscota ======================================================*/
 /*=============== Paginacion ========================================================*/
@@ -607,7 +657,7 @@ dt {
 #comment {
   width: 100%;
   height: 100px;
-  border: 1px solid #ededed;
+  border: 1px solid #888888;
 }
 #submit {
   border-radius: 0.3em;
@@ -692,7 +742,7 @@ dt {
   padding: 0px 30px;
   text-align: center;
 }
-.ventana__btnx {
+.ventana__btn {
   text-align: center;
 }
 .modal-header .close {
@@ -710,9 +760,15 @@ dt {
 }
 .titulo--naranja {
   border-bottom: 3px solid #f78e1d;
-  margin-bottom: 40px;
 }
 /*=============== Modal =============================================================*/
+.info_mas{
+  padding: 5px 20px;
+}
+.redes_sociales{
+  text-align: right;
+  padding: 10px;
+}
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: 767px) {
   /*=============== Menú ==========================================================*/
@@ -823,9 +879,7 @@ dt {
   .BoxDetPet__ImgBigBox {
     padding-right: 10px;
   }
-  .BoxDetPet__title small {
-    display: block;
-  }
+  
   .BoxDetPet__label {
     display: inline-block;
   }
@@ -835,6 +889,7 @@ dt {
     float: none;
     width: 100%;
     font-size: 1.6em;
+    display: block;
   }
   .boxMenuIndex li span {
     display: inline-block;
@@ -846,7 +901,22 @@ dt {
   .boxMenuIndex li:nth-child(3) {
     border-top-right-radius: 0;
   }
+  .boxMenuIndex li:nth-child(2) span:first-child {
+    font-size: 1.9em;
+  }
   /*=============== Menu  Index ===================================================*/
+  /*=============== boton =========================================================*/
+  .BtnPosicion {
+    float: none;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .BtnFinalizarPosicion {
+    position: inherit;
+    top: 0;
+    right: 0;
+  }
+  /*=============== boton =========================================================*/
 }
 /*=============== MEdia <768 px Phones ==============================================*/
 /*=============== MEdia ≥768 px Tablets =============================================*/
@@ -893,7 +963,19 @@ dt {
   /*=============== Menu  Index ===================================================*/
   .boxMenuIndex li {
     min-height: 210px;
+    display: block;
+  }
+  .boxMenuIndex li:nth-child(2) span:first-child {
+    font-size: 1.9em;
   }
   /*=============== Menu  Index ===================================================*/
+  /*=============== boton =========================================================*/
+  .BtnPosicion {
+    float: none;
+  }
+  .BtnFinalizarPosicion {
+    top: -1px;
+  }
+  /*=============== boton =========================================================*/
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/

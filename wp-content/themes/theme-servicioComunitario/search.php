@@ -13,13 +13,13 @@
         <![endif]-->
       <?php require_once("header.php"); ?>
       <?php require_once("menu.php"); ?>
-
+      <strong></strong>
       <article class="container">
         <section class="post no-margin">
-          <div class="col-md-12 no-padding">
-            <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Resultados de la busqueda</h1>
-          </div>
-        	<h3 class="page-title"><?php printf( __( 'Resultados de: "%s"', 'twentyfifteen' ), get_search_query() ); ?></h3>
+          
+          <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Resultados de la busqueda</h1>
+
+        	<h3 class="page-title"><?php printf( __( 'Resultados de: "<strong>%s</strong>"', 'twentyfifteen' ), get_search_query() ); ?></h3>
             
           <?php require_once("posts.php"); ?>
 
@@ -30,9 +30,10 @@
         </section>
 
       </article>
-      <footer class="container">
-          <?php require_once("footer.php"); ?>
-      </footer>  
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
       
       <script>
         $(document).ready(function(){
@@ -41,7 +42,7 @@
               $(this).children('.post__info').css("display","block");
             }).mouseout(function (){
               $('.post a').children('.post__info').css("display","none"); 
-            });
+            });        
         });
 
       </script>

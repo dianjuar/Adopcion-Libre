@@ -28,15 +28,14 @@
             <h1 class="titulo--azul"><span class="icon icon-Pata_vector"></span>Mascotas en adopción</h1>
 
             <?php if($user_ID){ ?>
-            <a id="btn-dar" href="<?php echo admin_url( 'edit.php?post_type=post&mode=list', 'http' ); ?>" class="btn BtnAdopcion BtnPosicion">Dar en adopcion</a>
+            <a id="btn-dar" href="<?php echo admin_url( 'post-new.php?post_category=adopcion' ); ?>" class="btn btn-lg BtnAdopcion BtnPosicion">Dar en adopcion</a>
             <?php } ?>
           </div>
           
           <div class="col-md-12 pagina pagina--adopcion"></div>
           <?php 
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            query_posts('category_name=adopcion&paged='.$paged ) ?>
-            
+            query_posts('post_status=publish&category_name=adopcion&paged='.$paged ) ?>
           <?php require_once("posts.php"); ?>
 
           <div class="col-md-12 pagina pagina--adopcion">
@@ -46,9 +45,10 @@
         </section>
 
       </article>
-      <footer class="container">
-          <?php require_once("footer.php"); ?>
-      </footer>  
+      <?php 
+            require_once("footer.php");
+            require_once("js/Scripts to login buttons.php");
+        ?>
       
       <script>
         $(document).ready(function(){
@@ -59,16 +59,7 @@
               $(this).children('.post__info').css("display","block");
             }).mouseout(function (){
               $('.post a').children('.post__info').css("display","none"); 
-            });
-
-          $('Affix').affix({
-            offset: {
-              top: 10,
-              bottom: function () {
-                return (this.bottom = $('.footer').outerHeight(true))
-              }
-            }
-          })
+            });         
         });
 
       </script>

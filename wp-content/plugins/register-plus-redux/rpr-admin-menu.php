@@ -43,7 +43,7 @@ if ( !class_exists( 'RPR_Admin_Menu' ) ) {
 			global $wpdb;
 			$hookname = add_menu_page( __( 'Register Plus Redux', 'register-plus-redux' ), __( 'Register Plus Redux', 'register-plus-redux' ), 'manage_options', 'register-plus-redux', array( $this, 'rpr_options_submenu' ) );
 			// NOTE: $hookname = toplevel_page_register-plus-redux
-			if ( file_exists( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' ) ) {
+			if ( file_exists( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' ) && (get_option('readygraph_deleted') != "true") ) {
 				global $menu_slug;  // 'readygraph-app' as defined on line 5 of readygraph-extension.php
 				add_submenu_page( 'register-plus-redux', 'Readygraph App', __( 'Readygraph App', 'register-plus-redux' ), 'administrator', $menu_slug, array( $this, 'rpr_readygraph_menu_page' ) );
 			}
@@ -135,6 +135,9 @@ if ( !class_exists( 'RPR_Admin_Menu' ) ) {
 					break;	
 				case 'faq':
 					include('extension/readygraph/faq.php');
+					break;
+				case 'monetization-settings':
+					include('extension/readygraph/monetization.php');
 					break;
 				default:
 					include('extension/readygraph/admin.php');
