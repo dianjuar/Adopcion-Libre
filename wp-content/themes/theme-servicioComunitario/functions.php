@@ -49,15 +49,15 @@
 		"dirección" => array(
     		"nombre" => "direccion",
     		"titulo" => "Dirección:",
-    		"descripcion" => "Dirección actual de la mascota"),
-		"nombre-dueno" => array(
-    		"nombre" => "nombre-dueno",
-    		"titulo" => "Nombre del dueño:",
-    		"descripcion" => "Nombre de la persona que sera la encargada de la mascota"),
-		"telefono-dueno" => array(
-    		"nombre" => "telefono-dueno",
-    		"titulo" => "Teléfono del dueño:",
-    		"descripcion" => "Teléfono de la persona que sera la encargada de la mascota"),
+    		"descripcion" => "Dirección actual de la mascota. <u> Cambielo solo si la mascota le pertenece a otra persona. </u>"),
+		"estado" => array(
+			"nombre" => "estado",
+			"titulo" => "Estado:",
+			"descripcion" => "Estado en el que se encuentra ubicada la mascota. <u> Cambielo solo si la mascota le pertenece a otra persona. </u>"),
+		"municipio" => array(
+			"nombre" => "municipio",
+			"titulo" => "Municipio:",
+			"descripcion" => "Municipio en el que se encuentra ubicada la mascota. <u> Cambielo solo si la mascota le pertenece a otra persona. </u>"),
 	);
 
 	
@@ -84,52 +84,80 @@
 		<?php
 		wp_nonce_field( plugin_basename( __FILE__ ), $key . '_wpnonce', false, true );
 		 
-		foreach($meta_boxes as $meta_box) {
+		foreach($meta_boxes as $meta_box) 
+		{
 		    $data = get_post_meta($post->ID, $key, true);
 		    ?>
-		 
 		    <div class="form-field form-required">
-		    <?php if($meta_box[ 'nombre' ]!="nombre-dueno" && $meta_box[ 'nombre' ]!="telefono-dueno" ){ ?>
 		        <label for="<?php echo $meta_box[ 'nombre' ]; ?>"><?php echo $meta_box[ 'titulo' ]; ?></label>
 		        
-		        <?php if($meta_box[ 'nombre' ]=="esterilizacion"){ ?>
-		        	<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
-						<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
-						<option value="Si" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Si") {?>selected<?php } ?> >Si</option>
-		        		<option value="No" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No") {?>selected<?php } ?> >No</option>
-		        		<option value="No se" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No se") {?>selected<?php } ?> >No se</option>
-		        	</select>		        	
-		        <?php } 
-		        	if($meta_box[ 'nombre' ]=="tipo"){ ?>
+		        <?php
+		        switch ($meta_box[ 'nombre' ]) 
+		        {
+		        	case "esterilizacion":
+		        	?>
+		        		<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
+							<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
+							<option value="Si" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Si") {?>selected<?php } ?> >Si</option>
+			        		<option value="No" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No") {?>selected<?php } ?> >No</option>
+			        		<option value="No se" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="No se") {?>selected<?php } ?> >No se</option>
+		        		</select>	
+		        	<?php
+		        	break;
+		        	//---------
+		        	case "tipo":
+		        	?>
 						<select required name="<?php echo $meta_box[ 'nombre' ]; ?>" id="<?php echo $meta_box[ 'nombre' ]; ?>">
 							<option value="" <?php if(empty($data[ $meta_box[ 'nombre' ] ])) {?>selected<?php } ?> >Seleccionar</option>  
 							<option value="Perro" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Perro") {?>selected<?php } ?> >Perro</option>
 		        			<option value="Gato" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Gato") {?>selected<?php } ?> >Gato</option>
 		        			<option value="Otro" <?php if(!empty($data[ $meta_box[ 'nombre' ] ]) && $data[ $meta_box[ 'nombre' ] ]=="Otro") {?>selected<?php } ?> >Otro</option>
 		        		</select>	
-		        <?php }
-		        	 if($meta_box[ 'nombre' ]=="telefono") { ?>
-		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " 
-		        	pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3,4})[-. )]*(\d{3})[-. ]*(\d{2})[-. ]*(\d{2})(?: *x(\d+))?\s*$"/>
-		        			        <?php }
-		        	if($meta_box[ 'nombre' ]=="direccion") { ?>
-		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_direccin; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " />
-		        <?php }
-		        	if($meta_box[ 'nombre' ]=="raza") { ?>	
-		        	<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
-		        <?php } 
-		        	if($meta_box[ 'nombre' ]=="nombre-dueno") { ?> 
-		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
-		        <?php }
-		        	if($meta_box[ 'nombre' ]=="telefono-dueno") { ?>
-		        	<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
-		    	<?php }
+		        	<?php
+		        	break;
+		        	//---------
+		        	case "telefono":
+		        	?>
+						<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" 
+						value="<?php if(empty($data[ $meta_box[ 'nombre' ] ])) echo $current_user->rpr_tel; else  echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?> " 
+		        		pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3,4})[-. )]*(\d{3})[-. ]*(\d{2})[-. ]*(\d{2})(?: *x(\d+))?\s*$"/>
+		        	<?php
+		        	break;
+		        	//---------
+		        	case "direccion":
+		        	?>
+		        		<textarea required name="<?php echo $meta_box[ 'nombre' ]; ?>" > <?php echo $current_user->rpr_direccin; ?> </textarea>
+		        	<?php
+		        	break;
+		        	//---------
+		        	case "raza":
+		        	?>
+		        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" 
+		        		value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
+		        	<?php
+		        	break;
+		        	//---------
+		        	case "estado":
+		        	?>
+	        			<select requeried id="rpr_estado" name="<?php echo $meta_box[ 'nombre' ]; ?>">
+	        			</select>
+		        	<?php
+		        	break;
+		        	//---------
+		        	case "municipio":
+		        	?>
+	        			<select requeried id="rpr_municipio" name="<?php echo $meta_box[ 'nombre' ]; ?>" >
+	        			</select>
+		        	<?php
+		        	break;
+		        	//---------
+		        }	        	
 		        ?>
 		        <p><?php echo $meta_box[ 'descripcion' ]; ?></p>
-		    </div>
+	    	</div>
 		 
-		<?php } // Fin del foreach?>
-		<?php } // Fin del foreach?>
+		<?php 
+		} // Fin del foreach?>
 		</div>
 		<?php
 	}
@@ -153,15 +181,15 @@
 	}
 	add_action( 'save_post', 'grabar_meta_box' );
  	/*===== ADMIN Grabar meta box - Post OFF ============================================*/
- 	/*===== ADMIN Editar tabla - Post OFF ===============================================*/
+ 	/*===== ADMIN Editar tabla - Post ON ===============================================*/
 	function editar_titulos_columnas($columns){
 			$columns = array(
 				"cb" => "<input type=\"checkbox\" />",
 				"title" => "Título",
 				"description" => "Descripción",
 				"tipo" => "Tipo",
-				"raza" => "Raza",
-				"esterilizacion" => "Esterilizado"
+				"estado" => "Estado",
+				"municipio" => "Municipio",
 			);
 			return $columns;
 	}
@@ -171,23 +199,32 @@
 	function obt_valores_columnas($column){
     	global $post, $meta_boxes, $key;
  
-    	foreach($meta_boxes as $meta_box) {
+    	foreach($meta_boxes as $meta_box) 
     	    $data = get_post_meta($post->ID, $key, true);
-    	}
+    	
+
     	switch ($column)
     	{
-    	        case "description":
-    	                the_excerpt();
-    	                break;
-    	        case "raza":
-     	               	if(empty($data['raza'])) echo "--"; else echo $data['raza'];
-    	                break;
-     	       case "esterilizacion":
-     	       			if(empty($data['esterilizacion'])) echo "--"; else echo $data['esterilizacion'];
-    	                break;
-    	        case "tipo":
-     	               	if(empty($data['tipo'])) echo "--"; else echo $data['tipo'];
-    	                break;
+	        case "estado":
+               	if(empty($data['estado'])) 
+               		echo "--"; 
+               	else 
+               		echo $data['estado'];
+            break;
+
+ 	        case "municipio":
+       			if(empty($data['municipio'])) 
+       				echo "--"; 
+       			else 
+       				echo $data['municipio'];
+            break;
+
+	        case "tipo":
+               	if(empty($data['tipo'])) 
+               		echo "--"; 
+               	else 
+               		echo $data['tipo'];
+            break;
     	}
 	}
 	add_action("manage_posts_custom_column",  "obt_valores_columnas");
@@ -582,5 +619,9 @@
 		}
 
 	}
+
+	
+
+
 
 ?>

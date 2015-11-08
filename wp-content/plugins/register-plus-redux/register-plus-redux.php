@@ -316,7 +316,7 @@ if ( !class_exists( 'Register_Plus_Redux' ) ) {
 								echo "\n", '<tr>';
 								echo "\n", '<th><label for="', $meta_key, '">', esc_html( $meta_field['label'] );
 								if ( '1' !== $meta_field['show_on_profile'] ) echo ' <span class="description">(hidden)</span>';
-								if ( '1' ===  $meta_field['require_on_registration'] ) echo ' <span class="description">(required)</span>';
+								if ( '1' ===  $meta_field['require_on_registration'] ) echo ' <span class="description">('.__('required','register-plus-redux').')</span>';
 								echo '</label></th>';
 								switch ( (string) $meta_field['display'] ) {
 									case 'textbox':
