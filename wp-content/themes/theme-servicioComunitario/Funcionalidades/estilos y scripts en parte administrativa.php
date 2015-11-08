@@ -20,7 +20,9 @@ add_action( 'admin_head', function(){
 
 		global $pagenow;
 
-		if($pagenow == "edit.php" || $pagenow == "profile.php" || $pagenow == "edit-comments.php")
+		if($pagenow == "edit.php" || $pagenow == "profile.php" || 
+		   $pagenow == "edit-comments.php" || $pagenow == "post-new.php" ||
+		   $pagenow == "post.php")
 		{			
 			?>
 			<!-- links JQuery y bootstrap.js  -->
@@ -28,22 +30,97 @@ add_action( 'admin_head', function(){
 			<script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
 			<script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
 			<script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script> 
-
+		
 			<?php
 
-			if ($pagenow == "edit.php")
+			switch ($pagenow) 
 			{
-				ModalAlFinalizarUnPost();
-				SweetalertGestionarPost();
-				agregarClass_CURRENT_post();				
-			}
-			else
-				if( $pagenow == "profile.php" )				
-					set_patterTelef("#your-profile");				
-				else
-					if( $pagenow == 'edit-comments.php')					
-						agregarClass_CURRENT_enviadosRecibidos();
-					
+				case 'edit.php':
+					ModalAlFinalizarUnPost();
+					SweetalertGestionarPost();
+					agregarClass_CURRENT_post();
+
+					?>
+						<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
+						<script>
+							jQuery(document).ready(function($)
+							{	
+								populateEstados("rpr_estado","rpr_municipio","Todos los Estados");
+								$('#rpr_estado').trigger('change');
+
+								<?php 
+								if ( isset($_GET['FILTRO_ESTADO']) ) 
+								{?>
+									$('#rpr_estado').val("<?php echo $_GET['FILTRO_ESTADO'] ?>").trigger('change');
+								<?php 
+								}
+								?>
+
+								<?php 
+								if ( isset($_GET['FILTRO_MUNICIPIO']) ) 
+								{?>
+									$('#rpr_municipio').val("<?php echo $_GET['FILTRO_MUNICIPIO'] ?>");
+								<?php 
+								}
+								?>
+							});
+						</script>
+					<?php
+
+				break;
+
+				case 'profile.php':
+					set_patterTelef("#your-profile");	
+
+					$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
+					$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true); 
+
+					?>
+					<script type="text/javascript">
+						jQuery(document).ready(function($)
+	    				{
+							$('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
+							$('#rpr_municipio').val("<?php echo $municipio ?>");
+						});
+					</script>
+					<?php
+				break;
+
+				case 'edit-comments.php':
+					agregarClass_CURRENT_enviadosRecibidos();
+				break;
+
+				case 'post.php':
+					global $post;
+
+					$actualizacion = true;	
+					$estado = get_post_meta($post->ID, 'estado', true);
+					$municipio = get_post_meta($post->ID, 'municipio', true);	
+
+				//el break no se puso intencionalmente. !!WARNING!!
+
+				case 'post-new.php':
+
+					if(!$actualizacion)
+					{
+						$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
+						$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true); 
+					}
+
+					?>
+						<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
+						<script>
+							jQuery(document).ready(function($)
+							{	
+								populateEstados("rpr_estado", "rpr_municipio");								
+								$('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
+								$('#rpr_municipio').val("<?php echo $municipio ?>");
+							});
+						</script>
+					<?php
+				break;
+
+			}	
 		}// if super grande l:23
 	} );
 	///////////////////////////////////////////////////
@@ -169,13 +246,22 @@ add_action( 'admin_head', function(){
 	function set_patterTelef($IdForm)
 	{
 		?>
+		<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
 		<script>
 			jQuery(document).ready(function($)
 			{							
 				$('<?php echo $IdForm; ?>').removeAttr('novalidate');
 				$("#rpr_tel").attr("pattern",'^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3,4})[-. )]*(\\d{3})[-. ]*(\\d{2})[-. ]*(\\d{2})(?: *x(\\d+))?\\s*$');
+				
 				$("#rpr_tel").attr("required",'');
+				$("#rpr_estado").attr("required",'');
+				$("#rpr_municipio").attr("required",'');
+				$("#rpr_direccin").attr("required",'');
+				
+
 				$('#rpr_tel').parent().append('<small><abbr title="Ejemplo">Ejm:</abbr> +58 (0426) 123.45.67</small>');
+	
+				populateEstados("rpr_estado", "rpr_municipio");
 			});
 		</script>
 		<?php

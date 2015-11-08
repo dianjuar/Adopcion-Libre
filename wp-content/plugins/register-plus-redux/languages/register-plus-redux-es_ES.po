@@ -1420,3 +1420,7 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://radiok.info/"
 msgstr ""
+
+#: register-plus-redux.php:319
+msgid "required"
+msgstr "requerido"

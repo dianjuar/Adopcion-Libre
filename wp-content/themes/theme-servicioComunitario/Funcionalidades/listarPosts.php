@@ -57,6 +57,9 @@
 	//ADD AUTHOR COLUMN TO THE LIST OF POSTS
 	function add_author_column( $columns ) {
 		
+	    $columns["categoria"] = "Categoría";
+	    $columns["estado"] = "Estado";
+	    $columns["municipio"] = "Municipio";
 	    $columns["autor"] = "Autor"; //if I set the the "author" instead "autor" I cann't modify its content
 	    unset($columns["description"]); //it works
 	    return $columns;
@@ -71,11 +74,28 @@
 
 		$user = get_user_by( 'id', $post->post_author );
 		
-	    switch ( $column ) {
-	      case 'autor':
-	        echo $user->display_name;
+	    switch ( $column ) 
+	    {
+	    	case 'autor':
+	        	echo $user->display_name;
 	        break;
 
+	        case 'categoria': //mostar las categorias que pertenece un post
+
+	        	$cats = array();
+				foreach(wp_get_post_categories($post->ID) as $c)
+				{
+					$cat = get_category($c);
+					array_push($cats,$cat->name);
+				}
+
+				if(sizeOf($cats)>0)				
+					$post_categories = implode(',',$cats);
+				else				  
+					$post_categories = "SIN ASIGNAR";
+
+				echo $post_categories;
+	        break;
 	    }
 	}
 	add_action( 'manage_posts_custom_column' , 'set_display_name_autor_column' );
@@ -122,4 +142,54 @@
 	if( !current_user_can('al_suscriptor') )
 		add_action( 'views_edit-post', 'add_tab_mine' );
 	//*************************************************************************************
+	//Agregar un filtro al listado de post por estado --ON--
+	add_action( 'restrict_manage_posts', 'wpse45436_admin_posts_filter_restrict_manage_posts' );
+	/**
+	 * First create the dropdown
+	 * make sure to change POST_TYPE to the name of your custom post type
+	 * 
+	 * @author Ohad Raz
+	 * 
+	 * @return void
+	 */
+	function wpse45436_admin_posts_filter_restrict_manage_posts(){
+	        ?>
+		        <select id="rpr_estado" name="FILTRO_ESTADO">
+		        </select>
+		        <select id="rpr_municipio" name="FILTRO_MUNICIPIO">
+		        </select>
+	        <?php
+	}
+
+	add_filter( 'parse_query', 'wpse45436_posts_filter' );
+	/**
+	 * if submitted filter by post meta
+	 * 
+	 * make sure to change META_KEY to the actual meta key
+	 * and POST_TYPE to the name of your custom post type
+	 * @author Ohad Raz
+	 * @param  (wp_query object) $query
+	 * 
+	 * @return Void
+	 */
+	function wpse45436_posts_filter( $query )
+	{
+	    global $pagenow;
+	    $type = 'post';
+	    if (isset($_GET['post_type'])) 
+	        $type = $_GET['post_type'];
+	    
+
+	    if ( $pagenow=='edit.php' && isset($_GET['FILTRO_ESTADO']) && $_GET['FILTRO_ESTADO'] != '-1') 
+	    {
+	        $query->query_vars['meta_key'] = 'estado';
+	        $query->query_vars['meta_value'] = $_GET['FILTRO_ESTADO'];
+
+	        $query->query_vars['meta_key'] = 'municipio';
+	        $query->query_vars['meta_value'] = $_GET['FILTRO_MUNICIPIO'];
+	    }
+	}
+	//Agregar un filtro al listado de post por estado --OFF--
+	//*************************************************************************************
+
 ?>

@@ -104,7 +104,11 @@
             <h3 class="titulo--naranja margin-small-top"><span class="icon icon-Pata_vector"></span>Información de contacto:</h3>
             <dl class="BoxDetPet__data no-margin">
               <dt>Nombre:</dt>
-              <dd> <?php echo wp_get_current_user()->display_name; ?></dd>
+              <dd> <?php echo get_user_by('id', $post->post_author )->display_name; ?></dd>
+              <dt>Estado:</dt>
+              <dd> <?php echo $data[ 'estado' ]; ?></dd>
+              <dt>Municipio:</dt>
+              <dd> <?php echo $data[ 'municipio' ]; ?></dd>
               <dt>Ubicación:</dt>
               <dd> <?php if(!empty($data[ 'direccion' ])) {echo $data[ 'direccion' ];} ?></dd>
               <dt><abbr title="Teléfono">Tlf:</abbr></dt>
