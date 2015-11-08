@@ -20,7 +20,8 @@ add_action( 'admin_head', function(){
 
 		global $pagenow;
 
-		if($pagenow == "edit.php" || $pagenow == "profile.php" || $pagenow == "edit-comments.php")
+		if($pagenow == "edit.php" || $pagenow == "profile.php" || 
+		   $pagenow == "edit-comments.php" || $pagenow == "post-new.php")
 		{			
 			?>
 			<!-- links JQuery y bootstrap.js  -->
@@ -31,19 +32,53 @@ add_action( 'admin_head', function(){
 
 			<?php
 
-			if ($pagenow == "edit.php")
+			switch ($pagenow) 
 			{
-				ModalAlFinalizarUnPost();
-				SweetalertGestionarPost();
-				agregarClass_CURRENT_post();				
-			}
-			else
-				if( $pagenow == "profile.php" )				
-					set_patterTelef("#your-profile");				
-				else
-					if( $pagenow == 'edit-comments.php')					
-						agregarClass_CURRENT_enviadosRecibidos();
-					
+				case 'edit.php':
+					ModalAlFinalizarUnPost();
+					SweetalertGestionarPost();
+					agregarClass_CURRENT_post();
+				break;
+
+				case 'profile.php':
+					set_patterTelef("#your-profile");	
+
+					$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
+					$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true); 
+
+					?>
+					<script type="text/javascript">
+						jQuery(document).ready(function($)
+	    				{
+							$('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
+							$('#rpr_municipio').val("<?php echo $municipio ?>");
+						});
+					</script>
+					<?php
+				break;
+
+				case 'edit-comments.php':
+					agregarClass_CURRENT_enviadosRecibidos();
+				break;
+
+				case 'post-new.php':
+
+					$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
+					$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true); 
+					?>
+						<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
+						<script>
+							jQuery(document).ready(function($)
+							{	
+								populateEstados("rpr_estado", "rpr_municipio");								
+								$('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
+								$('#rpr_municipio').val("<?php echo $municipio ?>");
+							});
+						</script>
+					<?php
+				break;
+
+			}	
 		}// if super grande l:23
 	} );
 	///////////////////////////////////////////////////
@@ -169,13 +204,22 @@ add_action( 'admin_head', function(){
 	function set_patterTelef($IdForm)
 	{
 		?>
+		<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
 		<script>
 			jQuery(document).ready(function($)
 			{							
 				$('<?php echo $IdForm; ?>').removeAttr('novalidate');
 				$("#rpr_tel").attr("pattern",'^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3,4})[-. )]*(\\d{3})[-. ]*(\\d{2})[-. ]*(\\d{2})(?: *x(\\d+))?\\s*$');
+				
 				$("#rpr_tel").attr("required",'');
+				$("#rpr_estado").attr("required",'');
+				$("#rpr_municipio").attr("required",'');
+				$("#rpr_direccin").attr("required",'');
+				
+
 				$('#rpr_tel').parent().append('<small><abbr title="Ejemplo">Ejm:</abbr> +58 (0426) 123.45.67</small>');
+	
+				populateEstados("rpr_estado", "rpr_municipio");
 			});
 		</script>
 		<?php
