@@ -106,9 +106,9 @@
               <dt>Nombre:</dt>
               <dd> <?php echo get_user_by('id', $post->post_author )->display_name; ?></dd>
               <dt>Estado:</dt>
-              <dd> <?php echo $data[ 'estado' ]; ?></dd>
+              <dd> <?php echo get_post_meta( $post->ID, 'estado', true ); ?></dd>
               <dt>Municipio:</dt>
-              <dd> <?php echo $data[ 'municipio' ]; ?></dd>
+              <dd> <?php echo get_post_meta( $post->ID, 'municipio', true ); ?></dd>
               <dt>Ubicación:</dt>
               <dd> <?php if(!empty($data[ 'direccion' ])) {echo $data[ 'direccion' ];} ?></dd>
               <dt><abbr title="Teléfono">Tlf:</abbr></dt>

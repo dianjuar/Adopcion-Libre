@@ -21,7 +21,8 @@ add_action( 'admin_head', function(){
 		global $pagenow;
 
 		if($pagenow == "edit.php" || $pagenow == "profile.php" || 
-		   $pagenow == "edit-comments.php" || $pagenow == "post-new.php")
+		   $pagenow == "edit-comments.php" || $pagenow == "post-new.php" ||
+		   $pagenow == "post.php")
 		{			
 			?>
 			<!-- links JQuery y bootstrap.js  -->
@@ -29,7 +30,7 @@ add_action( 'admin_head', function(){
 			<script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
 			<script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
 			<script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script> 
-
+		
 			<?php
 
 			switch ($pagenow) 
@@ -38,6 +39,34 @@ add_action( 'admin_head', function(){
 					ModalAlFinalizarUnPost();
 					SweetalertGestionarPost();
 					agregarClass_CURRENT_post();
+
+					?>
+						<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
+						<script>
+							jQuery(document).ready(function($)
+							{	
+								populateEstados("rpr_estado","rpr_municipio","Todos los Estados");
+								$('#rpr_estado').trigger('change');
+
+								<?php 
+								if ( isset($_GET['FILTRO_ESTADO']) ) 
+								{?>
+									$('#rpr_estado').val("<?php echo $_GET['FILTRO_ESTADO'] ?>").trigger('change');
+								<?php 
+								}
+								?>
+
+								<?php 
+								if ( isset($_GET['FILTRO_MUNICIPIO']) ) 
+								{?>
+									$('#rpr_municipio').val("<?php echo $_GET['FILTRO_MUNICIPIO'] ?>");
+								<?php 
+								}
+								?>
+							});
+						</script>
+					<?php
+
 				break;
 
 				case 'profile.php':
@@ -61,10 +90,23 @@ add_action( 'admin_head', function(){
 					agregarClass_CURRENT_enviadosRecibidos();
 				break;
 
+				case 'post.php':
+					global $post;
+
+					$actualizacion = true;	
+					$estado = get_post_meta($post->ID, 'estado', true);
+					$municipio = get_post_meta($post->ID, 'municipio', true);	
+
+				//el break no se puso intencionalmente. !!WARNING!!
+
 				case 'post-new.php':
 
-					$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
-					$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true); 
+					if(!$actualizacion)
+					{
+						$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
+						$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true); 
+					}
+
 					?>
 						<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
 						<script>

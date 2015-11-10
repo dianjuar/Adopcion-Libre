@@ -51,14 +51,14 @@ s_a[23] = "Arístides Bastidas (San Pablo)|Bolívar (Aroa)|Bruzual (Chivacoa)|Co
 s_a[24] = "Almirante Padilla (El Toro)|Baralt (San Timoteo)|Cabimas (Cabimas)|Catatumbo (Encontrados)|Colón (San Carlos del Zulia)|Francisco Javier Pulgar (Pueblo Nuevo-El Chivo)|Jesús Enrique Losada (La Concepción)|Jesús María Semprún (Casigua El Cubo)|La Cañada de Urdaneta (Concepción)|Lagunillas (Ciudat Ojeda)|Machiques de Perijá (Machiques)|Mara (San Rafael del Moján)|Maracaibo (Maracaibo)|Miranda (Los Puertos de Altagracia)|Páez (Sinamaica)|Rosario de Perijá (La Villa del Rosario)|San Francisco (San Francisco)|Santa Rita (Santa Rita)|Simón Bolívar (Tía Juana)|Sucre (Bobures)|Valmore Rodríguez (Bachaquero)";
 
 
-function populateMunicipios(estadoElementId, municipioElementId) {
+function populateMunicipios(estadoElementId, municipioElementId, mensajePorDefecto) {
 
     var selectedEstadoIndex = document.getElementById(estadoElementId).selectedIndex;
 
     var municipioElement = document.getElementById(municipioElementId);
 
     municipioElement.length = 0; // Fixed by Julian Woods
-    municipioElement.options[0] = new Option('Seleccione Municipio', '');
+    municipioElement.options[0] = new Option(mensajePorDefecto, '');
     municipioElement.selectedIndex = 0;
 
     var state_arr = s_a[selectedEstadoIndex].split("|");
@@ -68,21 +68,30 @@ function populateMunicipios(estadoElementId, municipioElementId) {
     }
 }
 
-function populateEstados(estadoElementId, municipioElementId) {
+function populateEstados(estadoElementId, municipioElementId, mensajePorDefecto) {
     // given the id of the <select> tag as function argument, it inserts <option> tags
+
+    if(!mensajePorDefecto){
+    	mensajePorDefecto = 'Seleccione Estado';
+        mensajePorDefectoMunicipio = 'Seleccione Municipio';
+    }
+    else
+        mensajePorDefectoMunicipio = 'Todos los Municipios';
+
     var estadoElement = document.getElementById(estadoElementId);
     estadoElement.length = 0;
-    estadoElement.options[0] = new Option('Seleccione Estado', '-1');
+    estadoElement.options[0] = new Option(mensajePorDefecto, '-1');
     estadoElement.selectedIndex = 0;
+
     for (var i = 0; i < estados.length; i++) {
         estadoElement.options[estadoElement.length] = new Option(estados[i], estados[i]);
     }
 
     // Assigned all countries. Now assign event listener for the states.
 
-    if (municipioElementId) {
-        estadoElement.onchange = function () {
-            populateMunicipios(estadoElementId, municipioElementId);
+    if (municipioElementId) {    	
+        	estadoElement.onchange = function () {
+            populateMunicipios(estadoElementId, municipioElementId, mensajePorDefectoMunicipio);
         };
     }
 }
