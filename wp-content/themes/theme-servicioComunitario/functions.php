@@ -169,7 +169,7 @@ function grabar_meta_box( $post_id ) {
     foreach( $meta_boxes as $meta_box )
     {
     	if( $meta_box[ 'nombre' ] != 'estado' && $meta_box[ 'nombre' ] != 'municipio' )
-    		$data[ $meta_box[ 'nombre' ] ] = $_POST[ $meta_box[ 'nombre' ] ];
+    		$data[ $meta_box[ 'nombre' ] ] = sanitize_text_field( $_POST[ $meta_box[ 'nombre' ] ] );
     	
     }
 
@@ -181,8 +181,9 @@ function grabar_meta_box( $post_id ) {
 
  	update_post_meta( $post_id, $key, $data );   
 
- 	update_post_meta( $post_id, "estado", $_POST["estado"] );   
- 	update_post_meta( $post_id, "municipio", $_POST["municipio"] );   
+ 	//sanitize_text_field() protección contra SQL injection
+ 	update_post_meta( $post_id, "estado", sanitize_text_field($_POST["estado"]) );   
+ 	update_post_meta( $post_id, "municipio", sanitize_text_field($_POST["municipio"]) );   
 
 }
 
