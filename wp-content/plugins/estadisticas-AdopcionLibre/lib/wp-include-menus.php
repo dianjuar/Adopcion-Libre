@@ -12,12 +12,10 @@ else
 	add_menu_page(__("Estadísticas Generales",estadisticasAL), //page_title			
 				          __("Estadísticas", estadisticasAL), //menu_title
 				          "read", //capability
-				          "estadisticas", //menu_slug
-				          "", //function
-				          plugins_url("/images/icon.png", //icon_url
+				          "estAL-estadisticas", //menu_slug
+				          "estadisticasAL", //function
+				          plugins_url("/assets/images/icon.png", //icon_url
 				          dirname(__FILE__))); //position
-
-	
 
 	switch($role)
 	{
@@ -25,28 +23,26 @@ else
 		case "al_superadministrador":
 		case "administrator":
 
-			add_submenu_page("estadisticas",  //parent_slug
+			add_submenu_page("estAL-estadisticas",  //parent_slug
 				     		__("Estadísticas de Usuarios", estadisticasAL), //page_title
 				     		__("Usuarios", estadisticasAL), //menu_title
 				     		"read",  //capability
-				     		"usuarios" //menu_slug
-				     		); //function
+				     		"estAL-usuarios", //menu_slug
+				     		"estadisticasAL"); //function
 
-			add_submenu_page("estadisticas",  //parent_slug
+			add_submenu_page("estAL-estadisticas",  //parent_slug
 				     		__("Estadísticas de Visitas", estadisticasAL), //page_title
 				     		__("Visitas", estadisticasAL), //menu_title
 				     		"read",  //capability
-				     		"visitas" //menu_slug
-				     		); //function
+				     		"estAL-visitas", //menu_slug
+				     		"estadisticasAL"); //function
 
-			add_submenu_page("estadisticas",  //parent_slug
+			add_submenu_page("estAL-estadisticas",  //parent_slug
 				     		__("Estadísticas de Publicaciones", estadisticasAL), //page_title
 				     		__("Publicaciones", estadisticasAL), //menu_title
 				     		"read",  //capability
-				     		"publicaciones" //menu_slug
-				     		); //function
-
-
+				     		"estAL-publicaciones", //menu_slug
+				     		"estadisticasAL"); //function
 
 			//add_menu_page("WP Mail Bank", __("WP Mail Bank", mail_bank), "read", "smtp_mail","", plugins_url("/assets/images/mail.png" , dirname(__FILE__)));
 			//add_submenu_page("smtp_mail", "Settings", __("Settings", mail_bank), "read", "smtp_mail","smtp_mail");
@@ -58,6 +54,21 @@ else
 			//add_submenu_page("smtp_mail", "Our Other Services", __("Our Other Services", mail_bank), "read", "other_services", "other_services" );
 			//add_submenu_page("smtp_mail", "System Status", __("System Status", mail_bank), "read", "mail_system_status", "mail_system_status" );
 		break;
+	}
+}
+
+if(!function_exists( "estadisticasAL" ))
+{
+	function estadisticasAL()
+	{
+		global $wpdb,$current_user,$user_role_permission;
+
+			$role = $wpdb->prefix . "capabilities";
+			$current_user->role = array_keys($current_user->$role);
+			$role = $current_user->role[0];
+		
+		include_once ESTADISTICAS_AL_PLUGIN_DIR."/views/header.php";
+		//include_once MAIL_BK_PLUGIN_DIR ."/views/mail_settings.php";
 	}
 }
 

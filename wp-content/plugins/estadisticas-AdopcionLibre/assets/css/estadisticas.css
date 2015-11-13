@@ -1,0 +1,70 @@
+#ListaPeriodos_Estadisticas ul
+{
+	list-style-type: none;
+}
+
+.inOneLine, #ListaPeriodos_Estadisticas ul li
+{ 
+	display: inline; 	
+	white-space:nowrap;
+}
+
+#ListaPeriodos_Estadisticas ul li:not(:last-child)
+{
+    margin-right: 5em;
+}
+
+.categorydiv
+{
+	display: inline-block;	
+}
+
+.categorydiv div.tabs-panel
+{
+	overflow: hidden;
+}
+
+.inside
+{
+	border-bottom: 3px solid #F78E1D;
+	padding-top: 10px;
+}
+
+.margenIzq
+{
+	padding-left: 40px;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+
+.margenIzq label
+{ 
+	float: left;
+	width: 4em;
+}
+
+.centered
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn-lg
+{
+	padding: 8px 12px;
+	line-height: 1.33;
+	border-radius: 6px;
+	background-color: #F78E1D;
+	color: #FFF;
+	font-size: 15px;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	cursor: pointer; 
+}
+
+.btn-lg:hover
+{
+	color: #000;
+}
