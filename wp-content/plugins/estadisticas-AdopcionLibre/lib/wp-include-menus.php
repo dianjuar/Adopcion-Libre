@@ -28,21 +28,21 @@ else
 				     		__("Usuarios", estadisticasAL), //menu_title
 				     		"read",  //capability
 				     		"estAL-usuarios", //menu_slug
-				     		"estadisticasAL"); //function
+				     		"nothing"); //function
 
 			add_submenu_page("estAL-estadisticas",  //parent_slug
 				     		__("Estadísticas de Visitas", estadisticasAL), //page_title
 				     		__("Visitas", estadisticasAL), //menu_title
 				     		"read",  //capability
 				     		"estAL-visitas", //menu_slug
-				     		"estadisticasAL"); //function
+				     		"nothing"); //function
 
 			add_submenu_page("estAL-estadisticas",  //parent_slug
 				     		__("Estadísticas de Publicaciones", estadisticasAL), //page_title
 				     		__("Publicaciones", estadisticasAL), //menu_title
 				     		"read",  //capability
 				     		"estAL-publicaciones", //menu_slug
-				     		"estadisticasAL"); //function
+				     		"nothing"); //function
 
 			//add_menu_page("WP Mail Bank", __("WP Mail Bank", mail_bank), "read", "smtp_mail","", plugins_url("/assets/images/mail.png" , dirname(__FILE__)));
 			//add_submenu_page("smtp_mail", "Settings", __("Settings", mail_bank), "read", "smtp_mail","smtp_mail");
@@ -57,9 +57,9 @@ else
 	}
 }
 
-if(!function_exists( "estadisticasAL" ))
+if(!function_exists( "header_AL" ))
 {
-	function estadisticasAL()
+	function header_AL()
 	{
 		global $wpdb,$current_user,$user_role_permission;
 
@@ -68,7 +68,23 @@ if(!function_exists( "estadisticasAL" ))
 			$role = $current_user->role[0];
 		
 		include_once ESTADISTICAS_AL_PLUGIN_DIR."/views/header.php";
-		//include_once MAIL_BK_PLUGIN_DIR ."/views/mail_settings.php";
+	}
+}
+
+if(!function_exists( "estadisticasAL" ))
+{
+	function estadisticasAL()
+	{
+		header_AL();
+		include_once ESTADISTICAS_AL_PLUGIN_DIR."/views/generales.php";
+	}
+}
+
+if(!function_exists( "nothing" ))
+{
+	function nothing()
+	{
+		header_AL();
 	}
 }
 
