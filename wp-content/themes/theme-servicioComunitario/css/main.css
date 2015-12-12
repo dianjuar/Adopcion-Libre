@@ -10,7 +10,7 @@ body {
   font-size: 14px;
 }
 a {
-  color: #000000;
+  color: #000;
 }
 article {
   z-index: 0;
@@ -21,26 +21,17 @@ dt {
 }
 /*=============== Etiquetas gobables ================================================*/
 /*=============== Margins y paddings ================================================*/
-.btn_fb_margin{
-  top: -5px;
-}
 .no-margin {
   margin: 0;
 }
 .margin-medium {
   margin-top: 30px;
 }
-.margin-large-top {
-  margin-top: 50px;
-}
 .margin-small-top {
   margin-top: 10px;
 }
 .margin-small-left {
   margin-left: 15px;
-}
-.margin-medium-bottom {
-  margin-bottom: 40px;
 }
 .no-padding {
   padding: 0;
@@ -66,35 +57,16 @@ dt {
 .boxMenuIndex {
   list-style: none;
   padding: 0;
-  display: table-row;
 }
 .boxMenuIndex li {
+  float: left;
   width: 33.3%;
-  padding: 15px 20px;
-  font-size: 1.2em;
-  font-weight: 500;
-  display: table-cell;
-  text-transform: uppercase;
-  text-shadow: 1.5px 0px #5E5B5B;
-  
-}
-.boxMenuIndex li:nth-child(2) span:first-child{
-  font-size: 7em;
-  margin-top: -25px;
-  margin-bottom: -15px;
+  padding: 10px 15px;
+  font-size: 1.7em;
 }
 .boxMenuIndex li span {
   display: block;
-  font-size: 4em;
-  text-shadow:none;
-}
-.boxMenuIndex li span:last-child {
-  font-size: 0.82em;
-  font-weight: 100;
-  font-style: oblique;
-  font-stretch: ultra-condensed;
-  padding: 0 20px;
-  text-transform: initial;
+  font-size: 5em;
 }
 .boxMenuIndex li:nth-child(1) {
   background-color: #05a9fc;
@@ -102,7 +74,7 @@ dt {
   content: "\e602";
 }
 .boxMenuIndex li:nth-child(1):hover {
-  background-color: #000000;
+  background-color: #000;
 }
 .boxMenuIndex li:nth-child(1):hover a,
 .boxMenuIndex li:nth-child(1):hover span {
@@ -113,7 +85,7 @@ dt {
   background-color: #15db5b;
 }
 .boxMenuIndex li:nth-child(2):hover {
-  background-color: #000000;
+  background-color: #000;
 }
 .boxMenuIndex li:nth-child(2):hover a,
 .boxMenuIndex li:nth-child(2):hover span {
@@ -121,27 +93,27 @@ dt {
   text-decoration: none;
 }
 .boxMenuIndex li:nth-child(3) {
-  background-color: #e01f95;
+  background-color: #E01F95;
   border-top-right-radius: 1.2em;
 }
 .boxMenuIndex li:nth-child(3):hover {
-  background-color: #000000;
+  background-color: #000;
 }
 .boxMenuIndex li:nth-child(3):hover a,
 .boxMenuIndex li:nth-child(3):hover span {
-  color: #e01f95;
+  color: #E01F95;
   text-decoration: none;
 }
 /*=============== Menu  Index =======================================================*/
 /*=============== Huellas ===========================================================*/
 .boxHuellas {
-  background-color: #000000;
+  background-color: #000;
   width: initial;
 }
 .boxHuellas__list {
   padding: 0px;
   list-style: none;
-  color: #ffffff;
+  color: #fff;
 }
 .boxHuellas__list li {
   float: left;
@@ -183,7 +155,7 @@ dt {
 .BoxLoginSingIm ul li {
   float: right;
   padding: 10px;
-  color: #000000;
+  color: #000;
   display: none;
 }
 .BoxLoginSingIm ul li span {
@@ -194,23 +166,21 @@ dt {
   border-bottom-left-radius: 9px;
   background-color: #f78e1d;
   display: inline-block;
-  cursor: pointer;
 }
 .BoxLoginSingIm ul li:nth-child(2):hover,
 .BoxLoginSingIm ul li:nth-child(2):hover a {
-  background-color: #000000;
-  color: #fada37;
+  background-color: #000;
+  color: #FADA37;
 }
 .BoxLoginSingIm ul li:nth-child(1) {
   border-top-right-radius: 9px;
   border-bottom-right-radius: 9px;
-  background-color: #fada37;
+  background-color: #FADA37;
   display: inline-block;
-  cursor: pointer;
 }
 .BoxLoginSingIm ul li:nth-child(1):hover,
 .BoxLoginSingIm ul li:nth-child(1):hover a {
-  background-color: #000000;
+  background-color: #000;
   color: #f78e1d;
 }
 /*=============== Login SingIn ======================================================*/
@@ -232,8 +202,8 @@ dt {
 /*=============== CabezeraME ========================================================*/
 /*=============== Footer ============================================================*/
 .boxFooter {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
   width: initial;
   text-align: center;
   padding: 10px;
@@ -246,7 +216,7 @@ dt {
   margin-bottom: 0px;
 }
 .MenuBoton {
-  border: 2px solid #fada37 !important;
+  border: 2px solid #FADA37 !important;
 }
 .MenuBoton__lineas {
   border: 1px solid #f78e1d;
@@ -259,62 +229,62 @@ dt {
   border-bottom: 4px solid;
 }
 #menuTop li:nth-child(1) {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #fff;
+  color: #000;
   border-bottom-color: #f78e1d;
 }
 #menuTop li:nth-child(1):hover,
 #menuTop li:nth-child(1):hover a {
   background-color: #f78e1d;
-  color: #ffffff;
+  color: #FFF;
   text-decoration: none;
 }
 #menuTop li:nth-child(2) {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #fff;
+  color: #000;
   border-bottom-color: #05a9fc;
 }
 #menuTop li:nth-child(2):hover,
 #menuTop li:nth-child(2):hover a {
   background-color: #05a9fc;
-  color: #ffffff;
+  color: #FFF;
   text-decoration: none;
 }
 #menuTop li.Active:nth-child(2) {
   background-color: #05a9fc;
-  color: #ffffff;
+  color: #FFF;
   text-decoration: none;
 }
 #menuTop li:nth-child(3) {
-  color: #000000;
+  color: #000;
   border-bottom-color: #15db5b;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 #menuTop li:nth-child(3):hover,
 #menuTop li:nth-child(3):hover a {
   background-color: #15db5b;
-  color: #ffffff;
+  color: #FFF;
   text-decoration: none;
 }
 #menuTop li.Active:nth-child(3) {
   background-color: #15db5b;
-  color: #ffffff;
+  color: #FFF;
   text-decoration: none;
 }
 #menuTop li:nth-child(4) {
-  background-color: #ffffff;
-  border-bottom-color: #e01f95;
-  color: #000000;
+  background-color: #fff;
+  border-bottom-color: #E01F95;
+  color: #000;
 }
 #menuTop li:nth-child(4):hover,
 #menuTop li:nth-child(4):hover a {
-  background-color: #e01f95;
-  color: #ffffff;
+  background-color: #E01F95;
+  color: #FFF;
   text-decoration: none;
 }
 #menuTop li.Active:nth-child(4) {
-  background-color: #e01f95;
-  color: #ffffff;
+  background-color: #E01F95;
+  color: #FFF;
   text-decoration: none;
 }
 .BoxBorderBottom {
@@ -327,32 +297,32 @@ dt {
 .BoxBorderBottom__Item--rojo {
   background-color: #ac0000;
   float: left;
-  height: 4px;
+  height: 12px;
 }
 .BoxBorderBottom__Item--naranja {
   background-color: #f78e1d;
   float: left;
-  height: 4px;
+  height: 5px;
 }
 .BoxBorderBottom__Item--amarillo {
-  background-color: #fada37;
+  background-color: #FADA37;
   float: left;
-  height: 4px;
+  height: 10px;
 }
 .BoxBorderBottom__Item--azul {
   background-color: #05a9fc;
   float: left;
-  height: 4px;
+  height: 8px;
 }
 .BoxBorderBottom__Item--verde {
   background-color: #15db5b;
   float: left;
-  height: 4px;
+  height: 6px;
 }
 .BoxBorderBottom__Item--morado {
-  background-color: #e01f95;
+  background-color: #E01F95;
   float: left;
-  height: 4px;
+  height: 10px;
 }
 /*=============== Menu ==============================================================*/
 /*=============== Inicio  sesion ====================================================*/
@@ -387,7 +357,7 @@ dt {
   text-decoration: none;
 }
 .boxMainLogin__redesSociales:hover {
-  color: #ffffff;
+  color: #fff;
 }
 /*=============== Inicio  sesion ====================================================*/
 /*=============== Registro ==========================================================*/
@@ -422,7 +392,7 @@ dt {
   color: white;
 }
 .BtnPerdidos {
-  background-color: #e01f95;
+  background-color: #E01F95;
   color: white;
 }
 .BtnPosicion {
@@ -430,22 +400,13 @@ dt {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.BtnFinalizarPosicion{
-  position: absolute;
-  top: 17px;
-  right: 9px;
-}
-.BtnFinalizar{
-  background-color: #f78e1d;
-  color: white;
-}
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
 .BoxDetPet {
   display: block;
 }
 .BoxDetPet__ImgBox {
-  /*border: 2px solid #d7d7d7;*/
+  border: 2px solid #D7D7D7;
 }
 .BoxDetPet__ImgSmall {
   margin-top: 10px;
@@ -465,15 +426,14 @@ dt {
   margin-top: 10px;
   height: 300px;
   width: 100%;
-  border: 1px solid #d7d7d7;
+  border: 1px solid #D7D7D7;
 }
 .BoxDetPet__title {
   text-transform: capitalize;
   margin-left: 15px;
 }
-h1.BoxDetPet__title + small {
-    display: block;
-    margin-left: 15px;
+.BoxDetPet__title small {
+  font-size: 0.4em;
 }
 .BoxDetPet__data {
   margin-top: 10px;
@@ -490,13 +450,13 @@ h1.BoxDetPet__title + small {
   padding: 5px;
   background-color: #f78e1d;
   font-size: 1em;
-  color: #ffffff;
+  color: #fff;
 }
 .BoxDetPet__label__titulo {
   padding: 8px;
   margin-right: 5px;
   background: #FADA37;
-  color: #000000;
+  color: #000;
 }
 .BoxDetPet__labelBox {
   /*padding: 5px;*/
@@ -546,8 +506,8 @@ h1.BoxDetPet__title + small {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  width: 33.33333333%;
-  background-color: #ededed;
+  min-width: 380px;
+  background-color: #EDEDED;
 }
 .post__imgContainer {
   position: relative;
@@ -560,13 +520,12 @@ h1.BoxDetPet__title + small {
   position: relative;
   z-index: 10;
   margin-top: -70px;
-  
+  display: none;
 }
-.post__info h4,.post__info span{
+.post__info h4 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: white;
 }
 .post__info__estatus {
   display: table-cell;
@@ -575,15 +534,15 @@ h1.BoxDetPet__title + small {
   text-align: center;
 }
 .post__info__estatus--adopcion {
-  padding-top: 5px;
+  padding-top: 10px;
   background-color: rgba(5, 169, 252, 0.77);
 }
 .post__info__estatus--encontrados {
-  padding-top: 15px;
+  padding-top: 25px;
   background-color: rgba(21, 219, 91, 0.77);
 }
 .post__info__estatus--perdidos {
-  padding-top: 15px;
+  padding-top: 25px;
   background-color: rgba(224, 31, 149, 0.77);
 }
 .post__info__estatus--otros {
@@ -594,15 +553,6 @@ h1.BoxDetPet__title + small {
   font-size: 1.6em;
   padding-top: 30px;
   min-height: 185px;
-  text-align: center;
-}
-.post__info__estatus ul{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.post__info__estatus a{
-  color: white;
 }
 /*=============== Caja moscota ======================================================*/
 /*=============== Paginacion ========================================================*/
@@ -617,7 +567,7 @@ h1.BoxDetPet__title + small {
   background-color: #15db5b;
 }
 .pagina--perdidos {
-  background-color: #e01f95;
+  background-color: #E01F95;
 }
 .pagina--busqueda {
   background-color: #f78e1d;
@@ -644,26 +594,26 @@ h1.BoxDetPet__title + small {
 .widget_search input:last-child {
   border-radius: 0.3em;
   padding: 5px;
-  border: 1px solid #fada37;
-  background-color: #fada37;
+  border: 1px solid #FADA37;
+  background-color: #FADA37;
 }
 #advanced-search-widget-2-s {
   border-radius: 0.3em;
   padding: 5px;
-  border: 1px solid #ededed;
+  border: 1px solid #EDEDED;
 }
 /*=============== Widget busqueda ===================================================*/
 /*=============== Comentarios =======================================================*/
 #comment {
   width: 100%;
   height: 100px;
-  border: 1px solid #888888;
+  border: 1px solid #ededed;
 }
 #submit {
   border-radius: 0.3em;
   padding: 5px;
-  border: 1px solid #fada37;
-  background-color: #fada37;
+  border: 1px solid #FADA37;
+  background-color: #FADA37;
 }
 .commentlist {
   list-style: none;
@@ -673,7 +623,7 @@ h1.BoxDetPet__title + small {
   width: 70px;
   height: 70px;
   position: absolute;
-  border: 4px solid #d7d7d7;
+  border: 4px solid #D7D7D7;
 }
 .commentlist .children {
   list-style: none;
@@ -756,19 +706,13 @@ h1.BoxDetPet__title + small {
   border-bottom: 3px solid #05a9fc;
 }
 .titulo--morado {
-  border-bottom: 3px solid #e01f95;
+  border-bottom: 3px solid #E01F95;
 }
 .titulo--naranja {
   border-bottom: 3px solid #f78e1d;
+  margin-bottom: 40px;
 }
 /*=============== Modal =============================================================*/
-.info_mas{
-  padding: 5px 20px;
-}
-.redes_sociales{
-  text-align: right;
-  padding: 10px;
-}
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: 767px) {
   /*=============== Menú ==========================================================*/
@@ -784,22 +728,22 @@ h1.BoxDetPet__title + small {
   #menuTop li:nth-child(1),
   #menuTop li:nth-child(1) a {
     background-color: #f78e1d;
-    color: #ffffff;
+    color: #FFF;
   }
   #menuTop li:nth-child(2),
   #menuTop li:nth-child(2) a {
     background-color: #05a9fc;
-    color: #ffffff;
+    color: #FFF;
   }
   #menuTop li:nth-child(3),
   #menuTop li:nth-child(3) a {
     background-color: #15db5b;
-    color: #ffffff;
+    color: #FFF;
   }
   #menuTop li:nth-child(4),
   #menuTop li:nth-child(4) a {
-    background-color: #e01f95;
-    color: #ffffff;
+    background-color: #E01F95;
+    color: #FFF;
   }
   /*=============== Menú ==========================================================*/
   /*=============== Inicio Sesión =================================================*/
@@ -819,10 +763,10 @@ h1.BoxDetPet__title + small {
     float: none;
   }
   .BoxLoginSingIm ul li a {
-    color: #ffffff;
+    color: #fff;
   }
   .BoxLoginSingIm ul li:nth-child(1) {
-    background-color: #fada37;
+    background-color: #FADA37;
     display: block;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -879,7 +823,9 @@ h1.BoxDetPet__title + small {
   .BoxDetPet__ImgBigBox {
     padding-right: 10px;
   }
-  
+  .BoxDetPet__title small {
+    display: block;
+  }
   .BoxDetPet__label {
     display: inline-block;
   }
@@ -889,7 +835,6 @@ h1.BoxDetPet__title + small {
     float: none;
     width: 100%;
     font-size: 1.6em;
-    display: block;
   }
   .boxMenuIndex li span {
     display: inline-block;
@@ -901,20 +846,12 @@ h1.BoxDetPet__title + small {
   .boxMenuIndex li:nth-child(3) {
     border-top-right-radius: 0;
   }
-  .boxMenuIndex li:nth-child(2) span:first-child {
-    font-size: 1.9em;
-  }
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/
   .BtnPosicion {
     float: none;
     display: block;
     margin-bottom: 5px;
-  }
-  .BtnFinalizarPosicion {
-    position: inherit;
-    top: 0;
-    right: 0;
   }
   /*=============== boton =========================================================*/
 }
@@ -934,22 +871,22 @@ h1.BoxDetPet__title + small {
   #menuTop li:nth-child(1),
   #menuTop li:nth-child(1) a {
     background-color: #f78e1d;
-    color: #ffffff;
+    color: #FFF;
   }
   #menuTop li:nth-child(2),
   #menuTop li:nth-child(2) a {
     background-color: #05a9fc;
-    color: #ffffff;
+    color: #FFF;
   }
   #menuTop li:nth-child(3),
   #menuTop li:nth-child(3) a {
     background-color: #15db5b;
-    color: #ffffff;
+    color: #FFF;
   }
   #menuTop li:nth-child(4),
   #menuTop li:nth-child(4) a {
-    background-color: #e01f95;
-    color: #ffffff;
+    background-color: #E01F95;
+    color: #FFF;
   }
   /*=============== Menú ==========================================================*/
   /*=============== Info mascota ==================================================*/
@@ -963,18 +900,11 @@ h1.BoxDetPet__title + small {
   /*=============== Menu  Index ===================================================*/
   .boxMenuIndex li {
     min-height: 210px;
-    display: block;
-  }
-  .boxMenuIndex li:nth-child(2) span:first-child {
-    font-size: 1.9em;
   }
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/
   .BtnPosicion {
     float: none;
-  }
-  .BtnFinalizarPosicion {
-    top: -1px;
   }
   /*=============== boton =========================================================*/
 }
