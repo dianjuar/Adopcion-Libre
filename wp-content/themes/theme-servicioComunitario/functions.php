@@ -407,13 +407,7 @@ function showFooter() {
 }
 add_action( 'login_footer', 'showFooter' );
 /*===== LOGIN-FORM Y ADMIN agregar footer OFF =======================================*/
-/*===== LOGIN-FORM Y ADMIN agregar header ON ========================================*/
-function showHeader() {
-	 get_header();
-}
-add_action( 'login_head', 'showHeader' );
-add_action( 'admin_head', 'showHeader' );
-/*===== LOGIN-FORM Y ADMIN agregar header OFF =======================================*/
+
 /*===== ADMIN Bienvanida - Escritorio ON ============================================*/
 function nuevos_widgets_escritorio() {
 	wp_add_dashboard_widget( 'tutorial_bienvenido_escritorio', 'Bienvenido a la sección de administración', 'escritorio_bienvenida' );
