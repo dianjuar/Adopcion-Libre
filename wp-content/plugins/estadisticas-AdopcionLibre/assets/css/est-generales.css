@@ -1,0 +1,62 @@
+.est-gen-box
+{
+	width: 650px;
+	padding: 1px 0px 1px 0px;
+
+	background-color: #1e1e1e;
+
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+
+	display: inline-block
+}
+
+
+.est-gen-cuadro
+{
+	display: inline-block;
+	width: 33.3333%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+}
+
+.est-gen-adoptado
+{
+	background-color: #05a9fc;
+}
+
+.est-gen-perdido
+{
+	background-color: #15db5b;
+}
+
+.est-gen-encontrado
+{
+	background-color: #e01f95;
+}
+
+#est-gen-footer h2, #est-gen-header h2
+{
+	color: white;
+}
+
+#est-gen-body h4
+{
+	color: black;
+	font-size: 14px;
+}
+
+#est-gen-footer 
+{
+	padding-top: 10px
+}
+
+#est-gen-body
+{
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}

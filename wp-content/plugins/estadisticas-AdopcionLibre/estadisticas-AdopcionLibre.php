@@ -37,10 +37,7 @@ function css_scripts_estadisticas_al()
 		// sweetalert
 		wp_enqueue_style('sweetalert.css', plugins_url('/assets/js/sweetalert2-master/dist/sweetalert2.css',__FILE__));
 		wp_enqueue_scripts('sweetalert.js',plugins_url('/assets/js/sweetalert2-master/dist/sweetalert2.min.js',__FILE__), array(), '', true);
-	}
-		
-	
-	
+	}	
 }
 
 function imprimirMeses_select($valGet)
