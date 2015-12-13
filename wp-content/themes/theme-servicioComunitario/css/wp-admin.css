@@ -598,3 +598,7 @@ body#media-upload div.BoxBorderBottom
 div.error {
     display: none;
 }
+{
+    position: relative;
+    margin-right: 35%;
+}
