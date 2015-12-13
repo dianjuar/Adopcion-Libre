@@ -146,7 +146,7 @@ dt {
 /*=============== Huellas ===========================================================*/
 /*=============== Login SingIn ======================================================*/
 .BoxLoginSingIm {
-  margin-top: 10px;
+  margin-top: 20px;
   z-index: 1;
   position: relative;
   float: right;
@@ -311,6 +311,7 @@ dt {
 }
 #redesSociales {
   list-style: none;
+  padding-left: 0;
 }
 #redesSociales a:hover {
   text-decoration: none;
@@ -852,6 +853,15 @@ dt {
   .searchBox {
     display: block;
   }
+  .searchBox--home {
+    top: 50px;
+  }
+  .searchBox--home article {
+    left: 0;
+  }
+  .searchBox--home #advanced-search-widget-2-s {
+    width: 75%;
+  }
   .widget_search {
     float: none;
   }
@@ -929,7 +939,15 @@ dt {
     border-top-right-radius: 0;
     width: 100%;
   }
+  .BtnMarcarPost {
+    top: 83px;
+  }
   /*=============== boton =========================================================*/
+  #MenuFooter li {
+    display: block;
+    width: 100%;
+    border-left: 0;
+  }
 }
 /*=============== MEdia <768 px Phones ==============================================*/
 /*=============== MEdia ≥768 px Tablets =============================================*/
@@ -985,6 +1003,21 @@ dt {
   .BtnFinalizar {
     top: -2px;
   }
+  .BtnMarcarPost {
+    top: 41px;
+  }
   /*=============== boton =========================================================*/
+  .searchBox--home {
+    top: 150px;
+  }
+  .searchBox--home article {
+    left: 10%;
+  }
+  #MenuFooter li {
+    width: 25%;
+  }
+  #MenuFooter li:first-child {
+    width: 10%;
+  }
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/

@@ -127,7 +127,7 @@ dt{ float: left; }
 /*=============== Huellas ===========================================================*/
 /*=============== Login SingIn ======================================================*/
 .BoxLoginSingIm{
-	margin-top: 10px;
+	margin-top: 20px;
 	z-index: 1;
 	position: relative;
 	float: right;
@@ -323,6 +323,7 @@ dt{ float: left; }
 
 #redesSociales{
 	list-style: none;
+	padding-left: 0;
 
 	& a{
 
@@ -981,6 +982,17 @@ dt{ float: left; }
 	/*=============== Busqueda ======================================================*/
 	.searchBox {
     	display: block;
+    	&--home {
+		    top: 50px;
+
+		    & article {
+			    left: 0;
+			}
+
+			& #advanced-search-widget-2-s {
+			    width: 75%;
+			}
+		}
 	}
 	.widget_search {
     	float: none;
@@ -1090,8 +1102,20 @@ dt{ float: left; }
 		    border-top-right-radius: 0;
 		    width: 100%;
 		}
+
+		&MarcarPost {
+		    top: 83px;
+		}
 	}
 	/*=============== boton =========================================================*/
+	#MenuFooter{
+
+		& li{
+			display: block;
+			width: 100%;
+			border-left: 0;
+		}
+	}
 }
 /*=============== MEdia <768 px Phones ==============================================*/
 /*=============== MEdia ≥768 px Tablets =============================================*/
@@ -1166,7 +1190,28 @@ dt{ float: left; }
 		&Finalizar{
 			top: -2px;
 		}
+		&MarcarPost {
+		    top: 41px;
+		}
 	}
 	/*=============== boton =========================================================*/
+	.searchBox--home {
+	    top: 150px;
+
+	    & article {
+		    left: 10%;
+		}
+	}
+
+	#MenuFooter{
+
+		& li{
+			width: 25%;
+
+			&:first-child{
+			    width: 10%;
+			}
+		}
+	}
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/

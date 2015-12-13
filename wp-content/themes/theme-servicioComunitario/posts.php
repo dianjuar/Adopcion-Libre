@@ -1,15 +1,8 @@
-<div class="col-md-12">
+<div class="col-md-12 container-fluid">
    <?php 
-      $aux = 1;
       if (have_posts()): while ( have_posts() ) : the_post(); 
          $data = get_post_meta( $post->ID, 'post', true );  
          $variable = get_the_ID();
-         if ($aux==1) {
-            echo '<div class="row">';
-         }
-         if ($aux>1 && ($aux-1)%3 == 0) {
-            echo '</div><div class="row">';
-         }
 
          echo '<a class="col-md-4 col-sm-6 post no-padding" href="';the_permalink();echo '" id="'.$variable.'">';
 
@@ -45,11 +38,6 @@
                         }
                      ?>
       <?php echo '</div></a>';
-
-         if ($aux == $wp_query->post_count) {
-            echo '</div>';
-         }
-         $aux++;
       endwhile; 
       else:
          echo '<div class="post__NoPost">
