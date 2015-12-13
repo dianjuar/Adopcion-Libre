@@ -42,6 +42,7 @@
 			$idRol = key($roles);
 			
 			$value = "<div class='row-actions' style='visibility: visible;' >";
+
 			foreach ($roles as $rol) 
 			{		
 				foreach ($user->roles as $rolesUsuario)

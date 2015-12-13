@@ -36,6 +36,8 @@ dt {
 }
 .no-padding {
   padding: 0;
+  border-bottom: 3px solid #F78E1D;
+  margin-bottom: 10px;
 }
 .padding-small {
   padding-left: 9px;
@@ -436,9 +438,12 @@ dt {
   color: white;
 }
 .BtnPosicion {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-top: 14px;
+  display: inline-block;
   float: right;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  margin-left: 11px;
 }
 .BtnFinalizar {
   background-color: #f78e1d;
@@ -452,6 +457,15 @@ dt {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   top: 64px;
+}
+.BtnEditar
+{
+  background-color: #cfcfcf;
+}
+.BtnEditar:hover
+{
+  color: white;
+  background-color: gray;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -779,9 +793,15 @@ dt {
 .titulo--morado {
   border-bottom: 3px solid #E01F95;
 }
+<<<<<<< HEAD
 .titulo--naranja {
   border-bottom: 3px solid #f78e1d;
   margin-bottom: 40px;
+=======
+.titulo--naranja{
+  display: inline-block;
+  margin-bottom: 0px;
+>>>>>>> 8e4324c02882afc65b3313a0d7c86886fc1b7ff1
 }
 /*=============== Modal =============================================================*/
 /*=============== MEdia <768 px Phones ==============================================*/
@@ -929,9 +949,9 @@ dt {
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/
   .BtnPosicion {
-    float: none;
-    display: block;
-    margin-bottom: 5px;
+    margin-top: 14px;
+    display: inline-block;
+    float: right;
   }
   .BtnFinalizar {
     position: relative;

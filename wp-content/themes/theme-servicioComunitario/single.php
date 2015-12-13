@@ -43,6 +43,12 @@
               <button type="button" class="btn btn-lg BtnFinalizar BtnPosicion" data-toggle="modal" data-target="#myModal">
               	Finalizar publicación
               </button>
+
+              <?php $urlToEditPost = admin_url('post.php?post='.$post->ID.'&action=edit')?>
+
+              <a type="button" class="btn btn-lg BtnEditar BtnPosicion BtnFinalizarPosicion" href="<?php echo $urlToEditPost; ?>">
+                Editar
+              </a>
           <?php } ?>
          <?php 
             if (in_category('adopcion')){ 
