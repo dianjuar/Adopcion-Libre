@@ -8,6 +8,7 @@
 body {
   font-family: Amaranth, Helvetica Neue, sans-serif;
   font-size: 14px;
+  overflow-x: hidden;
 }
 a {
   color: #000;
@@ -614,6 +615,27 @@ dt {
 /*=============== Widget busqueda ===================================================*/
 .searchBox {
   display: inline-block;
+}
+.searchBox--home {
+  display: block;
+  position: relative;
+  z-index: 10;
+  top: 250px;
+}
+.searchBox--home * {
+  display: inline-block;
+}
+.searchBox--home #advanced-search-widget-2 h2 {
+  display: none;
+}
+.searchBox--home #advanced-search-widget-2-s {
+  width: 500px;
+}
+.searchBox--home .widget_search {
+  float: none;
+}
+.searchBox--home article {
+  left: 25%;
 }
 .widget_search {
   float: right;

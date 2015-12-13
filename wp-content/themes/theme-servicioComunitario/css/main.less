@@ -3,6 +3,7 @@
 body{
 	font-family: @font;
 	font-size: 14px;
+	overflow-x: hidden;
 }
 a{
 	color: @negro;
@@ -702,6 +703,31 @@ dt{ float: left; }
 /*=============== Widget busqueda ===================================================*/
 .searchBox{
   	display: inline-block;
+  	&--home{
+    	display: block;
+		position: relative;
+		z-index: 10;
+		top: 250px;
+
+		& *{
+			display: inline-block;
+		}
+		    
+		& #advanced-search-widget-2 h2{
+		    display: none;
+		}
+
+		& #advanced-search-widget-2-s{
+		    width: 500px;
+		}
+
+	    & .widget_search {
+		   	float: none;
+		}
+		& article{
+    		left: 25%;
+		}
+    }
 }
 
 .widget_search{

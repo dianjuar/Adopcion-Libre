@@ -12,7 +12,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 	'name'=> 'Inicio sesion',
 	'id' => 'servicio-001',
-	'before_widget' => '<article id="%1$s" class="col-md-12 BoxLoginSingIm">',
+	'before_widget' => '<article id="%1$s" class="BoxLoginSingIm">',
 	'after_widget' => '</article>',
 	'before_title' => '<h2>',
 	'after_title' => '</h2>',
@@ -21,7 +21,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 	'name'=> 'Busqueda ',
 	'id' => 'servicio-002',
-	'before_widget' => '<article id="%1$s" class="col-md-12 BoxLoginSingIm">',
+	'before_widget' => '<article id="%1$s" class=" BoxLoginSingIm">',
 	'after_widget' => '</article>',
 	'before_title' => '<h2>',
 	'after_title' => '</h2>',

@@ -16,7 +16,7 @@
         <?php if (!function_exists('dynamic_sidebar') || 
           !dynamic_sidebar('servicio-001')) : ?>
         <?php endif; ?>
-        <div class="searchBox">
+        <div id="search" class="searchBox">
           <?php 
           if (!function_exists('dynamic_sidebar') || 
                 !dynamic_sidebar('servicio-002')) : ?>
@@ -126,7 +126,11 @@
               $(this).children('.post__info').css("display","block");
             }).mouseout(function (){
               $('.post a').children('.post__info').css("display","none"); 
-            });  
+            }); 
+
+            $('#search').children('article').removeClass("BoxLoginSingIm"); 
+            $('#search').removeClass("searchBox");
+            $('#search').addClass("searchBox--home");
         });
       </script>
     </body>
