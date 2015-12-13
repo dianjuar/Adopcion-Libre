@@ -24,6 +24,7 @@ dt{ float: left; }
 .no-padding{ padding: 0; }
 .padding-small{ padding-left: 9px; padding-right: 9px; }
 .padding-medium{ padding: 10px; }
+.padding-small-left{ padding-left: 15px; }
 .padding-medium-left{ padding-left: 40px; }
 .padding-large-left{ padding-left: 55px; }
 .padding-xlarge-left{ padding-left: 65px; }
@@ -478,6 +479,13 @@ dt{ float: left; }
 		float: right;
   		border-bottom-left-radius: 0;
   		border-bottom-right-radius: 0;
+	}
+
+	&Finalizar{
+		background-color: @naranja;
+		position: absolute;
+	    top: 16px;
+	    right: 0;
 	}
 }
 /*=============== boton =============================================================*/
@@ -1065,6 +1073,13 @@ dt{ float: left; }
 			display: block;
 			margin-bottom: 5px;
 		}
+
+		&Finalizar {
+		    position: relative;
+		    border-top-left-radius: 0;
+		    border-top-right-radius: 0;
+		    width: 100%;
+		}
 	}
 	/*=============== boton =========================================================*/
 }
@@ -1136,6 +1151,10 @@ dt{ float: left; }
 
 		&Posicion{
 			float: none;
+		}
+
+		&Finalizar{
+			top: -2px;
 		}
 	}
 	/*=============== boton =========================================================*/

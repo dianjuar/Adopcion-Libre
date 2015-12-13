@@ -133,7 +133,7 @@ function mostrar_meta_box() {
 	        	//---------
 	        	case "raza":
 	        	?>
-	        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" 
+	        		<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" 
 	        		value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
 	        	<?php
 	        	break;

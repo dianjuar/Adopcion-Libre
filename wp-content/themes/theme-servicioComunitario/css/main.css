@@ -44,6 +44,9 @@ dt {
 .padding-medium {
   padding: 10px;
 }
+.padding-small-left {
+  padding-left: 15px;
+}
 .padding-medium-left {
   padding-left: 40px;
 }
@@ -433,6 +436,12 @@ dt {
   float: right;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.BtnFinalizar {
+  background-color: #f78e1d;
+  position: absolute;
+  top: 16px;
+  right: 0;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -905,6 +914,12 @@ dt {
     display: block;
     margin-bottom: 5px;
   }
+  .BtnFinalizar {
+    position: relative;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 100%;
+  }
   /*=============== boton =========================================================*/
 }
 /*=============== MEdia <768 px Phones ==============================================*/
@@ -957,6 +972,9 @@ dt {
   /*=============== boton =========================================================*/
   .BtnPosicion {
     float: none;
+  }
+  .BtnFinalizar {
+    top: -2px;
   }
   /*=============== boton =========================================================*/
 }
