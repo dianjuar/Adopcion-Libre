@@ -40,9 +40,16 @@
             $cu = wp_get_current_user(); 
             $post_id = $post->ID; 
             if(($cu->ID==$post->post_author) && ($post->post_status == "publish")){ ?>
+              
               <button type="button" class="btn btn-lg BtnFinalizar BtnPosicion BtnFinalizarPosicion" data-toggle="modal" data-target="#myModal">
               	Finalizar publicación
               </button>
+
+              <?php $urlToEditPost = admin_url('post.php?post='.$post->ID.'&action=edit')?>
+
+              <a type="button" class="btn btn-lg BtnEditar BtnPosicion BtnFinalizarPosicion" href="<?php echo $urlToEditPost; ?>">
+                Editar
+              </a>
           <?php } ?>
         </div>
 

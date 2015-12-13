@@ -44,6 +44,8 @@ dt {
 }
 .no-padding {
   padding: 0;
+  border-bottom: 3px solid #F78E1D;
+  margin-bottom: 10px;
 }
 .padding-small {
   padding-left: 9px;
@@ -426,18 +428,29 @@ dt {
   color: white;
 }
 .BtnPosicion {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-top: 14px;
+  display: inline-block;
   float: right;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  margin-left: 11px;
 }
 .BtnFinalizarPosicion{
-  position: absolute;
   top: 17px;
   right: 9px;
 }
 .BtnFinalizar{
   background-color: #f78e1d;
   color: white;
+}
+.BtnEditar
+{
+  background-color: #cfcfcf;
+}
+.BtnEditar:hover
+{
+  color: white;
+  background-color: gray;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -758,8 +771,9 @@ h1.BoxDetPet__title + small {
 .titulo--morado {
   border-bottom: 3px solid #e01f95;
 }
-.titulo--naranja {
-  border-bottom: 3px solid #f78e1d;
+.titulo--naranja{
+  display: inline-block;
+  margin-bottom: 0px;
 }
 /*=============== Modal =============================================================*/
 .info_mas{
@@ -907,9 +921,9 @@ h1.BoxDetPet__title + small {
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/
   .BtnPosicion {
-    float: none;
-    display: block;
-    margin-bottom: 5px;
+    margin-top: 14px;
+    display: inline-block;
+    float: right;
   }
   .BtnFinalizarPosicion {
     position: inherit;
