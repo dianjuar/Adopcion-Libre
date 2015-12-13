@@ -302,10 +302,16 @@ dt{ float: left; }
 
 #MenuFooter{
 	list-style: none;
+	padding-left: 0;
 
 	& li{
-		width: 200px;
-    	text-align: left;
+		display: inline-block;
+	    width: 20%;
+	    border-left: 1px solid;
+
+	    &:first-child{
+	    	border-left:none;
+	    }
 
 		& a{
 			color: @blanco;
@@ -325,6 +331,8 @@ dt{ float: left; }
 		& li{
 			color: @blanco;
 			font-size: 2em;
+			display: inline-block;
+    		padding: 20px;
 
 			&:hover{
 				color: @verde;

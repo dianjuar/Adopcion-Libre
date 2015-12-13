@@ -1,6 +1,6 @@
 <footer class="container">
-  <div class="boxFooter row">
-  	<div class="col-md-4">
+  <div class="boxFooter">
+  	<div class="row">
   		<?php wp_nav_menu(
             array(
               'container'     => false,
@@ -10,13 +10,13 @@
           );
         ?>
   	</div>
-  	<div class="col-md-4">
+  	<div class="row">
   		<ul id="redesSociales">
   			<a href="https://twitter.com/AdopcionLibre"><li><span class="icon icon-twitter"></span></li></a>
   			<a href="https://www.facebook.com/adopcion.libre.9?fref=ts"><li><span class="icon icon-facebook2"></span></li></a>
   		</ul>
   	</div>
-  	<div class="col-md-4">
+  	<div class="row">
   		inserte aqui copiright
   	</div>
     

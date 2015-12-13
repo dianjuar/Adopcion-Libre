@@ -292,10 +292,15 @@ dt {
 }
 #MenuFooter {
   list-style: none;
+  padding-left: 0;
 }
 #MenuFooter li {
-  width: 200px;
-  text-align: left;
+  display: inline-block;
+  width: 20%;
+  border-left: 1px solid;
+}
+#MenuFooter li:first-child {
+  border-left: none;
 }
 #MenuFooter li a {
   color: #fff;
@@ -309,6 +314,8 @@ dt {
 #redesSociales a li {
   color: #fff;
   font-size: 2em;
+  display: inline-block;
+  padding: 20px;
 }
 #redesSociales a li:hover {
   color: #15db5b;
