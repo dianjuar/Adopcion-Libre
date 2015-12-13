@@ -59,26 +59,32 @@ function func_remove_default_wp_roles($allRoles){
  * */
 function custom_user_filter_links( $views ) {
   
+	$viewsSorted["all"] = $views['all'];
+	$viewsSorted["al_suscriptor"] = $views["al_suscriptor"];
+	$viewsSorted["al_moderador"] = $views["al_moderador"];
+	$viewsSorted["al_administrador"] = $views["al_administrador"];
+	$viewsSorted["al_superadministrador"] = $views["al_superadministrador"];
 
-  if( current_user_can('al_administrador') ){
-
-
-    /* For role: Administrador */
-
-    $amt       = count_users();
-  	$amtCustom = $amt['avail_roles']['al_suscriptor'] + $amt['avail_roles']['al_moderador'] ; // Count custom users
-
-    /* Modify users count for the 'All' link*/
-    $views['all'] = preg_replace( '/(.*\().*(\).*)/', '${1}'.($amt['total_users'] - $amtCustom).'$2', $views['all'] );
+	if( current_user_can('al_administrador') )
+	{
 
 
-    /* Remove 'Subscriber' & 'Pending' user links  */
-    unset($views['al_administrador']);
-    unset($views['al_superadministrador']);
+	/* For role: Administrador */
 
-  }
+		$amt       = count_users();
+		$amtCustom = $amt['avail_roles']['al_suscriptor'] + $amt['avail_roles']['al_moderador'] ; // Count custom users
 
-  return $views;
+	/* Modify users count for the 'All' link*/
+	$viewsSorted['all'] = preg_replace( '/(.*\().*(\).*)/', '${1}'.($amt['total_users'] - $amtCustom).'$2', $views['all'] );
+
+	/* Remove 'Subscriber' & 'Pending' user links  */
+	unset($viewsSorted['al_administrador']);
+	unset($viewsSorted['al_superadministrador']);
+	}
+
+
+
+  return $viewsSorted;
 }
 add_filter( 'views_users', 'custom_user_filter_links' );
 

@@ -573,7 +573,8 @@ add_filter('login_redirect', function () {
 });
 
 //ordena los roles según su jerarquía.
-function get_sorted_roles(){
+function get_sorted_roles()
+{
 
 	$roles = get_editable_roles();
 
@@ -584,8 +585,12 @@ function get_sorted_roles(){
 
 	$rolesSorted["al_suscriptor"] = $suscriptor;
 	$rolesSorted["al_moderador"] = $moderador;
-	$rolesSorted["al_administrador"] = $administrador;
-	$rolesSorted["al_superadministrador"] = $superadministrador;
+
+	if(al_isSuperAdministradorLogged() || al_isProgrammerLogged())
+	{
+		$rolesSorted["al_administrador"] = $administrador;
+		$rolesSorted["al_superadministrador"] = $superadministrador;
+	}
 
 	return $rolesSorted;
 }
