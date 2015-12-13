@@ -4,6 +4,7 @@ register_nav_menus(
 	array(
     	'menu-index'=>'Menu home',
     	'menu-top'=>'Menu Top',
+    	'menu-footer'=>'Menu Footer',
 ));
 /*===== SITIO Funcion para mostar menus OFF =========================================*/
 /*===== SITIO Funcion para mostar widgets ON ========================================*/

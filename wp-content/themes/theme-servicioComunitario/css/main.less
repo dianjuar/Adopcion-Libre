@@ -202,7 +202,7 @@ dt{ float: left; }
 	color: @blanco;
 	width: initial;
 	text-align: center;
-	padding: 10px;
+	padding: 20px;
 	border-bottom-left-radius:1.2em;
 	border-bottom-right-radius:1.2em;
 }
@@ -300,6 +300,38 @@ dt{ float: left; }
 	}
 }
 
+#MenuFooter{
+	list-style: none;
+
+	& li{
+		width: 200px;
+    	text-align: left;
+
+		& a{
+			color: @blanco;
+		}
+	}
+}
+
+#redesSociales{
+	list-style: none;
+
+	& a{
+
+		&:hover{
+			text-decoration: none;
+		}
+
+		& li{
+			color: @blanco;
+			font-size: 2em;
+
+			&:hover{
+				color: @verde;
+			}
+		}
+	}
+}
 
 .BoxBorderBottom{
 	z-index: 0;
@@ -603,22 +635,18 @@ dt{ float: left; }
   			height: 100%;
   			vertical-align: middle;
   			text-align: center;
-			
+  			padding-top: 10px;
 
   			&--adopcion{
-  				padding-top: 10px;
 				background-color: rgba(5, 169, 252, 0.77);
   			}
   			&--encontrados{
-  				padding-top: 25px;
 				background-color: rgba(21, 219, 91, 0.77);
   			}
   			&--perdidos{
-  				padding-top: 25px;
 				background-color: rgba(224, 31, 149, 0.77);
   			}
   			&--otros{
-  				padding-top: 10px;
 				background-color:rgba(250, 218, 55, 0.77);
   			}
  		}

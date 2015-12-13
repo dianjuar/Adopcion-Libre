@@ -43,73 +43,66 @@
           <h2>Publicaciones recientes:</h2>
         </div>
         
-        <div class="row no-margin">
+        <div class="col-md-12 no-margin">
           <?php if (have_posts()): while ( have_posts() ) : the_post(); ?>
             <?php $myposts = get_posts('numberposts=6&offset=0');
-              foreach($myposts as $post) { ?>
-                <div class="col-md-4 col-sm-6 no-padding">
-                  <?php $variable = get_the_ID(); ?>
-                  <a href="<?php the_permalink(); ?>" id="<?php echo $variable; ?>">
-                    <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
-                    <?php $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
-                    if($em_mtbx_img1 != '') { // Si existe el valor ?>
-                      <div class="post__imgContainer">
-                        <img src="<?php echo $em_mtbx_img1; ?>" class="post__imgPost img-responsive" alt="" /> 
-                      </div>
-                    <?php } else { ?> 
-                      <div class="post__imgContainer post__imgPost post__imgPost--noFound">
-                      Imagen no disponible
-                      </div>
-                    <?php } ?>
-                    <div class="post__info row no-margin">
-                      <div class="col-md-8 col-xs-7 padding-medium"> 
-                        <h4 class="no-margin"><?php the_title();?></h4>
-                        <span><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></span>
-                      </div>
-                      <?php 
-                        if (in_category('adopcion')){
-                          ?>
-                          <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--adopcion"> 
-                            <?php the_category(); ?>
-                          </div>
-                          <?php
-                        }
-                        else{
-                          if (in_category('perdidos')){
-                            ?>
-                            <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--perdidos"> 
-                              <?php the_category(); ?>
-                            </div>
-                            <?php
-                          }
-                          else{
-                            if (in_category('encontrados')){
-                              ?>
-                              <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--encontrados"> 
-                                <?php the_category(); ?>
-                              </div>
-                              <?php
-                            }
-                            else{
-                              ?>
-                              <div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--otros"> 
-                                <?php the_category(); ?>
-                              </div>
-                              <?php
-                            }
-                          }
-                        }
-                      ?>
-                  </div>
-                  </a>
-                </div>
-                
-            <?php } break; ?>
-          <?php endwhile; else: ?>
-              <div class="BoxCardPet__NoPost">
-                No hay publicaciones
-              </div>
-          <?php endif; ?>
+               $aux = 1;
+               foreach($myposts as $post) { 
+                  $data = get_post_meta( $post->ID, 'post', true );  
+                  $variable = get_the_ID();
+                  if ($aux==1) {
+                     echo '<div class="row">';
+                  }
+                  if ($aux>1 && ($aux-1)%3 == 0) {
+                     echo '</div><div class="row">';
+                  }
+
+                  echo '<a class="col-md-4 col-sm-6 post no-padding" href="';the_permalink();echo '" id="'.$variable.'">';
+
+                  $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
+                  if($em_mtbx_img1 != '') { 
+                     echo '<div class="post__imgContainer">
+                              <img src="'.$em_mtbx_img1.'" class="post__imgPost img-responsive" alt="Foto de mascota" /> 
+                           </div>';
+                  }else{
+                     echo '<div class="post__imgContainer post__imgPost post__imgPost--noFound ">
+                              Imagen no disponible
+                           </div>';
+                  }
+
+                  echo '<div class="post__info no-margin">'; ?>
+                           <div class="col-md-8 col-xs-7 padding-medium"> 
+                              <h4 class="no-margin"><?php the_title();?></h4>
+                              <span><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></span>
+                           </div>
+                           <?php 
+                              if (in_category('adopcion')){
+                                 echo '<div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--adopcion">Mascota en adopción</div>';
+                              }else{
+                                 if (in_category('perdidos')){
+                                    echo '<div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--perdidos">Mascota perdida</div>';
+                                 }else{
+                                    if (in_category('encontrados')){
+                                       echo '<div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--encontrados"> Mascota encontrada</div>';
+                                    }else{
+                                       echo '<div class="col-md-4 col-xs-5 post__info__estatus post__info__estatus--otros"> Sin categoria </div>';
+                                    }
+                                 }
+                              }
+                           ?>
+            <?php echo '</div></a>';
+
+                  if ($aux == $wp_query->post_count) {
+                     echo '</div>';
+                  }
+                  $aux++;
+               } break;
+            endwhile; 
+         else: ?>
+            <div class="BoxCardPet__NoPost">
+               No hay publicaciones
+            </div>
+         <?php endif; ?>
         </div>
         
       </article>
@@ -119,18 +112,22 @@
         ?>
       <script>
         $(document).ready(function(){
-          $("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span><span>En esta sección podras dar y encontrar mascotas en adopción</span>" );
-          $("#menuIndex li:nth-child(2) a").append( "<span class='icon icon-Lupa_Vector'></span><span>En esta sección podras reportar y ver las mascotas que han sido encontradas</span>" );
-          $("#menuIndex li:nth-child(3) a").append( "<span class='icon icon-Dog_Vector'></span><span>En esta sección podras reportar y ver las mascotas que se han perdido</span>" );
-
-          $("#menuIndexTop li:nth-child(1) a").append( "<span class='glyphicon glyphicon-log-in'></span>" );
-          $("#menuIndexTop li:nth-child(2) a").append( "<span class='icon icon-edit3'></span>" );
-          $("ul.post-categories li a").removeAttr("href");
-          $("ul.post-categories li a").removeAttr("rel");
-
           
+            $("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span><span>En esta sección podras dar y encontrar mascotas en adopción</span>" );
+            $("#menuIndex li:nth-child(2) a").append( "<span class='icon icon-Lupa_Vector'></span><span>En esta sección podras reportar y ver las mascotas que han sido encontradas</span>" );
+            $("#menuIndex li:nth-child(3) a").append( "<span class='icon icon-Dog_Vector'></span><span>En esta sección podras reportar y ver las mascotas que se han perdido</span>" );
+
+            $("#menuIndexTop li:nth-child(1) a").append( "<span class='glyphicon glyphicon-log-in'></span>" );
+            $("#menuIndexTop li:nth-child(2) a").append( "<span class='icon icon-edit3'></span>" );
+            $("ul.post-categories li a").removeAttr("href");
+            $("ul.post-categories li a").removeAttr("rel");
+
+            $(".post a").mouseover(function() {
+              $(this).children('.post__info').css("display","block");
+            }).mouseout(function (){
+              $('.post a').children('.post__info').css("display","none"); 
+            });  
         });
       </script>
-    
     </body>
 </html>

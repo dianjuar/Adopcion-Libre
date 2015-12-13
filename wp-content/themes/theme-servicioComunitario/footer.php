@@ -1,6 +1,25 @@
 <footer class="container">
-  <div class="boxFooter">
-    <img src="<?php bloginfo('template_url') ?>/img/logo_division_informatica.png">
+  <div class="boxFooter row">
+  	<div class="col-md-4">
+  		<?php wp_nav_menu(
+            array(
+              'container'     => false,
+              'items_wrap'    =>' <ul id="MenuFooter" class="">%3$s</ul>',
+              'theme_location'=> 'menu-footer'
+            )
+          );
+        ?>
+  	</div>
+  	<div class="col-md-4">
+  		<ul id="redesSociales">
+  			<a href="https://twitter.com/AdopcionLibre"><li><span class="icon icon-twitter"></span></li></a>
+  			<a href="https://www.facebook.com/adopcion.libre.9?fref=ts"><li><span class="icon icon-facebook2"></span></li></a>
+  		</ul>
+  	</div>
+  	<div class="col-md-4">
+  		inserte aqui copiright
+  	</div>
+    
   </div>
 </footer> 
 

@@ -209,7 +209,7 @@ dt {
   color: #fff;
   width: initial;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   border-bottom-left-radius: 1.2em;
   border-bottom-right-radius: 1.2em;
 }
@@ -289,6 +289,29 @@ dt {
   background-color: #E01F95;
   color: #FFF;
   text-decoration: none;
+}
+#MenuFooter {
+  list-style: none;
+}
+#MenuFooter li {
+  width: 200px;
+  text-align: left;
+}
+#MenuFooter li a {
+  color: #fff;
+}
+#redesSociales {
+  list-style: none;
+}
+#redesSociales a:hover {
+  text-decoration: none;
+}
+#redesSociales a li {
+  color: #fff;
+  font-size: 2em;
+}
+#redesSociales a li:hover {
+  color: #15db5b;
 }
 .BoxBorderBottom {
   z-index: 0;
@@ -535,21 +558,18 @@ dt {
   height: 100%;
   vertical-align: middle;
   text-align: center;
+  padding-top: 10px;
 }
 .post__info__estatus--adopcion {
-  padding-top: 10px;
   background-color: rgba(5, 169, 252, 0.77);
 }
 .post__info__estatus--encontrados {
-  padding-top: 25px;
   background-color: rgba(21, 219, 91, 0.77);
 }
 .post__info__estatus--perdidos {
-  padding-top: 25px;
   background-color: rgba(224, 31, 149, 0.77);
 }
 .post__info__estatus--otros {
-  padding-top: 10px;
   background-color: rgba(250, 218, 55, 0.77);
 }
 .post__NoPost {
