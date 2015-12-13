@@ -1,7 +1,12 @@
 <?php
 
 //mensajes de periodos de tiempo
-global $msj_desde, $msj_hasta, $cant_usuarios;
+global $msj_desde, $msj_hasta;
+global $catAdopcion_termID,$catEncontrado_termID,$catPerdido_termID;
+
+$catAdopcion_termID = 2;
+$catEncontrado_termID = 3;
+$catPerdido_termID = 4;
 
 global $fechas;
 $fechas = [
@@ -12,9 +17,9 @@ $fechas = [
 	'mesHasta' => 0,
 	'anoHasta' => 0,
 ];
-	   
-//cantidad de usuarios
-$cant_usuarios = 999;
+
+global $fechaBigBang;
+$fechaBigBang = '2015-1-1';
 
 validarPeriodo();
 
@@ -44,15 +49,15 @@ switch ($_GET['EstadisticasPeriodo'])
 	break;
 
 	case '3'://Desde el inicio de los tiempos 
-		setFechas( strtotime('12 December 2015'), strtotime('now'));
-		
+		setFechas( strtotime($fechaBigBang), strtotime('now'));
+
 		$msj_desde = 'El Inicio de los Tiempos';
 		$msj_hasta = $fechas['diaHasta'].' - '.$arrayMeses[ $fechas['mesHasta'] - 1 ].' - '.$fechas['anoHasta'];
 	break;
 
 	case '4':
 		setFechas( strtotime(date('1-'.$_GET['mesIni'].'-'.$_GET['anoIni'])),
-		           strtotime(date('t-'.$_GET['mesFin'].'-'.$_GET['anoFin'])) );
+		           strtotime(date("t-m-Y", strtotime($_GET['anoFin'].'-'.$_GET['mesFin'])) ) );
 
 		$msj_desde = $fechas['diaDesde'].' - '.$arrayMeses[ $fechas['mesDesde'] - 1 ].' - '.$fechas['anoDesde'];
 		$msj_hasta = $fechas['diaHasta'].' - '.$arrayMeses[ $fechas['mesHasta'] - 1 ].' - '.$fechas['anoHasta'];
@@ -81,10 +86,6 @@ $Url_estAL_publicaciones = http_build_query($_GET);
 
 
 $_GET['page'] = $pageOriginal;
-
-
-
-
 
 ?>
 
@@ -247,6 +248,8 @@ function setFechas($strtotimeDesde, $strtotimeHasta)
 	$fechas['diaHasta'] =  date('d', $strtotimeHasta );
 	$fechas['mesHasta'] =  date('m', $strtotimeHasta );
 	$fechas['anoHasta'] =  date('Y', $strtotimeHasta );
+
+	// var_dump($fechas);
 }
 
 function validarPeriodo()
