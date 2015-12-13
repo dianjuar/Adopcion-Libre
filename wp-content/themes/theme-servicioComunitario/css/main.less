@@ -344,8 +344,10 @@ dt{ float: left; }
 }
 
 .BoxBorderBottom{
-	z-index: 0;
-  	position: relative;
+	z-index: 10000;
+	position: absolute;
+	left: 0;
+	right: 0;
 
 	&__Item{
 		padding: 0px;
@@ -486,6 +488,14 @@ dt{ float: left; }
 		position: absolute;
 	    top: 16px;
 	    right: 0;
+	}
+
+	&MarcarPost{
+		position: absolute;
+		right: 0px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		top: 64px;
 	}
 }
 /*=============== boton =============================================================*/

@@ -325,8 +325,10 @@ dt {
   color: #15db5b;
 }
 .BoxBorderBottom {
-  z-index: 0;
-  position: relative;
+  z-index: 10000;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 .BoxBorderBottom__Item {
   padding: 0px;
@@ -442,6 +444,13 @@ dt {
   position: absolute;
   top: 16px;
   right: 0;
+}
+.BtnMarcarPost {
+  position: absolute;
+  right: 0px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  top: 64px;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/

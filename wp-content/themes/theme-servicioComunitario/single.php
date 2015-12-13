@@ -44,6 +44,16 @@
               	Finalizar publicación
               </button>
           <?php } ?>
+         <?php 
+            if (in_category('adopcion')){ 
+               echo '<div type="button" class="btn btn-lg BtnMarcarPost BtnAdopcion">Mascota en adopción</div>';
+            } 
+            if (in_category('perdidos')){ 
+               echo '<div type="button" class="btn btn-lg BtnMarcarPost BtnPerdidos">Mascota perdida</div>';
+            } 
+            if (in_category('encontrados')){ 
+               echo '<div type="button" class="btn btn-lg BtnMarcarPost BtnEncontrados">Mascota encontrada</div>';
+            }?>
         </div>
 
         <div class="row no-margin margin-medium" >
