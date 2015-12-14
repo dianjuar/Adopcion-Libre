@@ -37,6 +37,16 @@
         <div class="col-md-12 no-padding">
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
           <?php 
+            if (in_category('adopcion')){ 
+               echo '<div class="btn btn-lg BtnMarcarPost BtnAdopcion">Mascota en adopción</div>';
+            } 
+            if (in_category('perdidos')){ 
+               echo '<div class="btn btn-lg BtnMarcarPost BtnPerdidos">Mascota perdida</div>';
+            } 
+            if (in_category('encontrados')){ 
+               echo '<div class="btn btn-lg BtnMarcarPost BtnEncontrados">Mascota encontrada</div>';
+            }?>
+          <?php 
             $cu = wp_get_current_user(); 
             $post_id = $post->ID; 
             if(($cu->ID==$post->post_author) && ($post->post_status == "publish")){ ?>
@@ -46,20 +56,11 @@
 
               <?php $urlToEditPost = admin_url('post.php?post='.$post->ID.'&action=edit')?>
 
-              <a type="button" class="btn btn-lg BtnEditar BtnPosicion BtnFinalizarPosicion" href="<?php echo $urlToEditPost; ?>">
+              <a type="button" class="btn btn-lg BtnEditar BtnPosicion" href="<?php echo $urlToEditPost; ?>">
                 Editar
               </a>
           <?php } ?>
-         <?php 
-            if (in_category('adopcion')){ 
-               echo '<div type="button" class="btn btn-lg BtnMarcarPost BtnAdopcion">Mascota en adopción</div>';
-            } 
-            if (in_category('perdidos')){ 
-               echo '<div type="button" class="btn btn-lg BtnMarcarPost BtnPerdidos">Mascota perdida</div>';
-            } 
-            if (in_category('encontrados')){ 
-               echo '<div type="button" class="btn btn-lg BtnMarcarPost BtnEncontrados">Mascota encontrada</div>';
-            }?>
+         
         </div>
 
         <div class="row no-margin margin-medium" >

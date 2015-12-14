@@ -36,8 +36,6 @@ dt {
 }
 .no-padding {
   padding: 0;
-  border-bottom: 3px solid #F78E1D;
-  margin-bottom: 10px;
 }
 .padding-small {
   padding-left: 9px;
@@ -438,12 +436,8 @@ dt {
   color: white;
 }
 .BtnPosicion {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  margin-top: 14px;
-  display: inline-block;
-  float: right;
-  margin-left: 11px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .BtnFinalizar {
   background-color: #f78e1d;
@@ -451,21 +445,18 @@ dt {
   top: 16px;
   right: 0;
 }
+.BtnEditar {
+  background-color: #EDEDED;
+  position: absolute;
+  right: 224px;
+  top: 15px;
+}
 .BtnMarcarPost {
   position: absolute;
   right: 0px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   top: 64px;
-}
-.BtnEditar
-{
-  background-color: #cfcfcf;
-}
-.BtnEditar:hover
-{
-  color: white;
-  background-color: gray;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -793,15 +784,9 @@ dt {
 .titulo--morado {
   border-bottom: 3px solid #E01F95;
 }
-<<<<<<< HEAD
 .titulo--naranja {
   border-bottom: 3px solid #f78e1d;
   margin-bottom: 40px;
-=======
-.titulo--naranja{
-  display: inline-block;
-  margin-bottom: 0px;
->>>>>>> 8e4324c02882afc65b3313a0d7c86886fc1b7ff1
 }
 /*=============== Modal =============================================================*/
 /*=============== MEdia <768 px Phones ==============================================*/
@@ -949,9 +934,9 @@ dt {
   /*=============== Menu  Index ===================================================*/
   /*=============== boton =========================================================*/
   .BtnPosicion {
-    margin-top: 14px;
-    display: inline-block;
-    float: right;
+    float: none;
+    display: block;
+    margin-bottom: 5px;
   }
   .BtnFinalizar {
     position: relative;
@@ -961,6 +946,14 @@ dt {
   }
   .BtnMarcarPost {
     top: 83px;
+  }
+  .BtnEditar {
+    background-color: #EDEDED;
+    position: relative;
+    right: 0;
+    top: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
   /*=============== boton =========================================================*/
   #MenuFooter li {
@@ -1021,10 +1014,20 @@ dt {
     float: none;
   }
   .BtnFinalizar {
-    top: -2px;
+    top: 54px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
   .BtnMarcarPost {
-    top: 41px;
+    top: 0px;
+    position: relative;
+  }
+  .BtnEditar {
+    position: absolute;
+    right: 223px;
+    top: 54px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
   /*=============== boton =========================================================*/
   .searchBox--home {
@@ -1038,6 +1041,9 @@ dt {
   }
   #MenuFooter li:first-child {
     width: 10%;
+  }
+  .titulo--naranja {
+    margin-bottom: 0px;
   }
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/
