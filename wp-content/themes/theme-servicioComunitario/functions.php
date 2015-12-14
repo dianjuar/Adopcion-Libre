@@ -625,6 +625,46 @@ function isLowerRole($role1, $role2)
 
 }
 
+//
+function filtrarPost ($categoryName)
+{
+	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+    global $queryPost;
+    global $estado, $municipio;
+
+    $SoloEstados = array(   'relation'          => 'AND',
+                                array(
+                                    'key'       => 'estado',
+                                    'value'     => $estado,
+                                    'compare'   => '=') );
+
+    $estadoYmunicipio = array(  'relation'          => 'AND',
+                                    array(
+                                        'key'       => 'estado',
+                                        'value'     => $estado,
+                                        'compare'   => '='),
+                                    array(
+                                        'key'       => 'municipio',
+                                        'value'     => $municipio,
+                                        'compare'   => '=')
+                            );
+
+    if( $estado == '' && $municipio == '')
+        $meta_query = '';
+    elseif ( $estado != '' && $municipio == '')
+        $meta_query = $SoloEstados;
+    else
+        $meta_query = $estadoYmunicipio;
+
+    $argsQuery = array( 'category_name'   => $categoryName,
+                        'post_status'     => 'publish',
+                        'meta_query'      => $meta_query,
+                        'paged'           => $paged );
+
+    $queryPost = new WP_Query( $argsQuery );
+}
+
 
 
 
