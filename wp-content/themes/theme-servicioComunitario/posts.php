@@ -1,6 +1,9 @@
 <div class="col-md-12 container-fluid">
-   <?php 
-      if (have_posts()): while ( have_posts() ) : the_post(); 
+   <?php
+	//antes de querer usar las variables estado y municipio deben añadir este archivo.
+	global $queryPost;
+   
+      if ($queryPost->have_posts()): while ( $queryPost->have_posts() ) : $queryPost->the_post(); 
          $data = get_post_meta( $post->ID, 'post', true );  
          $variable = get_the_ID();
 

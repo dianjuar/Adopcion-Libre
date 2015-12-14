@@ -28,3 +28,23 @@
 <script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script>
 <script src="<?php bloginfo('template_url') ?>/js/plugins.js"></script>
 <script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
+
+<script src="<?php bloginfo('template_url') ?>/js/estados-municipios.js"></script> 
+<script>
+	jQuery(document).ready(function($)
+	{	
+		if( $('#rpr_estado').length && $('#rpr_municipio').length )
+		{
+			populateEstados("rpr_estado","rpr_municipio","Todos los Estados");
+
+			<?php 
+			/*estas variables son cargadas en filtroEstados.php para
+			usarlas es necesario incluir este archivo.*/
+			global $estado, $municipio;			
+			?>
+
+			$('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
+			$('#rpr_municipio').val("<?php echo $municipio ?>").trigger('change');
+		}
+	});
+</script>
