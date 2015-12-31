@@ -31,7 +31,7 @@
                 <a id="btn-dar" href="<?php echo admin_url( 'post-new.php?post_category=adopcion' ); ?>" class="btn btn-lg BtnAdopcion BtnPosicion">Dar en adopcion</a>
                 <?php } ?>
             </div>
-
+            <div class="col-md-12 pagina pagina--adopcion"></div>
             <?php
             //aquí es donde se llaman a los select y se cargan las variables estado y municipio.
             require_once('filtroEstados.php');

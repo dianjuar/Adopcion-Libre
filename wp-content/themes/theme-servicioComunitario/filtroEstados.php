@@ -10,12 +10,13 @@ else:
 endif;
 ?>
 
-<div>
+<div class="col-md-12 filtar">
 	<form method="get" action="">
-	<span>Ubicación: </span>
+		<div><span>Ubicación: </span></div>
 		<select id="rpr_estado" name="FILTRO_ESTADO"></select>
+		<span class="glyphicon glyphicon-chevron-down"></span>
 		<select id="rpr_municipio" name="FILTRO_MUNICIPIO"></select>
-
+		<span class="glyphicon glyphicon-chevron-down"></span>
 		<button type='submit' >
 			Filtrar
 		</button>

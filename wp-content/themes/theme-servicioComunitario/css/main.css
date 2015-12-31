@@ -798,6 +798,40 @@ dt {
   margin-bottom: 40px;
 }
 /*=============== Modal =============================================================*/
+/*=============== filtrar ===========================================================*/
+.filtar {
+  padding: 15px;
+  text-align: center;
+}
+.filtar div {
+  display: inline-block;
+}
+.filtar span {
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+.filtar span.glyphicon {
+  position: relative;
+  left: -40px;
+  font-size: 0.9em;
+}
+.filtar select {
+  padding: 10px 35px 10px 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5em;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 10px;
+}
+.filtar button {
+  border: none;
+  background: #FADA37;
+  padding: 10px 15px;
+  border-radius: 0.5em;
+}
+/*=============== filtrar ===========================================================*/
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: 767px) {
   /*=============== Menú ==========================================================*/
@@ -1054,6 +1088,9 @@ dt {
   }
   .titulo--naranja {
     margin-bottom: 0px;
+  }
+  .filtar div {
+    display: block;
   }
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/
