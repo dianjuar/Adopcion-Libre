@@ -293,12 +293,14 @@ add_action('admin_bar_menu', 'add_sumtips_admin_bar_link',25);
 /*===== ADMIN Agregar link a la barra superior OFF ==================================*/
 /*===== ADMIN Agregar hoja CSS ON ===================================================*/
 function wb_admin_css() {
-	$url = content_url('/themes/theme-servicioComunitario/css/wp-admin.css', __FILE__);
-    //$url = get_settings('siteurl') . '/wp-content/plugins/wp-admin-theme/wp-admin.css';
-    echo '
-    <link rel="stylesheet" type="text/css" href="' . $url . '" />
-    <link rel="stylesheet" href="/wp-admin/css/upload.css" type="text/css" />
-    ';
+	if ( !al_isProgrammerLogged() ){
+		$url = content_url('/themes/theme-servicioComunitario/css/wp-admin.css', __FILE__);
+	    //$url = get_settings('siteurl') . '/wp-content/plugins/wp-admin-theme/wp-admin.css';
+	    echo '
+	    <link rel="stylesheet" type="text/css" href="' . $url . '" />
+	    <link rel="stylesheet" href="/wp-admin/css/upload.css" type="text/css" />
+	    ';
+	}
 }
 add_action('admin_head','wb_admin_css', 1000);
 /*===== ADMIN Agregar hoja CSS OFF ==================================================*/
