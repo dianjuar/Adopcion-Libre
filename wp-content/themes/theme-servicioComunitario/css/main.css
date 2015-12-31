@@ -195,6 +195,7 @@ dt {
 .BoxImgPrincipal {
   z-index: 0;
   position: relative;
+  opacity: 0.7;
 }
 /*=============== CabezeraME ========================================================*/
 .boxCabezeraME {
@@ -644,7 +645,7 @@ dt {
   display: block;
   position: relative;
   z-index: 10;
-  top: 250px;
+  top: 350px;
 }
 .searchBox--home * {
   display: inline-block;
@@ -654,6 +655,10 @@ dt {
 }
 .searchBox--home #advanced-search-widget-2-s {
   width: 500px;
+  height: 50px;
+  font-size: 1.5em;
+  padding: 0 15px;
+  border: 1px solid #B5ACAC;
 }
 .searchBox--home .widget_search {
   float: none;
@@ -670,8 +675,10 @@ dt {
 .widget_search input:last-child {
   border-radius: 0.3em;
   padding: 5px;
-  border: 1px solid #FADA37;
+  border: none;
   background-color: #FADA37;
+  height: 48px;
+  width: 80px;
 }
 #advanced-search-widget-2-s {
   border-radius: 0.3em;
