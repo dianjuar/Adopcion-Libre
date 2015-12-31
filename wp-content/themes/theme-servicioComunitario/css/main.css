@@ -450,7 +450,7 @@ dt {
   background-color: #EDEDED;
   position: absolute;
   right: 224px;
-  top: 15px;
+  top: 16px;
 }
 .BtnMarcarPost {
   position: absolute;
@@ -458,6 +458,8 @@ dt {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   top: 64px;
+  width: 306px;
+  cursor: default;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -952,7 +954,8 @@ dt {
     width: 100%;
   }
   .BtnMarcarPost {
-    top: 83px;
+    top: 44px;
+    position: absolute;
   }
   .BtnEditar {
     background-color: #EDEDED;
