@@ -9,6 +9,10 @@ html{
   background: #fff;
 }
 
+.modal{
+  z-index: 100000;
+}
+
 /*inicio estilos barra superior*/
 
   /* color de background*/
