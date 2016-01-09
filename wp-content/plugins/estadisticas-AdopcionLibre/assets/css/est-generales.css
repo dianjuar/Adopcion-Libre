@@ -42,10 +42,12 @@
 	color: white;
 }
 
-#est-gen-body h4
+#est-gen-body h4 
 {
-	color: black;
-	font-size: 14px;
+	color: #000;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #est-gen-footer 
@@ -58,5 +60,35 @@
 	display: block;
 	width: 100%;
 	height: auto;
-	overflow: auto;
+	overflow: hidden;
+}
+
+.est-gen-cuadro-cuerpo 
+{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.est-gen-cuadro-cuerpo div
+{
+    margin-bottom: 10px;
+    display: inline-block;
+    padding-left: 2%;
+    color: black;
+}
+
+.est-gen-cuadro-cuerpo div span
+{
+    font-size: 5em;
+    width: 32%;
+}
+
+.est-gen-cuadro-cuerpo .cantidad
+{
+	
+	font-size: 4em;
+	width: 64%;
+
+	/*display: inline-block;*/
 }

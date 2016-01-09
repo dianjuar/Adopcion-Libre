@@ -1,9 +1,12 @@
 <?php
+
 	//mensajes de periodos de tiempo
 	global $msj_desde, $msj_hasta, $cant_usuarios;
 	global $catAdopcion_termID,$catEncontrado_termID,$catPerdido_termID;
 
 	wp_enqueue_style('est-generales.css', plugins_url('../assets/css/est-generales.css',__FILE__));
+	///css/fonts.css
+	wp_enqueue_style('fontIconos.css', plugins_url('../../../themes/theme-servicioComunitario/css/fonts.css',__FILE__));
 
 	get_registeredUsers();
 ?>
@@ -18,21 +21,41 @@
 		<div id="est-gen-body">
 			<div class='est-gen-cuadro est-gen-adoptado'>
 				<h4> <?php echo _e('Se Adoptaron', estadisticasAL); ?> </h4>
-				<!-- <span class='icon icon-Cat_and_Dog_Vector'></span> -->
-				<span class=''> <?php echo get_Nmascotas($catAdopcion_termID); ?> </span>
+
+				<div class="est-gen-cuadro-cuerpo">	
+					<div>
+						<span class='icon icon-Cat_and_Dog_Vector'></span>
+					</div>
+					<div class='cantidad'>
+						 <?php echo get_Nmascotas($catAdopcion_termID); ?> 
+					</div>
+				</div>
 
 			</div>
 			<div class='est-gen-cuadro est-gen-perdido'>
 				<h4> <?php echo _e('Se Encontraron', estadisticasAL); ?> </h4>
-				<!-- <span class='icon icon-Lupa_Vector'></span> -->
-				<span class=''> <?php echo get_Nmascotas($catEncontrado_termID); ?> </span>
 
+				<div class="est-gen-cuadro-cuerpo">
+					<div>
+						<span class='icon icon-Lupa_Vector'></span>
+					</div>
+					<div class='cantidad' >
+						<?php echo get_Nmascotas($catEncontrado_termID); ?>
+					</div>
+				</div>
 			</div>
 			<div class='est-gen-cuadro est-gen-encontrado'>
-				<h4> <?php echo _e('Se Recuperaron', estadisticasAL); ?> </h4>
-				<!-- <span class='icon icon-Dog_Vector'></span> -->
-				<span class=''> <?php echo get_Nmascotas($catPerdido_termID); ?> </span>
 
+				<h4> <?php echo _e('Se Recuperaron', estadisticasAL); ?> </h4>
+
+				<div class="est-gen-cuadro-cuerpo">
+					<div>
+						<span class='icon icon-Dog_Vector'></span>
+					</div>
+					<div class='cantidad' >
+						<?php echo get_Nmascotas($catPerdido_termID); ?>
+					</div>
+				</div>
 			</div>	
 		</div>
 
