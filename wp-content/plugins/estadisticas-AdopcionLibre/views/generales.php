@@ -12,12 +12,15 @@
 ?>
 
 <div class="centered">
+	<div id='est-gen-title' class='centered'>
+			<h1>En Adopción Libre</h1>
+	</div>
 	<div class="est-gen-box">
 		<div id="est-gen-header">
 			<h2> <?php echo _e('Desde:',estadisticasAL).' '.$msj_desde; ?> </h2>
 			<h2> <?php echo _e('Hasta:',estadisticasAL).' '.$msj_hasta; ?> </h2>
 		</div>
-
+		
 		<div id="est-gen-body">
 			<div class='est-gen-cuadro est-gen-adoptado'>
 				<h4> <?php echo _e('Se Adoptaron', estadisticasAL); ?> </h4>

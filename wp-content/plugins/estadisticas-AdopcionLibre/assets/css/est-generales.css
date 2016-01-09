@@ -37,9 +37,31 @@
 	background-color: #e01f95;
 }
 
+#est-gen-title
+{
+	height: 54px;
+	background-color: #1e1e1e;
+	width: 500px;
+	color: white;
+
+	-moz-border-radius:  40px 40px 0px 0px;
+	-webkit-border-radius:  40px 40px 0px 0px;
+	border-radius: 40px 40px 0px 0px;
+
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: #F78E1D;
+
+	display:flex;
+	justify-content:center;
+	align-items:center;
+
+}
+
 #est-gen-footer h2, #est-gen-header h2
 {
 	color: white;
+	font-size: 24px;
 }
 
 #est-gen-body h4 
@@ -50,10 +72,6 @@
 	margin-bottom: 10px;
 }
 
-#est-gen-footer 
-{
-	padding-top: 10px
-}
 
 #est-gen-body
 {
