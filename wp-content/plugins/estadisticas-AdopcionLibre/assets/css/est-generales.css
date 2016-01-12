@@ -1,0 +1,112 @@
+.est-gen-box
+{
+	width: 650px;
+	padding: 1px 0px 1px 0px;
+
+	background-color: #1e1e1e;
+
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+
+	display: inline-block
+}
+
+
+.est-gen-cuadro
+{
+	display: inline-block;
+	width: 33.3333%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+}
+
+.est-gen-adoptado
+{
+	background-color: #05a9fc;
+}
+
+.est-gen-perdido
+{
+	background-color: #15db5b;
+}
+
+.est-gen-encontrado
+{
+	background-color: #e01f95;
+}
+
+#est-gen-title
+{
+	height: 54px;
+	background-color: #1e1e1e;
+	width: 500px;
+	color: white;
+
+	-moz-border-radius:  40px 40px 0px 0px;
+	-webkit-border-radius:  40px 40px 0px 0px;
+	border-radius: 40px 40px 0px 0px;
+
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: #F78E1D;
+
+	display:flex;
+	justify-content:center;
+	align-items:center;
+
+}
+
+#est-gen-footer h2, #est-gen-header h2
+{
+	color: white;
+	font-size: 24px;
+}
+
+#est-gen-body h4 
+{
+	color: #000;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+#est-gen-body
+{
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+.est-gen-cuadro-cuerpo 
+{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.est-gen-cuadro-cuerpo div
+{
+    margin-bottom: 10px;
+    display: inline-block;
+    padding-left: 2%;
+    color: black;
+}
+
+.est-gen-cuadro-cuerpo div span
+{
+    font-size: 5em;
+    width: 32%;
+}
+
+.est-gen-cuadro-cuerpo .cantidad
+{
+	
+	font-size: 4em;
+	width: 64%;
+
+	/*display: inline-block;*/
+}
