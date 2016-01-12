@@ -37,17 +37,34 @@
         <div class="col-md-12 no-padding">
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
           <?php 
+            if (in_category('adopcion')){ 
+               echo '<div class="btn btn-lg BtnMarcarPost BtnAdopcion">Mascota en adopción</div>';
+            } 
+            if (in_category('perdidos')){ 
+               echo '<div class="btn btn-lg BtnMarcarPost BtnPerdidos">Mascota perdida</div>';
+            } 
+            if (in_category('encontrados')){ 
+               echo '<div class="btn btn-lg BtnMarcarPost BtnEncontrados">Mascota encontrada</div>';
+            }?>
+          <?php 
             $cu = wp_get_current_user(); 
             $post_id = $post->ID; 
             if(($cu->ID==$post->post_author) && ($post->post_status == "publish")){ ?>
-              <button type="button" class="btn btn-lg BtnFinalizar BtnPosicion BtnFinalizarPosicion" data-toggle="modal" data-target="#myModal">
+              <button type="button" class="btn btn-lg BtnFinalizar BtnPosicion" data-toggle="modal" data-target="#myModal">
               	Finalizar publicación
               </button>
+
+              <?php $urlToEditPost = admin_url('post.php?post='.$post->ID.'&action=edit')?>
+
+              <a type="button" class="btn btn-lg BtnEditar BtnPosicion" href="<?php echo $urlToEditPost; ?>">
+                Editar
+              </a>
           <?php } ?>
+         
         </div>
 
         <div class="row no-margin margin-medium" >
-          <section  class="col-md-6 col-sm-7 col-xs-12 no-padding BoxDetPet__ImgBox">
+          <section  class="col-md-6 col-sm-7 col-xs-12 no-padding">
             <div  class="col-md-2 col-sm-2 col-xs-12">
               <?php $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
                 if($em_mtbx_img1 != '') { // Si existe el valor ?>
@@ -85,7 +102,7 @@
           <section  class="col-md-6 col-sm-5 col-xs-12 no-padding">
             <div>
               <h1 class="BoxDetPet__title no-margin"><?php the_title(); ?> </h1>
-              <small><strong>Fecha de publicación:</strong> <?php the_date(); ?></small>
+              <small class="padding-small-left"><strong>Fecha de publicación:</strong> <?php the_date(); ?></small>
             </div>
 
             <dl class="BoxDetPet__data no-margin">
@@ -93,8 +110,12 @@
               <dd><?php the_content(); ?></dd>
               <dt>Tipo:</dt>
               <dd><?php if(!empty($data[ 'tipo' ])) {echo ($data[ 'tipo' ]); } ?></dd>
-              <dt>Raza:</dt>
-              <dd><?php if(!empty($data[ 'raza' ])) {echo $data[ 'raza' ];} ?></dd>
+              <?php 
+                if(!empty($data[ 'raza' ])) { ?>
+                  <dt>Raza:</dt>
+                  <dd><?php echo $data[ 'raza' ]; ?></dd>
+                <?php
+                }  ?>
               <dt>Esterelizado:</dt>
               <dd><?php if(!empty($data[ 'esterilizacion' ])) {echo $data[ 'esterilizacion' ];} ?></dd>
             </dl> 
@@ -106,9 +127,9 @@
               <dt>Nombre:</dt>
               <dd> <?php echo get_user_by('id', $post->post_author )->display_name; ?></dd>
               <dt>Estado:</dt>
-              <dd> <?php echo $data[ 'estado' ]; ?></dd>
+              <dd> <?php echo get_post_meta( $post->ID, 'estado', true ); ?></dd>
               <dt>Municipio:</dt>
-              <dd> <?php echo $data[ 'municipio' ]; ?></dd>
+              <dd> <?php echo get_post_meta( $post->ID, 'municipio', true ); ?></dd>
               <dt>Ubicación:</dt>
               <dd> <?php if(!empty($data[ 'direccion' ])) {echo $data[ 'direccion' ];} ?></dd>
               <dt><abbr title="Teléfono">Tlf:</abbr></dt>

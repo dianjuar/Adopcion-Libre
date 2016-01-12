@@ -9,15 +9,18 @@ html{
   background: #fff;
 }
 
+.modal{
+  z-index: 100000;
+}
+
 /*inicio estilos barra superior*/
 
   /* color de background*/
   #wpadminbar{
     background: #fff;
     border-bottom: 3px solid #f78e1d;
-    top: 44px;
   }
-  #adminmenuback {w
+  #adminmenuback {
     top: 83px;
   }
   /* color de texto*/
@@ -32,7 +35,6 @@ html{
 
 /*Inicio barra lateral*/
   .sticky-menu #adminmenuwrap {
-    top: 76px;
     z-index: 1000000;
     border-top: 3px solid #fff;
   }
@@ -190,7 +192,6 @@ html{
     border-left: 3px solid #f78e1d;
     /*border-top: 3px solid #f78e1d; /* amarillo */
     height: auto;
-    top: 43px;
     position: relative;
   }
   #wpfooter{
@@ -598,3 +599,10 @@ body#media-upload div.BoxBorderBottom
   color: #FFF;
 }
 /*===============  rows actions ============================================================*/
+div.error {
+    display: none;
+}
+{
+    position: relative;
+    margin-right: 35%;
+}

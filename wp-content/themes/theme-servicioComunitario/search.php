@@ -21,11 +21,20 @@
 
         	<h3 class="page-title"><?php printf( __( 'Resultados de: "<strong>%s</strong>"', 'twentyfifteen' ), get_search_query() ); ?></h3>
             
-          <?php require_once("posts.php"); ?>
+          
+
+            <?php 
+                require_once('filtroEstados.php');
+                filtrarPost ('adopcion');
+                require_once("posts.php"); 
+            ?>
 
           <div class="col-md-12 pagina pagina--busqueda">
-            <?php previous_posts_link('<span class="glyphicon glyphicon-backward"></span> Anteriores') ?>
-            <?php next_posts_link('Siguientes <span class="glyphicon glyphicon-forward"></span>') ?>
+           <?php 
+                previous_posts_link('<span class="glyphicon glyphicon-backward"></span> Anteriores');
+                // la variable $queryPost; está declarada como global en posts.php y por lo tanto ya está declarada
+                next_posts_link('Siguientes <span class="glyphicon glyphicon-forward"></span>',$queryPost->max_num_pages);
+            ?>
           </div>
         </section>
 
@@ -42,7 +51,10 @@
               $(this).children('.post__info').css("display","block");
             }).mouseout(function (){
               $('.post a').children('.post__info').css("display","none"); 
-            });        
+            });
+
+          $('#advanced-search-widget-2-s').val( $('.page-title strong').text() );
+
         });
 
       </script>

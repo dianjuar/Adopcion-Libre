@@ -4,6 +4,7 @@ register_nav_menus(
 	array(
     	'menu-index'=>'Menu home',
     	'menu-top'=>'Menu Top',
+    	'menu-footer'=>'Menu Footer',
 ));
 /*===== SITIO Funcion para mostar menus OFF =========================================*/
 /*===== SITIO Funcion para mostar widgets ON ========================================*/
@@ -11,7 +12,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 	'name'=> 'Inicio sesion',
 	'id' => 'servicio-001',
-	'before_widget' => '<article id="%1$s" class="col-md-12 BoxLoginSingIm">',
+	'before_widget' => '<article id="%1$s" class="BoxLoginSingIm">',
 	'after_widget' => '</article>',
 	'before_title' => '<h2>',
 	'after_title' => '</h2>',
@@ -20,7 +21,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 	'name'=> 'Busqueda ',
 	'id' => 'servicio-002',
-	'before_widget' => '<article id="%1$s" class="col-md-12 BoxLoginSingIm">',
+	'before_widget' => '<article id="%1$s" class=" BoxLoginSingIm">',
 	'after_widget' => '</article>',
 	'before_title' => '<h2>',
 	'after_title' => '</h2>',
@@ -132,7 +133,7 @@ function mostrar_meta_box() {
 	        	//---------
 	        	case "raza":
 	        	?>
-	        		<input required type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" 
+	        		<input type="text" name="<?php echo $meta_box[ 'nombre' ]; ?>" 
 	        		value="<?php if(!empty($data[ 'tipo' ])) echo htmlspecialchars( $data[ $meta_box[ 'nombre' ] ] ); ?>" />
 	        	<?php
 	        	break;
@@ -169,7 +170,7 @@ function grabar_meta_box( $post_id ) {
     foreach( $meta_boxes as $meta_box )
     {
     	if( $meta_box[ 'nombre' ] != 'estado' && $meta_box[ 'nombre' ] != 'municipio' )
-    		$data[ $meta_box[ 'nombre' ] ] = $_POST[ $meta_box[ 'nombre' ] ];
+    		$data[ $meta_box[ 'nombre' ] ] = sanitize_text_field( $_POST[ $meta_box[ 'nombre' ] ] );
     	
     }
 
@@ -181,8 +182,9 @@ function grabar_meta_box( $post_id ) {
 
  	update_post_meta( $post_id, $key, $data );   
 
- 	update_post_meta( $post_id, "estado", $_POST["estado"] );   
- 	update_post_meta( $post_id, "municipio", $_POST["municipio"] );   
+ 	//sanitize_text_field() protección contra SQL injection
+ 	update_post_meta( $post_id, "estado", sanitize_text_field($_POST["estado"]) );   
+ 	update_post_meta( $post_id, "municipio", sanitize_text_field($_POST["municipio"]) );   
 
 }
 
@@ -291,12 +293,14 @@ add_action('admin_bar_menu', 'add_sumtips_admin_bar_link',25);
 /*===== ADMIN Agregar link a la barra superior OFF ==================================*/
 /*===== ADMIN Agregar hoja CSS ON ===================================================*/
 function wb_admin_css() {
-	$url = content_url('/themes/theme-servicioComunitario/css/wp-admin.css', __FILE__);
-    //$url = get_settings('siteurl') . '/wp-content/plugins/wp-admin-theme/wp-admin.css';
-    echo '
-    <link rel="stylesheet" type="text/css" href="' . $url . '" />
-    <link rel="stylesheet" href="/wp-admin/css/upload.css" type="text/css" />
-    ';
+	if ( !al_isProgrammerLogged() ){
+		$url = content_url('/themes/theme-servicioComunitario/css/wp-admin.css', __FILE__);
+	    //$url = get_settings('siteurl') . '/wp-content/plugins/wp-admin-theme/wp-admin.css';
+	    echo '
+	    <link rel="stylesheet" type="text/css" href="' . $url . '" />
+	    <link rel="stylesheet" href="/wp-admin/css/upload.css" type="text/css" />
+	    ';
+	}
 }
 add_action('admin_head','wb_admin_css', 1000);
 /*===== ADMIN Agregar hoja CSS OFF ==================================================*/
@@ -400,19 +404,6 @@ function titulo_reset() { ?>
 }
 add_action( 'resetpass_form', 'titulo_reset' );
 /*===== LOGIN-FORM Titulo reset contraseña OFF ======================================*/
-/*===== LOGIN-FORM Y ADMIN agregar footer ON ========================================*/
-function showFooter() {
-	get_footer();
-}
-add_action( 'login_footer', 'showFooter' );
-/*===== LOGIN-FORM Y ADMIN agregar footer OFF =======================================*/
-/*===== LOGIN-FORM Y ADMIN agregar header ON ========================================*/
-function showHeader() {
-	 get_header();
-}
-add_action( 'login_head', 'showHeader' );
-add_action( 'admin_head', 'showHeader' );
-/*===== LOGIN-FORM Y ADMIN agregar header OFF =======================================*/
 /*===== ADMIN Bienvanida - Escritorio ON ============================================*/
 function nuevos_widgets_escritorio() {
 	wp_add_dashboard_widget( 'tutorial_bienvenido_escritorio', 'Bienvenido a la sección de administración', 'escritorio_bienvenida' );
@@ -572,7 +563,8 @@ add_filter('login_redirect', function () {
 });
 
 //ordena los roles según su jerarquía.
-function get_sorted_roles(){
+function get_sorted_roles()
+{
 
 	$roles = get_editable_roles();
 
@@ -583,8 +575,12 @@ function get_sorted_roles(){
 
 	$rolesSorted["al_suscriptor"] = $suscriptor;
 	$rolesSorted["al_moderador"] = $moderador;
-	$rolesSorted["al_administrador"] = $administrador;
-	$rolesSorted["al_superadministrador"] = $superadministrador;
+
+	if(al_isSuperAdministradorLogged() || al_isProgrammerLogged())
+	{
+		$rolesSorted["al_administrador"] = $administrador;
+		$rolesSorted["al_superadministrador"] = $superadministrador;
+	}
 
 	return $rolesSorted;
 }
@@ -629,6 +625,46 @@ function isLowerRole($role1, $role2)
 			return true;
 	}
 
+}
+
+//
+function filtrarPost ($categoryName)
+{
+	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+    global $queryPost;
+    global $estado, $municipio;
+
+    $SoloEstados = array(   'relation'          => 'AND',
+                                array(
+                                    'key'       => 'estado',
+                                    'value'     => $estado,
+                                    'compare'   => '=') );
+
+    $estadoYmunicipio = array(  'relation'          => 'AND',
+                                    array(
+                                        'key'       => 'estado',
+                                        'value'     => $estado,
+                                        'compare'   => '='),
+                                    array(
+                                        'key'       => 'municipio',
+                                        'value'     => $municipio,
+                                        'compare'   => '=')
+                            );
+
+    if( $estado == '' && $municipio == '')
+        $meta_query = '';
+    elseif ( $estado != '' && $municipio == '')
+        $meta_query = $SoloEstados;
+    else
+        $meta_query = $estadoYmunicipio;
+
+    $argsQuery = array( 'category_name'   => $categoryName,
+                        'post_status'     => 'publish',
+                        'meta_query'      => $meta_query,
+                        'paged'           => $paged );
+
+    $queryPost = new WP_Query( $argsQuery );
 }
 
 

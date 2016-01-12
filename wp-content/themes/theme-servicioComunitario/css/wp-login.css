@@ -41,6 +41,7 @@ body.login div#login form#loginform p.submit input#wp-submit,body.login div#logi
   font-weight: 600;
   font-size: 1.1em;
   border-radius: 0;
+  margin-right: 35%;
 }
 /* Boton acceder */
 /* Checkbox click */
