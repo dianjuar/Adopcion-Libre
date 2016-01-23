@@ -404,6 +404,12 @@ function titulo_reset() { ?>
 }
 add_action( 'resetpass_form', 'titulo_reset' );
 /*===== LOGIN-FORM Titulo reset contraseña OFF ======================================*/
+/*===== LOGIN-FORM Y ADMIN agregar footer ON ========================================*/
+function showFooter() {
+	get_footer();
+}
+add_action( 'login_footer', 'showFooter' );
+/*===== LOGIN-FORM Y ADMIN agregar footer OFF =======================================*/
 /*===== ADMIN Bienvanida - Escritorio ON ============================================*/
 function nuevos_widgets_escritorio() {
 	wp_add_dashboard_widget( 'tutorial_bienvenido_escritorio', 'Bienvenido a la sección de administración', 'escritorio_bienvenida' );
