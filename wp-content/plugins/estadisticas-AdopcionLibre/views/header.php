@@ -107,9 +107,10 @@ $_GET['page'] = $pageOriginal;
 				<a href="<?php echo admin_url('admin.php?'.$Url_estAL_estadisticas)?>" 
 				class= "<?php echo ($_GET["page"] == "estAL-estadisticas") ? "current":"" ?>">
 					Generales 
-				</a> |
+				</a> <!-- | -->
 			</li>
 
+			<!--  Estadísticas fuera de alcance del grupo original
 			<li class="usuarios">
 				<a href="<?php echo admin_url('admin.php?'.$Url_estAL_usuarios)?>" 
 				class= "<?php echo ($_GET["page"] == "estAL-usuarios") ? "current":"" ?>">
@@ -129,7 +130,7 @@ $_GET['page'] = $pageOriginal;
 				class= "<?php echo ($_GET["page"] == "estAL-publicaciones") ? "current":"" ?>">
 					Por Publicaciones 
 				</a> 
-			</li>
+			</li> -->
 		</ul>
 	<?php
 		break;
