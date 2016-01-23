@@ -17,6 +17,7 @@ else
 				          plugins_url("/assets/images/icon.png", //icon_url
 				          dirname(__FILE__))); //position
 
+	/* Estadísticas fuera de alcance del grupo original
 	switch($role)
 	{
 			
@@ -54,7 +55,7 @@ else
 			//add_submenu_page("smtp_mail", "Our Other Services", __("Our Other Services", mail_bank), "read", "other_services", "other_services" );
 			//add_submenu_page("smtp_mail", "System Status", __("System Status", mail_bank), "read", "mail_system_status", "mail_system_status" );
 		break;
-	}
+	}*/
 }
 
 if(!function_exists( "header_AL" ))
