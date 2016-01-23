@@ -89,49 +89,47 @@ add_filter('user_row_actions', function ($actions)
 //////////////////////////////////////////////////////
 add_action('load-users.php', function()
 {
-	if ( !current_user_can( 'manage_options' ))
+	if($_GET['updateUserRol']=='yes')
 	{
-		if($_GET['updateUserRol']=='yes')
+		$userID = $_GET['userID']; 
+		$rolID = $_GET['rolID']; 
+
+		$user = get_user_by( 'id', $userID );
+
+		if(al_rolUser_CanEdit($user->roles) &&
+		   al_rolUser_CanEdit(array($rolID)))
 		{
-			$userID = $_GET['userID']; 
-			$rolID = $_GET['rolID']; 
+			//remove role
+			foreach ($user->roles as $rol) 
+				$user->remove_role( $rol );
+			
+			//Add role
+			$user->add_role( $rolID );	
+			//mensaje al usuario
 
-			$user = get_user_by( 'id', $userID );
+			?>
+			<script type="text/javascript">
+			window.onload = function() {
+				swal({
+			    title: '¡Rol Cambiado con Exito!',
+			    type:  'success'
+				});
+			};
+			</script>
+		    <?php
+		}else
+		{
+			?>
+			<script type="text/javascript">
+			window.onload = function() {
+				swal({
+			    title: 'Haciendo Trampa, ¿Eh?',
+			    type:  'warning'
+				});
+			};
+			</script>
+		    <?php
 
-			if(al_rolUser_CanEdit($user->roles))
-			{
-				//remove role
-				foreach ($user->roles as $rol) 
-					$user->remove_role( $rol );
-				
-				//Add role
-				$user->add_role( $rolID );	
-				//mensaje al usuario
-
-				?>
-				<script type="text/javascript">
-				window.onload = function() {
-					swal({
-				    title: '¡Rol Cambiado con Exito!',
-				    type:  'success'
-					});
-				};
-				</script>
-			    <?php
-			}else
-			{
-				?>
-				<script type="text/javascript">
-				window.onload = function() {
-					swal({
-				    title: 'Haciendo Trampa, ¿Eh?',
-				    type:  'warning'
-					});
-				};
-				</script>
-			    <?php
-
-			}
 		}
 	}
 });
