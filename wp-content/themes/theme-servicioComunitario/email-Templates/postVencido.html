@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta content="es" name="language">
+
+<style type="text/css"> 
+
+	body 
+	{
+		text-align: center;
+		color: black;
+	} 
+	a, a:visited 
+	{   
+		color: #F78E1D;     
+		font-weight: bold;     
+		text-decoration: none; 
+	} 
+	a:hover 
+	{     
+		text-decoration:underline; 
+	}
+
+	.divBotones
+	{
+		margin-top: 30px;
+		margin-bottom: 15px;
+	} 
+
+	.btn
+	{
+		-webkit-border-radius: 28;
+		-moz-border-radius: 28;
+		border-radius: 28px;
+		font-family: Arial;
+		color: #ffffff;
+		font-size: 20px;
+		padding: 10px 20px 10px 20px;
+		text-decoration: none;
+		display: inline-block;
+	}
+
+	.btn:hover {
+	  text-decoration: none;
+	}
+
+
+	.btn-conservar {	  
+	  background: #34d960;
+	  margin-bottom: 20px;	  
+	}
+
+	.btn-conservar:hover {
+	  background: #1fc23a;
+	}
+
+	.btn-eliminar {
+	  background: #e64343;
+	}
+
+	.btn-eliminar:hover {
+	  background: #d12323;
+	}
+
+	.isa_warning {
+		color: #9F6000;
+		background-color: #FEEFB3;
+		margin: 10px 0px;
+		padding: 12px;
+		width: auto;
+		font-weight: bold;
+	}
+
+	
+
+</style> 
+
+<html>
+	<head>
+		<title>email Title</title>
+	</head>
+
+	<body>
+
+	<h1>¡Hola [display_name]!</h1>
+
+	<h2>Tu publicación <a target="_blank" href='[link_post]'>[post_title]</a> tiene más de 3 meses y medio </h2>
+
+	<h3>
+		Por favor indicanos si esta publicación está activa todavía.		
+	</h3>
+
+	<div class="divBotones">
+		<a target="_blank" href="[url_activa]" class="btn btn-conservar">
+			Sí, deseo conservarla
+		</a>
+		&nbsp;
+		<a target="_blank" href="[url_borrar]" class="btn btn-eliminar">
+			No, deseo borrarla
+		</a>
+	</div>
+
+	
+	<div class="isa_warning">
+		Ignorar este mensaje supone la eliminación de la publicación después de 1 semana de recibido el primer aviso.
+	</div>
+	
+
+	</body>
+
+</html>

@@ -1,5 +1,3 @@
-Version Wordpress 4.2.2–es_ES
-
 Base de datos
      usuario: admin
      contraseña: admin1231
@@ -9,16 +7,19 @@ Datos usados para iniciar la aplicación (super admin de wordpress)
      usuario: admin
      contraseña: Admin.1231::66
      correo: adopcion.libre@gmail.com
-     
+
+Datos para entrar al sitio en línea bepra.zet.edu.ve
+	usuario: adopcion.libre@gmail.com
+	contraseña: zQ$DdwIEgjay$Pm11W
+-----------------------------------------------------------
+
 Las claves de todos los usuarios es 123123123 y su usuario es el correo
 
 Correo para el sitio
 	 adopcion.libre@gmail.com 
-	 clave: Rocko_Spunky
-
+	 clave: WoompyRasquienta
 
 SOCIAL LOGIN ONEALL
-
 	 contraseña: Rocko_Spunky
 
 FACEBOOK
@@ -37,4 +38,3 @@ AKISMET --> Plugin comments spam
 	 First Name: Adopcion
 	 Last Name: Libre
 
-#integración con Telegram. Prueba2
