@@ -21,17 +21,17 @@ global $primeraEjecuion;
 global $recurrencia;
 
 
-$tiempoLimite = 0;//105; // 3.5 meses
+$tiempoLimite = 105;//105; // 3.5 meses
 
 $subjectEmail = 'Tu Publicacion ha Caducado';
 
 $primeraEjecuion = strtotime(date('23-01-2016'));
-$recurrencia = 'hourly';
+$recurrencia = 'daily';
 
 
-//wp_schedule_event($primeraEjecuion, $recurrencia, 'verificadorDePostViejos'); 
+wp_schedule_event($primeraEjecuion, $recurrencia, 'verificadorDePostViejos'); 
 
-add_action( 'init', 'verificadorDePostViejos' );
+//add_action( 'init', 'verificadorDePostViejos' );
 
 function verificadorDePostViejos()
 {
@@ -61,47 +61,48 @@ function verificadorDePostViejos()
 		$link_post = $postVencido->link_post;
 		$tiempo_vencido = $postVencido->tiempo_vencido;
 
-		$conservarCode = get_post_meta( $postVencido->ID, 'conservarCode', true);
-		$eliminarCode = get_post_meta( $postVencido->ID, 'eliminarCode', true);
-		
-		// si no existen los códigos, se crean
-		if($conservarCode === "" || $eliminarCode === "")
+		//se envía el correo cada 3 días.
+		if( ($tiempo_vencido - $tiempoLimite) % 3 == 0 ) 
 		{
-			$eliminarCode = wp_generate_password(150,false);
-			$conservarCode = wp_generate_password(150,false);
+			$conservarCode = get_post_meta( $postVencido->ID, 'conservarCode', true);
+			$eliminarCode = get_post_meta( $postVencido->ID, 'eliminarCode', true);
+			
+			// si no existen los códigos, se crean
+			if($conservarCode === "" || $eliminarCode === "")
+			{
+				$eliminarCode = wp_generate_password(150,false);
+				$conservarCode = wp_generate_password(150,false);
 
-			update_post_meta( $postVencido->ID, 'eliminarCode', $eliminarCode);
-			update_post_meta( $postVencido->ID, 'conservarCode', $conservarCode);
+				update_post_meta( $postVencido->ID, 'eliminarCode', $eliminarCode);
+				update_post_meta( $postVencido->ID, 'conservarCode', $conservarCode);
+			}		
+					
+
+			$mensajeAEnviar = file_get_contents(ABSPATH.'/wp-content/themes/theme-servicioComunitario/email-Templates/postVencido-rendered.html');
+
+			$linkBase = get_page_link(530).'?code=';
+			
+			$mensajeAEnviar = str_ireplace('[url_activa]',$linkBase.$conservarCode.'&action=conservarCode', $mensajeAEnviar); 
+			$mensajeAEnviar = str_ireplace('[url_borrar]',$linkBase.$eliminarCode.'&action=eliminarCode', $mensajeAEnviar); 
+			$mensajeAEnviar = str_ireplace('[post_title]',$post_title, $mensajeAEnviar); 
+			$mensajeAEnviar = str_ireplace('[display_name]',$display_name, $mensajeAEnviar); 
+			$mensajeAEnviar = str_ireplace('[user_email]',$user_email, $mensajeAEnviar); 
+			$mensajeAEnviar = str_ireplace('[link_post]',$link_post, $mensajeAEnviar); 
+			
+
+			$headers  = 'MIME-Version: 1.0' . "\r\n"; 
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			
+			$enviado = wp_mail( $user_email, $subjectEmail, $mensajeAEnviar, $headers);
+
+		}
+		//pasada 1 semana se envía a la papelera el post.
+		else if($tiempo_vencido - $tiempoLimite >= 7 ) 
+		{
+			wp_delete_post( $postVencido->ID, false );
+			delete_post_meta( $postVencido->ID, 'eliminarCode'); 
+			delete_post_meta( $postVencido->ID, 'conservarCode'); 
 		}		
-		
-		/*var_dump($conservarCode);
-		die();*/
-
-		
-
-		$mensajeAEnviar = file_get_contents(ABSPATH.'/wp-content/themes/theme-servicioComunitario/email-Templates/postVencido-rendered.html');
-
-		$linkBase = get_page_link(530).'?code=';
-		/*var_dump($linkBase);
-		die();*/
-
-		$mensajeAEnviar = str_ireplace('[url_activa]',$linkBase.$conservarCode.'&action=conservarCode', $mensajeAEnviar); 
-		$mensajeAEnviar = str_ireplace('[url_borrar]',$linkBase.$eliminarCode.'&action=eliminarCode', $mensajeAEnviar); 
-		$mensajeAEnviar = str_ireplace('[post_title]',$post_title, $mensajeAEnviar); 
-		$mensajeAEnviar = str_ireplace('[display_name]',$display_name, $mensajeAEnviar); 
-		$mensajeAEnviar = str_ireplace('[user_email]',$user_email, $mensajeAEnviar); 
-		$mensajeAEnviar = str_ireplace('[link_post]',$link_post, $mensajeAEnviar); 
-		
-
-		$headers  = 'MIME-Version: 1.0' . "\r\n"; 
-		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		
-		$enviado = wp_mail( $user_email, $subjectEmail, $mensajeAEnviar, $headers);
-
-		
-		/*var_dump($user_email.'  '.$subjectEmail.'  '.$mensajeAEnviar.'\n');
-		var_dump($enviado);
-		die();*/
 	}
 	
 }

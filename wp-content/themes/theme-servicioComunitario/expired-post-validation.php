@@ -21,7 +21,7 @@
 		<![endif]-->
 		<?php 
 			require_once("header.php");
-			require_once("menu.php");
+			//require_once("menu.php");
 
 
 			if(isset($_GET['code']) && isset($_GET['action']))
@@ -42,23 +42,96 @@
 					switch ($action)
 					{
 						case 'eliminarCode':
-							// eliminar
+
+							wp_delete_post( $post_id, false );
+
+							?>
+							<script type="text/javascript">
+							window.onload = function()
+							{								
+					            swal(
+					              '¡Eliminada!',
+					              'Tu mascota ha sido eliminada',
+					              'success'
+					            );
+							};
+							</script>
+							<?php
 						break;
 						
 						case 'conservarCode':
-							// actualizar el post_modified
+
+							$datetime = date("Y-m-d H:i:s");  							
+
+							$wpdb->query( "
+								UPDATE `wp_posts` 
+								SET `post_modified` = '".$datetime."'
+								WHERE `ID` = '".$post_id."'" );
+							?>
+							<script type="text/javascript">
+							window.onload = function()
+							{								
+					            swal(
+					              '¡Perfecto!',
+					              'Tu mascota sigue activa.',
+					              'success'
+					            );
+							};
+							</script>
+							<?php
 						break;
 					}
-				}
-				else
-				{
-					// mostrar un mensaje "codigo erroneo";
-				}
 
+					delete_post_meta($post_id, 'eliminarCode'); 
+					delete_post_meta($post_id, 'conservarCode'); 
+				}
+				else //no existe o ya se procesó.
+				{
+					?>
+					<script type="text/javascript">
+					window.onload = function()
+					{								
+			            swal(
+			              'Lo siento :(',
+			              'Enlace inválido',
+			              'warning'
+			            );
+					};
+					</script>
+					<?php
+				}
 			}
 		?>
 		<!-- contenido de la página -->
-			<!-- agregar el buscado que está en la página principal -->
+
+		<header class="container">
+        <?php if (!function_exists('dynamic_sidebar') || 
+          !dynamic_sidebar('servicio-001')) : ?>
+        <?php endif; ?>
+        <div id="search" class="searchBox">
+          <?php 
+          if (!function_exists('dynamic_sidebar') || 
+                !dynamic_sidebar('servicio-002')) : ?>
+          <?php endif; ?>
+        </div>
+        <div class="col-md-12 BoxImgPrincipal"> 
+          <img src="<?php bloginfo('template_url') ?>/img/Mascotas.jpg" class="img-responsive" alt="">
+        </div> 
+      </header>
+      
+      <article class="container text-center">
+        <?php wp_nav_menu(
+            array(
+              'container'     => 'nav',
+              'items_wrap'    =>' <ul id="menuIndex" class="boxMenuIndex">%3$s</ul>',
+              'theme_location'=> 'menu-index'
+            )
+          );
+        ?>
+      </article>
+
+      <br>
+			
 		<!-- contenido de la página -->
 		<?php 
 			require_once("footer.php");
@@ -67,16 +140,22 @@
 
 		<script>
 			$(document).ready(function(){
-				$("ul.nav-justified li:nth-child(4)").html("Mascotas perdidas");
+				// $("ul.nav-justified li:nth-child(4)").html("Mascotas perdidas");
+				$("#menuIndex li:nth-child(1) a").append( "<span class='icon icon-Cat_and_Dog_Vector'></span><span>En esta sección podras dar y encontrar mascotas en adopción</span>" );
+            $("#menuIndex li:nth-child(2) a").append( "<span class='icon icon-Lupa_Vector'></span><span>En esta sección podras reportar y ver las mascotas que han sido encontradas</span>" );
+            $("#menuIndex li:nth-child(3) a").append( "<span class='icon icon-Dog_Vector'></span><span>En esta sección podras reportar y ver las mascotas que se han perdido</span>" );
 
-				$(".post a").mouseover(function() {	
-					$(this).children('.post__info').css("display","block");
-				}).mouseout(function (){
-					$('.post a').children('.post__info').css("display","none"); 
-				});         
+            $("#menuIndexTop li:nth-child(1) a").append( "<span class='glyphicon glyphicon-log-in'></span>" );
+            $("#menuIndexTop li:nth-child(2) a").append( "<span class='icon icon-edit3'></span>" );
+            $("ul.post-categories li a").removeAttr("href");
+            $("ul.post-categories li a").removeAttr("rel");
+				 
+
+				$('#search').children('article').removeClass("BoxLoginSingIm"); 
+            	$('#search').removeClass("searchBox");
+            	$('#search').addClass("searchBox--home");      
 
 			});
 		</script>
-
 	</body>
 </html>
