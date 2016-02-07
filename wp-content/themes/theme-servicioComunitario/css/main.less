@@ -495,8 +495,8 @@ dt{ float: left; }
 	&Editar{
 		background-color: @gris;
 		position: absolute;
-		right: 224px;
-		top: 16px;
+		right: 220px;
+		top: 15px;
 	}
 
 	&MarcarPost{
@@ -507,6 +507,7 @@ dt{ float: left; }
 		top: 64px;
 		width: 306px;
 		cursor: default;
+		text-align: center;
 	}
 }
 /*=============== boton =============================================================*/
@@ -756,6 +757,11 @@ dt{ float: left; }
 
 	    & .widget_search {
 		   	float: none;
+
+	    	& input:last-child{
+	    		height: 48px;
+	    		width: 80px;
+	    	}
 		}
 		& article{
     		left: 25%;
@@ -776,8 +782,8 @@ dt{ float: left; }
   		background-color: @amarillo;
   		border: none;
 	    background-color: #FADA37;
-	    height: 48px;
-	    width: 80px;
+	    height: 33px;
+	    width: 70px;
 	}
 }
 
@@ -1046,7 +1052,7 @@ dt{ float: left; }
 			}
 
 			& #advanced-search-widget-2-s {
-			    width: 75%;
+			    width: 70%;
 			}
 		}
 	}
@@ -1055,7 +1061,7 @@ dt{ float: left; }
 	}
 
 	#advanced-search-widget-2-s {
-	   width: 80%;
+	   width: 75%;
 	}
 
 	.widget_search input:last-child {
@@ -1160,8 +1166,9 @@ dt{ float: left; }
 		}
 
 		&MarcarPost {
-		    top: 44px;
-    		position: absolute;
+		    top: 83px;
+			position: absolute;
+			width: 100%;
 		}
 
 		&Editar {

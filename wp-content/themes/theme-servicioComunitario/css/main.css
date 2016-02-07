@@ -449,8 +449,8 @@ dt {
 .BtnEditar {
   background-color: #EDEDED;
   position: absolute;
-  right: 224px;
-  top: 16px;
+  right: 220px;
+  top: 15px;
 }
 .BtnMarcarPost {
   position: absolute;
@@ -460,6 +460,7 @@ dt {
   top: 64px;
   width: 306px;
   cursor: default;
+  text-align: center;
 }
 /*=============== boton =============================================================*/
 /*=============== Detalle mascota ===================================================*/
@@ -665,6 +666,10 @@ dt {
 .searchBox--home .widget_search {
   float: none;
 }
+.searchBox--home .widget_search input:last-child {
+  height: 48px;
+  width: 80px;
+}
 .searchBox--home article {
   left: 25%;
 }
@@ -679,8 +684,8 @@ dt {
   padding: 5px;
   border: none;
   background-color: #FADA37;
-  height: 48px;
-  width: 80px;
+  height: 33px;
+  width: 70px;
 }
 #advanced-search-widget-2-s {
   border-radius: 0.3em;
@@ -908,13 +913,13 @@ dt {
     left: 0;
   }
   .searchBox--home #advanced-search-widget-2-s {
-    width: 75%;
+    width: 70%;
   }
   .widget_search {
     float: none;
   }
   #advanced-search-widget-2-s {
-    width: 80%;
+    width: 75%;
   }
   .widget_search input:last-child {
     float: right;
@@ -988,8 +993,9 @@ dt {
     width: 100%;
   }
   .BtnMarcarPost {
-    top: 44px;
+    top: 83px;
     position: absolute;
+    width: 100%;
   }
   .BtnEditar {
     background-color: #EDEDED;

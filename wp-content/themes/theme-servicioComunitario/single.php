@@ -38,13 +38,13 @@
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
           <?php 
             if (in_category('adopcion')){ 
-               echo '<div class="btn btn-lg BtnMarcarPost BtnAdopcion">Mascota en adopción</div>';
+               echo '<div class="btn-lg BtnMarcarPost BtnAdopcion">Mascota en adopción</div>';
             } 
             if (in_category('perdidos')){ 
-               echo '<div class="btn btn-lg BtnMarcarPost BtnPerdidos">Mascota perdida</div>';
+               echo '<div class="btn-lg BtnMarcarPost BtnPerdidos">Mascota perdida</div>';
             } 
             if (in_category('encontrados')){ 
-               echo '<div class="btn btn-lg BtnMarcarPost BtnEncontrados">Mascota encontrada</div>';
+               echo '<div class="btn-lg BtnMarcarPost BtnEncontrados">Mascota encontrada</div>';
             }?>
           <?php 
             $cu = wp_get_current_user(); 
@@ -62,10 +62,10 @@
           <?php } ?>
          
         </div>
-
-        <div class="row no-margin margin-medium" >
+        
+        <div class="col-md-12 no-padding row no-margin margin-medium" >
           <section  class="col-md-6 col-sm-7 col-xs-12 no-padding">
-            <div  class="col-md-2 col-sm-2 col-xs-12">
+            <div  class="col-md-2 col-sm-2 col-xs-12 ImgSmallBox">
               <?php $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
                 if($em_mtbx_img1 != '') { // Si existe el valor ?>
                   <img src="<?php echo $em_mtbx_img1; ?>" class="img-responsive BoxDetPet__ImgSmall BoxDetPet__ImgSmall--active" alt="" /> 
@@ -178,13 +178,18 @@
         $(document).ready(function(){
 
           $("#ImgBig").attr("src",$(".BoxDetPet__ImgSmall:nth-child(1)").attr("src"));
-          
-          $( ".BoxDetPet__ImgSmall" ).click(function() {
+
+          $('.BoxDetPet__ImgSmall').on('click', function() {
             $(this).addClass("BoxDetPet__ImgSmall--active");
             $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
             $("#ImgBig").attr("src",$(this).attr("src"));
           });
-
+          
+          /*$( ".BoxDetPet__ImgSmall" ).click(function() {
+            $(this).addClass("BoxDetPet__ImgSmall--active");
+            $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
+            $("#ImgBig").attr("src",$(this).attr("src"));
+          });*/
         });
 
       </script>
