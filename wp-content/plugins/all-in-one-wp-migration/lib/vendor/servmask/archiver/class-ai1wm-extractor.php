@@ -74,7 +74,7 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 		return $files_found;
 	}
 
-	public function extract_one_file_to( $location, $exclude = array() ) {
+	public function extract_one_file_to( $location, $exclude = array(), $offset = 0, $timeout = 0 ) {
 		if ( false === file_exists( $location ) ) {
 			throw new Ai1wm_Not_Readable_Exception( sprintf( __( '%s doesn\'t exist', AI1WM_PLUGIN_NAME ), $location ) );
 		}
@@ -117,11 +117,13 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 		}
 
 		try {
-			$this->extract_to( $path . DIRECTORY_SEPARATOR . $data['filename'], $data );
+			// we have a match, let's extract the file
+			if ( ( $offset = $this->extract_to( $path . DIRECTORY_SEPARATOR . $data['filename'], $data, $offset, $timeout ) ) ) {
+				return $offset;
+			}
 		} catch ( Exception $e ) {
 			// we don't have file permissions, skip file content
 			$this->set_file_pointer( $this->file_handle, $data['size'], $this->filename );
-			return;
 		}
 	}
 
@@ -131,7 +133,7 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 	 * @param string $location Location where to extract files
 	 * @param array  $files    Files to extract
 	 */
-	public function extract_by_files_array( $location, $files = array() ) {
+	public function extract_by_files_array( $location, $files = array(), $offset = 0, $timeout = 0 ) {
 		if ( false === file_exists( $location ) ) {
 			throw new Ai1wm_Not_Readable_Exception( sprintf( __( '%s doesn\'t exist', AI1WM_PLUGIN_NAME ), $location ) );
 		}
@@ -163,7 +165,9 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 			if ( in_array( $filename, $files ) ) {
 				try {
 					// we have a match, let's extract the file and remove it from the array
-					$this->extract_to( $location . DIRECTORY_SEPARATOR . $data['filename'], $data );
+					if ( ( $offset = $this->extract_to( $location . DIRECTORY_SEPARATOR . $data['filename'], $data, $offset, $timeout ) ) ) {
+						return $offset;
+					}
 				} catch ( Exception $e ) {
 					// we don't have file permissions, skip file content
 					$this->set_file_pointer( $this->file_handle, $data['size'], $this->filename );
@@ -207,28 +211,53 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 		}
 	}
 
-	private function extract_to( $file, $data, $overwrite = true ) {
-		// local file handle
-		$handle = null;
-
+	private function extract_to( $file, $data, $offset = 0, $timeout = 0 ) {
 		// should the extract overwrite the file if it exists?
-		if ( $overwrite ) {
-			$handle = $this->open_file_for_overwriting( $file );
-		} else {
+		if ( $offset ) {
 			$handle = $this->open_file_for_writing( $file );
+		} else {
+			$handle = $this->open_file_for_overwriting( $file );
 		}
+
+		// get data file pointer
+		$data_file_pointer = $this->get_file_pointer();
+
+		// set data file pointer
+		$this->set_file_pointer( $this->file_handle, $offset, $this->filename );
+
+		// set file size
+		$data['size'] -= $offset;
+
+		// start time
+		$start = microtime( true );
 
 		// is the filesize more than 0 bytes?
 		while ( $data['size'] > 0 ) {
 			// read the file in chunks of 512KB
-			$length = $data['size'] > 512000 ? 512000 : $data['size'];
+			$chunk_size = $data['size'] > 512000 ? 512000 : $data['size'];
+
 			// read the file in chunks of 512KB from archiver
-			$content = $this->read_from_handle( $this->file_handle, $length, $this->filename );
+			$content = $this->read_from_handle( $this->file_handle, $chunk_size, $this->filename );
+
 			// remote the amount of bytes we read
-			$data['size'] -= $length;
+			$data['size'] -= $chunk_size;
 
 			// write file contents
 			$this->write_to_handle( $handle, $content, $file );
+
+			// time elapsed
+			if ( $timeout ) {
+				if ( ( microtime( true ) - $start ) > $timeout ) {
+					// set file offset
+					$offset = $this->get_file_pointer() - $data_file_pointer;
+
+					// close the handle
+					fclose( $handle );
+
+					// get file offset
+					return $offset;
+				}
+			}
 		}
 
 		// close the handle
@@ -265,6 +294,9 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 		$data['size']     = trim( $data['size'] );
 		$data['mtime']    = trim( $data['mtime'] );
 		$data['path']     = trim( $data['path'] );
+
+		// current file size
+		$this->current_filesize = $data['size'];
 
 		return $data;
 	}

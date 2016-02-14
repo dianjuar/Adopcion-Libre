@@ -38,33 +38,56 @@ class Ai1wm_Compressor extends Ai1wm_Archiver {
 	/**
 	 * Add a file to the archive
 	 *
-	 * @param string $file File to add to the archive
-	 * @param string $new_filename Write the file with a different name
+	 * @param string  $file File to Add to the archive
+	 * @param string  $new_filename Write the file with a different name
+	 * @param int     $offset       File offset
+	 * @param int     $timeout      Process timeout
 	 *
 	 * @throws \Ai1wm_Not_Accesible_Exception
 	 * @throws \Ai1wm_Not_Readable_Exception
 	 * @throws \Ai1wm_Not_Writable_Exception
 	 */
-	public function add_file( $file, $new_filename = '' ) {
+	public function add_file( $file, $new_filename = '', $offset = 0, $timeout = 0 ) {
 		// open the file for reading in binary mode
 		$handle = $this->open_file_for_reading( $file );
 
 		// get file block header of the file we are trying to archive
 		$block = $this->get_file_block( $file, $new_filename );
 
-		// write file block header to our archive file
-		$this->write_to_handle( $this->file_handle, $block, $this->filename );
+		// set file offset or set file header
+		if ( $offset ) {
+			// set file offset
+			fseek( $handle, $offset, SEEK_SET );
+		} else {
+			// write file block header to our archive file
+			$this->write_to_handle( $this->file_handle, $block, $this->filename );
+		}
+
+		// start time
+		$start = microtime( true );
 
 		// read the file in 512KB chunks
 		while ( false === feof( $handle ) ) {
 			$content = $this->read_from_handle( $handle, 512000, $file );
+
 			// write file contents
-			$this->write_to_handle(
-				$this->file_handle,
-				$content,
-				$this->filename
-			);
+			$this->write_to_handle( $this->file_handle, $content, $this->filename );
+
+			// time elapsed
+			if ( $timeout ) {
+				if ( ( microtime( true ) - $start ) > $timeout ) {
+					// set file offset
+					$offset = ftell( $handle );
+
+					// close the handle
+					fclose( $handle );
+
+					// get file offset
+					return $offset;
+				}
+			}
 		}
+
 		// close the handle
 		fclose( $handle );
 	}
@@ -72,7 +95,7 @@ class Ai1wm_Compressor extends Ai1wm_Archiver {
 	/**
 	 * Generate binary block header for a file
 	 *
-	 * @param string $file Filename to generate block header for
+	 * @param string $file         Filename to generate block header for
 	 * @param string $new_filename Write the file with a different name
 	 *
 	 * @return string
@@ -95,19 +118,24 @@ class Ai1wm_Compressor extends Ai1wm_Archiver {
 		}
 
 		// filename of the file we are accessing
-		$name   = $pathinfo['basename'];
-		// content length in bytes of the file
-		$length = $stat['7'];
+		$name = $pathinfo['basename'];
+
+		// size in bytes of the file
+		$size = $stat['7'];
+
 		// last time the file was modified
-		$date   = $stat['9'];
+		$date = $stat['9'];
+
+		// current file size
+		$this->current_filesize = $size;
 
 		// replace DIRECTORY_SEPARATOR with / in path, we want to always have /
-		$path = str_replace( DIRECTORY_SEPARATOR, "/", $pathinfo['dirname'] );
+		$path = str_replace( DIRECTORY_SEPARATOR, '/', $pathinfo['dirname'] );
 
 		// concatenate block format parts
-		$format = implode( "", $this->block_format );
+		$format = implode( '', $this->block_format );
 
 		// pack file data into binary string
-		return pack( $format, $name, $length, $date, $path );
+		return pack( $format, $name, $size, $date, $path );
 	}
 }

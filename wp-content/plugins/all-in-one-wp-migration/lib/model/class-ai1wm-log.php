@@ -92,23 +92,19 @@ class Ai1wm_Log {
 	 * @return void
 	 */
 	public static function error_handler( $errno, $errstr, $errfile, $errline ) {
-		// Only log errors and warnings
-		if ( in_array( $errno, array( E_ERROR, E_WARNING ) ) ) {
-			// Build message array
-			$message = array();
+		$message = array();
 
-			// Add an empty line
-			$message[] = '';
-			$message[] = 'Number:  ' . $errno;
-			$message[] = 'Message: ' . $errstr;
-			$message[] = 'File:    ' . $errfile;
-			$message[] = 'Line:    ' . $errline;
-			$message[] = '--------------------------------------------';
+		// Add an empty line
+		$message[] = '';
+		$message[] = 'Number:  ' . $errno;
+		$message[] = 'Message: ' . $errstr;
+		$message[] = 'File:    ' . $errfile;
+		$message[] = 'Line:    ' . $errline;
+		$message[] = '--------------------------------------------';
 
-			$message = implode( PHP_EOL, $message );
+		$message = implode( PHP_EOL, $message );
 
-			self::write( $message, 'ERROR_HANDLER' );
-		}
+		self::write( $message, 'ERROR_HANDLER' );
 	}
 
 	/**

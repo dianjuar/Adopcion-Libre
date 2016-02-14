@@ -150,20 +150,23 @@ class Ai1wm_Service_Database implements Ai1wm_Service_Interface {
 			$user = array();
 		}
 
+		// Get URL IP
+		$url_ip = get_site_option( AI1WM_URL_IP, false, false );
+
+		// Get URL transport
+		$url_transport = get_site_option( AI1WM_URL_TRANSPORT, false, false );
+
+		// Get secret key
+		$secret_key = get_site_option( AI1WM_SECRET_KEY, false, false );
+
 		// Get HTTP user
 		$auth_user = get_site_option( AI1WM_AUTH_USER, false, false );
 
 		// Get HTTP password
 		$auth_password = get_site_option( AI1WM_AUTH_PASSWORD, false, false );
 
-		// Get secret key
-		$secret_key = get_site_option( AI1WM_SECRET_KEY, false, false );
-
-		// Get URL IP
-		$url_ip = get_site_option( AI1WM_URL_IP, false, false );
-
-		// Get URL transport
-		$url_transport = get_site_option( AI1WM_URL_TRANSPORT, false, false );
+		// Get active plugins
+		$active_plugins = get_site_option( AI1WM_ACTIVE_PLUGINS, array(), false );
 
 		// Get database client
 		$client = MysqlDumpFactory::makeMysqlDump( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
@@ -188,44 +191,11 @@ class Ai1wm_Service_Database implements Ai1wm_Service_Interface {
 		// Clear WP options cache
 		wp_cache_flush();
 
-		// WP Migration
-		if ( is_plugin_active( AI1WM_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WM_PLUGIN_BASENAME );
-		}
-
-		// Dropbox Extension
-		if ( is_plugin_active( AI1WMDE_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMDE_PLUGIN_BASENAME );
-		}
-
-		// Google Drive Extension
-		if ( is_plugin_active( AI1WMGE_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMGE_PLUGIN_BASENAME );
-		}
-
-		// Amazon S3 Extension
-		if ( is_plugin_active( AI1WMSE_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMSE_PLUGIN_BASENAME );
-		}
-
-		// Multisite Extension
-		if ( is_plugin_active( AI1WMME_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMME_PLUGIN_BASENAME );
-		}
-
-		// Unlimited Extension
-		if ( is_plugin_active( AI1WMUE_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMUE_PLUGIN_BASENAME );
-		}
-
-		// FTP Extension
-		if ( is_plugin_active( AI1WMFE_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMFE_PLUGIN_BASENAME );
-		}
-
-		// URL Extension
-		if ( is_plugin_active( AI1WMLE_PLUGIN_BASENAME ) ) {
-			activate_plugin( AI1WMLE_PLUGIN_BASENAME );
+		// Activate plugins
+		foreach ( $active_plugins as $plugin ) {
+			if ( in_array( $plugin, ai1wm_active_plugins() ) ) {
+				activate_plugin( $plugin );
+			}
 		}
 
 		// Set new user identity
@@ -257,20 +227,20 @@ class Ai1wm_Service_Database implements Ai1wm_Service_Interface {
 			}
 		}
 
-		// Set the new HTTP user
-		update_site_option( AI1WM_AUTH_USER, $auth_user );
-
-		// Set the new HTTP password
-		update_site_option( AI1WM_AUTH_PASSWORD, $auth_password );
-
-		// Set the new secret key value
-		update_site_option( AI1WM_SECRET_KEY, $secret_key );
-
 		// Set the new URL IP
 		update_site_option( AI1WM_URL_IP, $url_ip );
 
 		// Set the new URL transport
 		update_site_option( AI1WM_URL_TRANSPORT, $url_transport );
+
+		// Set the new secret key value
+		update_site_option( AI1WM_SECRET_KEY, $secret_key );
+
+		// Set the new HTTP user
+		update_site_option( AI1WM_AUTH_USER, $auth_user );
+
+		// Set the new HTTP password
+		update_site_option( AI1WM_AUTH_PASSWORD, $auth_password );
 	}
 
 	/**

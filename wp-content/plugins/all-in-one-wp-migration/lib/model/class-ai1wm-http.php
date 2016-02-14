@@ -138,13 +138,14 @@ class Ai1wm_Http {
 
 		// HTTP request
 		remove_all_filters( 'http_request_args' );
-		wp_remote_get(
-			add_query_arg( ai1wm_urlencode( $params ), $url ),
+		wp_remote_post(
+			$url,
 			array(
 				'timeout'   => apply_filters( 'ai1wm_http_timeout', 5 ),
 				'blocking'  => false,
 				'sslverify' => false,
 				'headers'   => $headers,
+				'body'      => $params,
 			)
 		);
 	}

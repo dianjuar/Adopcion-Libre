@@ -30,7 +30,7 @@ abstract class Ai1wm_Archiver {
 	 *
 	 * Field Name    Offset    Length    Contents
 	 * name               0       255    filename (no path, no slash)
-	 * size             255        14    length of file contents
+	 * size             255        14    Size of file contents
 	 * mtime            269        12    last modification time
 	 * prefix           281      4096    path name, no trailing slashes
 	 *
@@ -38,7 +38,7 @@ abstract class Ai1wm_Archiver {
 	 */
 	protected $block_format = array(
 		'a255', // filename
-		'a14',  // length of file contents
+		'a14',  // size of file contents
 		'a12',  // last time modified
 		'a4096' // path
 	);
@@ -56,6 +56,13 @@ abstract class Ai1wm_Archiver {
 	 * @type resource
 	 */
 	protected $file_handle = null;
+
+	/**
+	 * Current file size
+	 *
+	 * @type int
+	 */
+	protected $current_filesize = null;
 
 	/**
 	 * End Of File block string
@@ -147,8 +154,8 @@ abstract class Ai1wm_Archiver {
 	 * Write data to a handle and check if the data has been written
 	 *
 	 * @param resource $handle File handle
-	 * @param string $data Data to be written - binary
-	 * @param string $file Filename that the file handle belongs to
+	 * @param string   $data   Data to be written - binary
+	 * @param string   $file   Filename that the file handle belongs to
 	 *
 	 * @throws \Ai1wm_Not_Writable_Exception
 	 */
@@ -163,8 +170,8 @@ abstract class Ai1wm_Archiver {
 	 * Read data from a handle
 	 *
 	 * @param resource $handle File handle
-	 * @param int size Length of data to be read in bytes
-	 * @param string $file Filename that the file handle belongs to
+	 * @param int      $size   Size of data to be read in bytes
+	 * @param string   $file   Filename that the file handle belongs to
 	 *
 	 * @return string Content that was read
 	 * @throws \Ai1wm_Not_Readable_Exception
@@ -178,7 +185,6 @@ abstract class Ai1wm_Archiver {
 		return $result;
 	}
 
-
 	/**
 	 * Appends end of file block to the archive
 	 *
@@ -186,6 +192,15 @@ abstract class Ai1wm_Archiver {
 	 */
 	protected function append_eof() {
 		$this->write_to_handle( $this->file_handle, $this->eof, $this->filename );
+	}
+
+	/**
+	 * Get current file size
+	 *
+	 * return int
+	 */
+	public function get_current_filesize() {
+		return $this->current_filesize;
 	}
 
 	/**

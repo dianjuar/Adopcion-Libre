@@ -38,6 +38,10 @@ class Ai1wm_Export_Controller {
 	}
 
 	public static function export( $args = array() ) {
+
+		// Set error handler
+		@set_error_handler( 'Ai1wm_Log::error_handler' );
+
 		try {
 
 			// Set arguments

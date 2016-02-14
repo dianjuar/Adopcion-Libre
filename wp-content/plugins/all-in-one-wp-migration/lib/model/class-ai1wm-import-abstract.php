@@ -46,10 +46,8 @@ abstract class Ai1wm_Import_Abstract {
 	public function start() {
 		// Set default progress
 		Ai1wm_Status::set( array(
-			'total'     => 0,
-			'processed' => 0,
-			'type'      => 'info',
-			'message'   => __( 'Unpacking archive...', AI1WM_PLUGIN_NAME ),
+			'type'    => 'info',
+			'message' => __( 'Unpacking archive...', AI1WM_PLUGIN_NAME ),
 		) );
 
 		// Open the archive file for reading
@@ -151,18 +149,17 @@ abstract class Ai1wm_Import_Abstract {
 		// Open the archive file for reading
 		$archive = new Ai1wm_Extractor( $this->storage()->archive() );
 
-		// Unpack package.json and database.sql files
+		// Get number of files
 		$total = $archive->get_number_of_files();
 
-		// Substract database.sql and package.json
-		$total -= 2;
-
-		// close the archive file
+		// Close the archive file
 		$archive->close();
+
+		// Set total
+		$this->args['total'] = $total;
 
 		// Set progress
 		Ai1wm_Status::set( array(
-			'total'   => $total,
 			'type'    => 'info',
 			'message' => __( 'Done retrieving a list of all WordPress files.', AI1WM_PLUGIN_NAME ),
 		) );
@@ -190,16 +187,44 @@ abstract class Ai1wm_Import_Abstract {
 	 * @return void
 	 */
 	public function content() {
-		// Total and processed files
-		$total     = Ai1wm_Status::get( 'total' );
-		$processed = Ai1wm_Status::get( 'processed' );
-		$progress  = (int) ( ( $processed / $total ) * 100 ) or $progress = 4;
+		// Set content offset
+		if ( isset( $this->args['content_offset'] ) ) {
+			$content_offset = $this->args['content_offset'];
+		} else {
+			$content_offset = 0;
+		}
+
+		// Set archive offset
+		if ( isset( $this->args['archive_offset']) ) {
+			$archive_offset = $this->args['archive_offset'];
+		} else {
+			$archive_offset = 0;
+		}
+
+		// Set total files
+		if ( isset( $this->args['total'] ) ) {
+			$total = $this->args['total'];
+		} else {
+			$total = 1;
+		}
+
+		// Set processed files
+		if ( isset( $this->args['processed'] ) ) {
+			$processed = $this->args['processed'];
+		} else {
+			$processed = 0;
+		}
+
+		// What percent of files have we processed?
+		$progress = (int) ( ( $processed / $total ) * 100 );
 
 		// Set progress
-		Ai1wm_Status::set( array(
-			'type'    => 'info',
-			'message' => sprintf( __( 'Restoring %d files...<br />%d%% complete', AI1WM_PLUGIN_NAME ), $total, $progress ),
-		) );
+		if ( empty( $content_offset ) ) {
+			Ai1wm_Status::set( array(
+				'type'    => 'info',
+				'message' => sprintf( __( 'Restoring %d files...<br />%.2f%% complete', AI1WM_PLUGIN_NAME ), $total, $progress ),
+			) );
+		}
 
 		// Start time
 		$start = microtime( true );
@@ -211,15 +236,45 @@ abstract class Ai1wm_Import_Abstract {
 		$archive = new Ai1wm_Extractor( $this->storage()->archive() );
 
 		// Set the file pointer to the one that we have saved
-		$archive->set_file_pointer( null, $this->pointer() );
+		$archive->set_file_pointer( null, $archive_offset );
 
 		while ( $archive->has_not_reached_eof() ) {
 			try {
-				// Extract a file from archive to wp_content_dir
-				$archive->extract_one_file_to( WP_CONTENT_DIR, array(
-					AI1WM_PACKAGE_NAME,
-					AI1WM_DATABASE_NAME,
-				) );
+
+				// Extract a file from archive to WP_CONTENT_DIR
+				if ( ( $content_offset = $archive->extract_one_file_to( WP_CONTENT_DIR, array( AI1WM_PACKAGE_NAME, AI1WM_DATABASE_NAME ), $content_offset, 3 ) ) ) {
+
+					// Set progress
+					if ( ( $sub_progress = ( $content_offset / $archive->get_current_filesize() ) ) < 1 ) {
+						$progress += $sub_progress;
+					}
+
+					// Set progress
+					Ai1wm_Status::set( array(
+						'type'    => 'info',
+						'message' => sprintf( __( 'Restoring %d files...<br />%.2f%% complete', AI1WM_PLUGIN_NAME ), $total, $progress ),
+					) );
+
+					// Set content offset
+					$this->args['content_offset'] = $content_offset;
+
+					// Set archive offset
+					$this->args['archive_offset'] = $archive_offset;
+
+					// Close the archive file
+					$archive->close();
+
+					// Redirect
+					return $this->route_to( 'content' );
+
+				}
+
+				// Set content offset
+				$content_offset = 0;
+
+				// Set archive offset
+				$archive_offset = $archive->get_file_pointer();
+
 			} catch ( Exception $e ) {
 				// Skip bad file permissions
 			}
@@ -227,25 +282,25 @@ abstract class Ai1wm_Import_Abstract {
 			// Increment processed files counter
 			$processed++;
 
-			// We are only extracting files for 5 seconds at a time
-			$time = microtime( true ) - $start;
-			if ( $time > 5 ) {
-				// More than 5 seconds have passed, break and do another request
+			// Time elapsed
+			if ( ( microtime( true ) - $start ) > 3 ) {
+				// More than 3 seconds have passed, break and do another request
 				$completed = false;
 				break;
 			}
 		}
 
-		// Set new file map pointer
-		$this->pointer( $archive->get_file_pointer() );
+		// Set content offset
+		$this->args['content_offset'] = $content_offset;
+
+		// Set archive offset
+		$this->args['archive_offset'] = $archive_offset;
+
+		// Set processed files
+		$this->args['processed'] = $processed;
 
 		// Close the archive file
 		$archive->close();
-
-		// Set progress
-		Ai1wm_Status::set( array(
-			'processed' => $processed,
-		) );
 
 		// Redirect
 		if ( $completed ) {
@@ -268,6 +323,7 @@ abstract class Ai1wm_Import_Abstract {
 
 		// Display progress
 		Ai1wm_Status::set( array(
+			'type'    => 'info',
 			'message' => __( 'Restoring database...', AI1WM_PLUGIN_NAME ),
 		) );
 
@@ -357,22 +413,6 @@ abstract class Ai1wm_Import_Abstract {
 		}
 
 		return $this->storage;
-	}
-
-	/**
-	 * Get filemap pointer or set new one
-	 *
-	 * @param  int $pointer Set new file pointer
-	 * @return int
-	 */
-	protected function pointer( $pointer = null ) {
-		if ( ! isset( $this->args['pointer'] ) ) {
-			$this->args['pointer'] = 0;
-		} else if ( ! is_null( $pointer ) ) {
-			$this->args['pointer'] = $pointer;
-		}
-
-		return (int) $this->args['pointer'];
 	}
 
 	/**

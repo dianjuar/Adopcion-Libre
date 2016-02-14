@@ -38,7 +38,7 @@ if ( function_exists( 'gethostname' ) && in_array( gethostname(), $local ) ) {
 // ==================
 // = Plugin Version =
 // ==================
-define( 'AI1WM_VERSION', '4.17' );
+define( 'AI1WM_VERSION', '4.18' );
 
 // ===============
 // = Plugin Name =
@@ -189,6 +189,11 @@ define( 'AI1WM_AUTH_USER', 'ai1wm_auth_user' );
 // = Auth Password =
 // =================
 define( 'AI1WM_AUTH_PASSWORD', 'ai1wm_auth_password' );
+
+// ==================
+// = Active Plugins =
+// ==================
+define( 'AI1WM_ACTIVE_PLUGINS', 'active_plugins' );
 
 // ================
 // = Messages Key =

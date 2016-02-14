@@ -31,14 +31,7 @@ class Ai1wm_Main_Controller {
 	 * @return Ai1wm_Main_Controller
 	 */
 	public function __construct() {
-		// Start by setting error and exception handlers
-		@set_error_handler( 'Ai1wm_Log::error_handler' );
-
-		register_activation_hook(
-			AI1WM_PLUGIN_BASENAME,
-			array( $this, 'activation_hook' )
-		);
-
+		register_activation_hook( AI1WM_PLUGIN_BASENAME, array( $this, 'activation_hook' ) );
 
 		// Activate hooks
 		$this->activate_actions()
@@ -575,7 +568,8 @@ class Ai1wm_Main_Controller {
 				'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=ai1wm_export' ) ),
 			),
 			'status' => array(
-				'url' => wp_make_link_relative( AI1WM_STORAGE_URL ),
+				'php' => wp_make_link_relative( plugins_url( 'status.php', AI1WM_PLUGIN_BASENAME ) ),
+				'js'  => wp_make_link_relative( plugins_url( 'storage/status.js', AI1WM_PLUGIN_BASENAME ) ),
 			),
 			'secret_key' => get_site_option( AI1WM_SECRET_KEY, false, false ),
 		) );
@@ -685,7 +679,8 @@ class Ai1wm_Main_Controller {
 				'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=ai1wm_import' ) ),
 			),
 			'status' => array(
-				'url' => wp_make_link_relative( AI1WM_STORAGE_URL ),
+				'php' => wp_make_link_relative( plugins_url( 'status.php', AI1WM_PLUGIN_BASENAME ) ),
+				'js'  => wp_make_link_relative( plugins_url( 'storage/status.js', AI1WM_PLUGIN_BASENAME ) ),
 			),
 			'secret_key' => get_site_option( AI1WM_SECRET_KEY, false, false ),
 			'oversize'   => sprintf(

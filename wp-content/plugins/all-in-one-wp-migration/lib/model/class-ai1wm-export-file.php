@@ -27,7 +27,10 @@ class Ai1wm_Export_File extends Ai1wm_Export_Abstract {
 
 	public function export() {
 		// Set progress
-		Ai1wm_Status::set( array( 'message' => __( 'Renaming exported file...', AI1WM_PLUGIN_NAME ) ) );
+		Ai1wm_Status::set( array(
+			'type'    => 'info',
+			'message' => __( 'Renaming exported file...', AI1WM_PLUGIN_NAME )
+		) );
 
 		// Close achive file
 		$archive = new Ai1wm_Compressor( $this->storage()->archive() );
@@ -37,27 +40,23 @@ class Ai1wm_Export_File extends Ai1wm_Export_Abstract {
 
 		// Rename archive file
 		if ( rename( $this->storage()->archive(), $this->storage()->backup() ) ) {
-
 			// Set progress
-			Ai1wm_Status::set(
-				array(
-					'type'    => 'download',
-					'message' => sprintf(
-						__(
-							'<a href="%s/%s" class="ai1wm-button-green ai1wm-emphasize">' .
-							'<span>Download %s</span>' .
-							'<em>Size: %s</em>' .
-							'</a>',
-							AI1WM_PLUGIN_NAME
-						),
-						AI1WM_BACKUPS_URL,
-						basename( $this->storage()->backup() ),
-						parse_url( home_url(), PHP_URL_HOST ),
-						size_format( filesize( $this->storage()->backup() ) )
-					)
-				),
-				$this->storage()->status() // status.js file
-			);
+			Ai1wm_Status::set( array(
+				'type'    => 'download',
+				'message' => sprintf(
+					__(
+						'<a href="%s/%s" class="ai1wm-button-green ai1wm-emphasize">' .
+						'<span>Download %s</span>' .
+						'<em>Size: %s</em>' .
+						'</a>',
+						AI1WM_PLUGIN_NAME
+					),
+					AI1WM_BACKUPS_URL,
+					basename( $this->storage()->backup() ),
+					parse_url( home_url(), PHP_URL_HOST ),
+					size_format( filesize( $this->storage()->backup() ) )
+				)
+			) );
 		}
 	}
 }

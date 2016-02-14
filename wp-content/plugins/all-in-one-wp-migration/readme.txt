@@ -3,7 +3,7 @@ Contributors: yani.iliev, bangelov, pimjitsawang
 Tags: db migration, migration, wordpress migration, db backup, db restore, website backup, website restore, website migration, website deploy, wordpress deploy, db backup, database export, database serialization, database find replace
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 4.17
+Stable tag: 4.18
 License: GPLv2 or later
 
 All-in-One WP Migration is the only tool that you will ever need to migrate a WordPress site.
@@ -28,8 +28,23 @@ All in One WP Plugin is the first plugin to offer true mobile experience on Word
 = Support for MySQL, PDO, MySQLi =
 * No matter what php mysql driver your webserver ships with, we support it.
 
-= Support WordPress v3.3 up to v4.4 =
-* We tested every WordPress version from `3.3` up to `4.4`.
+= Support WordPress v3.3 up to v4.x =
+* We tested every WordPress version from `3.3` up to `4.x`.
+
+= Supported hosting providers =
+* Bluehost
+* InMotion
+* Web Hosting Hub
+* Siteground
+* Pagely
+* Dreamhost
+* Justhost
+* GoDaddy
+* WP Engine
+* Site5
+* 1&1
+* Pantheon
+* [See the full list of supported providers here](https://help.servmask.com/knowledgebase/supported-hosting-providers/)
 
 = Migrate WordPress to most popular cloud services using our completely new extensions =
 * [Unlimited](https://servmask.com/products/unlimited-extension)
@@ -60,6 +75,10 @@ All in One WP Plugin is the first plugin to offer true mobile experience on Word
 3. Plugin Menu
 
 == Changelog ==
+= 4.18 =
+* Fixed an issue with large media files
+* Fixed an issue with status file being cached
+
 = 4.17 =
 * Set "Tested up to" WordPress 4.4
 
