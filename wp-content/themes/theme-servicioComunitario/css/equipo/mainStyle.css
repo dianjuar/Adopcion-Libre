@@ -333,6 +333,7 @@ h1, h2, h3, h4, h5, h6 {
 .mask ul li {
     display: inline-block;
     margin-right: 15px;
+    margin-bottom: 5px;
 }
 
 .mask ul li a {

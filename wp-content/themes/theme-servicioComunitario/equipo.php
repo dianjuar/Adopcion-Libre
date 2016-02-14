@@ -18,22 +18,21 @@
 							'cantPersonas' 	=> 4,
 							'infoPersonas' => array(
 													array('nombre' => 'Diego Juliao', 
-														   'cargo' 	=> '???/Developer',
-														   'foto'	=> 'member-1.jpg',
-														   'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/diego.juliao.9',
-														   					 'fa-twitter' 	=> 'https://twitter.com/Dianjuar',
-														   					 'fa-linkedin' 	=> 'https://ve.linkedin.com/in/dianjuar',
-														   					 'fa-linkedin' 	=> 'https://ve.linkedin.com/in/dianjuar',
-														   					 'fa-envelope' 	=> 'https://ve.linkedin.com/in/dianjuar',
-														   					 'fa-car' 	=> 'https://ve.linkedin.com/in/dianjuar',
-														   					 'fa-globe' 	=> 'https://about.me/dianjuar')
+														   'cargo' 	=> 'System Arcquitec / Developer',
+														   'foto'	=> 'diego.jpg',
+														   'redes'	=> array('fa-facebook'	     => 'https://www.facebook.com/diego.juliao.9',
+														   					 'fa-twitter' 	     => 'https://twitter.com/Dianjuar',
+                                                                             'fa-github'         => 'https://github.com/dianjuar',
+                                                                             'fa-paper-plane'    => 'https://telegram.me/dianjuar',
+                                                                             'fa-globe'          => 'https/:/about.me/dianjuar',
+                                                                             'fa-envelope'       => 'mailto:dianjuar@gmail')
 													),
 												    array('nombre' 	=> 'Yossely Mendoza', 
-														  'cargo' 	=> '???/Developer',
-														  'foto'	=> 'member-2.jpg',
+														  'cargo' 	=> 'System Arcquitec / Developer',
+														  'foto'	=> 'yossely.jpg',
 														  'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/yossely.mendozameneses',
-														   					 'fa-twitter' 	=> 'https://twitter.com/yosse_31',
-														   					 'fa-linkedin' 	=> 'abc.com',
+                                                                             'fa-github'    => 'https://github.com/yossely',
+														   					 'fa-paper-plane'    => 'https://telegram.me/yossely',
 														   					 'fa-envelope' 	=> 'mailto:yossely7@gmail.com')
 													),
 												    array('nombre' 	=> 'Ingrid Lazaro', 
@@ -46,7 +45,7 @@
 													),
 												    array('nombre' 	=> 'José Paz', 
 														  'cargo' 	=> 'preguntele a él',
-														  'foto'	=> 'member-4.jpg',
+														  'foto'	=> 'member-3.jpg',
 														  'redes'	=> array('fa-facebook'	=> 'facebok.com',
 														   					 'fa-twitter' 	=> 'https://twitter.com/',
 														   					 'fa-linkedin' 	=> 'abc.com',
@@ -59,21 +58,17 @@
 							'titulo2' 	=> 'Especiales',
 							'cantPersonas' 	=> 2,
 							'infoPersonas' => array(
-												array('nombre' => 'Marian Le Boulenge Manrique', 
-													   'cargo' 	=> 'Cargo',
-													   'foto'	=> 'member-1.jpg',
-													   'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/diego.juliao.9',
-													   					 'fa-twitter' 	=> 'https://twitter.com/Dianjuar',
-													   					 'fa-linkedin' 	=> 'https://ve.linkedin.com/in/dianjuar',
-													   					 'fa-globe' 	=> 'https://about.me/dianjuar')
+												array('nombre' => 'Marian Le Boulenge', 
+													   'cargo' 	=> 'Promotora y Coordinadora Regional de BEPRA',
+													   'foto'	=> 'marian.jpg',
+													   'redes'	=> array('fa-twitter' 	=> 'https://twitter.com/MBOULENGE',
+													   					 'fa-envelope' 	=> 'mailto:marianleboulenge@hotmail.com')
 												),
-											    array('nombre' 	=> 'Zona Educativa', 
-													  'cargo' 	=> '???/Developer',
-													  'foto'	=> 'member-2.jpg',
-													  'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/yossely.mendozameneses',
-													   					 'fa-twitter' 	=> 'https://twitter.com/yosse_31',
-													   					 'fa-linkedin' 	=> 'abc.com',
-													   					 'fa-envelope' 	=> 'mailto:yossely7@gmail.com')
+											    array('nombre' 	=> 'Zona Educativa Táchira', 
+													  'cargo' 	=> 'Proveedor de Hosting',
+													  'foto'	=> 'zet.png',
+													  'redes'	=> array('fa-twitter' 	=> 'https://twitter.com/PrensaZETachira',
+													   					 'fa-globe' 	=> 'https://zet.edu.ve/')
 												)
 											)
 						)
