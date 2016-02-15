@@ -1,1 +1,0 @@
-{"type":"download","message":"<a href=\"http:\/\/localhost\/SC\/wp-content\/ai1wm-backups\/localhost-SC-20160214-173425-457.wpress\" class=\"ai1wm-button-green ai1wm-emphasize\"><span>Download localhost<\/span><em>Size: 13 MB<\/em><\/a>"}

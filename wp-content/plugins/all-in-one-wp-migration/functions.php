@@ -90,5 +90,10 @@ function ai1wm_active_plugins( $plugins = array() ) {
 		$plugins[] = AI1WMLE_PLUGIN_BASENAME;
 	}
 
+	// OneDrive Extension
+	if ( defined( 'AI1WMOE_PLUGIN_BASENAME' ) ) {
+		$plugins[] = AI1WMOE_PLUGIN_BASENAME;
+	}
+
 	return $plugins;
 }

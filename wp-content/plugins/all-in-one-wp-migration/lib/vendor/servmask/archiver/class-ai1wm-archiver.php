@@ -30,7 +30,7 @@ abstract class Ai1wm_Archiver {
 	 *
 	 * Field Name    Offset    Length    Contents
 	 * name               0       255    filename (no path, no slash)
-	 * size             255        14    Size of file contents
+	 * size             255        14    size of file contents
 	 * mtime            269        12    last modification time
 	 * prefix           281      4096    path name, no trailing slashes
 	 *
@@ -144,7 +144,7 @@ abstract class Ai1wm_Archiver {
 		// check if we have a handle
 		if ( false === $file_handle ) {
 			// we couldn't open the file
-			throw new Ai1wm_Not_Accesible_Exception( sprintf( __( 'Unable to open %s' . AI1WM_PLUGIN_NAME ), $file ) );
+			throw new Ai1wm_Not_Accesible_Exception( sprintf( __( 'Unable to open %s', AI1WM_PLUGIN_NAME ), $file ) );
 		}
 
 		return $file_handle;

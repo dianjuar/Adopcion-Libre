@@ -21,7 +21,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4&appId=1597708607152911";
+        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
       <!-- Boton fb -->
@@ -93,7 +93,7 @@
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
             <section class="col-md-12 redes_sociales">
-              <div class="fb-share-button" data-href="http://bepra.zet.edu.ve/" data-layout="button_count"></div>
+              <div class="fb-share-button" data-href="<?php echo get_permalink($post->ID);?>" data-layout="button_count"></div>
               <a href="https://twitter.com/share" class="twitter-share-button" data-via="karilaz">Tweet</a>
               <g:plus action="share" annotation="none"></g:plus>
             </section>

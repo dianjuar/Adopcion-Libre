@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2014 ServMask Inc.
  *
@@ -23,6 +22,7 @@
  * ███████║███████╗██║  ██║ ╚████╔╝ ██║ ╚═╝ ██║██║  ██║███████║██║  ██╗
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
+
 abstract class Ai1wm_Export_Abstract {
 
 	protected $args    = array();
@@ -115,6 +115,7 @@ abstract class Ai1wm_Export_Abstract {
 				'plugins' . DIRECTORY_SEPARATOR . AI1WMUE_PLUGIN_BASEDIR,
 				'plugins' . DIRECTORY_SEPARATOR . AI1WMFE_PLUGIN_BASEDIR,
 				'plugins' . DIRECTORY_SEPARATOR . AI1WMLE_PLUGIN_BASEDIR,
+				'plugins' . DIRECTORY_SEPARATOR . AI1WMOE_PLUGIN_BASEDIR,
 			) );
 		}
 

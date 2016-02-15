@@ -37,7 +37,7 @@ class MysqlDumpUtility
 	 */
 	public static function replaceValues($from = array(), $to = array(), $data = '')
 	{
-		return str_replace($from, $to, $data);
+		return str_ireplace($from, $to, $data);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class MysqlDumpUtility
 				unset($tmp);
 			} else {
 				if (is_string($data)) {
-					$data = str_replace($from, $to, $data);
+					$data = str_ireplace($from, $to, $data);
 				}
 			}
 
@@ -99,7 +99,7 @@ class MysqlDumpUtility
 	 * @return string
 	 */
 	public static function unescapeMysql($data) {
-		return str_replace(
+		return str_ireplace(
 			array('\\\\', '\\0', "\\n", "\\r", '\Z', "\'", '\"'),
 			array('\\', '\0', "\n", "\r", "\x1a", "'", '"'),
 			$data
@@ -112,6 +112,6 @@ class MysqlDumpUtility
 	 * @return string
 	 */
 	public static function unescapeQuotes($data) {
-		return str_replace('\"', '"', $data);
+		return str_ireplace('\"', '"', $data);
 	}
 }

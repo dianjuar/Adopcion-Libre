@@ -38,10 +38,10 @@ class Ai1wm_Compressor extends Ai1wm_Archiver {
 	/**
 	 * Add a file to the archive
 	 *
-	 * @param string  $file File to Add to the archive
-	 * @param string  $new_filename Write the file with a different name
-	 * @param int     $offset       File offset
-	 * @param int     $timeout      Process timeout
+	 * @param string $file         File to Add to the archive
+	 * @param string $new_filename Write the file with a different name
+	 * @param int    $offset       File offset
+	 * @param int    $timeout      Process timeout
 	 *
 	 * @throws \Ai1wm_Not_Accesible_Exception
 	 * @throws \Ai1wm_Not_Readable_Exception

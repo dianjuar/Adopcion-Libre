@@ -24,6 +24,7 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 class Ai1wm_Extractor extends Ai1wm_Archiver {
+
 	/**
 	 * Overloaded constructor that opens the passed file for reading
 	 *

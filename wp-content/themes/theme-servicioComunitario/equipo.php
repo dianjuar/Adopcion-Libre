@@ -24,7 +24,7 @@
 														   					 'fa-twitter' 	     => 'https://twitter.com/Dianjuar',
                                                                              'fa-github'         => 'https://github.com/dianjuar',
                                                                              'fa-paper-plane'    => 'https://telegram.me/dianjuar',
-                                                                             'fa-globe'          => 'https/:/about.me/dianjuar',
+                                                                             'fa-globe'          => 'https://about.me/dianjuar',
                                                                              'fa-envelope'       => 'mailto:dianjuar@gmail')
 													),
 												    array('nombre' 	=> 'Yossely Mendoza', 

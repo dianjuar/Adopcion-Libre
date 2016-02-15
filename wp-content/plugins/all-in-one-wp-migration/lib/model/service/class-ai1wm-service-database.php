@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2014 ServMask Inc.
  *
@@ -251,20 +250,21 @@ class Ai1wm_Service_Database implements Ai1wm_Service_Interface {
 	public function export() {
 		global $wpdb;
 
-		$clauses = array();
+		// Get database client
+		$client = MysqlDumpFactory::makeMysqlDump( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
 
 		// Spam comments
 		if ( isset( $this->args['options']['no-spam-comments'] ) ) {
-			$clauses[ $wpdb->comments ]    = " WHERE comment_approved != 'spam' ";
-			$clauses[ $wpdb->commentmeta ] = sprintf(
+			$client->setTableQueryClauses( $wpdb->comments, " WHERE comment_approved != 'spam' " );
+			$client->setTableQueryClauses( $wpdb->commentmeta, sprintf(
 				" WHERE comment_id IN ( SELECT comment_ID FROM `%s` WHERE comment_approved != 'spam' ) ",
 				$wpdb->comments
-			);
+			) );
 		}
 
 		// Post revisions
 		if ( isset( $this->args['options']['no-revisions'] ) ) {
-			$clauses[ $wpdb->posts ] = " WHERE post_type != 'revision' ";
+			$client->setTableQueryClauses( $wpdb->posts, " WHERE post_type != 'revision' " );
 		}
 
 		// Find and replace
@@ -279,16 +279,12 @@ class Ai1wm_Service_Database implements Ai1wm_Service_Interface {
 			}
 		}
 
-		// Get database client
-		$client = MysqlDumpFactory::makeMysqlDump( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
-
 		// Set database options
 		$client->setOldTablePrefixes( array( $wpdb->prefix ) )
 			   ->setNewTablePrefixes( array( AI1WM_TABLE_PREFIX ) )
 			   ->setOldReplaceValues( $old_values )
 			   ->setNewReplaceValues( $new_values )
    			   ->setIncludeTablePrefixes( array( $wpdb->prefix ) )
-			   ->setQueryClauses( $clauses )
 			   ->setTablePrefixColumns( $wpdb->options, array( 'option_name' ) )
 			   ->setTablePrefixColumns( $wpdb->usermeta, array( 'meta_key' ) );
 
