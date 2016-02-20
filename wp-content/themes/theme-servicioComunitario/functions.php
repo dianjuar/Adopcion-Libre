@@ -634,12 +634,12 @@ function isLowerRole($role1, $role2)
 }
 
 //
-function filtrarPost ($categoryName)
+function filtrarPost ($categoryName = '')
 {
-	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
     global $queryPost;
     global $estado, $municipio;
+	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
     $SoloEstados = array(   'relation'          => 'AND',
                                 array(
