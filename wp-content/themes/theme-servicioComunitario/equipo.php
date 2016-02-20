@@ -18,7 +18,7 @@
 							'cantPersonas' 	=> 4,
 							'infoPersonas' => array(
 													array('nombre' => 'Diego Juliao', 
-														   'cargo' 	=> 'System Arcquitec / Developer',
+														   'cargo' 	=> 'System Architect / Developer',
 														   'foto'	=> 'diego.jpg',
 														   'redes'	=> array('fa-facebook'	     => 'https://www.facebook.com/diego.juliao.9',
 														   					 'fa-twitter' 	     => 'https://twitter.com/Dianjuar',
@@ -28,7 +28,7 @@
                                                                              'fa-envelope'       => 'mailto:dianjuar@gmail')
 													),
 												    array('nombre' 	=> 'Yossely Mendoza', 
-														  'cargo' 	=> 'System Arcquitec / Developer',
+														  'cargo' 	=> 'System Architect / Developer',
 														  'foto'	=> 'yossely.jpg',
 														  'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/yossely.mendozameneses',
                                                                              'fa-github'    => 'https://github.com/yossely',
@@ -37,19 +37,22 @@
 													),
 												    array('nombre' 	=> 'Ingrid Lazaro', 
 														  'cargo' 	=> 'Desinger',
-														  'foto'	=> 'member-3.jpg',
-														  'redes'	=> array('fa-facebook'	=> 'facebok.com',
-														   					 'fa-twitter' 	=> 'https://twitter.com/',
-														   					 'fa-linkedin' 	=> 'abc.com',
-														   					 'fa-dribbble' 	=> 'muchosbebes.com')
+														  'foto'	=> 'ingrid.jpg',
+														  'redes'	=> array('fa-linkedin' 	=> 'https://ve.linkedin.com/in/ingrid-lazaro-28507a76',
+													  						 'fa-twitter'	=> 'https://twitter.com/karilaz',
+													  						 'fa-bitbucket'	=> 'https://bitbucket.org/karilaz/',
+														   					 'fa-github'    => 'https://github.com/karilaz',
+														   					 'fa-envelope' 	=> 'mailto:anirak.laz@gmail.com')
 													),
 												    array('nombre' 	=> 'José Paz', 
-														  'cargo' 	=> 'preguntele a él',
-														  'foto'	=> 'member-3.jpg',
-														  'redes'	=> array('fa-facebook'	=> 'facebok.com',
-														   					 'fa-twitter' 	=> 'https://twitter.com/',
-														   					 'fa-linkedin' 	=> 'abc.com',
-														   					 'fa-dribbble' 	=> 'muchosbebes.com')
+														  'cargo' 	=> 'Desinger',
+														  'foto'	=> 'jose.jpg',
+														  'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/chicho.paz',
+														   					 'fa-google-plus' 	=> 'https://plus.google.com/116678944790485393351',
+													  						 'fa-twitter'	=> 'https://twitter.com/Chich0_',
+													  						 'fa-bitbucket'	=> 'https://bitbucket.org/JosePaz/',
+														   					 'fa-github'    => 'https://github.com/Gregorio19',
+														   					 'fa-envelope' 	=> 'mailto:jgpaz19@gmail.com')
 													)
 											)
 				    	),
