@@ -690,7 +690,7 @@ function add_opengraph_markup_D() {
     $description = substr(strip_tags($post->post_content),0,200) . '...';
 	?>
 	<meta property="og:title" content="<?php the_title(); ?>" />
-	<meta property="og:type" content="article" />
+	<meta property="og:type" content="website" />
 	<meta property="og:image" content="<?=$image?>" />
 	<meta property="og:url" content="<?php the_permalink(); ?>" />
 	<meta property="og:description" content="<?=$description?>" />
