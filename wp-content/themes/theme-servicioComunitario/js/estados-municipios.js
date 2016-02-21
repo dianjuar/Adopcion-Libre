@@ -59,10 +59,13 @@ function populateMunicipios(estadoElementId, municipioElementId, mensajePorDefec
     municipioElement.options[0] = new Option(mensajePorDefecto, '');
     municipioElement.selectedIndex = 0;
 
-    var state_arr = s_a[selectedEstadoIndex-1].split("|");
+    if(selectedEstadoIndex != 0)
+    {
+        var state_arr = s_a[selectedEstadoIndex-1].split("|");
 
-    for (var i = 0; i < state_arr.length; i++) {
-        municipioElement.options[municipioElement.length] = new Option(state_arr[i], state_arr[i]);
+        for (var i = 0; i < state_arr.length; i++) {
+            municipioElement.options[municipioElement.length] = new Option(state_arr[i], state_arr[i]);
+        }
     }
 }
 
