@@ -695,7 +695,10 @@ function add_opengraph_markup_D() {
 	<meta property="og:url" content="<?php the_permalink(); ?>" />
 	<meta property="og:description" content="<?=$description?>" />
 	<meta property="og:site_name" content="Adopción libre" />
-
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:description" content="<?=$description?>"/>
+	<meta name="twitter:title" content="<?php the_title(); ?>"/>
+	<meta name="twitter:image" content="<?=$image?>"/>
 	<?php
   }
 }
