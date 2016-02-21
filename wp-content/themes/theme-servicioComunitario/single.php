@@ -93,9 +93,17 @@
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
             <section class="col-md-12 redes_sociales">
-              <div class="fb-share-button" data-href="<?php echo get_permalink($post->ID);?>" data-layout="button_count"></div>
-              <a href="https://twitter.com/share" class="twitter-share-button" data-via="karilaz">Tweet</a>
-              <g:plus action="share" annotation="none"></g:plus>
+              <div class="fb-share-button"  data-href="<?php echo get_permalink($post->ID);?>" data-layout="button_count"></div>
+             
+              <a href="https://twitter.com/share"  
+                class="twitter-share-button" 
+                data-url="<?php echo get_permalink($post->ID);?>"
+                data-via="AdopcionLibre"
+                data-hashtags="<?php echo get_the_category()[0]->slug; ?>"
+                data-text="Adopcion Libre | <?php echo the_title(); ?>"
+                >
+                Tweet
+              </a>
             </section>
           </section>
 
@@ -189,16 +197,6 @@
 
       </script>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      <script type="text/javascript">
-        window.___gcfg = {
-          lang: 'en-US'
-        };
-
-        (function() {
-          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-          po.src = 'https://apis.google.com/js/plusone.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-      </script>
+      
     </body>
 </html>
