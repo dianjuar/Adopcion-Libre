@@ -667,8 +667,39 @@ function filtrarPost ($categoryName)
     $queryPost = new WP_Query( $argsQuery );
 }
 
+function doctype_opengraph($output) {
+    return $output . '
+    xmlns:og="http://opengraphprotocol.org/schema/"
+    xmlns:fb="http://www.facebook.com/2008/fbml"';
+}
+add_filter('language_attributes', 'doctype_opengraph');
 
 
+function add_opengraph_markup_D() {
+
+  if (is_single()) {
+    global $post;
+    $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
+    if($em_mtbx_img1 != ''){
+    	$image = $em_mtbx_img1;
+    } else {
+      // set default image
+      $image = '';
+    }
+    //$description = get_bloginfo('description');
+    $description = substr(strip_tags($post->post_content),0,200) . '...';
+	?>
+	<meta property="og:title" content="<?php the_title(); ?>" />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="<?=$image?>" />
+	<meta property="og:url" content="<?php the_permalink(); ?>" />
+	<meta property="og:description" content="<?=$description?>" />
+	<meta property="og:site_name" content="Adopción libre" />
+
+	<?php
+  }
+}
+add_action('wp_head', 'add_opengraph_markup_D');
 
 
 ?>
