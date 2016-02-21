@@ -5,6 +5,10 @@
 /*============== Medias queries =====================================================*/
 /*============== Medias queries =====================================================*/
 /*=============== Etiquetas gobables ================================================*/
+html,
+body {
+  margin: 0 !important;
+}
 body {
   font-family: Amaranth, Helvetica Neue, sans-serif;
   font-size: 14px;
@@ -493,6 +497,7 @@ dt {
 .BoxDetPet__title {
   text-transform: capitalize;
   margin-left: 15px;
+  padding-top: 10px;
 }
 .BoxDetPet__title small {
   font-size: 0.4em;
