@@ -30,7 +30,7 @@
       <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
       <?php $data = get_post_meta( $post->ID, 'post', true );  ?>
       <article class="container padding-small">
-        <div class="col-md-12 no-padding">
+        <div class="col-md-12 no-padding titulo__box">
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Información de la mascota</h1>
           <?php 
             if (in_category('adopcion')){ 
@@ -124,7 +124,7 @@
             </dl> 
           </section>
 
-          <section class="col-md-6 col-sm-6 col-xs-12 info_mas">
+          <section class="col-md-6 col-sm-12 col-xs-12 info_mas">
             <h3 class="titulo--naranja margin-small-top"><span class="icon icon-Pata_vector"></span>Información de contacto:</h3>
             <dl class="BoxDetPet__data no-margin">
               <dt>Nombre:</dt>

@@ -503,11 +503,10 @@ dt{ float: left; }
 	}
 
 	&MarcarPost{
-		position: absolute;
+		position: relative;
 		right: 0px;
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
-		top: 64px;
 		width: 306px;
 		cursor: default;
 		text-align: center;
@@ -915,16 +914,32 @@ dt{ float: left; }
 .titulo{
 	&--verde{
 		border-bottom: 3px solid @verde;
+		width: 100%;
 	}
 	&--azul{
 		border-bottom: 3px solid @azul;
+		width: 100%;
 	}
 	&--morado{
 		border-bottom: 3px solid @morado;
+		width: 100%;
 	}
 	&--naranja{
 		border-bottom: 3px solid @naranja;
-		  margin-bottom: 40px;
+		margin-bottom: 0px;
+		width: 100%;
+	}
+
+	&__box{
+		display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+		display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;      /* TWEENER - IE 10 */
+		display: -webkit-flex;     /* NEW - Chrome */
+		display: flex;  
+		-webkit-align-items: flex-end; 
+	    align-items: flex-end;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
 	}
 }
 /*=============== Modal =============================================================*/
@@ -1159,7 +1174,6 @@ dt{ float: left; }
 		&Posicion{
 			float: none;
 			display: block;
-			margin-bottom: 5px;
 		}
 
 		&Finalizar {
@@ -1167,11 +1181,12 @@ dt{ float: left; }
 		    border-top-left-radius: 0;
 		    border-top-right-radius: 0;
 		    width: 100%;
+		    top: 0;
+		    margin-top: 10px;
 		}
 
 		&MarcarPost {
-		    top: 83px;
-			position: absolute;
+			position: relative;
 			width: 100%;
 		}
 
@@ -1179,9 +1194,10 @@ dt{ float: left; }
 		    background-color: #EDEDED;
 		    position: relative;
 		    right: 0;
-		    top: 15px;
+		    top: 0px;
 		    border-top-left-radius: 0;
 		    border-top-right-radius: 0;
+		    width: 100%;
 		}
 	}
 	/*=============== boton =========================================================*/
@@ -1265,7 +1281,7 @@ dt{ float: left; }
 		}
 
 		&Finalizar{
-			top: 54px;
+			top: 6px;
 			border-bottom-left-radius: 6px;
 			border-bottom-right-radius: 6px;
 		}
@@ -1276,7 +1292,7 @@ dt{ float: left; }
 		&Editar{
 			position: absolute;
 			right: 223px;
-			top: 54px;
+			top: 6px;
 			border-bottom-left-radius: 6px;
 			border-bottom-right-radius: 6px;
 		}
@@ -1305,6 +1321,7 @@ dt{ float: left; }
 
 		&--naranja{
 			margin-bottom: 0px;
+			font-size: 2em;
 		}
 	}
 
