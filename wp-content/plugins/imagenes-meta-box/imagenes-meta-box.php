@@ -45,16 +45,17 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
         $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
         ?>
         <strong>Foto 1:</strong><br>
-        <input  required id="em_mtbx_img1"   type="hidden" size="40" name="em_mtbx_img1" value="<?php echo esc_url( $em_mtbx_img1 ); ?>"/>
+        <input  required id="em_mtbx_img1"   type="hidden" size="100" name="em_mtbx_img1" value="<?php echo esc_url( $em_mtbx_img1 ); ?>"/>
           <input id="img_boton1" type="button" value="Seleccionar imagen" class="img_boton button-secondary"  />
-          <input type="button" id="image-delete-button1" class="button" value="Borrar Imagen" style="display: none;">
+          <input type="button" id="image-delete-button1" class="button" value="Borrar Imagen" style="display: none;" >
+          <input   id="aux_img1"   type="hidden"  value="<?php echo $image; ?>"/>
          
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img1 )=="") { ?>
           <img id="image-tag1" src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img1 && $em_mtbx_img1 != '') echo '<img src="' . esc_url( $em_mtbx_img1 ) .'" width="200" height="200" alt="" />'; ?>
+          <?php if($em_mtbx_img1 && $em_mtbx_img1 != '') echo '<img src="' . esc_url( $em_mtbx_img1 ) .'" id="image-tag1" width="200" height="200" alt="" />'; ?>
           <div class="clear"></div>
           <br />
           
@@ -66,12 +67,13 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
           <input id="img_boton2" type="button" value="Seleccionar imagen" class="img_boton2 button-secondary"  />
 
           <input type="button" id="image-delete-button2" class="button" value="Borrar Imagen" style="display: none;">
+          <input   id="aux_img2"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img2 )=="") { ?>
           <img id="image-tag2" src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img2 && $em_mtbx_img2 != '') echo '<img src="' . esc_url( $em_mtbx_img2 ) .'" width="200" height="200"  />'; ?>
+          <?php if($em_mtbx_img2 && $em_mtbx_img2 != '') echo '<img src="' . esc_url( $em_mtbx_img2 ) .'" id="image-tag2" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />
           
@@ -82,12 +84,13 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
         <input id="em_mtbx_img3"  type="hidden" size="40" name="em_mtbx_img3" value="<?php echo esc_url( $em_mtbx_img3 ); ?>" />
           <input id="img_boton3" type="button" value="Seleccionar imagen" class="img_boton3 button-secondary"  />
           <input type="button" id="image-delete-button3" class="button" value="Borrar Imagen"  style="display: none;">
+          <input   id="aux_img3"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img3 )=="") { ?>
           <img id="image-tag3"src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img3 && $em_mtbx_img3 != '') echo '<img src="' . esc_url( $em_mtbx_img3 ) .'" width="200" height="200"  />'; ?>
+          <?php if($em_mtbx_img3 && $em_mtbx_img3 != '') echo '<img src="' . esc_url( $em_mtbx_img3 ) .'" id="image-tag3" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />
 
@@ -98,12 +101,13 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
         <input id="em_mtbx_img4"  type="hidden" size="40" name="em_mtbx_img4" value="<?php echo esc_url( $em_mtbx_img4 ); ?>" />
           <input id="img_boton4" type="button" value="Seleccionar imagen" class="img_boton4 button-secondary"  />
           <input type="button" id="image-delete-button4" class="button" value="Borrar Imagen"  style="display: none;">
+          <input   id="aux_img4"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img4 )=="") { ?>
           <img id="image-tag4"src="<?php echo $image; ?>" /><br />
           <?php }; ?>
-          <?php if($em_mtbx_img4 && $em_mtbx_img4 != '') echo '<img src="' . esc_url( $em_mtbx_img4 ) .'" width="200" height="200"  />'; ?>
+          <?php if($em_mtbx_img4 && $em_mtbx_img4 != '') echo '<img src="' . esc_url( $em_mtbx_img4 ) .'" id="image-tag4" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />     
 
@@ -114,12 +118,13 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
         <input id="em_mtbx_img5"  type="hidden" size="40" name="em_mtbx_img5" value="<?php echo esc_url( $em_mtbx_img5 ); ?>" />
           <input id="img_boton5" type="button" value="Seleccionar imagen" class="img_boton5 button-secondary"  />
           <input type="button" id="image-delete-button5" class="button" value="Borrar Imagen" style="display: none;">
+          <input   id="aux_img5"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
          <?php  
           if (esc_url( $em_mtbx_img5 )=="") { ?>
           <img id="image-tag5" src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img5 && $em_mtbx_img5 != '') echo '<img src="' . esc_url( $em_mtbx_img5 ) .'" width="200" height="200"  />'; ?>
+          <?php if($em_mtbx_img5 && $em_mtbx_img5 != '') echo '<img src="' . esc_url( $em_mtbx_img5 ) .'" id="image-tag5" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />
           <?php 
