@@ -35,7 +35,7 @@ html{
 
 /*Inicio barra lateral*/
   .sticky-menu #adminmenuwrap {
-    z-index: 1000000;
+    z-index: 100000;
     border-top: 3px solid #fff;
   }
   #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
