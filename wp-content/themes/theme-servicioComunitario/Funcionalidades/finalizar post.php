@@ -7,8 +7,8 @@ if(isset($_POST["Guardar_Datos_DuenoActual"]))
     cambiarEstado_archivado($post_id);
 	$data = get_post_meta( $post_id, 'post', true );
 
-	$data['nombre-dueno'] = $_POST['nombre-Dueno'];
-	$data['telefono-dueno'] = $_POST['telefono-Dueno'];
+	$data['nombre-dueno'] = sanitize_text_field( $_POST['nombre-Dueno'] );
+	$data['telefono-dueno'] = sanitize_text_field( $_POST['telefono-Dueno'] );
 
 	update_post_meta( $post_id, 'post', $data);
 }

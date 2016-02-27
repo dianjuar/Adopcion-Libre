@@ -1,8 +1,13 @@
 @import "variables.less";
 /*=============== Etiquetas gobables ================================================*/
+html,body{
+	margin: 0 !important;
+}
 body{
+	
 	font-family: @font;
 	font-size: 14px;
+	overflow-x: hidden;
 }
 a{
 	color: @negro;
@@ -23,6 +28,7 @@ dt{ float: left; }
 .no-padding{ padding: 0; }
 .padding-small{ padding-left: 9px; padding-right: 9px; }
 .padding-medium{ padding: 10px; }
+.padding-small-left{ padding-left: 15px; }
 .padding-medium-left{ padding-left: 40px; }
 .padding-large-left{ padding-left: 55px; }
 .padding-xlarge-left{ padding-left: 65px; }
@@ -41,6 +47,10 @@ dt{ float: left; }
 		& span{
 			display: block;
 			font-size: 5em;
+
+			&:nth-child(2){
+				font-size: 0.6em;
+			}
 		}
 
 		&:nth-child(1){
@@ -121,7 +131,7 @@ dt{ float: left; }
 /*=============== Huellas ===========================================================*/
 /*=============== Login SingIn ======================================================*/
 .BoxLoginSingIm{
-	margin-top: 10px;
+	margin-top: 20px;
 	z-index: 1;
 	position: relative;
 	float: right;
@@ -178,6 +188,7 @@ dt{ float: left; }
 .BoxImgPrincipal{
 	z-index: 0;
 	position: relative;
+	opacity: 0.7;
 }
 //*=============== Img Principal Index ===============================================*/
 /*=============== CabezeraME ========================================================*/
@@ -198,7 +209,7 @@ dt{ float: left; }
 	color: @blanco;
 	width: initial;
 	text-align: center;
-	padding: 10px;
+	padding: 20px;
 	border-bottom-left-radius:1.2em;
 	border-bottom-right-radius:1.2em;
 }
@@ -296,10 +307,53 @@ dt{ float: left; }
 	}
 }
 
+#MenuFooter{
+	list-style: none;
+	padding-left: 0;
+
+	& li{
+		display: inline-block;
+	    width: 19%;
+	    border-left: 1px solid;
+
+	    &:first-child{
+	    	border-left:none;
+	    }
+
+		& a{
+			color: @blanco;
+		}
+	}
+}
+
+#redesSociales{
+	list-style: none;
+	padding-left: 0;
+
+	& a{
+
+		&:hover{
+			text-decoration: none;
+		}
+
+		& li{
+			color: @blanco;
+			font-size: 2em;
+			display: inline-block;
+    		padding: 20px;
+
+			&:hover{
+				color: @verde;
+			}
+		}
+	}
+}
 
 .BoxBorderBottom{
-	z-index: 0;
-  	position: relative;
+	z-index: 10000;
+	position: absolute;
+	left: 0;
+	right: 0;
 
 	&__Item{
 		padding: 0px;
@@ -307,37 +361,37 @@ dt{ float: left; }
 		&--rojo{
 			background-color:@rojo;
 			float: left;
-			height: 4px;
+			height: 12px;
 		}
 
 		&--naranja{
 			background-color:@naranja;
 			float: left;
-			height: 4px;
+			height: 5px;
 		}
 
 		&--amarillo{
 			background-color:@amarillo;
 			float: left;
-			height: 4px;
+			height: 10px;
 		}
 	
 		&--azul{
 			background-color:@azul;
 			float: left;
-			height: 4px;
+			height: 8px;
 		}
 	
 		&--verde{
 			background-color:@verde;
 			float: left;
-			height: 4px;
+			height: 6px;
 		}
 		
 		&--morado{
 			background-color:@morado;
 			float: left;
-			height: 4px;
+			height: 10px;
 		}
 	}
 }
@@ -430,9 +484,32 @@ dt{ float: left; }
 	}
 
 	&Posicion{
-		float: right;
   		border-bottom-left-radius: 0;
   		border-bottom-right-radius: 0;
+	}
+
+	&Finalizar{
+		background-color: @naranja;
+		position: absolute;
+	    top: 16px;
+	    right: 0;
+	}
+
+	&Editar{
+		background-color: @gris;
+		position: absolute;
+		right: 220px;
+		top: 15px;
+	}
+
+	&MarcarPost{
+		position: relative;
+		right: 0px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		width: 306px;
+		cursor: default;
+		text-align: center;
 	}
 }
 /*=============== boton =============================================================*/
@@ -475,6 +552,7 @@ dt{ float: left; }
 	&__title{
 		text-transform: capitalize;
 		margin-left: 15px;
+		padding-top: 10px;
 
 		& small{
 			font-size: 0.4em;
@@ -599,22 +677,18 @@ dt{ float: left; }
   			height: 100%;
   			vertical-align: middle;
   			text-align: center;
-			
+  			padding-top: 10px;
 
   			&--adopcion{
-  				padding-top: 10px;
 				background-color: rgba(5, 169, 252, 0.77);
   			}
   			&--encontrados{
-  				padding-top: 25px;
 				background-color: rgba(21, 219, 91, 0.77);
   			}
   			&--perdidos{
-  				padding-top: 25px;
 				background-color: rgba(224, 31, 149, 0.77);
   			}
   			&--otros{
-  				padding-top: 10px;
 				background-color:rgba(250, 218, 55, 0.77);
   			}
  		}
@@ -662,6 +736,40 @@ dt{ float: left; }
 /*=============== Widget busqueda ===================================================*/
 .searchBox{
   	display: inline-block;
+  	&--home{
+    	display: block;
+		position: relative;
+		z-index: 10;
+		top: 350px;
+
+		& *{
+			display: inline-block;
+		}
+		    
+		& #advanced-search-widget-2 h2{
+		    display: none;
+		}
+
+		& #advanced-search-widget-2-s{
+		    width: 500px;
+		    height: 50px;
+		    font-size: 1.5em;
+		    padding: 0 15px;
+		    border: 1px solid #B5ACAC;
+		}
+
+	    & .widget_search {
+		   	float: none;
+
+	    	& input:last-child{
+	    		height: 48px;
+	    		width: 80px;
+	    	}
+		}
+		& article{
+    		left: 25%;
+		}
+    }
 }
 
 .widget_search{
@@ -674,8 +782,11 @@ dt{ float: left; }
 	& input:last-child{
 		border-radius: 0.3em;
   		padding: 5px;
-  		border: 1px solid @amarillo;
   		background-color: @amarillo;
+  		border: none;
+	    background-color: #FADA37;
+	    height: 33px;
+	    width: 70px;
 	}
 }
 
@@ -803,19 +914,74 @@ dt{ float: left; }
 .titulo{
 	&--verde{
 		border-bottom: 3px solid @verde;
+		width: 100%;
 	}
 	&--azul{
 		border-bottom: 3px solid @azul;
+		width: 100%;
 	}
 	&--morado{
 		border-bottom: 3px solid @morado;
+		width: 100%;
 	}
 	&--naranja{
 		border-bottom: 3px solid @naranja;
-		  margin-bottom: 40px;
+		margin-bottom: 0px;
+		width: 100%;
+	}
+
+	&__box{
+		display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+		display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;      /* TWEENER - IE 10 */
+		display: -webkit-flex;     /* NEW - Chrome */
+		display: flex;  
+		-webkit-align-items: flex-end; 
+	    align-items: flex-end;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
 	}
 }
 /*=============== Modal =============================================================*/
+/*=============== filtrar ===========================================================*/
+.filtar{
+	padding: 15px;
+    text-align: center;
+
+    & div{
+    	display: inline-block;
+    }
+
+    & span{
+    	font-size: 1.5em;
+    	font-weight: bolder;
+
+    	&.glyphicon{
+    		position: relative;
+		    left: -40px;
+		    font-size: 0.9em;
+    	}
+    }
+
+    & select{
+    	padding: 10px 35px 10px 15px;
+	    background: #fff;
+	    border: 1px solid #ddd;
+	    border-radius: 0.5em;
+	    appearance: none;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    margin: 10px;
+    }
+
+    & button{
+    	border: none;
+	    background:@amarillo;
+	    padding: 10px 15px;
+	    border-radius: 0.5em;
+    }
+}
+/*=============== filtrar ===========================================================*/
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: @screen-xs-max) { 
 
@@ -897,13 +1063,24 @@ dt{ float: left; }
 	/*=============== Busqueda ======================================================*/
 	.searchBox {
     	display: block;
+    	&--home {
+		    top: 50px;
+
+		    & article {
+			    left: 0;
+			}
+
+			& #advanced-search-widget-2-s {
+			    width: 70%;
+			}
+		}
 	}
 	.widget_search {
     	float: none;
 	}
 
 	#advanced-search-widget-2-s {
-	   width: 80%;
+	   width: 75%;
 	}
 
 	.widget_search input:last-child {
@@ -997,10 +1174,41 @@ dt{ float: left; }
 		&Posicion{
 			float: none;
 			display: block;
-			margin-bottom: 5px;
+		}
+
+		&Finalizar {
+		    position: relative;
+		    border-top-left-radius: 0;
+		    border-top-right-radius: 0;
+		    width: 100%;
+		    top: 0;
+		    margin-top: 10px;
+		}
+
+		&MarcarPost {
+			position: relative;
+			width: 100%;
+		}
+
+		&Editar {
+		    background-color: #EDEDED;
+		    position: relative;
+		    right: 0;
+		    top: 0px;
+		    border-top-left-radius: 0;
+		    border-top-right-radius: 0;
+		    width: 100%;
 		}
 	}
 	/*=============== boton =========================================================*/
+	#MenuFooter{
+
+		& li{
+			display: block;
+			width: 100%;
+			border-left: 0;
+		}
+	}
 }
 /*=============== MEdia <768 px Phones ==============================================*/
 /*=============== MEdia ≥768 px Tablets =============================================*/
@@ -1071,7 +1279,57 @@ dt{ float: left; }
 		&Posicion{
 			float: none;
 		}
+
+		&Finalizar{
+			top: 6px;
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
+		&MarcarPost {
+		    top: 0px;
+		    position: relative;
+		}
+		&Editar{
+			position: absolute;
+			right: 223px;
+			top: 6px;
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
 	}
 	/*=============== boton =========================================================*/
+	.searchBox--home {
+	    top: 150px;
+
+	    & article {
+		    left: 10%;
+		}
+	}
+
+	#MenuFooter{
+
+		& li{
+			width: 25%;
+
+			&:first-child{
+			    width: 10%;
+			}
+		}
+	}
+
+	.titulo{
+
+		&--naranja{
+			margin-bottom: 0px;
+			font-size: 2em;
+		}
+	}
+
+	.filtar{;
+
+	    & div{
+	    	display: block;
+	    }
+	}
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/

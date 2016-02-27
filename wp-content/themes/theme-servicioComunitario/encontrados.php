@@ -25,7 +25,7 @@
       <article class="container">
         <section class="post no-margin padding-small">
 
-          <div class="col-md-12 no-padding">
+          <div class="col-md-12 no-padding titulo__box">
             <h1 class="titulo--verde"><span class="icon icon-Pata_vector"></span> Mascotas encontradas</h1>
             <?php if($user_ID){ ?>
               <a id="btn-dar" class="btn btn-lg BtnEncontrados BtnPosicion" data-toggle="modal" data-target="#myModal">
@@ -33,17 +33,26 @@
               </a>
             <?php } ?>
           </div>
+           <div class="col-md-12 pagina pagina--encontrados"></div>
+            <?php
+            //aquí es donde se llaman a los select y se cargan las variables estado y municipio.
+            require_once('filtroEstados.php');
+            ?>
 
           <div class="col-md-12 pagina pagina--encontrados"></div>
-        
+
+           
           <?php 
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            query_posts('post_status=publish&category_name=encontrados&paged='.$paged ) ?>
-          <?php require_once("posts.php"); ?>
+          filtrarPost ('encontrados');
+          require_once("posts.php");
+           ?>
 
           <div class="col-md-12 pagina pagina--encontrados">
-            <?php previous_posts_link('<span class="glyphicon glyphicon-backward"></span> Anteriores') ?>
-            <?php next_posts_link('Siguientes <span class="glyphicon glyphicon-forward"></span>') ?>
+            <?php
+                previous_posts_link('<span class="glyphicon glyphicon-backward"></span> Anteriores');
+                // la variable $queryPost; está declarada como global en posts.php y por lo tanto ya está declarada
+                next_posts_link('Siguientes <span class="glyphicon glyphicon-forward"></span>',$queryPost->max_num_pages);
+            ?>
           </div>
 
         </section>
