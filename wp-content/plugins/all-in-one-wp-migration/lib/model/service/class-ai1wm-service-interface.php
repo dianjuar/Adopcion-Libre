@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2014 ServMask Inc.
  *

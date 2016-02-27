@@ -26,7 +26,18 @@ function em_mtbx_img_crear() {
   
 }
 
-function em_mtbx_img_function( $post ) { ?>
+function em_mtbx_img_function( $post ) {
+
+function register_metaboxes() {
+  add_meta_box('image_metabox', 'Image Uploader', __NAMESPACE__ . '\image_uploader_callback');
+}
+
+function register_admin_script() {
+  wp_enqueue_script( 'wp_img_upload', plugin_dir_url( __FILE__ ) . '/image-upload.js', array('jquery', 'media-upload'), '0.0.2', true );
+  wp_localize_script( 'wp_img_upload', 'customUploads', array( 'imageData' => get_post_meta( get_the_ID(), 'custom_image_data', true ) ) );
+}
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
+ ?>
         <strong>Nota:</strong><span>Debe cargar minimo dos (2) fotos de la mascota</span><br><br>
 
         <?php
@@ -34,15 +45,17 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img1 = get_post_meta( $post->ID, '_em_mtbx_img1', true );
         ?>
         <strong>Foto 1:</strong><br>
-        <input required id="em_mtbx_img1" class="em_mtbx_img" type="hidden" size="40" name="em_mtbx_img1" value="<?php echo esc_url( $em_mtbx_img1 ); ?>" />
+        <input  required id="em_mtbx_img1"   type="hidden" size="100" name="em_mtbx_img1" value="<?php echo esc_url( $em_mtbx_img1 ); ?>"/>
           <input id="img_boton1" type="button" value="Seleccionar imagen" class="img_boton button-secondary"  />
+          <input type="button" id="image-delete-button1" class="button" value="Borrar Imagen" style="display: none;" >
+          <input   id="aux_img1"   type="hidden"  value="<?php echo $image; ?>"/>
          
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img1 )=="") { ?>
-          <img src="<?php echo $image; ?>" class="custom_preview_image" alt="" width="200"/><br />
+          <img id="image-tag1" src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img1 && $em_mtbx_img1 != '') echo '<img src="' . esc_url( $em_mtbx_img1 ) .'" width="150" height="150" alt="" />'; ?>
+          <?php if($em_mtbx_img1 && $em_mtbx_img1 != '') echo '<img src="' . esc_url( $em_mtbx_img1 ) .'" id="image-tag1" width="200" height="200" alt="" />'; ?>
           <div class="clear"></div>
           <br />
           
@@ -50,14 +63,17 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img2 = get_post_meta( $post->ID, '_em_mtbx_img2', true );
         ?>
         <strong>Foto 2:</strong><br>
-        <input required id="em_mtbx_img2" class="em_mtbx_img2" type="hidden" size="40" name="em_mtbx_img2" value="<?php echo esc_url( $em_mtbx_img2 ); ?>" />
+        <input required id="em_mtbx_img2"  type="hidden" size="40" name="em_mtbx_img2" value="<?php echo esc_url( $em_mtbx_img2 ); ?>" />
           <input id="img_boton2" type="button" value="Seleccionar imagen" class="img_boton2 button-secondary"  />
+
+          <input type="button" id="image-delete-button2" class="button" value="Borrar Imagen" style="display: none;">
+          <input   id="aux_img2"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img2 )=="") { ?>
-          <img src="<?php echo $image; ?>" class="custom_preview_image2" alt="" width="200"/><br />
+          <img id="image-tag2" src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img2 && $em_mtbx_img2 != '') echo '<img src="' . esc_url( $em_mtbx_img2 ) .'" width="150" height="150" alt="" />'; ?>
+          <?php if($em_mtbx_img2 && $em_mtbx_img2 != '') echo '<img src="' . esc_url( $em_mtbx_img2 ) .'" id="image-tag2" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />
           
@@ -65,14 +81,16 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img3 = get_post_meta( $post->ID, '_em_mtbx_img3', true );
         ?>
         <strong>Foto 3:</strong><br>
-        <input id="em_mtbx_img3" class="em_mtbx_img3" type="hidden" size="40" name="em_mtbx_img3" value="<?php echo esc_url( $em_mtbx_img3 ); ?>" />
+        <input id="em_mtbx_img3"  type="hidden" size="40" name="em_mtbx_img3" value="<?php echo esc_url( $em_mtbx_img3 ); ?>" />
           <input id="img_boton3" type="button" value="Seleccionar imagen" class="img_boton3 button-secondary"  />
+          <input type="button" id="image-delete-button3" class="button" value="Borrar Imagen"  style="display: none;">
+          <input   id="aux_img3"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img3 )=="") { ?>
-          <img src="<?php echo $image; ?>" class="custom_preview_image3" alt="" width="200"/><br />
+          <img id="image-tag3"src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img3 && $em_mtbx_img3 != '') echo '<img src="' . esc_url( $em_mtbx_img3 ) .'" width="150" height="150" alt="" />'; ?>
+          <?php if($em_mtbx_img3 && $em_mtbx_img3 != '') echo '<img src="' . esc_url( $em_mtbx_img3 ) .'" id="image-tag3" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />
 
@@ -80,14 +98,16 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img4 = get_post_meta( $post->ID, '_em_mtbx_img4', true );
         ?>
         <strong>Foto 4:</strong><br>
-        <input id="em_mtbx_img4" class="em_mtbx_img4" type="hidden" size="40" name="em_mtbx_img4" value="<?php echo esc_url( $em_mtbx_img4 ); ?>" />
+        <input id="em_mtbx_img4"  type="hidden" size="40" name="em_mtbx_img4" value="<?php echo esc_url( $em_mtbx_img4 ); ?>" />
           <input id="img_boton4" type="button" value="Seleccionar imagen" class="img_boton4 button-secondary"  />
+          <input type="button" id="image-delete-button4" class="button" value="Borrar Imagen"  style="display: none;">
+          <input   id="aux_img4"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
           <?php  
           if (esc_url( $em_mtbx_img4 )=="") { ?>
-          <img src="<?php echo $image; ?>" class="custom_preview_image4" alt="" width="200"/><br />
+          <img id="image-tag4"src="<?php echo $image; ?>" /><br />
           <?php }; ?>
-          <?php if($em_mtbx_img4 && $em_mtbx_img4 != '') echo '<img src="' . esc_url( $em_mtbx_img4 ) .'" width="150" height="150" alt="" />'; ?>
+          <?php if($em_mtbx_img4 && $em_mtbx_img4 != '') echo '<img src="' . esc_url( $em_mtbx_img4 ) .'" id="image-tag4" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />     
 
@@ -95,14 +115,16 @@ function em_mtbx_img_function( $post ) { ?>
         $em_mtbx_img5 = get_post_meta( $post->ID, '_em_mtbx_img5', true );
         ?>
         <strong>Foto 5:</strong><br>
-        <input id="em_mtbx_img5" class="em_mtbx_img5" type="hidden" size="40" name="em_mtbx_img5" value="<?php echo esc_url( $em_mtbx_img5 ); ?>" />
+        <input id="em_mtbx_img5"  type="hidden" size="40" name="em_mtbx_img5" value="<?php echo esc_url( $em_mtbx_img5 ); ?>" />
           <input id="img_boton5" type="button" value="Seleccionar imagen" class="img_boton5 button-secondary"  />
+          <input type="button" id="image-delete-button5" class="button" value="Borrar Imagen" style="display: none;">
+          <input   id="aux_img5"   type="hidden"  value="<?php echo $image; ?>"/>
           <br /><br />
          <?php  
           if (esc_url( $em_mtbx_img5 )=="") { ?>
-          <img src="<?php echo $image; ?>" class="custom_preview_image5" alt="" width="200"/><br />
+          <img id="image-tag5" src="<?php echo $image; ?>"/><br />
           <?php }; ?>
-          <?php if($em_mtbx_img5 && $em_mtbx_img5 != '') echo '<img src="' . esc_url( $em_mtbx_img5 ) .'" width="150" height="150" alt="" />'; ?>
+          <?php if($em_mtbx_img5 && $em_mtbx_img5 != '') echo '<img src="' . esc_url( $em_mtbx_img5 ) .'" id="image-tag5" width="200" height="200"  />'; ?>
           <div class="clear"></div>
           <br />
           <?php 

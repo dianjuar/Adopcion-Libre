@@ -138,6 +138,10 @@ require_once AI1WM_CONTROLLER_PATH .
 
 require_once AI1WM_CONTROLLER_PATH .
 			DIRECTORY_SEPARATOR .
+			'class-ai1wm-updater-controller.php';
+
+require_once AI1WM_CONTROLLER_PATH .
+			DIRECTORY_SEPARATOR .
 			'class-ai1wm-message-controller.php';
 
 require_once AI1WM_MODEL_PATH .
@@ -183,6 +187,10 @@ require_once AI1WM_MODEL_PATH .
 require_once AI1WM_MODEL_PATH .
 			DIRECTORY_SEPARATOR .
 			'class-ai1wm-logger.php';
+
+require_once AI1WM_MODEL_PATH .
+			DIRECTORY_SEPARATOR .
+			'class-ai1wm-updater.php';
 
 require_once AI1WM_MODEL_PATH .
 			DIRECTORY_SEPARATOR .

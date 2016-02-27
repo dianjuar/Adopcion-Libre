@@ -80,11 +80,14 @@ class Ai1wm_Http {
 				// HTTP response
 				for ( $i = 0; $i < 5; $i++, sleep( 1 ) ) {
 
+					// Clear WP options cache
+					wp_cache_flush();
+
 					// Clear WP notoptions cache
 					wp_cache_delete( 'notoptions', 'options' );
 
-					// Clear WP options cache
-					wp_cache_flush();
+					// Set WP notoptions cache
+					wp_cache_set( 'notoptions', array(), 'options' );
 
 					// Is valid transport layer?
 					if ( get_site_option( AI1WM_URL_IP, false, false )
@@ -138,13 +141,14 @@ class Ai1wm_Http {
 
 		// HTTP request
 		remove_all_filters( 'http_request_args' );
-		wp_remote_get(
-			add_query_arg( ai1wm_urlencode( $params ), $url ),
+		wp_remote_post(
+			$url,
 			array(
 				'timeout'   => apply_filters( 'ai1wm_http_timeout', 5 ),
 				'blocking'  => false,
 				'sslverify' => false,
 				'headers'   => $headers,
+				'body'      => $params,
 			)
 		);
 	}

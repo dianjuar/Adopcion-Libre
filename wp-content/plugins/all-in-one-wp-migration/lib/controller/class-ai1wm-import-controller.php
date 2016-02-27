@@ -22,6 +22,7 @@
  * ███████║███████╗██║  ██║ ╚████╔╝ ██║ ╚═╝ ██║██║  ██║███████║██║  ██╗
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
+
 class Ai1wm_Import_Controller {
 
 	public static function index() {
@@ -29,6 +30,10 @@ class Ai1wm_Import_Controller {
 	}
 
 	public static function import( $args = array() ) {
+
+		// Set error handler
+		@set_error_handler( 'Ai1wm_Log::error_handler' );
+
 		try {
 
 			// Set arguments

@@ -25,7 +25,7 @@
 
             <?php 
                 require_once('filtroEstados.php');
-                filtrarPost ('adopcion');
+                filtrarPost ();
                 require_once("posts.php"); 
             ?>
 

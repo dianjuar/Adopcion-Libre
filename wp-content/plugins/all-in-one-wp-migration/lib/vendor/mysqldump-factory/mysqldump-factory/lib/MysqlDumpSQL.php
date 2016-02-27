@@ -47,7 +47,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 	protected $newReplaceValues     = array();
 
-	protected $queryClauses         = array();
+	protected $tableQueryClauses    = array();
 
 	protected $tablePrefixColumns   = array();
 
@@ -166,26 +166,31 @@ class MysqlDumpSQL implements MysqlDumpInterface
 	}
 
 	/**
-	 * Set query clauses
+	 * Set table query clauses
 	 *
-	 * @param  array $clauses List of SQL query clauses
+	 * @param  string $table   Table name
+	 * @param  array  $clauses Table clauses
 	 * @return MysqlDumpSQL
 	 */
-	public function setQueryClauses($clauses)
+	public function setTableQueryClauses($table, $clauses)
 	{
-		$this->queryClauses = $clauses;
+		$this->tableQueryClauses[strtolower($table)] = $clauses;
 
 		return $this;
 	}
-
 	/**
-	 * Get query clauses
+	 * Get table query clauses
 	 *
+	 * @param  string $table Table name
 	 * @return array
 	 */
-	public function getQueryClauses()
+	public function getTableQueryClauses($table)
 	{
-		return $this->queryClauses;
+		if (isset($this->tableQueryClauses[strtolower($table)])) {
+			return $this->tableQueryClauses[strtolower($table)];
+		}
+
+		return array();
 	}
 
 	/**
@@ -198,7 +203,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 	public function setTablePrefixColumns($table, $columns)
 	{
 		foreach ($columns as $column) {
-			$this->tablePrefixColumns[$table][$column] = true;
+			$this->tablePrefixColumns[strtolower($table)][strtolower($column)] = true;
 		}
 
 		return $this;
@@ -212,8 +217,8 @@ class MysqlDumpSQL implements MysqlDumpInterface
 	 */
 	public function getTablePrefixColumns($table)
 	{
-		if (isset($this->tablePrefixColumns[$table])) {
-			return $this->tablePrefixColumns[$table];
+		if (isset($this->tablePrefixColumns[strtolower($table)])) {
+			return $this->tablePrefixColumns[strtolower($table)];
 		}
 
 		return array();
@@ -290,7 +295,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 						// Check table prefixes
 						foreach ($this->getIncludeTablePrefixes() as $prefix) {
-							if (strpos($tableName, $prefix) === 0) {
+							if (stripos($tableName, $prefix) === 0) {
 								$include = true;
 								break;
 							}
@@ -308,7 +313,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 						// Check table prefixes
 						foreach ($this->getExcludeTablePrefixes() as $prefix) {
-							if (strpos($tableName, $prefix) === 0) {
+							if (stripos($tableName, $prefix) === 0) {
 								$exclude = true;
 								break;
 							}
@@ -335,7 +340,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 						// Check table prefixes
 						foreach ($this->getIncludeTablePrefixes() as $prefix) {
-							if (strpos($tableName, $prefix) === 0) {
+							if (stripos($tableName, $prefix) === 0) {
 								$include = true;
 								break;
 							}
@@ -353,7 +358,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 						// Check table prefixes
 						foreach ($this->getExcludeTablePrefixes() as $prefix) {
-							if (strpos($tableName, $prefix) === 0) {
+							if (stripos($tableName, $prefix) === 0) {
 								$exclude = true;
 								break;
 							}
@@ -438,6 +443,11 @@ class MysqlDumpSQL implements MysqlDumpInterface
 			// Get table structure
 			$structure = mysql_unbuffered_query("SHOW CREATE TABLE `$tableName`", $this->getConnection());
 			$table = mysql_fetch_assoc($structure);
+
+			// Close structure cursor
+			mysql_free_result($structure);
+
+			// Get create table
 			if (isset($table['Create Table'])) {
 
 				// Write table drop statement
@@ -464,62 +474,80 @@ class MysqlDumpSQL implements MysqlDumpInterface
 					throw new Exception('Unable to write database end of statement');
 				}
 
-				// Close structure cursor
-				mysql_free_result($structure);
-			} else {
-				// Close structure cursor
-				mysql_free_result($structure);
+				// Set query
+				$query = "SELECT * FROM `$tableName` ";
 
-				break;
-			}
+				// Apply additional table query clauses
+				if (($queryClauses = $this->getTableQueryClauses($tableName))) {
+					$query .= $queryClauses;
+				}
 
-			// Set query
-			$query = "SELECT * FROM `$tableName` ";
+				// Apply additional table prefix columns
+				$columns = $this->getTablePrefixColumns($tableName);
 
-			// Apply additional query clauses
-			$clauses = $this->getQueryClauses();
-			if (isset($clauses[$tableName]) && ($queryClause = $clauses[$tableName])) {
-				$query .= $queryClause;
-			}
+				// Get results
+				$result = mysql_unbuffered_query($query, $this->getConnection());
 
-			// Apply additional table prefix columns
-			$columns = $this->getTablePrefixColumns($tableName);
+				$processedRows = 0;
 
-			// Get results
-			$result = mysql_unbuffered_query($query, $this->getConnection());
-
-			// Generate insert statements
-			while ($row = mysql_fetch_assoc($result)) {
-				$items = array();
-				foreach ($row as $key => $value) {
-					// Replace table prefix columns
-					if (isset($columns[$key])) {
-						$value = $this->replaceTablePrefixes($value, true, 0);
+				// Generate insert statements
+				while ($row = mysql_fetch_assoc($result)) {
+					if ($processedRows === 0) {
+						// Write start transaction
+						if (fwrite($fileHandler, "START TRANSACTION;\n") === false) {
+							throw new Exception('Unable to write database start transaction');
+						}
 					}
 
-					// Replace table values
-					$items[] = is_null($value) ? 'NULL' : "'" . mysql_real_escape_string($this->replaceTableValues($value), $this->getConnection()) . "'";
+					$items = array();
+					foreach ($row as $key => $value) {
+						// Replace table prefix columns
+						if (isset($columns[strtolower($key)])) {
+							$value = $this->replaceTablePrefixes($value, true, 0);
+						}
+
+						// Replace table values
+						$items[] = is_null($value) ? 'NULL' : "'" . mysql_real_escape_string($this->replaceTableValues($value), $this->getConnection()) . "'";
+					}
+
+					// Set table values
+					$tableValues = implode(',', $items);
+
+					// Set insert statement
+					$tableInsert = "INSERT INTO `$newTableName` VALUES ($tableValues);\n";
+
+					// Write insert statement
+					if (fwrite($fileHandler, $tableInsert) === false) {
+						throw new Exception('Unable to write database insert statement');
+					}
+
+					$processedRows++;
+
+					// Write end of transaction
+					if ($processedRows === MysqlDumpInterface::QUERIES_PER_TRANSACTION) {
+						if (fwrite($fileHandler, "COMMIT;\n") === false) {
+							throw new Exception('Unable to write database end of transaction');
+						}
+
+						$processedRows = 0;
+					}
 				}
 
-				// Set table values
-				$tableValues = implode(',', $items);
-
-				// Set insert statement
-				$tableInsert = "INSERT INTO `$newTableName` VALUES ($tableValues);\n";
-
-				// Write insert statement
-				if (fwrite($fileHandler, $tableInsert) === false) {
-					throw new Exception('Unable to write database insert statement');
+				// Write end of transaction
+				if ($processedRows !== 0) {
+					if (fwrite($fileHandler, "COMMIT;\n") === false) {
+						throw new Exception('Unable to write database end of transaction');
+					}
 				}
-			}
 
-			// Write end of statements
-			if (fwrite($fileHandler, "\n") === false) {
-				throw new Exception('Unable to write database end of statement');
-			}
+				// Write end of statements
+				if (fwrite($fileHandler, "\n") === false) {
+					throw new Exception('Unable to write database end of statement');
+				}
 
-			// Close result cursor
-			mysql_free_result($result);
+				// Close result cursor
+				mysql_free_result($result);
+			}
 		}
 
 		// Close file handler
@@ -716,7 +744,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 			// Replace first occurance at a specified position
 			if ($position !== false) {
 				for ($i = 0; $i < count($search); $i++) {
-					$current = strpos($input, $search[$i]);
+					$current = stripos($input, $search[$i]);
 					if ($current === $position) {
 						$input = substr_replace($input, $replace[$i], $current, strlen($search[$i]));
 					}
@@ -727,7 +755,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 			// Replace first occurance at any position
 			for ($i = 0; $i < count($search); $i++) {
-				$current = strpos($input, $search[$i]);
+				$current = stripos($input, $search[$i]);
 				if ($current !== $position) {
 					$input = substr_replace($input, $replace[$i], $current, strlen($search[$i]));
 				}
@@ -737,7 +765,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 		}
 
 		// Replace all occurrences
-		return str_replace($search, $replace, $input);
+		return str_ireplace($search, $replace, $input);
 	}
 
 	/**
@@ -758,7 +786,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 
 		// Prepare replace values
 		for ($i = 0; $i < count($old); $i++) {
-			if (strpos($input, $old[$i]) !== false) {
+			if (stripos($input, $old[$i]) !== false) {
 				$oldValues[] = $old[$i];
 				$newValues[] = $new[$i];
 			}
@@ -823,7 +851,7 @@ class MysqlDumpSQL implements MysqlDumpInterface
 	 */
 	protected function replaceTableCollation($input)
 	{
-		return str_replace('utf8mb4', 'utf8', $input);
+		return str_ireplace('utf8mb4', 'utf8', $input);
 	}
 
 	/**

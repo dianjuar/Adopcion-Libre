@@ -27,6 +27,9 @@ class Ai1wm_Resolve_Controller {
 
 	public static function resolve( $args = array() ) {
 
+		// Set error handler
+		@set_error_handler( 'Ai1wm_Log::error_handler' );
+
 		// Set arguments
 		if ( empty( $args ) ) {
 			$args = ai1wm_urldecode( $_REQUEST );

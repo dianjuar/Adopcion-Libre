@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-12-21 22:58:27+0000\n"
+"PO-Revision-Date: 2016-01-27 13:21:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,6 +15,12 @@ msgid "%s false positive"
 msgid_plural "%s false positives"
 msgstr[0] "%s un falso positivo"
 msgstr[1] "%s falsos positivos"
+
+#: views/config.php:30
+msgid "%s missed spam"
+msgid_plural "%s missed spam"
+msgstr[0] "%s spam perdido"
+msgstr[1] "%s spams perdidos"
 
 #: views/start.php:59
 msgid "Use this option to use Akismet independently of your Jetpack connection."
@@ -92,6 +98,24 @@ msgstr "Akismet filtra el spam para que puedas centrarte en cosas más important
 #: views/notice.php:11
 msgid "<strong>Almost done</strong> - activate Akismet and say goodbye to spam"
 msgstr "<strong>Casi todo hecho</strong> - activa Akismet y di adiós al spam"
+
+#: class.akismet-admin.php:891
+msgid "Akismet has saved you %s day!"
+msgid_plural "Akismet has saved you %s days!"
+msgstr[0] "¡Akismet te ha ahorrado %s día!"
+msgstr[1] "¡Akismet te ha ahorrado %s días!"
+
+#: class.akismet-admin.php:895
+msgid "Akismet has saved you %d minute!"
+msgid_plural "Akismet has saved you %d minutes!"
+msgstr[0] "¡Akismet te ha ahorrado %d minuto!"
+msgstr[1] "¡Akismet te ha ahorrado %d minutos!"
+
+#: class.akismet-admin.php:893
+msgid "Akismet has saved you %d hour!"
+msgid_plural "Akismet has saved you %d hours!"
+msgstr[0] "¡Akismet te ha ahorrado %d hora!"
+msgstr[1] "¡Akismet te ha ahorrado %d horas!"
 
 #: views/notice.php:110
 msgid "Your Pro subscription allows the use of Akismet on only one site. Please <a href=\"%s\" target=\"_blank\">purchase additional Pro subscriptions</a> or upgrade to an Enterprise subscription that allows the use of Akismet on unlimited sites."

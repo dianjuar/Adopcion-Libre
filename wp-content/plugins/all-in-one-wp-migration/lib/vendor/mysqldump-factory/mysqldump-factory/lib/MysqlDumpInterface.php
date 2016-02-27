@@ -26,6 +26,9 @@
 
 interface MysqlDumpInterface
 {
+
+	const QUERIES_PER_TRANSACTION = 1000;
+
 	/**
 	 * Define MySQL credentials for the current connection
 	 *
@@ -98,19 +101,21 @@ interface MysqlDumpInterface
 	public function getNewReplaceValues();
 
 	/**
-	 * Set query clauses
+	 * Set table query clauses
 	 *
-	 * @param  array $clauses List of SQL query clauses
+	 * @param  string $table   Table name
+	 * @param  array  $clauses Table clauses
 	 * @return MysqlDumpInterface
 	 */
-	public function setQueryClauses($clauses);
+	public function setTableQueryClauses($table, $clauses);
 
 	/**
-	 * Get query clauses
+	 * Get table query clauses
 	 *
+	 * @param  string $table Table name
 	 * @return array
 	 */
-	public function getQueryClauses();
+	public function getTableQueryClauses($table);
 
 	/**
 	 * Set table prefix columns

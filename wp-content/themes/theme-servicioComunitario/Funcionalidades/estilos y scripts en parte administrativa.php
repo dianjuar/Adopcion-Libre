@@ -30,7 +30,6 @@ add_action( 'admin_head', function(){
 			<script>window.jQuery || document.write('<script src="<?php bloginfo('template_url') ?>/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
 			<script src="<?php bloginfo('template_url') ?>/js/main.js"></script>
 			<script src="<?php bloginfo('template_url') ?>/js/vendor/bootstrap.min.js"></script> 
-		
 			<?php
 
 			switch ($pagenow) 

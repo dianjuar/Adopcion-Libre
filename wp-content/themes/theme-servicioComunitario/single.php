@@ -89,7 +89,12 @@
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
             <section class="col-md-12 redes_sociales">
+<<<<<<< HEAD
               <div class="fb-share-button" data-href="<?php echo get_permalink($post->ID);?>" data-layout="button_count"></div>
+=======
+              <div class="fb-share-button"  data-href="<?php echo get_permalink($post->ID);?>" data-layout="button_count"></div>
+             
+>>>>>>> 6be5c694c759d0ca94eb1c88a0b3c7222e7d18d8
               <a href="https://twitter.com/share"  
                 class="twitter-share-button" 
                 data-url="<?php echo get_permalink($post->ID);?>"
@@ -197,6 +202,10 @@
 
       </script>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<<<<<<< HEAD
       <
+=======
+      
+>>>>>>> 6be5c694c759d0ca94eb1c88a0b3c7222e7d18d8
     </body>
 </html>

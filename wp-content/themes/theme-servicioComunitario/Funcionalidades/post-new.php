@@ -15,7 +15,7 @@
 
         if( isset( $_GET['post_category']) )
         {
-            $content = str_replace('type="radio"', ' type="radio" disabled ', $content);
+            //$content = str_replace('type="radio"', ' type="radio" disabled ', $content);
 
 
             switch ( $_GET['post_category'] ) {
