@@ -179,30 +179,6 @@
             require_once("footer.php");
             require_once("js/Scripts to login buttons.php");
         ?>
-      <script>
-        $(document).ready(function(){
-
-          $("#ImgBig").attr("src",$(".BoxDetPet__ImgSmall:nth-child(1)").attr("src"));
-
-          $('.BoxDetPet__ImgSmall').on('click', function() {
-            $(this).addClass("BoxDetPet__ImgSmall--active");
-            $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
-            $("#ImgBig").attr("src",$(this).attr("src"));
-          });
-          
-          /*$( ".BoxDetPet__ImgSmall" ).click(function() {
-            $(this).addClass("BoxDetPet__ImgSmall--active");
-            $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
-            $("#ImgBig").attr("src",$(this).attr("src"));
-          });*/
-        });
-
-      </script>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<<<<<<< HEAD
-      <
-=======
-      
->>>>>>> 6be5c694c759d0ca94eb1c88a0b3c7222e7d18d8
     </body>
 </html>

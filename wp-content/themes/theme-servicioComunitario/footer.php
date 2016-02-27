@@ -1,26 +1,26 @@
 <footer class="container">
-  <div class="boxFooter">
-  	<div class="row">
-  		<?php wp_nav_menu(
-            array(
-              'container'     => false,
-              'items_wrap'    =>' <ul id="MenuFooter" class="">%3$s</ul>',
-              'theme_location'=> 'menu-footer'
-            )
-          );
-        ?>
-  	</div>
-  	<div class="row">
-  		<ul id="redesSociales">
-  			<a href="https://twitter.com/AdopcionLibre"><li><span class="icon icon-twitter"></span></li></a>
-  			<a href="https://www.facebook.com/adopcion.libre.9?fref=ts"><li><span class="icon icon-facebook2"></span></li></a>
-  		</ul>
-  	</div>
-  	<div class="row">
-  		inserte aqui copiright
-  	</div>
+    <div class="boxFooter">
+      	<div class="row">
+      		<?php wp_nav_menu(
+                array(
+                  'container'     => false,
+                  'items_wrap'    =>' <ul id="MenuFooter" class="">%3$s</ul>',
+                  'theme_location'=> 'menu-footer'
+                )
+              );
+            ?>
+      	</div>
+      	<div class="row">
+      		<ul id="redesSociales">
+      			<a href="https://twitter.com/AdopcionLibre"><li><span class="icon icon-twitter"></span></li></a>
+      			<a href="https://www.facebook.com/adopcion.libre.9?fref=ts"><li><span class="icon icon-facebook2"></span></li></a>
+      		</ul>
+      	</div>
+      	<!-- <div class="row">
+      		inserte aqui copiright
+      	</div> -->
     
-  </div>
+    </div>
 </footer> 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -46,5 +46,13 @@
 			$('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
 			$('#rpr_municipio').val("<?php echo $municipio ?>").trigger('change');
 		}
+
+        $("#ImgBig").attr("src",$(".BoxDetPet__ImgSmall:nth-child(1)").attr("src"));
+
+        $('.BoxDetPet__ImgSmall').on('click', function() {
+            $(this).addClass("BoxDetPet__ImgSmall--active");
+            $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
+            $("#ImgBig").attr("src",$(this).attr("src"));
+        });
 	});
 </script>

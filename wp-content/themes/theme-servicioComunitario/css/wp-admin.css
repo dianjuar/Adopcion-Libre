@@ -19,6 +19,7 @@ html{
   #wpadminbar{
     background: #fff;
     border-bottom: 3px solid #f78e1d;
+    z-index: 1000;
   }
   #adminmenuback {
     top: 83px;
@@ -34,8 +35,11 @@ html{
 /*fin estilos barra superior*/
 
 /*Inicio barra lateral*/
+  #adminmenuwrap{
+    z-index: 1000;
+  }
   .sticky-menu #adminmenuwrap {
-    z-index: 100000;
+    z-index: 1000;
     border-top: 3px solid #fff;
   }
   #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
