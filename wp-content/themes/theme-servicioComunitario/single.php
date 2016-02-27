@@ -88,7 +88,7 @@
             <div  class="col-md-10 col-sm-10 col-xs-12 BoxDetPet__ImgBigBox no-padding">
               <img id="ImgBig" src="" class="img-responsive BoxDetPet__ImgBig" alt="...">
             </div>
-            <section class="col-md-12 redes_sociales">
+            <section class="col-md-12 col-sm-10 col-xs-12 redes_sociales">
 
               <div class="fb-share-button"  data-href="<?php echo get_permalink($post->ID);?>" data-layout="button_count"></div>
              
@@ -179,6 +179,25 @@
             require_once("footer.php");
             require_once("js/Scripts to login buttons.php");
         ?>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <script>
+      jQuery(document).ready(function($){
+
+          $("#ImgBig").attr("src",$(".BoxDetPet__ImgSmall:nth-child(1)").attr("src"));
+
+
+
+          jQuery('.BoxDetPet__ImgSmall').on('click', function() {
+
+
+              $(this).addClass("BoxDetPet__ImgSmall--active");
+              $(this).siblings().removeClass("BoxDetPet__ImgSmall--active");
+              $("#ImgBig").attr("src",$(this).attr("src"));
+
+              // return false;
+          });
+      });
+
+      // !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+      </script>
     </body>
 </html>
