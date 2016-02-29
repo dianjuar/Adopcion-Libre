@@ -6,16 +6,9 @@
 <meta name="keywords" content="adopción, mascotas, bepra, css3, Adopción libre, adopción mascotas, mascotas perdidas, mascotas encontradas" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php wp_head();?>
-
-<?php
-	wp_enqueue_style( "bootstrap" , get_template_directory_uri()."/css/bootstrap.min.css"); 
-	wp_enqueue_style( "bootstrap-theme" ,get_template_directory_uri()."/css/bootstrap-theme.min.css"); 	
-	wp_enqueue_style( "main" , get_template_directory_uri()."/css/main.css"); 	
-?>
-
-<!-- <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css"> -->
-<!-- <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css"> -->
-<!-- <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/main.css"> -->
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/main.css">
 <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/fonts.css">
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <script src="<?php bloginfo('template_url') ?>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>

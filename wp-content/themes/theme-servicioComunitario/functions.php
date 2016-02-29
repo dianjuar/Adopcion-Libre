@@ -410,16 +410,13 @@ function showFooter() {
 }
 function showheader()
 {
-	//hay que hacerlo a lo ingrid osea sin seguir los estantadares, osea cagao.
-
-	require_once("head.php"); 
-	require_once("header.php");
-
-	wp_dequeue_style( "bootstrap" );
-
+	wp_enqueue_style( "bootstrap-theme" ,get_template_directory_uri()."/css/bootstrap-theme.min.css"); 	
+	wp_enqueue_style( "main" , get_template_directory_uri()."/css/main.css");
+	wp_enqueue_style( "fonts" , get_template_directory_uri()."/css/fonts.css");
+	get_header(); 
 }
 
-add_action( 'login_head', 'showheader' );
+add_action( 'login_enqueue_scripts', 'showheader' );
 add_action( 'login_footer', 'showFooter' );
 
 /*===== LOGIN-FORM Y ADMIN agregar footer OFF =======================================*/
