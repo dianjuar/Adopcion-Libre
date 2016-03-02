@@ -720,5 +720,6 @@ function add_opengraph_markup_D() {
 }
 add_action('wp_head', 'add_opengraph_markup_D');
 
+add_filter('show_admin_bar', '__return_false');
 
 ?>
