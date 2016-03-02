@@ -63,12 +63,6 @@
           $("ul.nav-justified li:nth-child(4)").html("Mascotas perdidas");
           $("ul.nav-justified li:nth-child(4)").toggleClass("Active");
 
-          $(".post a").mouseover(function() {
-              $(this).children('.post__info').css("display","block");
-            }).mouseout(function (){
-              $('.post a').children('.post__info').css("display","none"); 
-            });
-
             $("#btn-dar").click( function(){
                 swal({
                     title: 'Importante',

@@ -63,12 +63,7 @@
         $(document).ready(function(){
           $("ul.nav-justified li:nth-child(2)").html("Adopta un amigo");
           $("ul.nav-justified li:nth-child(2)").addClass("Active");
-
-          $(".post a").mouseover(function() {
-              $(this).children('.post__info').css("display","block");
-            }).mouseout(function (){
-              $('.post a').children('.post__info').css("display","none"); 
-            });         
+       
         });
 
       </script>

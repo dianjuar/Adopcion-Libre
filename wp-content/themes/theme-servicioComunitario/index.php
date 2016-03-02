@@ -112,12 +112,6 @@
             $("ul.post-categories li a").removeAttr("href");
             $("ul.post-categories li a").removeAttr("rel");
 
-            $(".post a").mouseover(function() {
-              $(this).children('.post__info').css("display","block");
-            }).mouseout(function (){
-              $('.post a').children('.post__info').css("display","none"); 
-            }); 
-
             $('#search').children('article').removeClass("BoxLoginSingIm"); 
             $('#search').removeClass("searchBox");
             $('#search').addClass("searchBox--home");
