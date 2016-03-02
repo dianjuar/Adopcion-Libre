@@ -19,7 +19,7 @@ html{
   #wpadminbar{
     background: #fff;
     border-bottom: 3px solid #f78e1d;
-    z-index: 1000;
+    z-index: 10000;
   }
   #adminmenuback {
     top: 83px;
