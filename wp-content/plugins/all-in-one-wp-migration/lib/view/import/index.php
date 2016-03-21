@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,6 @@
 <div class="ai1wm-container">
 	<div class="ai1wm-row">
 		<div class="ai1wm-left">
-			<?php include AI1WM_TEMPLATES_PATH . '/common/maintenance-mode.php'; ?>
-
 			<div class="ai1wm-holder">
 				<h1><i class="ai1wm-icon-publish"></i> <?php _e( 'Import Site', AI1WM_PLUGIN_NAME ); ?></h1>
 

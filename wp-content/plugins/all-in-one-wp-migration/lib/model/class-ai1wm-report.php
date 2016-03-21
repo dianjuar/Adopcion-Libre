@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,15 +34,16 @@ class Ai1wm_Report {
 	 *
 	 * @return array
 	 */
-	public function report_problem( $email, $message, $terms ) {
+	public function add( $email, $message, $terms ) {
 		$errors = array();
+
 		// Submit report to ServMask
 		if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-			$errors[] = 'Your email is not valid.';
+			$errors[] = __( 'Your email is not valid.', AI1WM_PLUGIN_NAME );
 		} else if ( empty( $message ) ) {
-			$errors[] = 'Please enter comments in the text area.';
-		} else if ( ! $terms ) {
-			$errors[] = 'Please accept report term conditions.';
+			$errors[] = __( 'Please enter comments in the text area.', AI1WM_PLUGIN_NAME );
+		} else if ( empty( $terms ) ) {
+			$errors[] = __( 'Please accept report term conditions.', AI1WM_PLUGIN_NAME );
 		} else {
 			$response = wp_remote_post(
 				AI1WM_REPORT_URL,
@@ -57,7 +58,7 @@ class Ai1wm_Report {
 				)
 			);
 			if ( is_wp_error( $response ) ) {
-				$errors[] = 'Something went wrong: ' . $response->get_error_message();
+				$errors[] = sprintf( __( 'Something went wrong: %s', AI1WM_PLUGIN_NAME ), $response->get_error_message() );
 			}
 		}
 

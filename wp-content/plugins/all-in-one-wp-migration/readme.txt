@@ -3,7 +3,7 @@ Contributors: yani.iliev, bangelov, pimjitsawang
 Tags: db migration, migration, wordpress migration, db backup, db restore, website backup, website restore, website migration, website deploy, wordpress deploy, db backup, database export, database serialization, database find replace
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 4.19
+Stable tag: 5.39
 License: GPLv2 or later
 
 All-in-One WP Migration is the only tool that you will ever need to migrate a WordPress site.
@@ -25,7 +25,7 @@ All in One WP Plugin is the first plugin to offer true mobile experience on Word
 = 0 Dependencies =
 * The plugin does not require any php extensions and can work with PHP v5.2.
 
-= Support for MySQL, PDO, MySQLi =
+= Support for MySQL and MySQLi =
 * No matter what php mysql driver your webserver ships with, we support it.
 
 = Support WordPress v3.3 up to v4.x =
@@ -54,6 +54,7 @@ All in One WP Plugin is the first plugin to offer true mobile experience on Word
 * [Google Drive](https://servmask.com/products/google-drive-extension)
 * [Amazon S3](https://servmask.com/products/amazon-s3-extension)
 * [URL](https://servmask.com/products/url-extension)
+* [OneDrive](https://servmask.com/products/onedrive-extension)
 * And many more to come
 
 = Contact us =
@@ -62,7 +63,6 @@ All in One WP Plugin is the first plugin to offer true mobile experience on Word
 * [Find out more about us](https://servmask.com)
 
 [youtube http://www.youtube.com/watch?v=BpWxCeUWBOk]
-[youtube http://www.youtube.com/watch?v=mRp7qTFYKgs]
 
 == Installation ==
 1. Upload the `all-in-one-wp-migration` folder to the `/wp-content/plugins/` directory
@@ -75,6 +75,25 @@ All in One WP Plugin is the first plugin to offer true mobile experience on Word
 3. Plugin Menu
 
 == Changelog ==
+= 5.39 =
+* Fix a bug in uploads path replacement
+
+= 5.38 =
+* Deactivate mu-plugins if fatal error appears on import
+
+= 5.37 =
+* Validate the archive before import
+
+= 5.36 =
+* Add OneDrive to readme.txt
+* Fix a typo on import
+
+= 5.35 =
+* Add OneDrive to export/import pages
+* Fix a bug when WordPress was used without a db prefix
+* Fix a problem when downloading wpress files
+* Improve the log system
+
 = 4.19 =
 * Fixed an issue with options cache
 

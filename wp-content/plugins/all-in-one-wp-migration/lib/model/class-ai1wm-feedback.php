@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,17 +35,18 @@ class Ai1wm_Feedback {
 	 *
 	 * @return array
 	 */
-	public function leave_feedback( $type, $email, $message, $terms ) {
+	public function add( $type, $email, $message, $terms ) {
 		$errors = array();
+
 		// Submit feedback to ServMask
 		if ( empty( $type ) ) {
-			$errors[] = 'Feedback type is invalid.';
+			$errors[] = __( 'Feedback type is invalid.', AI1WM_PLUGIN_NAME );
 		} else if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-			$errors[] = 'Your email is not valid.';
+			$errors[] = __( 'Your email is not valid.', AI1WM_PLUGIN_NAME );
 		} else if ( empty( $message ) ) {
-			$errors[] = 'Please enter comments in the text area.';
-		} else if ( ! $terms ) {
-			$errors[] = 'Please accept feedback term conditions.';
+			$errors[] = __( 'Please enter comments in the text area.', AI1WM_PLUGIN_NAME );
+		} else if ( empty( $terms ) ) {
+			$errors[] = __( 'Please accept feedback term conditions.', AI1WM_PLUGIN_NAME );
 		} else {
 			$response = wp_remote_post(
 				AI1WM_FEEDBACK_URL,
@@ -60,8 +61,9 @@ class Ai1wm_Feedback {
 					),
 				)
 			);
+
 			if ( is_wp_error( $response ) ) {
-				$errors[] = 'Something went wrong: ' . $response->get_error_message();
+				$errors[] = sprintf( __( 'Something went wrong: %s', AI1WM_PLUGIN_NAME ), $response->get_error_message() );
 			}
 		}
 

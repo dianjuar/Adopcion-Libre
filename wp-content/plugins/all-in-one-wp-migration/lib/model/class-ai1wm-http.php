@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,11 @@ class Ai1wm_Http {
 	public static $transports = array( 'ai1wm', 'curl' );
 
 	public static function get( $url, $params = array() ) {
+
+		// Check the status, maybe we need to stop it
+		if ( ! is_file( ai1wm_export_path( $params ) ) && ! is_file( ai1wm_import_path( $params ) ) ) {
+			exit;
+		}
 
 		// Get IP address
 		$ip = get_site_option( AI1WM_URL_IP, false, false );

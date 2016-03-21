@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +22,7 @@
  * ███████║███████╗██║  ██║ ╚████╔╝ ██║ ╚═╝ ██║██║  ██║███████║██║  ██╗
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
+
 abstract class Ai1wm_Archiver {
 
 	/**
@@ -195,6 +195,26 @@ abstract class Ai1wm_Archiver {
 	}
 
 	/**
+	 * Validate file
+	 *
+	 * return bool
+	 */
+	public function is_valid() {
+		$offset = ftell( $this->file_handle );
+
+		// set file offset
+		if ( fseek( $this->file_handle, -4377, SEEK_END ) !== -1 ) {
+			if ( fread( $this->file_handle, 4377 ) === $this->eof ) {
+				if ( fseek( $this->file_handle, $offset, SEEK_SET ) !== -1 ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Get current file size
 	 *
 	 * return int
@@ -227,5 +247,4 @@ abstract class Ai1wm_Archiver {
 			throw new Ai1wm_Not_Accesible_Exception( sprintf( __( 'Unable to close %s', AI1WM_PLUGIN_NAME ), $this->filename ) );
 		}
 	}
-
 }

@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +22,7 @@
  * ███████║███████╗██║  ██║ ╚████╔╝ ██║ ╚═╝ ██║██║  ██║███████║██║  ██╗
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
+
 class Ai1wm_Compressor extends Ai1wm_Archiver {
 
 	/**
@@ -38,7 +38,7 @@ class Ai1wm_Compressor extends Ai1wm_Archiver {
 	/**
 	 * Add a file to the archive
 	 *
-	 * @param string $file         File to Add to the archive
+	 * @param string $file         File to add to the archive
 	 * @param string $new_filename Write the file with a different name
 	 * @param int    $offset       File offset
 	 * @param int    $timeout      Process timeout

@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +22,7 @@
  * ███████║███████╗██║  ██║ ╚████╔╝ ██║ ╚═╝ ██║██║  ██║███████║██║  ██╗
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
+
 class Ai1wm_Extractor extends Ai1wm_Archiver {
 
 	/**
@@ -75,15 +75,15 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 		return $files_found;
 	}
 
-	public function extract_one_file_to( $location, $exclude = array(), $offset = 0, $timeout = 0 ) {
-		if ( false === file_exists( $location ) ) {
+	public function extract_one_file_to( $location, $exclude = array(), $old_paths = array(), $new_paths = array(), $offset = 0, $timeout = 0 ) {
+		if ( false === is_dir( $location ) ) {
 			throw new Ai1wm_Not_Readable_Exception( sprintf( __( '%s doesn\'t exist', AI1WM_PLUGIN_NAME ), $location ) );
 		}
 
 		$block = $this->read_from_handle( $this->file_handle, 4377, $this->filename );
 
+		// we reached end of file, set the pointer to the end of the file so that feof returns true
 		if ( $block === $this->eof ) {
-			// we reached end of file, set the pointer to the end of the file so that feof returns true
 			@fseek( $this->file_handle, 1, SEEK_END );
 			@fgetc( $this->file_handle );
 			return;
@@ -99,27 +99,36 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 			$filename = $data['path'] . '/' . $data['filename'];
 		}
 
-		// should we skip this file?
-		if ( in_array( $filename, $exclude ) ) {
-			// we don't have a match, skip file content
-			$this->set_file_pointer( $this->file_handle, $data['size'], $this->filename );
-			return;
-		}
-
-		// we need to build the path for the file
+		// we need to build the path
 		$path = str_replace( '/', DIRECTORY_SEPARATOR, $data['path'] );
 
-		// append prepend extract location
-		$path = $location . DIRECTORY_SEPARATOR . $path;
+		// we need to build the path for the file
+		$filename = str_replace( '/', DIRECTORY_SEPARATOR, $filename );
+
+		// should we skip this file?
+		for ( $i = 0; $i < count( $exclude ); $i++ ) {
+			if ( strpos( $filename . DIRECTORY_SEPARATOR, $exclude[$i] . DIRECTORY_SEPARATOR ) === 0 ) {
+				$this->set_file_pointer( $this->file_handle, $data['size'], $this->filename );
+				return;
+			}
+		}
+
+		// replace extract paths
+		for ( $i = 0; $i < count( $old_paths ); $i++ ) {
+			if ( strpos( $path . DIRECTORY_SEPARATOR, $old_paths[$i] . DIRECTORY_SEPARATOR ) === 0 ) {
+				$path = substr_replace( $path, $new_paths[$i], 0, strlen( $old_paths[$i] ) );
+				break;
+			}
+		}
 
 		// check if location doesn't exist, then create it
-		if ( false === file_exists( $path ) ) {
-			mkdir( $path, 0755, true );
+		if ( false === is_dir( $location . DIRECTORY_SEPARATOR . $path ) ) {
+			mkdir( $location . DIRECTORY_SEPARATOR . $path, 0755, true );
 		}
 
 		try {
 			// we have a match, let's extract the file
-			if ( ( $offset = $this->extract_to( $path . DIRECTORY_SEPARATOR . $data['filename'], $data, $offset, $timeout ) ) ) {
+			if ( ( $offset = $this->extract_to( $location . DIRECTORY_SEPARATOR . $path . DIRECTORY_SEPARATOR . basename( $filename ), $data, $offset, $timeout ) ) ) {
 				return $offset;
 			}
 		} catch ( Exception $e ) {
@@ -135,15 +144,12 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 	 * @param array  $files    Files to extract
 	 */
 	public function extract_by_files_array( $location, $files = array(), $offset = 0, $timeout = 0 ) {
-		if ( false === file_exists( $location ) ) {
+		if ( false === is_dir( $location ) ) {
 			throw new Ai1wm_Not_Readable_Exception( sprintf( __( '%s doesn\'t exist', AI1WM_PLUGIN_NAME ), $location ) );
 		}
 
 		// we read until we reached the end of the file, or the files we were looking for were found
-		while (
-			($block = $this->read_from_handle( $this->file_handle, 4377, $this->filename )) &&
-			( count( $files ) > 0 )
-		) {
+		while ( ( $block = $this->read_from_handle( $this->file_handle, 4377, $this->filename ) ) ) {
 			// end block has been reached and we still have files to extract
 			// that means the files don't exist in the archive
 			if ( $block === $this->eof ) {
@@ -162,21 +168,39 @@ class Ai1wm_Extractor extends Ai1wm_Archiver {
 				$filename = $data['path'] . '/' . $data['filename'];
 			}
 
+			// we need to build the path
+			$path = str_replace( '/', DIRECTORY_SEPARATOR, $data['path'] );
+
+			// we need to build the path for the file
+			$filename = str_replace( '/', DIRECTORY_SEPARATOR, $filename );
+
+			// set include flag
+			$include = false;
+
+			// files to extract
+			for ( $i = 0; $i < count( $files ); $i++ ) {
+				if ( strpos( $filename . DIRECTORY_SEPARATOR, $files[$i] . DIRECTORY_SEPARATOR ) === 0 ) {
+					$include = true;
+					break;
+				}
+			}
+
 			// do we have a match?
-			if ( in_array( $filename, $files ) ) {
+			if ( $include ) {
+				// check if location doesn't exist, then create it
+				if ( false === is_dir( $location . DIRECTORY_SEPARATOR . $path ) ) {
+					mkdir( $location . DIRECTORY_SEPARATOR . $path, 0755, true );
+				}
+
 				try {
 					// we have a match, let's extract the file and remove it from the array
-					if ( ( $offset = $this->extract_to( $location . DIRECTORY_SEPARATOR . $data['filename'], $data, $offset, $timeout ) ) ) {
+					if ( ( $offset = $this->extract_to( $location . DIRECTORY_SEPARATOR . $filename, $data, $offset, $timeout ) ) ) {
 						return $offset;
 					}
 				} catch ( Exception $e ) {
 					// we don't have file permissions, skip file content
 					$this->set_file_pointer( $this->file_handle, $data['size'], $this->filename );
 				}
-
-				// let's unset the file from the files array
-				$key = array_search( $data['filename'], $files );
-				unset( $files[$key] );
 			} else {
 				// we don't have a match, skip file content
 				$this->set_file_pointer( $this->file_handle, $data['size'], $this->filename );

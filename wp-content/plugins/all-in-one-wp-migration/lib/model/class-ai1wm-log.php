@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,107 +25,64 @@
 
 class Ai1wm_Log {
 
-	/**
-	 * Write log message of INFO type
-	 *
-	 * @param  string $message Log message
-	 * @return void
-	 */
-	public static function info( $message ) {
-		self::write( $message, 'INFO' );
-	}
+	public static function export( $params ) {
+		$data = array();
 
-	/**
-	 * Write log message of INFO type
-	 *
-	 * @param  string $message Log message
-	 * @return void
-	 */
-	public static function error( $message ) {
-		self::write( $message, 'ERROR' );
-	}
+		// Add date
+		$data[] = date( 'M d Y H:i:s' );
 
-	/**
-	 * Write log message with the specified type
-	 *
-	 * @param  string $message Log message
-	 * @param  string $type    Log type
-	 * @return void
-	 */
-	public static function write( $message, $type = 'INFO' ) {
-		// Set date to UTC
-		@date_default_timezone_set( 'UTC' );
+		// Add params
+		$data[] = json_encode( $params );
 
-		// Build message array
-		$_message = array();
+		// Add empty line
+		$data[] = PHP_EOL;
 
-		// Append the date
-		$_message[] = '[' . date( 'M d Y H:i:s' ) . ']';
-
-		// Append the type
-		$_message[] = $type;
-
-		// Append the message
-		$_message[] = $message;
-
-		// Append new line
-		$_message[] = PHP_EOL;
-
-		// Convert message to string
-		$_message = implode( ' ', $_message );
-
-		// Append the message to our error.log and close the file handle
-		// only if we can get a handle
-		if ( $handle = @fopen( AI1WM_LOG_FILE, 'a' ) ) {
-			@fwrite( $handle, $_message );
-			@fclose( $handle );
+		// Write log data
+		if ( empty( $params['priority'] ) || is_file( ai1wm_export_path( $params ) ) ) {
+			if ( $handle = fopen( ai1wm_export_path( $params ), 'a' ) ) {
+				fwrite( $handle, implode( $data, PHP_EOL ) );
+				fclose( $handle );
+			}
 		}
 	}
 
-	/**
-	 * Error handler
-	 *
-	 * @param  int    $errno   Error level
-	 * @param  string $errstr  Error message
-	 * @param  string $errfile Error file
-	 * @param  int    $errline Error line
-	 * @return void
-	 */
-	public static function error_handler( $errno, $errstr, $errfile, $errline ) {
-		$message = array();
+	public static function import( $params ) {
+		$data = array();
 
-		// Add an empty line
-		$message[] = '';
-		$message[] = 'Number:  ' . $errno;
-		$message[] = 'Message: ' . $errstr;
-		$message[] = 'File:    ' . $errfile;
-		$message[] = 'Line:    ' . $errline;
-		$message[] = '--------------------------------------------';
+		// Add date
+		$data[] = date( 'M d Y H:i:s' );
 
-		$message = implode( PHP_EOL, $message );
+		// Add params
+		$data[] = json_encode( $params );
 
-		self::write( $message, 'ERROR_HANDLER' );
+		// Add empty line
+		$data[] = PHP_EOL;
+
+		// Write log data
+		if ( empty( $params['priority'] ) || is_file( ai1wm_import_path( $params ) ) ) {
+			if ( $handle = fopen( ai1wm_import_path( $params ), 'a' ) ) {
+				fwrite( $handle, implode( $data, PHP_EOL ) );
+				fclose( $handle );
+			}
+		}
 	}
 
-	/**
-	 * Exception handler
-	 *
-	 * @param  Exception $exception Exception object
-	 * @return void
-	 */
-	public static function exception_handler( $exception ) {
-		$message = array();
+	public static function error( $params ) {
+		$data = array();
 
-		// Add an empty line
-		$message[] = '';
-		$message[] = 'Number:  ' . $exception->getCode();
-		$message[] = 'Message: ' . $exception->getMessage();
-		$message[] = 'File:    ' . $exception->getFile();
-		$message[] = 'Line:    ' . $exception->getLine();
-		$message[] = '--------------------------------------------';
+		// Add date
+		$data[] = date( 'M d Y H:i:s' );
 
-		$message = implode( PHP_EOL, $message );
+		// Add params
+		$data[] = json_encode( $params );
 
-		self::write( $message, 'EXCEPTION_HANDLER' );
+		// Add empty line
+		$data[] = PHP_EOL;
+
+		// Write log data
+		if ( $handle = fopen( ai1wm_error_path(), 'a' ) ) {
+			fwrite( $handle, implode( $data, PHP_EOL ) );
+			fclose( $handle );
+		}
 	}
 }

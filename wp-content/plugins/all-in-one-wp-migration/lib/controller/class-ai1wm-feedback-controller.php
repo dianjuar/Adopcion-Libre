@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,34 +25,35 @@
 
 class Ai1wm_Feedback_Controller {
 
-	public static function leave_feedback() {
+	public static function feedback() {
+
 		// Set Type
 		$type = null;
-		if ( isset( $_POST['type'] ) ) {
-			$type = trim( $_POST['type'] );
+		if ( isset( $_POST['ai1wm-type'] ) ) {
+			$type = trim( $_POST['ai1wm-type'] );
 		}
 
 		// Set E-mail
 		$email = null;
-		if ( isset( $_POST['email'] ) ) {
-			$email = trim( $_POST['email'] );
+		if ( isset( $_POST['ai1wm-email'] ) ) {
+			$email = trim( $_POST['ai1wm-email'] );
 		}
 
 		// Set Message
 		$message = null;
-		if ( isset( $_POST['message'] ) ) {
-			$message = trim( $_POST['message'] );
+		if ( isset( $_POST['ai1wm-message'] ) ) {
+			$message = trim( $_POST['ai1wm-message'] );
 		}
 
 		// Set Terms
 		$terms = false;
-		if ( isset( $_POST['terms'] ) ) {
-			$terms = (bool) $_POST['terms'];
+		if ( isset( $_POST['ai1wm-terms'] ) ) {
+			$terms = (bool) $_POST['ai1wm-terms'];
 		}
 
 		// Send Feedback
 		$model  = new Ai1wm_Feedback;
-		$result = $model->leave_feedback( $type, $email, $message, $terms );
+		$result = $model->add( $type, $email, $message, $terms );
 
 		echo json_encode( $result );
 		exit;

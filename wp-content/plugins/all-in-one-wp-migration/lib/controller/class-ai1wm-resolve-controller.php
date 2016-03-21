@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,41 +25,38 @@
 
 class Ai1wm_Resolve_Controller {
 
-	public static function resolve( $args = array() ) {
+	public static function resolve( $params = array() ) {
 
 		// Set error handler
-		@set_error_handler( 'Ai1wm_Log::error_handler' );
+		@set_error_handler( 'Ai1wm_Handler::error' );
 
-		// Set arguments
-		if ( empty( $args ) ) {
-			$args = ai1wm_urldecode( $_REQUEST );
+		// Set params
+		if ( empty( $params ) ) {
+			$params = ai1wm_urldecode( $_REQUEST );
 		}
 
 		// Set secret key
 		$secret_key = null;
-		if ( isset( $args['secret_key'] ) ) {
-			$secret_key = $args['secret_key'];
+		if ( isset( $params['secret_key'] ) ) {
+			$secret_key = $params['secret_key'];
 		}
 
 		// Verify secret key by using the value in the database, not in cache
 		if ( $secret_key !== get_site_option( AI1WM_SECRET_KEY, false, false ) ) {
-			Ai1wm_Status::set(
-				array(
-					'type'    => 'error',
-					'title'   => __( "Unable to resolve", AI1WM_PLUGIN_NAME ),
-					'message' => __( "Unable to authenticate your request with secret_key = \"{$secret_key}\"", AI1WM_PLUGIN_NAME ),
-				)
+			Ai1wm_Status::error(
+				__( "Unable to authenticate your request with secret_key = \"{$secret_key}\"", AI1WM_PLUGIN_NAME ),
+				__( "Unable to resolve", AI1WM_PLUGIN_NAME )
 			);
 			exit;
 		}
 
 		// Set IP address
-		if ( isset( $args['url_ip'] ) && ( $ip = $args['url_ip' ] ) ) {
+		if ( isset( $params['url_ip'] ) && ( $ip = $params['url_ip' ] ) ) {
 			update_site_option( AI1WM_URL_IP, $ip );
 		}
 
 		// Set transport layer
-		if ( isset( $args['url_transport'] ) && ( $transport = $args['url_transport'] ) ) {
+		if ( isset( $params['url_transport'] ) && ( $transport = $params['url_transport'] ) ) {
 			if ( $transport === 'curl' ) {
 				update_site_option( AI1WM_URL_TRANSPORT, array( 'curl', 'ai1wm' ) );
 			} else {

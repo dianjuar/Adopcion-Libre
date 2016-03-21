@@ -23,16 +23,13 @@
 <div class="col-md-12 container-fluid">
    <?php
 	//antes de querer usar las variables estado y municipio deben añadir este archivo.
-	global $queryPost;
+	// global $queryPost;
    $mostroAlgo = false;
 
-      if ($queryPost->have_posts()): 
-         while ( $queryPost->have_posts() ) :
-            $queryPost->the_post(); 
-            
-            if(isset($_GET['s']) && !filtrarResultadoSearch($post))
-               continue;
-
+      if (/*$queryPost->*/have_posts()): 
+         while ( /*$queryPost->*/have_posts() ) :
+            /*$queryPost->*/the_post(); 
+      
             $mostroAlgo = true;
 
             $data = get_post_meta( $post->ID, 'post', true );  

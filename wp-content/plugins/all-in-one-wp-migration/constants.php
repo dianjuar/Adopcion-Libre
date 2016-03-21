@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014 ServMask Inc.
+ * Copyright (C) 2014-2016 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +25,9 @@
 
 $local = array(
 	'iliev.local',
-	'dev.servmask.com',
+	'develop.servmask.com',
 	'Borislav-MacBook-Pro.local',
+	'Simeon-PC',
 );
 
 if ( function_exists( 'gethostname' ) && in_array( gethostname(), $local ) ) {
@@ -38,7 +39,7 @@ if ( function_exists( 'gethostname' ) && in_array( gethostname(), $local ) ) {
 // ==================
 // = Plugin Version =
 // ==================
-define( 'AI1WM_VERSION', '4.19' );
+define( 'AI1WM_VERSION', '5.39' );
 
 // ===============
 // = Plugin Name =
@@ -58,7 +59,7 @@ define( 'AI1WM_STORAGE_PATH', AI1WM_PATH . DIRECTORY_SEPARATOR . 'storage' );
 // ==================
 // = Error Log Path =
 // ==================
-define( 'AI1WM_LOG_FILE', AI1WM_STORAGE_PATH . DIRECTORY_SEPARATOR . 'error.log' );
+define( 'AI1WM_ERROR_FILE', AI1WM_STORAGE_PATH . DIRECTORY_SEPARATOR . 'error.log' );
 
 // ===============
 // = Status Path =
@@ -80,10 +81,15 @@ define( 'AI1WM_CONTROLLER_PATH', AI1WM_LIB_PATH . DIRECTORY_SEPARATOR . 'control
 // ==============
 define( 'AI1WM_MODEL_PATH', AI1WM_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
 
-// ================
-// = Service Path =
-// ================
-define( 'AI1WM_SERVICE_PATH', AI1WM_MODEL_PATH . DIRECTORY_SEPARATOR . 'service' );
+// ===============
+// = Export Path =
+// ===============
+define( 'AI1WM_EXPORT_PATH', AI1WM_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
+
+// ===============
+// = Import Path =
+// ===============
+define( 'AI1WM_IMPORT_PATH', AI1WM_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
 
 // =============
 // = View Path =
@@ -135,6 +141,16 @@ define( 'AI1WM_DATABASE_NAME', 'database.sql' );
 // ========================
 define( 'AI1WM_PACKAGE_NAME', 'package.json' );
 
+// ==========================
+// = Archive Multisite Name =
+// ==========================
+define( 'AI1WM_MULTISITE_NAME', 'multisite.json' );
+
+// ======================
+// = Archive Blogs Name =
+// ======================
+define( 'AI1WM_BLOGS_NAME', 'blogs.json' );
+
 // ========================
 // = Archive Status Name  =
 // ========================
@@ -144,6 +160,26 @@ define( 'AI1WM_STATUS_NAME', 'status.js' );
 // = Archive FileMap Name =
 // ========================
 define( 'AI1WM_FILEMAP_NAME', 'filemap.list' );
+
+// =================================
+// = Archive Must-Use Plugins Name =
+// =================================
+define( 'AI1WM_MUPLUGINS_NAME', 'mu-plugins' );
+
+// ===================
+// = Export Log Name =
+// ===================
+define( 'AI1WM_EXPORT_NAME', 'export.log' );
+
+// ===================
+// = Import Log Name =
+// ===================
+define( 'AI1WM_IMPORT_NAME', 'import.log' );
+
+// ==================
+// = Error Log Name =
+// ==================
+define( 'AI1WM_ERROR_NAME', 'error.log' );
 
 // ======================
 // = Export Options Key =
@@ -159,11 +195,6 @@ define( 'AI1WM_ERROR_HANDLER', 'ai1wm_error_handler' );
 // = Exception Handler Key =
 // =========================
 define( 'AI1WM_EXCEPTION_HANDLER', 'ai1wm_exception_handler' );
-
-// ========================
-// = Maintenance Mode Key =
-// ========================
-define( 'AI1WM_MAINTENANCE_MODE', 'ai1wm_maintenance_mode' );
 
 // ==========
 // = URL IP =
@@ -195,10 +226,10 @@ define( 'AI1WM_AUTH_PASSWORD', 'ai1wm_auth_password' );
 // ==================
 define( 'AI1WM_ACTIVE_PLUGINS', 'active_plugins' );
 
-// ================
-// = Messages Key =
-// ================
-define( 'AI1WM_MESSAGES', 'ai1wm_messages' );
+// ===========================
+// = Active Sitewide Plugins =
+// ===========================
+define( 'AI1WM_ACTIVE_SITEWIDE_PLUGINS', 'active_sitewide_plugins' );
 
 // ===============
 // = Updater Key =
@@ -233,6 +264,16 @@ if ( ! defined( 'WP_CONTENT_DIR' ) ) {
 }
 
 // ================
+// = Uploads Path =
+// ================
+define( 'AI1WM_UPLOADS_PATH', 'uploads' );
+
+// ==============
+// = Sites Path =
+// ==============
+define( 'AI1WM_SITES_PATH', AI1WM_UPLOADS_PATH . DIRECTORY_SEPARATOR . 'sites' );
+
+// ================
 // = Backups Path =
 // ================
 define( 'AI1WM_BACKUPS_PATH', WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'ai1wm-backups' );
@@ -246,6 +287,11 @@ define( 'AI1WM_STORAGE_INDEX', AI1WM_STORAGE_PATH . DIRECTORY_SEPARATOR . 'index
 // = Backups Index File =
 // ======================
 define( 'AI1WM_BACKUPS_INDEX', AI1WM_BACKUPS_PATH . DIRECTORY_SEPARATOR . 'index.php' );
+
+// ======================
+// = Backups Htaccess File =
+// ======================
+define( 'AI1WM_BACKUPS_HTACCESS', AI1WM_BACKUPS_PATH . DIRECTORY_SEPARATOR . '.htaccess' );
 
 // ====================================
 // = WP Migration Plugin Base Dir =
@@ -439,3 +485,4 @@ if ( ! defined( 'AI1WMOE_PLUGIN_ABOUT' ) ) {
 if ( ! defined( 'AI1WMOE_PLUGIN_KEY' ) ) {
 	define( 'AI1WMOE_PLUGIN_KEY', 'ai1wmoe_plugin_key' );
 }
+
