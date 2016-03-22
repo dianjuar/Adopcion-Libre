@@ -643,13 +643,64 @@ function isLowerRole($role1, $role2)
 
 }
 
-//
-function filtrarPost ($categoryName = '')
-{
+function search_filter($query) {
 
-    global $queryPost;
-    global $estado, $municipio;
-	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	if ( !$query->is_main_query() )
+		return;
+
+	global $estado, $municipio;
+	if ( isset($_GET['FILTRO_ESTADO']) ) :
+		$estado = $_GET['FILTRO_ESTADO'];
+		$municipio = $_GET['FILTRO_MUNICIPIO'];
+	else:
+		$estado = get_user_meta( get_current_user_id(), 'rpr_estado', true); 
+		$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true);	
+	endif;
+
+	$parametros = get_parametros();
+	//var_dump($parametros);
+	$query->set( 'cat', $parametros['categoryID'] );
+
+
+	$query->set( 'meta_query', $parametros['meta_query'] );
+}
+
+if(isset($_GET['s']))
+	add_action('pre_get_posts','search_filter');
+
+function get_parametros()
+{
+	$parametros = [];
+
+	if(isset($_GET['FILTRO_CMASCOTA']))
+	{
+		switch ($_GET['FILTRO_CMASCOTA']) {
+			case 'a':
+				$parametros['categoryID'] = '2';
+				$parametros['categoryName'] = 'adopcion';
+			break;
+
+			case 'e':
+				$parametros['categoryID'] = '3';
+				$parametros['categoryName'] = 'encontrados';
+			break;
+
+			case 'p':
+				$parametros['categoryID'] = '4';
+				$parametros['categoryName'] = 'perdidos';
+			break;
+			
+			default:
+				$parametros['categoryID'] = false;
+				$parametros['categoryName'] = '';
+			break;
+		}
+
+	}
+
+
+	global $estado, $municipio;
+	$meta_query = array ('relation' => 'AND');
 
     $SoloEstados = array(   'relation'          => 'AND',
                                 array(
@@ -668,16 +719,115 @@ function filtrarPost ($categoryName = '')
                                         'compare'   => '=')
                             );
 
-    if( $estado == '' && $municipio == '')
-        $meta_query = '';
-    elseif ( $estado != '' && $municipio == '')
-        $meta_query = $SoloEstados;
+	if ( $estado != '' && $municipio == '')
+        array_push( $meta_query, $SoloEstados );
     else
-        $meta_query = $estadoYmunicipio;
+        array_push( $meta_query, $estadoYmunicipio );
+
+
+    $isPerro = 	isset($_GET['FILTRO_TMASCOTA_P']);
+    $isGato = 	isset($_GET['FILTRO_TMASCOTA_G']);
+    $isOtro =	isset($_GET['FILTRO_TMASCOTA_O']);
+
+	//perro
+    if($isPerro || $isGato || $isOtro)
+    {
+    	$tipo = array ('relation' => 'OR');
+
+		if( $isPerro )
+		{
+	    	$perro =	array(
+                            'key'       => 'post',
+                            'value'     => 's:4:"tipo";s:5:"Perro"',
+                            'compare'   => 'like');
+
+	    	array_push( $tipo, $perro );
+		}
+
+		if( $isGato )
+		{
+	    	$gato =array(
+                            'key'       => 'post',
+                            'value'     => 's:4:"tipo";s:4:"Gato"',
+                            'compare'   => 'like');
+	    
+			array_push( $tipo, $gato );	
+		}
+
+		if( $isOtro )
+		{
+			$otro =array(
+                            'key'       => 'post',
+                            'value'     => 's:4:"tipo";s:4:"Otro"',
+                            'compare'   => 'like');
+
+			array_push( $tipo, $otro );
+		}   
+		 	
+		array_push( $meta_query, $tipo );	   
+    }
+
+
+    $est_s = isset($_GET['FILTRO_EMASCOTA_S']);
+	$est_n = isset($_GET['FILTRO_EMASCOTA_N']);
+	$est_ns = isset($_GET['FILTRO_EMASCOTA_NS']);
+    
+    if($est_s || $est_n ||$est_ns)
+    {
+    	$esterilizado = array ('relation' => 'OR');
+    	//esterilizado
+	    if($est_s)
+	    {
+	    	$si =array(
+                            'key'       => 'post',
+                            'value'     => 's:14:"esterilizacion";s:2:"Si"',
+                            'compare'   => 'like');
+
+			array_push( $esterilizado, $si );
+	    }
+
+	    //no esterilizado
+	    if($est_n)
+	    {
+	    	$no =array(
+                            'key'       => 'post',
+                            'value'     => 's:14:"esterilizacion";s:2:"No"',
+                            'compare'   => 'like');
+
+			array_push( $esterilizado, $no );
+	    }
+
+	    //no se esterilizado
+	    if($est_ns)
+	    {
+	    	$nose =array(
+                            'key'       => 'post',
+                            'value'     => 's:14:"esterilizacion";s:5:"No Se"',
+                            'compare'   => 'like');
+
+			array_push( $esterilizado, $nose );
+	    }
+
+		array_push( $meta_query, $esterilizado );	    
+    }
+
+    $parametros['meta_query'] = $meta_query;
+    
+    return $parametros;
+}
+
+//
+function filtrarPost ($categoryName = '')
+{
+
+    global $queryPost;
+	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+    $parametros = get_parametros();    
 
     $argsQuery = array( 'category_name'   => $categoryName,
                         'post_status'     => 'publish',
-                        'meta_query'      => $meta_query,
+                        'meta_query'      => $parametros['meta_query'],
                         'paged'           => $paged );
 
     $queryPost = new WP_Query( $argsQuery );

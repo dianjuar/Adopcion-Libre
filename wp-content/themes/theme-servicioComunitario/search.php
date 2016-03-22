@@ -25,7 +25,7 @@
 
             <?php 
                 require_once('filtroEstados.php');
-                filtrarPost ();
+                //filtrarPost ();
                 require_once("posts.php"); 
             ?>
 

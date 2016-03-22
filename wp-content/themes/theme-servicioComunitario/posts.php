@@ -25,7 +25,7 @@
 	//antes de querer usar las variables estado y municipio deben añadir este archivo.
 	// global $queryPost;
    $mostroAlgo = false;
-
+// var_dump($query['found_posts']);die("asasa");
       if (/*$queryPost->*/have_posts()): 
          while ( /*$queryPost->*/have_posts() ) :
             /*$queryPost->*/the_post(); 

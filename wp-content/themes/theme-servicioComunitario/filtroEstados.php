@@ -11,7 +11,7 @@ endif;
 ?>
 
 <div class="col-md-12 filtar">
-	<form method="get" action="">
+	<form method="get" action="<?php echo get_home_url(); ?>">
 
 		<?php  if(isset($_GET['s'])): ?>
 					<input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">  </input>
