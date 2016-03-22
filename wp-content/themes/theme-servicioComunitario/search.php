@@ -25,10 +25,20 @@
 
             <?php 
                 require_once('filtroEstados.php');
-                //filtrarPost ();
-                require_once("posts.php"); 
             ?>
-
+                <div class="col-md-12 container-fluid">
+                <?php
+                    if (have_posts()): 
+                        while ( have_posts() ) :
+                            the_post();
+                            get_template_part( 'template-parts/content');
+                        endwhile;
+                    else:
+                        get_template_part( 'template-parts/content','none');
+                    endif;
+                ?>
+                </div>
+            
           <div class="col-md-12 pagina pagina--busqueda">
            <?php 
                 previous_posts_link('<span class="glyphicon glyphicon-backward"></span> Anteriores');

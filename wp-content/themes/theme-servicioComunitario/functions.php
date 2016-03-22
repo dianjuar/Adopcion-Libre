@@ -643,7 +643,8 @@ function isLowerRole($role1, $role2)
 
 }
 
-function search_filter($query) {
+function search_filter($query) 
+{
 
 	if ( !$query->is_main_query() )
 		return;
@@ -657,7 +658,7 @@ function search_filter($query) {
 		$municipio = get_user_meta( get_current_user_id(), 'rpr_municipio', true);	
 	endif;
 
-	$parametros = get_parametros();
+	$parametros = get_parametros( isset($_GET['FILTRO_CMASCOTA']) ? $_GET['FILTRO_CMASCOTA']: '');
 	//var_dump($parametros);
 	$query->set( 'cat', $parametros['categoryID'] );
 
@@ -668,34 +669,34 @@ function search_filter($query) {
 if(isset($_GET['s']))
 	add_action('pre_get_posts','search_filter');
 
-function get_parametros()
+function get_parametros($category_name = '')
 {
 	$parametros = [];
 
-	if(isset($_GET['FILTRO_CMASCOTA']))
+	switch ($category_name)
 	{
-		switch ($_GET['FILTRO_CMASCOTA']) {
-			case 'a':
-				$parametros['categoryID'] = '2';
-				$parametros['categoryName'] = 'adopcion';
-			break;
+		case 'adopcion': 
+		case 'a':
+			$parametros['categoryID'] = '2';
+			$parametros['categoryName'] = 'adopcion';
+		break;
 
-			case 'e':
-				$parametros['categoryID'] = '3';
-				$parametros['categoryName'] = 'encontrados';
-			break;
+		case 'encontrados':
+		case 'e':
+			$parametros['categoryID'] = '3';
+			$parametros['categoryName'] = 'encontrados';
+		break;
 
-			case 'p':
-				$parametros['categoryID'] = '4';
-				$parametros['categoryName'] = 'perdidos';
-			break;
-			
-			default:
-				$parametros['categoryID'] = false;
-				$parametros['categoryName'] = '';
-			break;
-		}
+		case 'perdidos':		
+		case 'p':
+			$parametros['categoryID'] = '4';
+			$parametros['categoryName'] = 'perdidos';
+		break;
 
+		default:
+			$parametros['categoryID'] = false;
+			$parametros['categoryName'] = '';
+		break;
 	}
 
 
@@ -823,9 +824,9 @@ function filtrarPost ($categoryName = '')
     global $queryPost;
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-    $parametros = get_parametros();    
+    $parametros = get_parametros($categoryName);    
 
-    $argsQuery = array( 'category_name'   => $categoryName,
+    $argsQuery = array( 'category_name'   => $parametros['categoryName'],
                         'post_status'     => 'publish',
                         'meta_query'      => $parametros['meta_query'],
                         'paged'           => $paged );
