@@ -57,12 +57,6 @@
       <script>
         $(document).ready(function(){
 
-          $(".post a").mouseover(function() {
-              $(this).children('.post__info').css("display","block");
-            }).mouseout(function (){
-              $('.post a').children('.post__info').css("display","none"); 
-            });
-
           $('#advanced-search-widget-2-s').val( $('.page-title strong').text() );
 
         });

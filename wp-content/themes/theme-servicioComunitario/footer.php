@@ -46,6 +46,9 @@
  
        $('#rpr_estado').val("<?php echo $estado ?>").trigger('change');
        $('#rpr_municipio').val("<?php echo $municipio ?>").trigger('change');
+
+       $('#searchform input.field').removeAttr('placeholder');
+       $('#searchform input.submit').val('Buscar');
      }
    });
  </script>

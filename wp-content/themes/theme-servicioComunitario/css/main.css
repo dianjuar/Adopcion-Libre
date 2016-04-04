@@ -648,53 +648,66 @@ dt {
 .searchBox {
   display: inline-block;
 }
+.searchBox * {
+  display: inline-block;
+}
+.searchBox #searchform {
+  display: flex;
+  justify-content: center;
+}
+.searchBox #search-2 .assistive-text {
+  display: none;
+}
+.searchBox #searchform .field {
+  width: 200px;
+  height: 30px;
+  font-size: 1.5em;
+  padding: 0 15px;
+  border: 1px solid #B5ACAC;
+  margin-right: 10px;
+}
+.searchBox #searchform .submit {
+  border-radius: 0.3em;
+  padding: 5px;
+  border: none;
+  background-color: #FADA37;
+  height: 30px;
+  width: 70px;
+}
 .searchBox--home {
   display: block;
   position: relative;
   z-index: 10;
-  top: 350px;
+  top: 260px;
 }
 .searchBox--home * {
   display: inline-block;
 }
-.searchBox--home #advanced-search-widget-2 h2 {
+.searchBox--home #searchform {
+  display: flex;
+  justify-content: center;
+}
+.searchBox--home #search-2 .assistive-text {
   display: none;
 }
-.searchBox--home #advanced-search-widget-2-s {
+.searchBox--home #searchform .field {
   width: 500px;
   height: 50px;
   font-size: 1.5em;
   padding: 0 15px;
   border: 1px solid #B5ACAC;
+  margin-right: 10px;
 }
-.searchBox--home .widget_search {
-  float: none;
-}
-.searchBox--home .widget_search input:last-child {
-  height: 48px;
-  width: 80px;
-}
-.searchBox--home article {
-  left: 25%;
-}
-.widget_search {
-  float: right;
-}
-.widget_search label {
-  display: none;
-}
-.widget_search input:last-child {
+.searchBox--home #searchform .submit {
   border-radius: 0.3em;
   padding: 5px;
   border: none;
   background-color: #FADA37;
-  height: 33px;
+  height: 50px;
   width: 70px;
 }
-#advanced-search-widget-2-s {
-  border-radius: 0.3em;
-  padding: 5px;
-  border: 1px solid #EDEDED;
+.searchBox--home article {
+  width: 100%;
 }
 /*=============== Widget busqueda ===================================================*/
 /*=============== Comentarios =======================================================*/
@@ -928,25 +941,17 @@ dt {
   /*=============== Inicio Sesión =================================================*/
   /*=============== Busqueda ======================================================*/
   .searchBox {
-    display: block;
+    display: inline-block;
   }
   .searchBox--home {
-    top: 50px;
+    top: 0px;
   }
-  .searchBox--home article {
-    left: 0;
-  }
-  .searchBox--home #advanced-search-widget-2-s {
+  .searchBox--home #searchform .field {
     width: 70%;
+    height: 40px;
   }
-  .widget_search {
-    float: none;
-  }
-  #advanced-search-widget-2-s {
-    width: 75%;
-  }
-  .widget_search input:last-child {
-    float: right;
+  .searchBox--home #searchform .submit {
+    height: 40px;
   }
   /*=============== Busqueda ======================================================*/
   /*=============== Info mascota ==================================================*/
@@ -1105,11 +1110,18 @@ dt {
     border-bottom-right-radius: 6px;
   }
   /*=============== boton =========================================================*/
+  .searchBox {
+    display: inline-block;
+  }
   .searchBox--home {
     top: 150px;
   }
-  .searchBox--home article {
-    left: 10%;
+  .searchBox--home #searchform .field {
+    width: 70%;
+    height: 40px;
+  }
+  .searchBox--home #searchform .submit {
+    height: 40px;
   }
   #MenuFooter li {
     width: 25%;
