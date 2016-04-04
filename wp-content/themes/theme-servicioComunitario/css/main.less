@@ -971,7 +971,7 @@ dt{ float: left; }
     	display: inline-block;
     }
 
-    & span{
+    & label{
     	font-size: 1.5em;
     	font-weight: bolder;
 
@@ -982,15 +982,31 @@ dt{ float: left; }
     	}
     }
 
+    & form{
+    	display: flex;
+	    flex-direction: column;
+	    align-items: flex-start;
+	    padding-left: 20px;
+    }
+
     & select{
     	padding: 10px 35px 10px 15px;
-	    background: #fff;
+	    background: transparent;
 	    border: 1px solid #ddd;
 	    border-radius: 0.5em;
 	    appearance: none;
 	    -webkit-appearance: none;
 	    -moz-appearance: none;
-	    margin: 10px;
+	    margin: 10px 0;
+	    position: relative;
+    	z-index: 1;
+    	width: 200px;
+
+    	& + span.glyphicon{
+    		position: relative;
+		    z-index: 0;
+		    left: -35px;
+    	}
     }
 
     & button{

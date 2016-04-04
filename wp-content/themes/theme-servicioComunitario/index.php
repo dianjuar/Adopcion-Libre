@@ -115,8 +115,6 @@
             $('#search').children('article').removeClass("BoxLoginSingIm"); 
             $('#search').removeClass("searchBox");
             $('#search').addClass("searchBox--home");
-            $('#searchform input.field').removeAttr('placeholder');
-            $('#searchform input.submit').val('Buscar');
         });
       </script>
     </body>

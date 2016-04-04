@@ -31,30 +31,36 @@
             <?php } ?>
           </div>
           <div class="col-md-12 pagina pagina--perdidos"></div>
-            <?php
-            //aquí es donde se llaman a los select y se cargan las variables estado y municipio.
-            require_once('filtroEstados.php');
-            ?>
+         
 
-          <div class="col-md-12 pagina pagina--perdidos"></div>
+          <!-- <div class="col-md-12 pagina pagina--perdidos"></div> -->
+            
+            <div class="row">
+              <?php
+              //aquí es donde se llaman a los select y se cargan las variables estado y municipio.
+              require_once('filtroEstados.php');
+              ?>
+              
+              <?php
+              filtrarPost ('perdidos');      
+              ?>
 
-          <?php
-            filtrarPost ('perdidos');      
-          ?>
+              <div class="col-md-9 container-fluid">
+              <?php
+                  global $queryPost;
+                  if ( $queryPost->have_posts()): 
+                      while ( $queryPost->have_posts() ) :
+                          $queryPost->the_post();
+                          get_template_part( 'template-parts/content');
+                      endwhile;
+                  else:
+                      get_template_part( 'template-parts/content','none');
+                  endif;
+              ?>
+              </div>
 
-              <div class="col-md-12 container-fluid">
-                <?php
-                    global $queryPost;
-                    if ( $queryPost->have_posts()): 
-                        while ( $queryPost->have_posts() ) :
-                            $queryPost->the_post();
-                            get_template_part( 'template-parts/content');
-                        endwhile;
-                    else:
-                        get_template_part( 'template-parts/content','none');
-                    endif;
-                ?>
-                </div>
+            </div>
+          
 
           <div class="col-md-12 pagina pagina--perdidos">
             <?php 

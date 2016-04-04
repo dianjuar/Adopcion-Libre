@@ -848,24 +848,38 @@ dt {
 .filtar div {
   display: inline-block;
 }
-.filtar span {
+.filtar label {
   font-size: 1.5em;
   font-weight: bolder;
 }
-.filtar span.glyphicon {
+.filtar label.glyphicon {
   position: relative;
   left: -40px;
   font-size: 0.9em;
 }
+.filtar form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+}
 .filtar select {
   padding: 10px 35px 10px 15px;
-  background: #fff;
+  background: transparent;
   border: 1px solid #ddd;
   border-radius: 0.5em;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  margin: 10px;
+  margin: 10px 0;
+  position: relative;
+  z-index: 1;
+  width: 200px;
+}
+.filtar select + span.glyphicon {
+  position: relative;
+  z-index: 0;
+  left: -35px;
 }
 .filtar button {
   border: none;

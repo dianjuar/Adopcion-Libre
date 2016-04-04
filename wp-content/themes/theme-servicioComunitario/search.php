@@ -18,26 +18,26 @@
         <section class="post no-margin">
           
           <h1 class="titulo--naranja"><span class="icon icon-Pata_vector"></span>Resultados de la busqueda</h1>
-
-        	<h3 class="page-title"><?php printf( __( 'Resultados de: "<strong>%s</strong>"', 'twentyfifteen' ), get_search_query() ); ?></h3>
             
-          
-
+          <div class="row">
             <?php 
                 require_once('filtroEstados.php');
             ?>
-                <div class="col-md-12 container-fluid">
-                <?php
-                    if (have_posts()): 
-                        while ( have_posts() ) :
-                            the_post();
-                            get_template_part( 'template-parts/content');
-                        endwhile;
-                    else:
-                        get_template_part( 'template-parts/content','none');
-                    endif;
-                ?>
-                </div>
+            <div class="col-md-9 container-fluid">
+              <h3 class="page-title"><?php printf( __( 'Resultados de: "<strong>%s</strong>"', 'twentyfifteen' ), get_search_query() ); ?></h3>
+            <?php
+                if (have_posts()): 
+                    while ( have_posts() ) :
+                        the_post();
+                        get_template_part( 'template-parts/content');
+                    endwhile;
+                else:
+                    get_template_part( 'template-parts/content','none');
+                endif;
+            ?>
+            </div>
+
+          </div>
             
           <div class="col-md-12 pagina pagina--busqueda">
            <?php 
