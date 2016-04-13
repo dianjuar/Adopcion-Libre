@@ -432,6 +432,7 @@ function escritorio_bienvenida(){ ?>
 	<li><strong>Perfil</strong> - Alli podras cambiar los datos de tu perfil</li>
 	</ul>
 	
+	<h3>A continuación se encuentran una serie de videos tutoriales sobre el funcionamiento del sitio:</h3>
 <?php }
 add_action( 'wp_dashboard_setup', 'nuevos_widgets_escritorio' );
 /*===== ADMIN Bienvanida - Escritorio OFF ===========================================*/
@@ -872,5 +873,70 @@ function add_opengraph_markup_D() {
 add_action('wp_head', 'add_opengraph_markup_D');
 
 add_filter('show_admin_bar', '__return_false');
+
+/*===== ADMIN Bienvanida - Escritorio ON ============================================*/
+function widgets_video_tutorial1() {
+	wp_add_dashboard_widget( 'widget_video_tutorial1', 'Funcionalidades básicas', 'video_tutorial1' );
+}
+function video_tutorial1(){ ?>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/NDpaRADlfGY" frameborder="0" allowfullscreen></iframe>
+	
+<?php }
+add_action( 'wp_dashboard_setup', 'widgets_video_tutorial1' );
+/*===== ADMIN Bienvanida - Escritorio OFF ===========================================*/
+/*===== ADMIN Bienvanida - Escritorio ON ============================================*/
+function widgets_video_tutorial2() {
+	wp_add_dashboard_widget( 'widget_video_tutorial2', 'Crear una mascota', 'video_tutorial2' );
+}
+function video_tutorial2(){ ?>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/p24XsqAU1Jw" frameborder="0" allowfullscreen></iframe>
+	
+<?php }
+add_action( 'wp_dashboard_setup', 'widgets_video_tutorial2' );
+/*===== ADMIN Bienvanida - Escritorio OFF ===========================================*/
+/*===== ADMIN Bienvanida - Escritorio ON ============================================*/
+function widgets_video_tutorial3() {
+	wp_add_dashboard_widget( 'widget_video_tutorial3', 'Moderar Mascota', 'video_tutorial3' );
+}
+function video_tutorial3(){ ?>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/3Hj3C6pLN9o" frameborder="0" allowfullscreen></iframe>
+	
+<?php }
+
+if (!al_isSuscriptorLogged() ) {
+	add_action( 'wp_dashboard_setup', 'widgets_video_tutorial3' );
+}
+/*===== ADMIN Bienvanida - Escritorio OFF ===========================================*/
+
+/*===== ADMIN Bienvanida - Escritorio ON ============================================*/
+function widgets_video_tutorial4() {
+	wp_add_dashboard_widget( 'widget_video_tutorial4', 'Finalizar Mascota', 'video_tutorial4' );
+}
+function video_tutorial4(){ ?>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/jBVFlZEMYg4" frameborder="0" allowfullscreen></iframe>
+	
+<?php }
+add_action( 'wp_dashboard_setup', 'widgets_video_tutorial4' );
+/*===== ADMIN Bienvanida - Escritorio OFF ===========================================*/
+
+/*===== ADMIN Bienvanida - Escritorio ON ============================================*/
+function widgets_video_tutorial5() {
+	wp_add_dashboard_widget( 'widget_video_tutorial5', 'Administrar usuarios', 'video_tutorial5' );
+}
+function video_tutorial5(){ ?>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/-EAVNXCsTuQ" frameborder="0" allowfullscreen></iframe>
+	
+<?php }
+
+if (!al_isSuscriptorLogged() && !al_isModeradorLogged()) {
+	add_action( 'wp_dashboard_setup', 'widgets_video_tutorial5' );
+}
+
+/*===== ADMIN Bienvanida - Escritorio OFF ===========================================*/
 
 ?>
