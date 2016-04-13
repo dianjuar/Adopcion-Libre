@@ -167,7 +167,7 @@
           
         </div>
 
-        <h2 class="titulo--naranja margin-large-top"><span class="icon icon-Pata_vector"></span> Comentarios:</h2>
+        <h2 class="col-md-12 col-sm-12 col-xs-12 titulo--naranja margin-large-top"><span class="icon icon-Pata_vector"></span> Comentarios:</h2>
         <section class="col-md-12">
           <?php comments_template( '', true ); ?>
         </section>  
