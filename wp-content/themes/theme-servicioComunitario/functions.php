@@ -660,7 +660,7 @@ function search_filter($query)
 	endif;
 
 	$parametros = get_parametros( isset($_GET['FILTRO_CMASCOTA']) ? $_GET['FILTRO_CMASCOTA']: '');
-	//var_dump($parametros);
+
 	$query->set( 'cat', $parametros['categoryID'] );
 
 
@@ -702,6 +702,14 @@ function get_parametros($category_name = '')
 
 
 	global $estado, $municipio;
+	
+	if ($estado == false) {
+		$estado = '';
+	}
+	if ($municipio == false) {
+		$municipio = '';
+	}
+
 	$meta_query = array ('relation' => 'AND');
 
     $SoloEstados = array(   'relation'          => 'AND',
@@ -721,9 +729,9 @@ function get_parametros($category_name = '')
                                         'compare'   => '=')
                             );
 
-	if ( $estado != '' && $municipio == '')
+	if ( $estado != '' && $municipio == '' )
         array_push( $meta_query, $SoloEstados );
-    else
+    elseif( $estado != '' && $municipio != '' )
         array_push( $meta_query, $estadoYmunicipio );
 
 
