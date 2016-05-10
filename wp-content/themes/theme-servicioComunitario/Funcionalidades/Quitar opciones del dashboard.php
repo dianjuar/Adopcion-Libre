@@ -28,7 +28,8 @@ Author URI: http://untame.net
         }
     }
 
-    add_action( 'admin_menu', 'my_remove_menu_pages' );
+    if( !al_isProgrammerLogged() )
+        add_action( 'admin_menu', 'my_remove_menu_pages' );
 
     //Manage Your Media Only
     function mymo_parse_query_useronly( $wp_query ) 
