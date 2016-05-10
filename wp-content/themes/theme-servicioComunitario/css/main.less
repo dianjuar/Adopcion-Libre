@@ -1017,6 +1017,20 @@ dt{ float: left; }
     }
 }
 /*=============== filtrar ===========================================================*/
+/*=============== pag equipo ========================================================*/
+.member-photo{
+
+	& img{
+		width: 100%;
+	}
+}
+
+.title h2 a{
+	text-align: center;
+}
+
+/*=============== pag equipo ========================================================*/
+
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: @screen-xs-max) { 
 
@@ -1234,6 +1248,19 @@ dt{ float: left; }
 			border-left: 0;
 		}
 	}
+
+	.membersContainer {
+	    flex-direction: column;
+	}
+
+	.title h2{
+		font-size: 2em;
+	}
+
+	.wow{
+		width: 100%;
+		margin-bottom: 10px;
+	}
 }
 /*=============== MEdia <768 px Phones ==============================================*/
 /*=============== MEdia ≥768 px Tablets =============================================*/
@@ -1363,6 +1390,14 @@ dt{ float: left; }
 	    & div{
 	    	display: block;
 	    }
+	}
+
+	.membersContainer {
+	    flex-wrap: wrap;
+	}
+
+	.wow{
+		margin-bottom: 20px;
 	}
 }
 /*=============== MEdia ≥768 px Tablets =============================================*/

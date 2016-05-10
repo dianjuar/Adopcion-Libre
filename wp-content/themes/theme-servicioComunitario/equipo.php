@@ -36,7 +36,7 @@
 														   					 'fa-envelope' 	=> 'mailto:yossely7@gmail.com')
 													),
 												    array('nombre' 	=> 'Ingrid Lazaro', 
-														  'cargo' 	=> 'Desinger',
+														  'cargo' 	=> 'Front-end developer',
 														  'foto'	=> 'ingrid.jpg',
 														  'redes'	=> array('fa-linkedin' 	=> 'https://ve.linkedin.com/in/ingrid-lazaro-28507a76',
 													  						 'fa-twitter'	=> 'https://twitter.com/karilaz',
@@ -45,7 +45,7 @@
 														   					 'fa-envelope' 	=> 'mailto:anirak.laz@gmail.com')
 													),
 												    array('nombre' 	=> 'José Paz', 
-														  'cargo' 	=> 'Desinger',
+														  'cargo' 	=> 'Front-end developer',
 														  'foto'	=> 'jose.jpg',
 														  'redes'	=> array('fa-facebook'	=> 'https://www.facebook.com/chicho.paz',
 														   					 'fa-google-plus' 	=> 'https://plus.google.com/116678944790485393351',
@@ -131,7 +131,7 @@
 						?>
 
 						<!-- team member -->
-						<div class="col-md-3 col-sm-6 wow fadeInDown" data-wow-duration="500ms" data-wow-delay="<?php echo $i*200;?>ms">
+						<div class="col-md-3 col-sm-5 wow fadeInDown" data-wow-duration="500ms" data-wow-delay="<?php echo $i*200;?>ms">
 	                       <article class="team-mate">
 								<div class="member-photo">
 									<!-- member photo -->
@@ -178,7 +178,7 @@
 					<h2>						
 						<a target="_blank" href="https://github.com/dianjuar/Adopcion-Libre" class='githublink'> 
 					 		<i class="fa fa-github fa-2x"></i>
-					 		Código Fuente del Sitio
+					 		<span>Código Fuente del Sitio</span>
 					 		<i class="fa fa-github fa-2x"></i>
 			 			</a>
 					</h2>
