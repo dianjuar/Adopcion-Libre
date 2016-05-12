@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: equipo
+* Template Name: acerca de AL
 * Description: Plantilla la pagina mascotas perdidas.
 */
 ?>
@@ -109,6 +109,45 @@
 			require_once("header.php");
 			require_once("menu.php");
 		?>
+
+		<!-- Descripcion del  Sitio ON -->
+
+		<section id="our-team">
+			<div class="container">
+				<div class="row">				
+				
+					<!-- section title -->
+					<div class="title text-center wow fadeInUp" data-wow-duration="500ms">
+						<h2>¿Qué es <span class="color">Adopción Libre?</span></h2>
+						<div class="border"></div>
+					</div>
+					<!-- /section title -->
+
+					<div class='membersContainer'>						
+						
+						<!-- Logo -->
+						<div class="col-md-6 col-sm-5 wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0ms">
+	                        <figure>
+						  		<img src="http://territorioinformativo.com/wp-content/uploads/2016/01/Perro_cuerpo.png" alt="Perrito Hermoso" width="600" height="600">
+							</figure> 
+	                    </div>
+
+						<!-- Descripcion -->
+						<div class="col-md-6 col-sm-5 wow fadeInDown" data-wow-duration="500ms" data-wow-delay="200ms">
+	                       <p>
+	                       	<strong>Adopción Libre</strong> te ofrece la oportunidad de ayudar a los animales que no tienen hogar a través de la creación de publicaciones en las 3 categorías existentes: <strong>adopción</strong>, <strong>encontrados</strong> y <strong>perdidos</strong>; de esta manera se cuenta con un sistema centralizado donde es posible que encuentres la mascota que buscas o publicar la mascota que alguien desea encontrar.
+	                       	Adopción Libre es un proyecto <strong>sin fines de lucro</strong>, resultado de un servicio comunitario de estudiantes de Ingeniería en Informática de la Universidad Nacional Experimental del Táchira <strong>(U.N.E.T)</strong>, cuyo objetivo es sensibilizar a las personas ante el maltrato animal.
+	                       </p>
+	                    </div>						
+					
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- Descripcion del  Sitio OFF -->
+
 
 		<!-- Start Our Team
 		=========================================== -->
