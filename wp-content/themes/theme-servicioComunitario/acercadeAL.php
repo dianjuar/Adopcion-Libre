@@ -126,15 +126,15 @@
 					<div class='membersContainer'>						
 						
 						<!-- Logo -->
-						<div class="col-md-6 col-sm-5 wow fadeInDown" data-wow-duration="600ms" data-wow-delay="0ms">
-	                        <figure>
-						  		<img src="<?php bloginfo('template_url') ?>/img/Pastor_mestizo.png" alt="Perrito Hermoso" width="600" height="600">
+						<div class="col-md-4 col-sm-5 wow fadeInDown" data-wow-duration="600ms" data-wow-delay="0ms">
+	                        <figure >
+						  		<img src="<?php bloginfo('template_url') ?>/img/Pastor_mestizo.png" alt="Perrito Hermoso" class="imgAbout">
 							</figure> 
 	                    </div>
 
 						<!-- Descripcion -->
 						<div class="col-md-6 col-sm-5 wow fadeInDown" data-wow-duration="600ms" data-wow-delay="400ms">
-	                       <p>
+	                       <p style="text-align: justify;">
 	                       	<strong>Adopción Libre</strong> te ofrece la oportunidad de ayudar a los animales que no tienen hogar a través de la creación de publicaciones en las 3 categorías existentes: <strong>adopción</strong>, <strong>encontrados</strong> y <strong>perdidos</strong>; de esta manera se cuenta con un sistema centralizado donde es posible que encuentres la mascota que buscas o publicar la mascota que alguien desea encontrar.
 	                       	Adopción Libre es un proyecto <strong>sin fines de lucro</strong>, resultado de un servicio comunitario de estudiantes de Ingeniería en Informática de la Universidad Nacional Experimental del Táchira <strong>(U.N.E.T)</strong>, cuyo objetivo es sensibilizar a las personas ante el maltrato animal.
 	                       </p>
