@@ -899,6 +899,10 @@ dt {
   width: 100%;
   height: auto;
 }
+.pAbout {
+  text-align: justify;
+  font-size: 20px;
+}
 /*=============== pag equipo ========================================================*/
 /*=============== MEdia <768 px Phones ==============================================*/
 @media (max-width: 767px) {
